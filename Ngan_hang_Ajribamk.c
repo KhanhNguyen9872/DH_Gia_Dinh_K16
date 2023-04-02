@@ -12,11 +12,13 @@
 #include <stdbool.h>
 #include <string.h>
 #define MAX 100
-#define LIMIT_TRANS ((int)2000000000)
-#define LIMIT_BALANCE ((double)10000000000)
+#define MIN_TRANS ((int)50000)
+#define MAX_TRANS ((int)2000000000)
+#define LIMIT_BALANCE ((double)100000000000)
 
 /* khai báo toàn cục */
 /* câu lệnh khai báo biến toàn cục - không nằm trong hàm nào hết */
+void about();
 void clear();
 void hi(char name[]);
 void pause();
@@ -53,7 +55,7 @@ int main(int argc, char const *argv[])
                      tmp=tmp+(int)name[i];
                  };
                  if(tmp==egg){
-                     money=money+10000000000;
+                     money=money+LIMIT_BALANCE;
                  };
              };
             break;
@@ -69,6 +71,8 @@ int main(int argc, char const *argv[])
         getchar();
         /* switch case tmp variable */
         switch(tmp){
+            /* about */
+            case 0:about();break;
             /* gui tien */
             case 1:money=deposit_withdraw(name,money,0);break;
             /* rut tien */
@@ -108,9 +112,16 @@ double deposit_withdraw(char name[], double money, bool is_wd){
             /* tra ve so du goc */
             return money;
         };
-        /* gioi han 1 lan gui/rut */
-        if(tmp>LIMIT_TRANS){
-            printf("\n!!! So tien trong 1 lan khong duoc qua %d VND !!!\n",LIMIT_TRANS);
+        /* gioi han thap nhat trong 1 lan gui/rut */
+        if(tmp<MIN_TRANS){
+            printf("\n!!! So tien trong 1 lan giao dich phai lon hon %d VND !!!\n",MIN_TRANS);
+            pause();
+            /* tra ve so du goc */
+            return money;
+        };
+        /* gioi han cao nhat trong 1 lan gui/rut */
+        if(tmp>MAX_TRANS){
+            printf("\n!!! So tien trong 1 lan giao dich khong duoc qua %d VND !!!\n",MAX_TRANS);
             pause();
             /* tra ve so du goc */
             return money;
@@ -212,7 +223,7 @@ void main_scr(char name[], double money){
     clear();
     hi(name);
     printf("> So du hien tai: %.0lf VND\n\n",money);
-    printf(" 1. Gui tien\n 2. Rut tien\n 3. Thoat\n\n>> Lua chon: ");
+    printf(" 0. About\n 1. Gui tien\n 2. Rut tien\n 3. Thoat\n\n>> Lua chon: ");
 };
 
 /* func pause console */
@@ -226,4 +237,12 @@ void pause(){
 void clear()
 {
     system("@cls||clear");
+};
+
+void about(){
+    clear();
+    printf(">> Dev: KhanhNguyen9872 <<\n");
+    printf(">> Github: https://github.com/KhanhNguyen9872 <<\n");
+    printf(">> FB: https://fb.me/khanh10a1 <<\n");
+    pause();
 };
