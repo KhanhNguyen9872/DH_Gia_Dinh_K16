@@ -12,24 +12,26 @@
 #include <stdbool.h>
 #include <string.h>
 #define MAX 100
+#define LIMIT_TRANS ((int)2000000000)
+#define LIMIT_BALANCE ((double)10000000000)
 
 /* khai báo toàn cục */
 /* câu lệnh khai báo biến toàn cục - không nằm trong hàm nào hết */
 void clear();
 void hi(char name[]);
 void pause();
-void main_scr(char name[], long money);
+void main_scr(char name[], double money);
 bool check_name(char name[]);
 char name_upper(char name[]);
-long deposit_withdraw(char name[], long money, bool is_wd);
+double deposit_withdraw(char name[], double money, bool is_wd);
 
 int main(int argc, char const *argv[])
 {
     /* khai bao cuc bo */
     /* statement - khai báo biến cục bộ trong main */
-    long money=0;
+    double money=0;
     char name[MAX];
-    int tmp;
+    int tmp=0;
     /* statements - các câu lệnh */
     while(1){
         clear();
@@ -45,15 +47,15 @@ int main(int argc, char const *argv[])
         } else {
             /* in hoa ten rieng */
             name_upper(name);
-            // {
-            //     int egg=1477;
-            //     for(int i=0;i<strlen(name);i++){
-            //         tmp=tmp+(int)name[i];
-            //     };
-            //     if(tmp==egg){
-            //         money=money+10000000000;
-            //     };
-            // };
+             {
+                 int egg=1477;
+                 for(int i=0;i<strlen(name);i++){
+                     tmp=tmp+(int)name[i];
+                 };
+                 if(tmp==egg){
+                     money=money+10000000000;
+                 };
+             };
             break;
         }
     };
@@ -80,7 +82,7 @@ int main(int argc, char const *argv[])
 };
 
 /* func gui tien - rut tien */
-long deposit_withdraw(char name[], long money, bool is_wd){
+double deposit_withdraw(char name[], double money, bool is_wd){
     /* khai bao bien cuc bo */
     long tmp=0;
     char is_yes[MAX];
@@ -107,8 +109,8 @@ long deposit_withdraw(char name[], long money, bool is_wd){
             return money;
         };
         /* gioi han 1 lan gui/rut */
-        if(tmp>2000000000){
-            printf("\n!!! So tien trong 1 lan khong duoc qua 2.000.000.000 VND !!!\n");
+        if(tmp>LIMIT_TRANS){
+            printf("\n!!! So tien trong 1 lan khong duoc qua %d VND !!!\n",LIMIT_TRANS);
             pause();
             /* tra ve so du goc */
             return money;
@@ -123,7 +125,7 @@ long deposit_withdraw(char name[], long money, bool is_wd){
                 return money;
             };
             /* neu tien muon rut > so du hien tai */
-            if(tmp > money){
+            if(tmp>money){
                 printf("\n!!! So tien muon rut vuot qua so du cua ban !!!\n");
                 pause();
                 /* tra ve so du goc */
@@ -131,8 +133,8 @@ long deposit_withdraw(char name[], long money, bool is_wd){
             };
         } else {
             /* limit balance */
-            if(money+tmp>10000000000){
-                printf("\n!!! So tien dang co hien dang qua muc cho phep !!!\n%-12s Toi da: 10.000.000.000 VND %10s\n","!!!","!!!");
+            if(money+tmp>LIMIT_BALANCE){
+                printf("\n!!! So tien dang co hien dang qua muc cho phep !!!\n%-13s Toi da: %.0lf VND %12s\n","!!!",LIMIT_BALANCE,"!!!");
                 pause();
                 /* tra ve so du goc */
                 return money;
@@ -205,11 +207,11 @@ void hi(char name[]){
 };
 
 /* func menu options */
-void main_scr(char name[], long money){
+void main_scr(char name[], double money){
     /* cac cau lenh */
     clear();
     hi(name);
-    printf("> So du hien tai: %lu VND\n\n",money);
+    printf("> So du hien tai: %.0lf VND\n\n",money);
     printf(" 1. Gui tien\n 2. Rut tien\n 3. Thoat\n\n>> Lua chon: ");
 };
 
