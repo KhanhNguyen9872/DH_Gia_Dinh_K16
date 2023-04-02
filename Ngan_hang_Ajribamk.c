@@ -6,7 +6,7 @@
 // withdraw - rut tien
 // show balance - in so du hien tai
 
-/* tiền xử lý */
+/* tien xu ly */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -16,9 +16,10 @@
 #define MAX_TRANS ((int)2000000000)
 #define LIMIT_BALANCE ((double)100000000000)
 
-/* khai báo toàn cục */
-/* câu lệnh khai báo biến toàn cục - không nằm trong hàm nào hết */
+/* khai bao toan cuc */
+/* cau lenh khai bao bien toan cuc - khong nam trong ham nao het */
 void about();
+void comma(double money);
 void clear();
 void hi(char name[]);
 void pause();
@@ -30,11 +31,11 @@ double deposit_withdraw(char name[], double money, bool is_wd);
 int main(int argc, char const *argv[])
 {
     /* khai bao cuc bo */
-    /* statement - khai báo biến cục bộ trong main */
+    /* statement - khai bao bien cuc bo trong main */
     double money=0;
     char name[MAX];
     int tmp=0;
-    /* statements - các câu lệnh */
+    /* statements - cac cau lenh */
     while(1){
         clear();
         printf(" @@ Chao mung ban da den voi Ngan hang Ajribamk @@\n\n");
@@ -162,6 +163,21 @@ double deposit_withdraw(char name[], double money, bool is_wd){
     };
 };
 
+/* func in so voi dau cham */
+void comma(double n){
+    /* neu n < 1000 thi in ra so do va ket thuc func */
+    if (n<1000) {
+        printf("%d",(int)n);
+        return;
+    };
+    /* call func them 1 lan nua voi phan nguyen cua n da bi chia 1000 */
+    /* vd: 123456 / 1000 = 123,456 (123 la phan nguyen) */
+    comma((unsigned long)n/1000);
+    /* in ra so n sau khi chia lay phan du 1000*/
+    /* vd: 123456 % 1000 = 123,456 (456 la phan du) */
+    printf(".%03lu",(unsigned long)n%1000);
+};
+
 /* func in hoa ten rieng */
 char name_upper(char name[]){
     /* khai bao bien cuc bo */
@@ -222,7 +238,9 @@ void main_scr(char name[], double money){
     /* cac cau lenh */
     clear();
     hi(name);
-    printf("> So du hien tai: %.0lf VND\n\n",money);
+    printf("> So du hien tai: ");
+    comma(money);
+    printf(" VND\n\n");
     printf(" 0. About\n 1. Gui tien\n 2. Rut tien\n 3. Thoat\n\n>> Lua chon: ");
 };
 
