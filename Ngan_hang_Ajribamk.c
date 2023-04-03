@@ -14,25 +14,25 @@
 #define MAX 100
 #define MIN_TRANS ((int)50000)
 #define MAX_TRANS ((int)2000000000)
-#define LIMIT_BALANCE ((double)100000000000)
+#define LIMIT_BALANCE ((double)1000000000000)
 
 /* khai bao toan cuc */
 /* cau lenh khai bao bien toan cuc - khong nam trong ham nao het */
 void about();
-void comma(double money);
+void comma(long long money);
 void clear();
 void hi(char name[]);
 void pause();
-void main_scr(char name[], double money);
+void main_scr(char name[], long long money);
 bool check_name(char name[]);
 char name_upper(char name[]);
-double deposit_withdraw(char name[], double money, bool is_wd);
+long long deposit_withdraw(char name[], long long money, bool is_wd);
 
 int main(int argc, char const *argv[])
 {
     /* khai bao cuc bo */
     /* statement - khai bao bien cuc bo trong main */
-    double money=0;
+    long long money=0;
     char name[MAX];
     int tmp=0;
     /* statements - cac cau lenh */
@@ -87,7 +87,7 @@ int main(int argc, char const *argv[])
 };
 
 /* func gui tien - rut tien */
-double deposit_withdraw(char name[], double money, bool is_wd){
+long long deposit_withdraw(char name[], long long money, bool is_wd){
     /* khai bao bien cuc bo */
     long tmp=0;
     char is_yes[MAX];
@@ -146,7 +146,7 @@ double deposit_withdraw(char name[], double money, bool is_wd){
         } else {
             /* limit balance */
             if(money+tmp>LIMIT_BALANCE){
-                printf("\n!!! So tien dang co hien dang qua muc cho phep !!!\n%-13s Toi da: %.0lf VND %12s\n","!!!",LIMIT_BALANCE,"!!!");
+                printf("\n!!! So tien dang co hien dang qua muc cho phep !!!\n%-12s Toi da: %.0lf VND %11s\n","!!!",LIMIT_BALANCE,"!!!");
                 pause();
                 /* tra ve so du goc */
                 return money;
@@ -164,18 +164,23 @@ double deposit_withdraw(char name[], double money, bool is_wd){
 };
 
 /* func in so voi dau cham */
-void comma(double n){
-    /* neu n < 1000 thi in ra so do va ket thuc func */
-    if (n<1000) {
-        printf("%d",(int)n);
-        return;
-    };
-    /* call func them 1 lan nua voi phan nguyen cua n da bi chia 1000 */
-    /* vd: 123456 / 1000 = 123,456 (123 la phan nguyen) */
-    comma((unsigned long)n/1000);
-    /* in ra so n sau khi chia lay phan du 1000*/
-    /* vd: 123456 % 1000 = 123,456 (456 la phan du) */
-    printf(".%03lu",(unsigned long)n%1000);
+void comma(long long money){
+	/* tuy vao trinh bien dich gcc */
+	if(money==(long long)money){
+		/* neu money < 1000 thi in ra so do va ket thuc func */
+	    if (money<1000) {
+	        printf("%d",(int)money);
+	        return;
+	    };
+	    /* call func them 1 lan nua voi phan nguyen cua n da bi chia 1000 */
+	    /* vd: 123456 / 1000 = 123,456 (123 la phan nguyen) */
+	    comma((long long)money/1000);
+	    /* in ra so n sau khi chia lay phan du 1000*/
+	    /* vd: 123456 % 1000 = 123,456 (456 la phan du) */
+	    printf(".%03lld",(long long)money%1000);
+	} else {
+		printf("%.0lf",money);
+	}
 };
 
 /* func in hoa ten rieng */
@@ -234,7 +239,7 @@ void hi(char name[]){
 };
 
 /* func menu options */
-void main_scr(char name[], double money){
+void main_scr(char name[], long long money){
     /* cac cau lenh */
     clear();
     hi(name);
