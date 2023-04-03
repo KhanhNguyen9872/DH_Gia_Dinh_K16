@@ -99,7 +99,7 @@ long long deposit_withdraw(char name[], long long money, bool is_wd){
     printf("Vui long nhap so tien muon %s!\n\n",(is_wd ? "rut" : "gui"));
     printf(" >> So tien (VND): ");
     /* input money */
-    scanf("%lu",&tmp);
+    scanf("%lld",&tmp);
     getchar();
     printf(" >> Ban co muon %s tien khong? [Y/n]: ",(is_wd ? "rut" : "gui"));
     gets(is_yes);
@@ -115,14 +115,18 @@ long long deposit_withdraw(char name[], long long money, bool is_wd){
         };
         /* gioi han thap nhat trong 1 lan gui/rut */
         if(tmp<MIN_TRANS){
-            printf("\n!!! So tien trong 1 lan giao dich phai lon hon %d VND !!!\n",MIN_TRANS);
+            printf("\n!!! So tien trong 1 lan giao dich phai lon hon ");
+            comma(MIN_TRANS);
+			printf(" VND !!!\n");
             pause();
             /* tra ve so du goc */
             return money;
         };
         /* gioi han cao nhat trong 1 lan gui/rut */
         if(tmp>MAX_TRANS){
-            printf("\n!!! So tien trong 1 lan giao dich khong duoc qua %d VND !!!\n",MAX_TRANS);
+            printf("\n!!! So tien trong 1 lan giao dich khong duoc qua ");
+            comma(MAX_TRANS);
+            printf(" VND !!!\n");
             pause();
             /* tra ve so du goc */
             return money;
