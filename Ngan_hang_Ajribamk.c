@@ -89,7 +89,7 @@ int main(int argc, char const *argv[])
 /* func gui tien - rut tien */
 long long deposit_withdraw(char name[], long long money, bool is_wd){
     /* khai bao bien cuc bo */
-    long tmp=0;
+    long long tmp=0;
     char is_yes[MAX];
     /* cac cau lenh */
     /* clear screen */
