@@ -14,7 +14,7 @@
 #define MAX 100
 #define MIN_TRANS ((int)50000)
 #define MAX_TRANS ((int)2000000000)
-#define LIMIT_BALANCE ((double)1000000000000)
+#define LIMIT_BALANCE ((long long)1000000000000)
 
 /* khai bao toan cuc */
 /* cau lenh khai bao bien toan cuc - khong nam trong ham nao het */
@@ -146,7 +146,9 @@ long long deposit_withdraw(char name[], long long money, bool is_wd){
         } else {
             /* limit balance */
             if(money+tmp>LIMIT_BALANCE){
-                printf("\n!!! So tien dang co hien dang qua muc cho phep !!!\n%-12s Toi da: %.0lf VND %11s\n","!!!",LIMIT_BALANCE,"!!!");
+                printf("\n!!! So tien dang co hien dang qua muc cho phep !!!\n!!! Toi da: ");
+                comma(LIMIT_BALANCE);
+				printf(" VND !!!\n");
                 pause();
                 /* tra ve so du goc */
                 return money;
@@ -165,22 +167,17 @@ long long deposit_withdraw(char name[], long long money, bool is_wd){
 
 /* func in so voi dau cham */
 void comma(long long money){
-	/* tuy vao trinh bien dich gcc */
-	if(money==(long long)money){
-		/* neu money < 1000 thi in ra so do va ket thuc func */
-	    if (money<1000) {
-	        printf("%d",(int)money);
-	        return;
-	    };
-	    /* call func them 1 lan nua voi phan nguyen cua n da bi chia 1000 */
-	    /* vd: 123456 / 1000 = 123,456 (123 la phan nguyen) */
-	    comma((long long)money/1000);
-	    /* in ra so n sau khi chia lay phan du 1000*/
-	    /* vd: 123456 % 1000 = 123,456 (456 la phan du) */
-	    printf(".%03lld",(long long)money%1000);
-	} else {
-		printf("%.0lf",money);
-	}
+	/* neu money < 1000 thi in ra so do va ket thuc func */
+	if (money<1000) {
+	    printf("%d",(int)money);
+	    return;
+	};
+	/* call func them 1 lan nua voi phan nguyen cua n da bi chia 1000 */
+	/* vd: 123456 / 1000 = 123,456 (123 la phan nguyen) */
+	comma((long long)money/1000);
+	/* in ra so n sau khi chia lay phan du 1000*/
+	/* vd: 123456 % 1000 = 123,456 (456 la phan du) */
+	printf(".%03lld",(long long)money%1000);
 };
 
 /* func in hoa ten rieng */
