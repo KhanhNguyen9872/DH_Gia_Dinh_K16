@@ -9,17 +9,13 @@ void process(int a, int b, int *min, int *max){
     *max=(a>b ? a : b);
 }
 
-void nhap(int *tmp){
-    scanf("%d",&*tmp);
-}
-
 int main(int argc, char const *argv[])
 {
     int a,b,min,max;
     printf("Nhap a: ");
-    nhap(&a);
+    scanf("%d",&a);
     printf("Nhap b: ");
-    nhap(&b);
+    scanf("%d",&b);
     process(a,b,&min,&max);
     printf("\nmin: %d",min);
     printf("\nmax: %d",max);

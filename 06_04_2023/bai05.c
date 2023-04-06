@@ -3,41 +3,40 @@ Nhập 2 số a và b. Tính tổng, hiệu, tích và thương của hai số �
 */
 #include<stdio.h>
 
-void tong(int a, int b, float *tmp){
+void tong(float a, float b, float *tmp){
     *tmp=a+b;
 }
 
-void hieu(int a, int b, float *tmp){
+void hieu(float a, float b, float *tmp){
     *tmp=a-b;
 }
 
-void tich(int a, int b, float *tmp){
+void tich(float a, float b, float *tmp){
     *tmp=a*b;
 }
 
-void thuong(int a, int b, float *tmp){
-    *tmp=(float)a/b;
+void thuong(float a, float b, float *tmp){
+    *tmp=a/b;
 }
 
-void nhap(int *tmp){
-    scanf("%d",&*tmp);
+void nhap(float *tmp){
+    scanf("%f",&*tmp);
 }
 
 int main(int argc, char const *argv[]) {
-    int a,b;
-    float tmp=0;
+    float a,b,t,h,ti,th;
     printf("Nhap a: ");
     nhap(&a);
     printf("Nhap b: ");
     nhap(&b);
-    tong(a,b,&tmp);
-    printf("\n Tong: %.0f", tmp);
-    hieu(a,b,&tmp);
-    printf("\n Hieu: %.0f", tmp);
-    tich(a,b,&tmp);
-    printf("\n Tich: %.0f", tmp);
-    thuong(a,b,&tmp);
-    printf("\n Thuong: %.3f", tmp);
+    tong(a,b,&t);
+    hieu(a,b,&h);
+    tich(a,b,&ti);
+    thuong(a,b,&th);
+    printf("\n Tong: %.3f", t);
+    printf("\n Hieu: %.3f", h);
+    printf("\n Tich: %.3f", ti);
+    printf("\n Thuong: %.3f", th);
     getchar();
     getchar();
     return 0;

@@ -10,14 +10,10 @@ void tinh(float bankinh, float *chuvi, float *dientich){
     *dientich=PI*bankinh*bankinh;
 }
 
-void nhap(float *tmp) {
-    scanf("%f",&*tmp);
-}
-
 int main(int argc, char const *argv[]) {
     float bankinh, chuvi, dientich;
     printf("Nhap ban kinh (cm): ");
-    nhap(&bankinh);
+    scanf("%f",&bankinh);
     tinh(bankinh,&chuvi,&dientich);
     printf("\nChu vi: %.3f cm\nDien tich: %.3f cm",chuvi,dientich);
     getchar();
