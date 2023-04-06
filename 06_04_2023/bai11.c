@@ -23,10 +23,6 @@ void gui(int *sodu){
     *sodu=*sodu+sotien;
 }
 
-void nhap(int *p){
-    scanf("%d",&*p);
-}
-
 int main(int argc, char const *argv[])
 {
     int sodu=0;
