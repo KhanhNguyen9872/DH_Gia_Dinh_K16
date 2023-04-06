@@ -173,15 +173,15 @@ long long deposit_withdraw(char name[], long long money, bool is_wd){
 void comma(long long money){
 	/* neu money < 1000 thi in ra so do va ket thuc func */
 	if (money<1000) {
-	    printf("%d",(int)money);
+	    printf("%d",money);
 	    return;
 	};
 	/* call func them 1 lan nua voi phan nguyen cua n da bi chia 1000 */
 	/* vd: 123456 / 1000 = 123,456 (123 la phan nguyen) */
-	comma((long long)money/1000);
+	comma(money/1000);
 	/* in ra so n sau khi chia lay phan du 1000*/
 	/* vd: 123456 % 1000 = 123,456 (456 la phan du) */
-	printf(".%03lld",(long long)money%1000);
+	printf(".%03lld",money%1000);
 };
 
 /* func in hoa ten rieng */

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.jsp": "java",
+        "stdio.h": "c"
+    }
+}
