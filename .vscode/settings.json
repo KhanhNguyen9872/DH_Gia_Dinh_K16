@@ -2,5 +2,6 @@
     "files.associations": {
         "*.jsp": "java",
         "stdio.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
