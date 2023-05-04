@@ -20,10 +20,20 @@ double sqrt(double num)
 }
 
 void process(float a, float b, float c){
-    float delta = (b*b) - 4*a*c;
-    if(delta<0) printf("Phương trình vô nghiệm");
-    else if(delta==0) printf("Phương trình có nghiệm kép x1 = x2 = %.3f",-b/2*a);
-    else printf("Phương trình có 2 nghiệm phân biệt:\n x1 = %f\n x2 = %f\n", (-b+sqrt(delta))/(2*a), (-b-sqrt(delta))/(2*a));
+    if(a == 0) {
+        if(b == 0) {
+            if (c == 0) {
+                printf("Phương trình vô số nghiệm.\n");
+            } else {
+                printf("Phương trình vô nghiệm.\n");
+            }
+        } else printf("Phương trình có nghiệm x = %0.2f\n",-c/b);
+    } else {
+        float delta = (b*b) - 4*a*c;
+        if(delta<0) printf("Phương trình vô nghiệm");
+        else if(delta==0) printf("Phương trình có nghiệm kép x1 = x2 = %.3f",-b/2*a);
+        else printf("Phương trình có 2 nghiệm phân biệt:\n x1 = %f\n x2 = %f\n", (-b+sqrt(delta))/(2*a), (-b-sqrt(delta))/(2*a));
+    }
     return;
 }
 

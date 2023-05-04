@@ -9,7 +9,7 @@ void tong(float a, float b, float *tmp){
 
 void hieu(float a, float b, float *tmp){
     *tmp=a-b;
-}
+}xz
 
 void tich(float a, float b, float *tmp){
     *tmp=a*b;

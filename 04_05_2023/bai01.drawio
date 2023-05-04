@@ -1,0 +1,106 @@
+<mxfile host="Electron" modified="2023-05-04T13:40:02.961Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="Yb87k4FVny3lMs4VLvdh" version="21.1.2" type="device">
+  <diagram name="Page-1" id="ge0RUx3JYliLoUckjv3V">
+    <mxGraphModel dx="512" dy="627" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-17" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-2" target="TSU1NX1iZhTqzZbUXTQV-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="630" y="169.9999999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-2" value="start" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="590" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-4" target="TSU1NX1iZhTqzZbUXTQV-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="290" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-4" value="nhập 1 số nguyên, kiểm tra xem nó có phải là số đối xứng hay không" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="30" y="50" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-7" value="input: số nguyên n" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-12" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-4" target="TSU1NX1iZhTqzZbUXTQV-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="150" as="targetPoint" />
+            <mxPoint x="190" y="108" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-13" value="process: đảo ngược của n" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-14" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-4" target="TSU1NX1iZhTqzZbUXTQV-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="270" y="230" as="targetPoint" />
+            <mxPoint x="190" y="139" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-15" value="output: là số đối xứng hoặc không đối xứng" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-34" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-18" target="TSU1NX1iZhTqzZbUXTQV-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-18" value="input: n" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-30" value="F" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-31" target="TSU1NX1iZhTqzZbUXTQV-23">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="622.7272727272725" y="410" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-22" value="end" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="575" y="640" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-25" value="T" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-23" target="TSU1NX1iZhTqzZbUXTQV-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-27" value="F" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-23" target="TSU1NX1iZhTqzZbUXTQV-28">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-23" value="sodao == n" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="575" y="410" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-26" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-24" target="TSU1NX1iZhTqzZbUXTQV-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-24" value="print:&lt;br&gt;DX" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="555" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-29" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-28" target="TSU1NX1iZhTqzZbUXTQV-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-28" value="print: &lt;br&gt;Khong doi xung" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-32" value="T" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-31" target="TSU1NX1iZhTqzZbUXTQV-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="750" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-31" value="sogoc &amp;gt; 0" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="572.5" y="290" width="90" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-35" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-33" target="TSU1NX1iZhTqzZbUXTQV-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-33" value="sogoc = n&lt;br&gt;sodao = 0" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="210" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-37" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="TSU1NX1iZhTqzZbUXTQV-36" target="TSU1NX1iZhTqzZbUXTQV-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TSU1NX1iZhTqzZbUXTQV-36" value="donvi = sogoc % 10&lt;br&gt;sodao = sodao*10 + donvi&lt;br&gt;sogoc = sogoc / 10" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="210" width="200" height="110" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

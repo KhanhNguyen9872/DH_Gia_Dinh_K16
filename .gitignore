@@ -1,3 +1,5 @@
 *.exe
 *.bkp
 *.dtmp
+*.stackdump
+*.exe
