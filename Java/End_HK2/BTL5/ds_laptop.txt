@@ -1,0 +1,8 @@
+>> Laptop thứ 1: 
+Laptop: laptop001 Butterfly 0
+CPU: CPU1 i3 Intel 100, 
+RAM: [Ljava.lang.String;@3d075dc0 DDR3 Intel 2 2 0, 
+>> Laptop thứ 2: 
+Laptop: laptop002 Fly 0
+CPU: CPU3 i7 Intel 300, 
+RAM: [Ljava.lang.String;@7b23ec81 DDR4 Intel 8 4 0, 
