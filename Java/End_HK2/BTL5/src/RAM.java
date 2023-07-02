@@ -25,25 +25,30 @@ public class RAM extends Laptop {
     public void nhapTTRam() {
         System.out.print(">> RAM:\n");
         int dung_luong = 0, tmp = 0;
-        this.so_luong = Quanly.int_input("Số lượng RAM", null, true, true);
+        this.so_luong = (int)Quanly.int_input("Số lượng RAM", null, true, true,false);
         while(true){
-            tmp = Quanly.int_input("Loại RAM", "(1 - DDR3, 2 - DDR4)", true, true);
+            tmp = (int)Quanly.int_input("Loại RAM", "(1 - DDR3, 2 - DDR4)", true, true,false);
             if(tmp == 1){
                 this.loai_ram = "DDR3";
+                this.don_gia = 100;
             } else if (tmp == 2){
                 this.loai_ram = "DDR4";
+                this.don_gia = 200;
             } else {
                 System.out.println("!! Loại RAM không tồn tại!");
                 continue;
             }
             break;
         }
-        this.dung_luong = Quanly.int_input("Dung lượng", "(GB)", true, true);
+        this.dung_luong = (int)Quanly.int_input("Dung lượng", "(GB)", true, true,false);
+        this.don_gia = this.don_gia * this.dung_luong;
         this.ma_ram = new String[so_luong];
         for(int i=0;i<so_luong; i++) {
-            System.out.print("  Mã RAM " + String.valueOf(i+1) + ": ");
+            System.out.print("    Mã RAM " + String.valueOf(i+1) + ": ");
             this.ma_ram[i] = Main.str_input();
         }
+        System.out.println("    Đơn giá: " + String.valueOf(this.don_gia) + " USD");
+        System.out.println("    Tổng giá: " + String.valueOf(this.don_gia * this.so_luong) + " USD");
     }
 
     public int getSo_luong() {

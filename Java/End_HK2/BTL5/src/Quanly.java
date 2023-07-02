@@ -21,11 +21,11 @@ public class Quanly {
             }
         }
     }
-    protected static int int_input(String name, String name2, boolean is_tab, boolean greater_than_zero) {
-        int int_var = 0;
+    protected static long int_input(String name, String name2, boolean is_tab, boolean greater_than_zero, boolean is_long) {
+        long var = 0;
         while(true) {
             if(is_tab) {
-                System.out.print("  ");
+                System.out.print("    ");
             }
             System.out.print(name);
             if(name2 != null) {
@@ -33,19 +33,23 @@ public class Quanly {
             }
             System.out.print(": ");
             try {
-                int_var = Main.keyboard.nextInt();
+                if(is_long){
+                    var = Main.keyboard.nextLong();
+                } else {
+                    var = Main.keyboard.nextInt();
+                }
             } catch (Exception e) {
                 System.out.println("!! Vui lòng nhập số!");
                 Main.keyboard.next();
                 continue;
             }
-            if(int_var<=0 && greater_than_zero) {
+            if(var<=0 && greater_than_zero) {
                 System.out.println("!! " + name + " không hợp lệ!");
                 continue;
             }
             break;
         }
-        return int_var;
+        return var;
     }
     private int[] kt_ma_laptop(String ma_laptop) {
         int count = 0;
@@ -91,7 +95,7 @@ public class Quanly {
             newlaptop.setTen_laptop(Main.str_input());
             // CPU
             CPU newCPU = new CPU();
-            newCPU.nhapTTCPU();
+            newCPU.nhapTTCPU(newlaptop.getDong_laptop());
             newlaptop.dsCPU.add(newCPU);
             // RAM
             RAM newRAM = new RAM();
@@ -99,13 +103,14 @@ public class Quanly {
             newlaptop.dsRAM.add(newRAM);
             // Screen
             Screen newScreen = new Screen();
-            newScreen.nhapTTScreen();
+            newScreen.nhapTTScreen(newlaptop.getDong_laptop());
             newlaptop.dsScreen.add(newScreen);
             // HardDisk
-            for(int ii = 0; ii<int_input(">> Số lượng ổ cứng",null,false,true); ii++){
+            int n = (int)int_input(">> Số lượng ổ cứng",null,false,true,false);
+            for(int ii = 0; ii<n; ii++){
                 System.out.println(">> Ổ cứng " + String.valueOf(ii+1) + ":");
                 HardDisk newHardDisk = new HardDisk();
-                newHardDisk.nhapTTHardDisk();
+                newHardDisk.nhapTTHardDisk(newlaptop.getDong_laptop());
                 newlaptop.dsHardDisk.add(newHardDisk);
             }
             //
@@ -129,8 +134,7 @@ public class Quanly {
                 System.out.print("- CPU: ");
                 for(CPU j : i.dsCPU) {
                     System.out.print(
-                        "  " 
-                        + String.valueOf(j.getMa_cpu()) 
+                        String.valueOf(j.getMa_cpu()) 
                         + " - " 
                         + String.valueOf(j.getHang_cpu()) 
                         + " " 
@@ -152,17 +156,32 @@ public class Quanly {
                             + String.valueOf(j.getLoai_ram()) 
                             + " - " 
                             + String.valueOf(j.getDung_luong()) 
-                            + " GB\n"
+                            + " GB"
                         );
+                        System.out.println();
+                        count2++;
                     }
                 }
-                System.out.println();
                 
-                System.out.print("- Màn hình: \n");
-//                for(Screen j : i.dsScreen) {
-//                    System.out.print(j);
-//                }
-                System.out.println();
+                System.out.print("- Màn hình: ");
+                for(Screen j : i.dsScreen) {
+                    System.out.print(
+                            String.valueOf(j.getMa_manhinh())
+                            + " - "
+                            + String.valueOf(j.getHang_sanxuat())
+                            + " - "
+                            + String.valueOf(j.getDo_phangiai())
+                            + " - "
+                            + String.valueOf(j.getDon_gia())
+                    );
+                    if(j.getChong_loa() != 0) {
+                        System.out.print(
+                                " - "
+                                + String.valueOf(j.getChong_loa())
+                        );
+                    }
+                    System.out.println();
+                }
                 
                 count2 = 1;
                 System.out.print("- Ổ cứng: \n");
@@ -192,10 +211,10 @@ public class Quanly {
                         );
                     }
                     System.out.println();
+                    count2++;
                 }
                 System.out.println();
-                
-                System.out.print("Đơn giá: " + String.valueOf(i.getTong_gia()) + " USD\n");
+                System.out.println(">> Tổng giá: " + String.valueOf(i.getTong_gia()) + " USD");
                 count++;
             }
             System.out.println("-------------------");

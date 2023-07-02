@@ -32,7 +32,7 @@ public class HardDisk extends Laptop {
     }
     
     public void set_type_harddisk() {
-        while (!set_type_harddisk(Quanly.int_input("Loại ổ cứng", "(1 - HDD, 2 - SSD)", true, true))) {
+        while (!set_type_harddisk((int)Quanly.int_input("Loại ổ cứng", "(1 - HDD, 2 - SSD)", true, true,false))) {
             continue;
         }
     }
@@ -47,18 +47,28 @@ public class HardDisk extends Laptop {
 //        this.toc_do_ghi = toc_do_ghi;
 //    }
     
+    
+    
+    public void nhapTTHardDisk(int dong_laptop){
+        if(dong_laptop == 1) {
+            set_type_harddisk(2);
+        }
+        nhapTTHardDisk();
+    }
+    
     public void nhapTTHardDisk() {
         if(this.kieu_ocung == null) {
             set_type_harddisk();
         }
-        System.out.print("  Mã ổ cứng: ");
+        System.out.print("    Mã ổ cứng: ");
         this.ma_ocung = Main.str_input();
-        this.dung_luong = Quanly.int_input("Dung lượng", "(GB)", true, true);
+        this.dung_luong = (int)Quanly.int_input("Dung lượng", "(GB)", true, true,false);
+        this.don_gia = Quanly.int_input("Đơn giá", "(USD)", true, true, true);
         if(this.kieu_ocung.equals("HDD")) {
-            this.so_vong_quay = Quanly.int_input("Số vòng quay", "(rpm)", true, true);
+            this.so_vong_quay = (int)Quanly.int_input("Số vòng quay", "(rpm)", true, true,false);
         } else if(this.kieu_ocung.equals("SSD")) {
-            this.toc_do_doc = Quanly.int_input("Tốc độ đọc", "(mb/s)", true, true);
-            this.toc_do_ghi = Quanly.int_input("Tốc độ ghi", "(mb/s)", true, true);
+            this.toc_do_doc = (int)Quanly.int_input("Tốc độ đọc", "(mb/s)", true, true,false);
+            this.toc_do_ghi = (int)Quanly.int_input("Tốc độ ghi", "(mb/s)", true, true,false);
         }
     }
 

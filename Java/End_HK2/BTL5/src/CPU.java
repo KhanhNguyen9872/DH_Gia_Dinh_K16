@@ -17,18 +17,30 @@ public class CPU extends Laptop {
 //    }
     
     public void nhapTTCPU(){
+        nhapTTCPU(0);
+    }
+    
+    public void nhapTTCPU(int type_laptop){
         System.out.print(">> CPU:\n");
-        String ma_cpu;
+        String ma_cpu = "";
         while(true){
-            System.out.print("  Nhập mã CPU [CPU1 - i3 , CPU2 - i5, CPU3 - i7]: ");
-            ma_cpu = Main.str_input();
+            if(type_laptop == 1) {
+                System.out.println("    CPU: CPU3 - i7");
+                ma_cpu = "CPU3";
+            } else if (type_laptop == 2) {
+                System.out.println("    CPU: CPU2 - i5");
+                ma_cpu = "CPU2";
+            } else if (type_laptop == 3) {
+                System.out.print("    Nhập mã CPU [CPU1 - i3 , CPU2 - i5]: ");
+                ma_cpu = Main.str_input();
+            }
             if(ma_cpu.equalsIgnoreCase("CPU1")){
                 this.loai_cpu = "i3";
                 this.don_gia = 100;
             } else if (ma_cpu.equalsIgnoreCase("CPU2")) {
                 this.loai_cpu = "i5";
                 this.don_gia = 200;
-            } else if (ma_cpu.equalsIgnoreCase("CPU3")) {
+            } else if (ma_cpu.equalsIgnoreCase("CPU3") && type_laptop != 3) {
                 this.loai_cpu = "i7";
                 this.don_gia = 300;
             } else {
@@ -36,6 +48,7 @@ public class CPU extends Laptop {
                 continue;
             }
             this.ma_cpu = ma_cpu;
+            System.out.println("    Đơn giá: " + String.valueOf(this.don_gia) + " USD");
             break;
         }
     }

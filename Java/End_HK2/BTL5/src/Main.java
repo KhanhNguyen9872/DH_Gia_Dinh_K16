@@ -30,7 +30,7 @@ public class Main {
             clear_console();
             switch(choose) {
                 case 1:
-                    dsLaptop.themLaptop(Quanly.int_input("Số lượng Laptop", null, false, true));
+                    dsLaptop.themLaptop((int)Quanly.int_input("Số lượng Laptop", null, false, true,false));
                     pause_console();
                     break;
                 case 2:

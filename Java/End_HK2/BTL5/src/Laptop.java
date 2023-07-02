@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class Laptop {
     private String ma_laptop;
     private String ten_laptop;
-    private long tong_gia;
     private int dong_laptop;
     protected ArrayList<CPU> dsCPU = new ArrayList<CPU>();
     protected ArrayList<RAM> dsRAM = new ArrayList<RAM>();
@@ -38,13 +37,6 @@ public class Laptop {
     public Laptop(){
         this.ma_laptop = "";
         this.ten_laptop = "";
-        this.tong_gia = 0;
-    }
-    
-    public Laptop(String masp, String tensp, long dongia) {
-        this.ma_laptop = masp;
-        this.ten_laptop = tensp;
-        this.tong_gia = dongia;
     }
 
     public String getMa_laptop() {
@@ -64,11 +56,20 @@ public class Laptop {
     }
 
     public long getTong_gia() {
-        return this.tong_gia;
-    }
-
-    public void setTong_gia(long don_gia) {
-        this.tong_gia = don_gia;
+        long tong_gia = 0;
+        for(CPU i : dsCPU) {
+            tong_gia += i.getDon_gia();
+        }
+        for(RAM i : dsRAM) {
+            tong_gia += i.getDon_gia();
+        }
+        for(Screen i : dsScreen) {
+            tong_gia += i.getDon_gia();
+        }
+        for(HardDisk i : dsHardDisk) {
+            tong_gia += i.getDon_gia();
+        }
+        return tong_gia;
     }
 
     
