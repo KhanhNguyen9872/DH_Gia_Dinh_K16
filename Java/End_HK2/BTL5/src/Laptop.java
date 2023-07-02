@@ -1,17 +1,38 @@
-
 import java.util.ArrayList;
-
 public class Laptop {
     private String ma_laptop;
     private String ten_laptop;
     private int dong_laptop;
-    protected ArrayList<CPU> dsCPU = new ArrayList<CPU>();
-    protected ArrayList<RAM> dsRAM = new ArrayList<RAM>();
-    protected ArrayList<HardDisk> dsHardDisk = new ArrayList<HardDisk>();
-    protected ArrayList<Screen> dsScreen = new ArrayList<Screen>();
+    protected ArrayList<CPU> dsCPU = null;
+    protected ArrayList<RAM> dsRAM = null;
+    protected ArrayList<HardDisk> dsHardDisk = null;
+    protected ArrayList<Screen> dsScreen = null;
     
     public int getDong_laptop() {
         return this.dong_laptop;
+    }
+
+    public void reset_dsCPU() {
+        this.dsCPU = new ArrayList<CPU>();
+    }
+    
+    public void reset_dsRAM() {
+        this.dsRAM = new ArrayList<RAM>();
+    }
+    
+    public void reset_dsScreen() {
+        this.dsScreen = new ArrayList<Screen>();
+    }
+    
+    public void reset_dsHardDisk() {
+        this.dsHardDisk = new ArrayList<HardDisk>();
+    }
+    
+    public void reset_dsALL(){
+        reset_dsCPU();
+        reset_dsRAM();
+        reset_dsScreen();
+        reset_dsHardDisk();
     }
     
     public String getnameDong_laptop() {
@@ -37,6 +58,7 @@ public class Laptop {
     public Laptop(){
         this.ma_laptop = "";
         this.ten_laptop = "";
+        reset_dsALL();
     }
 
     public String getMa_laptop() {
@@ -71,16 +93,4 @@ public class Laptop {
         }
         return tong_gia;
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

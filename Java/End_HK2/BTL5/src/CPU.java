@@ -9,12 +9,6 @@ public class CPU extends Laptop {
         this.loai_cpu = "";
         this.don_gia = 0;
     }
-
-//    public CPU(String ma_cpu, String loai_cpu, long don_gia) {
-//        this.ma_cpu = ma_cpu;
-//        this.loai_cpu = loai_cpu;
-//        this.don_gia = don_gia;
-//    }
     
     public void nhapTTCPU(){
         nhapTTCPU(0);
@@ -23,6 +17,7 @@ public class CPU extends Laptop {
     public void nhapTTCPU(int type_laptop){
         System.out.print(">> CPU:\n");
         String ma_cpu = "";
+        System.out.println("    Hãng CPU: " + String.valueOf(this.hang_cpu));
         while(true){
             if(type_laptop == 1) {
                 System.out.println("    CPU: CPU3 - i7");
@@ -32,7 +27,7 @@ public class CPU extends Laptop {
                 ma_cpu = "CPU2";
             } else if (type_laptop == 3) {
                 System.out.print("    Nhập mã CPU [CPU1 - i3 , CPU2 - i5]: ");
-                ma_cpu = Main.str_input();
+                ma_cpu = lib.str_input();
             }
             if(ma_cpu.equalsIgnoreCase("CPU1")){
                 this.loai_cpu = "i3";
@@ -85,5 +80,17 @@ public class CPU extends Laptop {
         this.don_gia = don_gia;
     }
     
+    @Override
+    public String toString(){
+        return String.valueOf(this.ma_cpu) 
+            + " - " 
+            + String.valueOf(this.hang_cpu) 
+            + " " 
+            + String.valueOf(this.loai_cpu)
+            + " ("
+            + String.valueOf(this.don_gia)
+            + " USD)\n"
+        ;
+    }
     
 }

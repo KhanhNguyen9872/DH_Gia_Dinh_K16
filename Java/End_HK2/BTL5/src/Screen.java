@@ -1,4 +1,3 @@
-
 public class Screen {
     private String ma_manhinh;
     private String hang_sanxuat;
@@ -34,20 +33,23 @@ public class Screen {
         int tmp;
         System.out.print(">> Màn hình: \n");
         System.out.print("    Mã màn hình: ");
-        this.ma_manhinh = Main.str_input();
+        this.ma_manhinh = lib.str_input();
+        System.out.print("    Hãng sản xuất: ");
+        this.hang_sanxuat = lib.str_input();
         while(true) {
-            System.out.print("    Loại màn hình [HD - FullHD]: ");
+            System.out.print("    Loại màn hình");
             if(type_scr == 0) {
-                this.do_phangiai = Main.str_input();
+                System.out.print(" [HD - FullHD]: ");
+                this.do_phangiai = lib.str_input();
             } else {
                 this.do_phangiai = get_screen(type_scr);
-                System.out.println(this.do_phangiai);
+                System.out.println(": " + String.valueOf(this.do_phangiai));
             }
             if(this.do_phangiai.equals("HD")) {
                 this.don_gia = 1000;
             } else if (this.do_phangiai.equals("FullHD")) {
                 while(true) {
-                    tmp = (int)Quanly.int_input("Tiêu chuẩn va chạm","(1, 2, 3)",true,true,false);
+                    tmp = (int)lib.int_input("Tiêu chuẩn va chạm","(1, 2, 3)",true,true,false);
                     if(tmp == 1) {
                         this.don_gia = 2000;
                     } else if(tmp == 2) {
@@ -110,5 +112,25 @@ public class Screen {
 
     public void setChong_loa(int chong_loa) {
         this.chong_loa = chong_loa;
+    }
+    
+    @Override
+    public String toString(){
+        String str = "";
+        str += String.valueOf(this.ma_manhinh)
+                + " - "
+                + String.valueOf(this.hang_sanxuat)
+                + " - "
+                + String.valueOf(this.do_phangiai)
+                + " - "
+                + String.valueOf(this.don_gia)
+            ;
+        if(this.chong_loa != 0) {
+            str += " - " + String.valueOf(this.chong_loa);
+        }
+        str += " (" 
+            + String.valueOf(this.don_gia)
+            + " USD)\n";            
+        return str;
     }
 }

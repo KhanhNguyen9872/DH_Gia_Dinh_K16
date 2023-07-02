@@ -1,4 +1,3 @@
-
 public class RAM extends Laptop {
     private int so_luong; // 1 thanh, 2 thanh
     private String[] ma_ram; // ram1, ram2
@@ -14,20 +13,12 @@ public class RAM extends Laptop {
         this.don_gia = 0;
     }
     
-    public RAM(int so_luong, String[] ma_ram, String loai_ram, int dung_luong, long don_gia) {
-        this.so_luong = so_luong;
-        this.ma_ram = ma_ram;
-        this.loai_ram = loai_ram;
-        this.dung_luong = dung_luong;
-        this.don_gia = don_gia;
-    }
-    
     public void nhapTTRam() {
         System.out.print(">> RAM:\n");
         int dung_luong = 0, tmp = 0;
-        this.so_luong = (int)Quanly.int_input("Số lượng RAM", null, true, true,false);
+        this.so_luong = (int)lib.int_input("Số lượng RAM", null, true, true,false);
         while(true){
-            tmp = (int)Quanly.int_input("Loại RAM", "(1 - DDR3, 2 - DDR4)", true, true,false);
+            tmp = (int)lib.int_input("Loại RAM", "(1 - DDR3, 2 - DDR4)", true, true,false);
             if(tmp == 1){
                 this.loai_ram = "DDR3";
                 this.don_gia = 100;
@@ -40,12 +31,12 @@ public class RAM extends Laptop {
             }
             break;
         }
-        this.dung_luong = (int)Quanly.int_input("Dung lượng", "(GB)", true, true,false);
+        this.dung_luong = (int)lib.int_input("Dung lượng", "(GB)", true, true,false);
         this.don_gia = this.don_gia * this.dung_luong;
         this.ma_ram = new String[so_luong];
         for(int i=0;i<so_luong; i++) {
             System.out.print("    Mã RAM " + String.valueOf(i+1) + ": ");
-            this.ma_ram[i] = Main.str_input();
+            this.ma_ram[i] = lib.str_input();
         }
         System.out.println("    Đơn giá: " + String.valueOf(this.don_gia) + " USD");
         System.out.println("    Tổng giá: " + String.valueOf(this.don_gia * this.so_luong) + " USD");
@@ -89,6 +80,29 @@ public class RAM extends Laptop {
 
     public void setDung_luong(int dung_luong) {
         this.dung_luong = dung_luong;
+    }
+ 
+    @Override
+    public String toString(){
+        int count = 1;
+        String str = "";
+        for(String z : this.getMa_ram()) {
+            str += "  "
+                + String.valueOf(count)
+                + ". "
+                + String.valueOf(z) 
+                + " - " 
+                + String.valueOf(this.loai_ram) 
+                + " - " 
+                + String.valueOf(this.dung_luong) 
+                + " GB ("
+                + String.valueOf(this.don_gia)
+                + " USD)"
+            ;
+            str += "\n";
+            count++;
+        }
+        return str;
     }
     
 }

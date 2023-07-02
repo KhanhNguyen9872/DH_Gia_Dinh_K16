@@ -1,8 +1,29 @@
->> Laptop thứ 1: 
-Laptop: laptop001 Butterfly 0
-CPU: CPU1 i3 Intel 100, 
-RAM: [Ljava.lang.String;@3d075dc0 DDR3 Intel 2 2 0, 
->> Laptop thứ 2: 
-Laptop: laptop002 Fly 0
-CPU: CPU3 i7 Intel 300, 
-RAM: [Ljava.lang.String;@7b23ec81 DDR4 Intel 8 4 0, 
+------------------- 
+>> Laptop thứ 1
+- Dòng máy: Butterfly
+- Mã: laptop001
+- Tên: khanh001
+- CPU: CPU3 - Intel i7
+- RAM: 
+  1. ram1 - DDR3 - 4 GB
+  2. ram2 - DDR3 - 4 GB
+- Màn hình: screen001 - samsung - FullHD - 3000 - 2
+- Ổ cứng: 
+  1. ssd - SSD (256 GB) - [R: 420 MB/s - W: 380 MB/s]
+
+>> Tổng giá: 3800 USD
+------------------- 
+>> Laptop thứ 2
+- Dòng máy: Bee
+- Mã: laptop002
+- Tên: bee002
+- CPU: CPU2 - Intel i5
+- RAM: 
+  1. ram001 - DDR4 - 4 GB
+  2. ram002 - DDR4 - 4 GB
+- Màn hình: screen002 -  samsung - HD - 1000
+- Ổ cứng: 
+  1. hdd - HDD (512 GB) - [7200rpm]
+
+>> Tổng giá: 2100 USD
+-------------------
