@@ -11,41 +11,19 @@ public class Quanly {
     }
     public void themLaptop(int so_luong){
         Laptop newlaptop = null;
-        String tmp;
         for(int i=0; i<so_luong; i++) {
             System.out.println("------------------------");
             newlaptop = new Laptop();
+            // Laptop
             System.out.print(">> Nhập thông số laptop thứ " + String.valueOf(i+1) + ":\n");
-            while(true) {
-                System.out.print("Dòng laptop (1 - Butterfly, 2 - Fly, 3 - Bee): ");
-                try {
-                    if (newlaptop.setDong_laptop(lib.keyboard.nextInt())) {
-                        break;
-                    }
-                } catch (Exception e) {
-                    System.out.println("!! Vui lòng nhập số!");
-                }
-            }
-            while(true) {
-                System.out.print("Mã laptop: ");
-                tmp = lib.str_input();
-                int[] info = lib.kt_ma_laptop(this.dsLaptop, tmp);
-                if(info[0]==1){
-                    System.out.println("!! Mã laptop này đã tồn tại!");
-                    continue;
-                }
-                newlaptop.setMa_laptop(tmp);
-                break;
-            }
-            System.out.print("Tên laptop: ");
-            newlaptop.setTen_laptop(lib.str_input());
+            newlaptop.nhapTTLaptop(this.dsLaptop);
             // CPU
             CPU newCPU = new CPU();
             newCPU.nhapTTCPU(newlaptop.getDong_laptop());
             newlaptop.dsCPU.add(newCPU);
             // RAM
             RAM newRAM = new RAM();
-            newRAM.nhapTTRam();
+            newRAM.nhapTTRam(newlaptop.getDong_laptop());
             newlaptop.dsRAM.add(newRAM);
             // Screen
             Screen newScreen = new Screen();
@@ -108,16 +86,7 @@ public class Quanly {
                     case 1:
                         System.out.println("!! WARNING: Các thông tin (CPU, RAM,...) sẽ bị đặt lại nếu bạn thay đổi!");
                         System.out.println(">> Dòng máy hiện tại: " + String.valueOf(oldlaptop.getnameDong_laptop()));
-                        while(true) {
-                            System.out.print("Dòng laptop (1 - Butterfly, 2 - Fly, 3 - Bee): ");
-                            try {
-                                if (newlaptop.setDong_laptop(lib.keyboard.nextInt())) {
-                                    break;
-                                }
-                            } catch (Exception e) {
-                                System.out.println("!! Vui lòng nhập số!");
-                            }
-                        }
+                        newlaptop.nhapDongLaptop();
                         if(lib.yes_or_no("lưu")){
                             if(oldlaptop.getDong_laptop() != newlaptop.getDong_laptop()) {
                                 oldlaptop.setDong_laptop(newlaptop.getDong_laptop());
@@ -129,8 +98,7 @@ public class Quanly {
                         break;
                     case 2:
                         System.out.println(">> Mã hiện tại: " + String.valueOf(oldlaptop.getMa_laptop()));
-                        System.out.print("Mã laptop: ");
-                        newlaptop.setMa_laptop(lib.str_input());
+                        newlaptop.nhapMaLaptop(this.dsLaptop);
                         if(lib.yes_or_no("lưu")){
                             oldlaptop.setMa_laptop(newlaptop.getMa_laptop());
                             System.out.print(">> Đã lưu!\n");
@@ -139,8 +107,7 @@ public class Quanly {
                         break;
                     case 3:
                         System.out.println(">> Tên hiện tại: " + String.valueOf(oldlaptop.getTen_laptop()));
-                        System.out.print("Tên laptop: ");
-                        newlaptop.setTen_laptop(lib.str_input());
+                        newlaptop.nhapTenLaptop();
                         if(lib.yes_or_no("lưu")){
                             oldlaptop.setTen_laptop(newlaptop.getTen_laptop());
                             System.out.print(">> Đã lưu!\n");
@@ -161,7 +128,7 @@ public class Quanly {
                     case 5:
                         System.out.print(">> RAM hiện tại: " + String.valueOf(lib.gettext_ram(oldlaptop)));
                         RAM newRAM = new RAM();
-                        newRAM.nhapTTRam();
+                        newRAM.nhapTTRam(oldlaptop.getDong_laptop());
                         newlaptop.dsRAM.add(newRAM);
                         if(lib.yes_or_no("lưu")){
                             oldlaptop.dsRAM = newlaptop.dsRAM;

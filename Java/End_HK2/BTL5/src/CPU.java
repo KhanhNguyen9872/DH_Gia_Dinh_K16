@@ -1,8 +1,13 @@
+
+import java.util.Arrays;
+
 public class CPU extends Laptop {
     private String ma_cpu; // CPU1, CPU2, CPU3
     private String loai_cpu; // i3, i5, i7
     private long don_gia; // 100, 200, 300
     private String hang_cpu = "Intel";
+    private final String[] cpu_arr = lib.read_data("cpu_type");
+    private final String[] cpu_price_arr = lib.read_data("cpu_price");
     
     public CPU(){
         this.ma_cpu = "";
@@ -15,33 +20,53 @@ public class CPU extends Laptop {
     }
     
     public void nhapTTCPU(int type_laptop){
+        String[] tmpArr = {};
         System.out.print(">> CPU:\n");
         String ma_cpu = "";
         System.out.println("    Hãng CPU: " + String.valueOf(this.hang_cpu));
         while(true){
-            if(type_laptop == 1) {
-                System.out.println("    CPU: CPU3 - i7");
-                ma_cpu = "CPU3";
-            } else if (type_laptop == 2) {
-                System.out.println("    CPU: CPU2 - i5");
-                ma_cpu = "CPU2";
-            } else if (type_laptop == 3) {
-                System.out.print("    Nhập mã CPU [CPU1 - i3 , CPU2 - i5]: ");
+            tmpArr = lib.readDataLaptop(type_laptop)[0].split("/");
+            if(tmpArr[0].toLowerCase().equals("null")) {
+                System.out.print("    Nhập mã CPU " + String.valueOf(lib.arrToString(this.cpu_arr, "CPU", true)) + ": ");
                 ma_cpu = lib.str_input();
-            }
-            if(ma_cpu.equalsIgnoreCase("CPU1")){
-                this.loai_cpu = "i3";
-                this.don_gia = 100;
-            } else if (ma_cpu.equalsIgnoreCase("CPU2")) {
-                this.loai_cpu = "i5";
-                this.don_gia = 200;
-            } else if (ma_cpu.equalsIgnoreCase("CPU3") && type_laptop != 3) {
-                this.loai_cpu = "i7";
-                this.don_gia = 300;
             } else {
+                if(tmpArr.length < 2) {
+                    ma_cpu = "CPU" + String.valueOf(lib.getIndexArr(this.cpu_arr,tmpArr[0])+1);
+                    System.out.println("    CPU: " 
+                            + ma_cpu 
+                            + " - "
+                            + String.valueOf(tmpArr[0])
+                    );
+                } else {
+                    System.out.print("    Nhập mã CPU " + String.valueOf(lib.arrToString(tmpArr, "CPU", true)) + ": ");
+                    ma_cpu = lib.str_input();
+                    try {
+                        if(!Arrays.asList(this.cpu_arr).contains(tmpArr[Integer.valueOf(ma_cpu.toLowerCase().replace("cpu", ""))-1])){
+                            Integer.valueOf("KhanhNguyen9872");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("!! CPU không hợp lệ!");
+                        continue;
+                    }
+                }
+            }
+            
+            try {
+                this.loai_cpu = cpu_arr[Integer.valueOf(
+                        ma_cpu.toLowerCase().replace("cpu", "")
+                )-1];
+            } catch (Exception e) {
                 System.out.println("!! Mã CPU không hợp lệ!");
                 continue;
             }
+            try {
+                this.don_gia = Long.valueOf(cpu_price_arr[Integer.valueOf(
+                        ma_cpu.toLowerCase().replace("cpu", "")
+                )-1]);
+            } catch (Exception e) {
+                this.don_gia = lib.int_input("Đơn giá", null, true, true, true);
+            }
+
             this.ma_cpu = ma_cpu;
             System.out.println("    Đơn giá: " + String.valueOf(this.don_gia) + " USD");
             break;

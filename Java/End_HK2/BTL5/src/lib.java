@@ -1,6 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class lib {
+    private static boolean is_load = false;
+    private static Properties properties = new Properties();
+    private static InputStream inputStream = null;
+    private static final String FILE_CONFIG = "data/data.properties";
     protected static Scanner keyboard = new Scanner(System.in, "UTF-8");
     protected static void clear_console(){
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -157,6 +165,110 @@ public class lib {
             System.out.println("!! Danh sách trống!");
         }
         return null;
+    }
+    
+    protected static String[] read_data(String target) {
+        if(!is_load) {
+            try {
+                inputStream = new FileInputStream(FILE_CONFIG);
+                properties.load(inputStream);
+            } catch (Exception e) {
+                System.out.println("!! Failed when read file: " + String.valueOf(FILE_CONFIG));
+                System.exit(1);
+            }
+            is_load = true;
+        }
+        try {
+            return rmSpaceArr(
+                    rmBlankArr(properties.getProperty(target).split(","))
+            );
+        } catch (Exception e) {
+            System.out.println("\n!! Missing data [" + String.valueOf(target) + "] from data config!");
+            System.exit(1);
+        }
+        return null;
+    }
+    
+    protected static String[] rmBlankArr(String[] arr) {
+        int len = arr.length, count = 0;
+        String[] newArr = null;
+        for(String s : arr) {
+            if(s.isBlank()) {
+                len -= 1;
+            }
+        }
+        newArr = new String[len];
+        for(String s : arr) {
+            if(!s.isBlank()) {
+                newArr[count] = s;
+                count++;
+            }
+        }
+        return newArr;
+    }
+    
+    protected static String[] rmSpaceArr(String[] arr) {
+        int count = 0;
+        for(String s : arr) {
+            arr[count] = rmSpace(s);
+            count++;
+        }
+        return arr;
+    }
+    
+    protected static int getIndexArr(String[] str, String target) {
+        int count = 0;
+        for(String s : str) {
+            if(s.equals(target)) {
+                return count;
+            }
+            count++;
+        }
+        return -1;
+    }
+    
+    protected static String rmSpace(String s) {
+        if (s.charAt(0) == ' ') {
+            s = s.substring(1, s.length());
+        }
+        if (s.charAt(s.length()-1) == ' ') {
+            s = s.substring(0, s.length()-1);
+        }
+        return s;
+    }
+    
+    protected static String[] readDataLaptop(int type_laptop){
+        String[] Empty = {};
+        int count = 1;
+        for(String s : read_data("laptop_type")) {
+            if(count == type_laptop) {
+                return read_data(s + "_data");
+            }
+            count++;
+        }
+        return Empty;
+    }
+    
+    protected static String arrToString(String[] arr, String name, boolean is_id) {
+        if(name == null) {
+            name = "";
+        }
+        int count = 1;
+        String str = "(";
+        for(String s : arr) {
+            if(count > 1) {
+                str += ", ";
+            }
+            if(is_id) {
+                str += name
+                        + String.valueOf(count)
+                        + " - ";
+            }
+            str += String.valueOf(s);
+            count++;
+        }
+        str += ")";
+        return str;
     }
     
     protected static boolean isNotEmpty(ArrayList ds) {

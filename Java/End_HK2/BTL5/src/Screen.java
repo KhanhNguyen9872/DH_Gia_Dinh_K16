@@ -1,9 +1,15 @@
+
+import java.util.Arrays;
+
 public class Screen {
     private String ma_manhinh;
     private String hang_sanxuat;
     private String do_phangiai;
     private long don_gia;
     private int chong_loa;
+    private final String[] screen_arr = lib.read_data("screen_type");
+    private final String[] screen_fullhd_arr = lib.read_data("screen_FullHD");
+    private final String[] screen_price_arr = lib.read_data("screen_price");
     
     public Screen() {
         this.ma_manhinh = "";
@@ -12,66 +18,59 @@ public class Screen {
         this.don_gia = 0;
         this.chong_loa = 0;
     }
-    
-    private String get_screen(int type_scr){
-        // 1 - Butterfly, 2 - Fly, 3 - Bee
-        if(type_scr == 1) {
-            return "FullHD";
-        } else if(type_scr == 2) {
-            return "HD";
-        } else if(type_scr == 3) {
-            return "HD";
-        }
-        return null;
-    }
-    
-    public void nhapTTScreen(){
-        nhapTTScreen(0);
-    }
-    
-    public void nhapTTScreen(int type_scr){
+
+    public void nhapTTScreen(int type_laptop){
         int tmp;
+        String[] tmp2;
+        String[] tmpArr = {};
         System.out.print(">> Màn hình: \n");
         System.out.print("    Mã màn hình: ");
         this.ma_manhinh = lib.str_input();
         System.out.print("    Hãng sản xuất: ");
         this.hang_sanxuat = lib.str_input();
         while(true) {
+            tmpArr = lib.readDataLaptop(type_laptop)[2].split("/");
             System.out.print("    Loại màn hình");
-            if(type_scr == 0) {
-                System.out.print(" [HD - FullHD]: ");
+            if(tmpArr[0].toLowerCase().equals("null")) {
+                System.out.print(" " + String.valueOf(lib.arrToString(this.screen_arr, null, false)) + ": ");
                 this.do_phangiai = lib.str_input();
             } else {
-                this.do_phangiai = get_screen(type_scr);
-                System.out.println(": " + String.valueOf(this.do_phangiai));
+                if(tmpArr.length < 2) {
+                    this.do_phangiai = String.valueOf(tmpArr[0]);
+                    System.out.println(": " + this.do_phangiai);
+                } else {
+                    System.out.print(" " + String.valueOf(lib.arrToString(tmpArr, null, false) + ": "));
+                    this.do_phangiai = lib.str_input();
+                    try {
+                        if(!Arrays.asList(this.screen_arr).contains(tmpArr[lib.getIndexArr(tmpArr, this.do_phangiai)])){
+                            Integer.valueOf("KhanhNguyen9872");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("!! Màn hình không hợp lệ!");
+                        continue;
+                    }
+                }
             }
-            if(this.do_phangiai.equals("HD")) {
-                this.don_gia = 1000;
-            } else if (this.do_phangiai.equals("FullHD")) {
+            
+            tmp2 = lib.read_data("screen_" + this.do_phangiai);
+            if(tmp2[0].toLowerCase().equals("null")) {
+                this.don_gia = Long.valueOf(this.screen_price_arr[lib.getIndexArr(this.screen_arr, this.do_phangiai)]);
+            } else {
                 while(true) {
-                    tmp = (int)lib.int_input("Tiêu chuẩn va chạm","(1, 2, 3)",true,true,false);
-                    if(tmp == 1) {
-                        this.don_gia = 2000;
-                    } else if(tmp == 2) {
-                        this.don_gia = 3000;
-                    } else if(tmp == 3){
-                        this.don_gia = 4000;
-                    } else {
+                    tmp = (int)lib.int_input("Tiêu chuẩn va chạm", lib.arrToString(tmp2, null, false), true, true, false);
+                    try {
+                        this.don_gia = Long.valueOf(this.screen_price_arr[lib.getIndexArr(this.screen_arr, this.do_phangiai)].split("/")[tmp-1]);
+                    } catch (Exception e) {
                         System.out.println("!! Tiêu chuẩn màn hình không hợp lệ!");
                         continue;
                     }
                     this.chong_loa = tmp;
                     break;
                 }
-            } else {
-                System.out.println("!! Loại màn hình không hợp lệ!");
-                continue;
             }
             System.out.println("    Đơn giá: " + String.valueOf(this.don_gia) + " USD");
             break;
         }
-        
-        
     }
 
     public String getMa_manhinh() {

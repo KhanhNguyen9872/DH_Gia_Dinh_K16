@@ -1,9 +1,14 @@
+
+import java.util.Arrays;
+
 public class RAM extends Laptop {
     private int so_luong; // 1 thanh, 2 thanh
     private String[] ma_ram; // ram1, ram2
     private String loai_ram; // DDR3, DDR4
     private long don_gia; // 1G DDR3 100, 1G DDR4 200
     private int dung_luong; // 1G
+    private final String[] ram_arr = lib.read_data("ram_type");
+    private final String[] ram_price_arr = lib.read_data("ram_price");
     
     public RAM(){
         this.so_luong = 0;
@@ -13,21 +18,43 @@ public class RAM extends Laptop {
         this.don_gia = 0;
     }
     
-    public void nhapTTRam() {
+    public void nhapTTRam(int type_laptop) {
+        String str;
         System.out.print(">> RAM:\n");
-        int dung_luong = 0, tmp = 0;
+        int tmp = 0;
+        String[] tmpArr = {};
         this.so_luong = (int)lib.int_input("Số lượng RAM", null, true, true,false);
         while(true){
-            tmp = (int)lib.int_input("Loại RAM", "(1 - DDR3, 2 - DDR4)", true, true,false);
-            if(tmp == 1){
-                this.loai_ram = "DDR3";
-                this.don_gia = 100;
-            } else if (tmp == 2){
-                this.loai_ram = "DDR4";
-                this.don_gia = 200;
+            tmpArr = lib.readDataLaptop(type_laptop)[1].split("/");
+            if(tmpArr[0].toLowerCase().equals("null")) {
+                tmp = (int)lib.int_input("Loại RAM", lib.arrToString(this.ram_arr, null, true), true, true,false);
             } else {
+                if(tmpArr.length < 2) {
+                    tmp = lib.getIndexArr(this.ram_arr, tmpArr[0]);
+                    System.out.println("    Loại RAM: " + String.valueOf(tmpArr[0]));
+                } else {
+                    tmp = (int)lib.int_input("Loại RAM", lib.arrToString(tmpArr, null, true), true, true,false);
+                    try {
+                        if(!Arrays.asList(this.ram_arr).contains(tmpArr[tmp-1])){
+                            Integer.valueOf("KhanhNguyen9872");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("!! RAM không hợp lệ!");
+                        continue;
+                    }
+                }
+            }
+            try {
+                this.loai_ram = this.ram_arr[tmp-1];
+            } catch (Exception e) {
                 System.out.println("!! Loại RAM không tồn tại!");
                 continue;
+            }
+            
+            try {
+                this.don_gia = Long.valueOf(this.ram_price_arr[tmp-1]);
+            } catch (Exception e) {
+                this.don_gia = lib.int_input("Đơn giá", null, true, true, true);
             }
             break;
         }

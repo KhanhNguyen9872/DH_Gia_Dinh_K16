@@ -1,6 +1,8 @@
 import java.io.IOException;
+import java.io.PrintStream;
 public class Main {
     public static void main(String args[]) throws IOException{
+        System.setOut(new PrintStream(System.out, true, "UTF8"));
         Quanly dsLaptop = new Quanly();
         int choose = 0;
         while(true){
