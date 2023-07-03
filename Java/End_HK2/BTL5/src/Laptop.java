@@ -3,7 +3,7 @@ public class Laptop {
     private String ma_laptop;
     private String ten_laptop;
     private int dong_laptop;
-    private final String[] laptop_arr = lib.read_data("laptop_type");
+    private final String[] laptop_arr = Lib.read_data("laptop_type");
     protected ArrayList<CPU> dsCPU = null;
     protected ArrayList<RAM> dsRAM = null;
     protected ArrayList<HardDisk> dsHardDisk = null;
@@ -55,11 +55,11 @@ public class Laptop {
     public void nhapMaLaptop(ArrayList<Laptop> dsLaptop) {
         String tmp;
         while(true) {
-            System.out.print("Mã laptop: ");
-            tmp = lib.str_input();
-            int[] info = lib.kt_ma_laptop(dsLaptop, tmp);
+            System.out.print(Lib.getlang("LAPTOP_CODE") + ": ");
+            tmp = Lib.str_input();
+            int[] info = Lib.kt_ma_laptop(dsLaptop, tmp);
             if(info[0]==1){
-                System.out.println("!! Mã laptop này đã tồn tại!");
+                System.out.println("!! " + Lib.getlang("LAPTOP_CODE_EXIST"));
                 continue;
             }
             this.ma_laptop = tmp;
@@ -68,31 +68,31 @@ public class Laptop {
     }
     
     public void nhapTenLaptop() {
-        System.out.print("Tên laptop: ");
-        this.ten_laptop = lib.str_input();
+        System.out.print(Lib.getlang("LAPTOP_NAME") +": ");
+        this.ten_laptop = Lib.str_input();
     }
     
     public void nhapDongLaptop() {
         int count;
         while(true) {
             count = 1;
-            System.out.print("Dòng laptop (");
+            System.out.print(Lib.getlang("LAPTOP_SERIES") +" (");
             for(String s : this.laptop_arr) {
                 if(count>1){
                     System.out.print(", ");
                 }
                 System.out.print(String.valueOf(count) 
                         + " - "
-                        + lib.rmSpace(s));
+                        + Lib.rmSpace(s));
                 count++;
             }
             System.out.print("): ");
             try {
-                if (this.setDong_laptop(lib.keyboard.nextInt())) {
+                if (this.setDong_laptop(Lib.keyboard.nextInt())) {
                     break;
                 }
             } catch (Exception e) {
-                System.out.println("!! Vui lòng nhập số!");
+                System.out.println("!! " + Lib.getlang("ENTER_NUM_PLZ"));
             }
         }
     }

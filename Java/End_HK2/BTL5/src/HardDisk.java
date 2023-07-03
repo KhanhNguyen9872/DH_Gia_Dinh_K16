@@ -9,8 +9,8 @@ public class HardDisk extends Laptop {
     private int so_vong_quay;
     private int toc_do_doc;
     private int toc_do_ghi;
-    private final String[] harddisk_arr = lib.read_data("harddisk_type");
-    private final String[] harddisk_price = lib.read_data("harddisk_price");
+    private final String[] harddisk_arr = Lib.read_data("harddisk_type");
+    private final String[] harddisk_price = Lib.read_data("harddisk_price");
     
     public HardDisk() {
         this.ma_ocung = "";
@@ -23,25 +23,25 @@ public class HardDisk extends Laptop {
     
     public void set_type_harddisk(int type_laptop){
         String[] tmpArr;
-        tmpArr = lib.readDataLaptop(type_laptop)[3].split("/");
+        tmpArr = Lib.readDataLaptop(type_laptop)[3].split("/");
         if(tmpArr[0].toLowerCase().equals("null")) {
-                System.out.print("    Loại ổ cứng " + String.valueOf(lib.arrToString(this.harddisk_arr, null, false)) + ": ");
-                this.kieu_ocung = lib.str_input();
+                System.out.print("    " + Lib.getlang("HARDDISK_TYPE") + " " + String.valueOf(Lib.arrToString(this.harddisk_arr, null, false)) + ": ");
+                this.kieu_ocung = Lib.str_input();
         } else {
             while(true) {
-                System.out.print("    Loại ổ cứng");
+                System.out.print("    " + Lib.getlang("HARDDISK_TYPE"));
                 if(tmpArr.length < 2) {
                     this.kieu_ocung = tmpArr[0];
                     System.out.println(": " + this.kieu_ocung);
                 } else {
-                    System.out.print(" " + String.valueOf(lib.arrToString(tmpArr, null, false) + ": "));
-                    this.kieu_ocung = lib.str_input();
+                    System.out.print(" " + String.valueOf(Lib.arrToString(tmpArr, null, false) + ": "));
+                    this.kieu_ocung = Lib.str_input();
                     try {
-                        if(!Arrays.asList(this.harddisk_arr).contains(tmpArr[lib.getIndexArr(tmpArr, this.kieu_ocung)])){
+                        if(!Arrays.asList(this.harddisk_arr).contains(tmpArr[Lib.getIndexArr(tmpArr, this.kieu_ocung)])){
                             Integer.valueOf("KhanhNguyen9872");
                         }
                     } catch (Exception e) {
-                        System.out.println("!! Màn hình không hợp lệ!");
+                        System.out.println("!! " + Lib.getlang("INVALID_HARDDISK_TYPE"));
                         continue;
                     }
                 }
@@ -55,21 +55,21 @@ public class HardDisk extends Laptop {
             set_type_harddisk(type_laptop);
         }
         String tmp;
-        System.out.print("    Mã ổ cứng: ");
-        this.ma_ocung = lib.str_input();
-        this.dung_luong = (int)lib.int_input("Dung lượng", "(GB)", true, true,false);
+        System.out.print("    " + Lib.getlang("HARDDISK_CODE") + ": ");
+        this.ma_ocung = Lib.str_input();
+        this.dung_luong = (int)Lib.int_input(Lib.getlang("HARDDISK_CAPACITY"), "(GB)", true, true,false);
         
-        tmp = this.harddisk_price[lib.getIndexArr(this.harddisk_arr, this.kieu_ocung)];
+        tmp = this.harddisk_price[Lib.getIndexArr(this.harddisk_arr, this.kieu_ocung)];
         if(tmp.toLowerCase().equals("null")) {
-            this.don_gia = lib.int_input("Đơn giá", "(USD)", true, true, true);
+            this.don_gia = Lib.int_input(Lib.getlang("PRICE"), "(USD)", true, true, true);
         } else {
             this.don_gia = Long.valueOf(tmp);
         }
         if(this.kieu_ocung.equals("HDD")) {
-            this.so_vong_quay = (int)lib.int_input("Số vòng quay", "(rpm)", true, true,false);
+            this.so_vong_quay = (int)Lib.int_input(Lib.getlang("NUMBER_ROTATIONS"), "(rpm)", true, true,false);
         } else if(this.kieu_ocung.equals("SSD")) {
-            this.toc_do_doc = (int)lib.int_input("Tốc độ đọc", "(mb/s)", true, true,false);
-            this.toc_do_ghi = (int)lib.int_input("Tốc độ ghi", "(mb/s)", true, true,false);
+            this.toc_do_doc = (int)Lib.int_input(Lib.getlang("READ_SPEED"), "(mb/s)", true, true,false);
+            this.toc_do_ghi = (int)Lib.int_input(Lib.getlang("WRITE_SPEED"), "(mb/s)", true, true,false);
         }
     }
 
@@ -129,6 +129,21 @@ public class HardDisk extends Laptop {
         this.toc_do_ghi = toc_do_ghi;
     }
     
+    public String export_config() {
+        String str = "";
+        str += String.valueOf(this.ma_ocung)
+                + "/" + String.valueOf(this.kieu_ocung) 
+                + "/" + String.valueOf(this.dung_luong);
+        if(this.kieu_ocung.equals("HDD")) {
+            str += "/" + String.valueOf(this.so_vong_quay);
+        } else if(this.kieu_ocung.equals("SSD")) {
+            str += "/" + String.valueOf(this.toc_do_doc) 
+                    + "/" + String.valueOf(this.toc_do_ghi);
+        }
+        str += "/" + String.valueOf(this.don_gia) + ", ";
+        return str;
+    }
+    
     @Override
     public String toString(){
         String str = "";
@@ -136,23 +151,22 @@ public class HardDisk extends Laptop {
                 + " - " + String.valueOf(this.kieu_ocung) 
                 + " (" 
                 + String.valueOf(this.dung_luong)
-                + " GB)"
-        ;
+                + " GB)";
         if(this.kieu_ocung.equals("HDD")) {
             str += " - [" 
                     + String.valueOf(this.so_vong_quay) 
-                    + "rpm]"
-            ;
+                    + "rpm]";
         } else if(this.kieu_ocung.equals("SSD")) {
             str += " - [R: " 
                     + String.valueOf(this.toc_do_doc) 
                     + " MB/s - W: " 
-                    + String.valueOf(this.toc_do_ghi) + " MB/s]"
-            ;
+                    + String.valueOf(this.toc_do_ghi) + " MB/s]";
         }
         str += " (" 
                 + String.valueOf(this.don_gia)
-                + " USD)\n";
+                + " " 
+                + Lib.getlang("MONEY") 
+                + ")\n";
         return str;
     }
 }
