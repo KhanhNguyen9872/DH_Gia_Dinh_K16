@@ -1,29 +1,46 @@
 -------------------
  >> Laptop thứ 1
 - Dòng laptop: Butterfly
-- Mã laptop: laptop001
-- Tên laptop: khanhlaptop
-- CPU: CPU3 - Intel i7 (300 USD)
+- Mã laptop: laptopbut
+- Tên laptop: laptop001
+- CPU: CPU3 - i7 Intel (300 USD)
 - RAM: 
   1. ram1 - DDR4 - 8 GB (1600 USD)
   2. ram2 - DDR4 - 8 GB (1600 USD)
-- Màn hình: scr001 - samshit - FullHD - 2000 - 1 (2000 USD)
+  3. ram3 - DDR4 - 8 GB (1600 USD)
+  4. ram4 - DDR4 - 8 GB (1600 USD)
+- Màn hình: scr001 - samshit - FullHD - 3000 - 2 (3000 USD)
 - Ổ cứng: 
-  1. ssd--1 - SSD (256 GB) - [R: 500 MB/s - W: 600 MB/s] (100 USD)
-  2. ssd002 - SSD (512 GB) - [R: 500 MB/s - W: 450 MB/s] (200 USD)
+  1. ssd001 - SSD (256 GB) - [R: 400 MB/s - W: 380 MB/s] (120 USD)
+  2. ssd002 - SSD (512 GB) - [R: 401 MB/s - W: 381 MB/s] (240 USD)
 
->> Tổng giá: 4200 USD
+>> Tổng giá: 5260 USD
 -------------------
  >> Laptop thứ 2
-- Dòng laptop: Bee
-- Mã laptop: laptop002
-- Tên laptop: khanhlaptop
+- Dòng laptop: Fly
+- Mã laptop: laptopfly
+- Tên laptop: laptop002
 - CPU: CPU2 - Intel i5 (200 USD)
 - RAM: 
-  1. ram1 - DDR4 - 8 GB (1600 USD)
-- Màn hình: scr001 - samshut - HD - 1000 (1000 USD)
+  1. ram001 - DDR4 - 8 GB (1600 USD)
+  2. ram002 - DDR4 - 8 GB (1600 USD)
+- Màn hình: scr002 - samshut - HD - 1000 (1000 USD)
 - Ổ cứng: 
-  1. ssd009 - SSD (256 GB) - [R: 500 MB/s - W: 450 MB/s] (100 USD)
+  1. ssd002 - SSD (256 GB) - [R: 400 MB/s - W: 390 MB/s] (125 USD)
 
->> Tổng giá: 2900 USD
+>> Tổng giá: 2925 USD
+-------------------
+ >> Laptop thứ 3
+- Dòng laptop: Bee
+- Mã laptop: laptopbee
+- Tên laptop: laptop003
+- CPU: CPU1 - Intel i3 (100 USD)
+- RAM: 
+  1. ram01 - DDR3 - 8 GB (800 USD)
+- Màn hình: scr003 - samshjt - HD - 1000 (1000 USD)
+- Ổ cứng: 
+  1. ssd01 - SSD (128 GB) - [R: 380 MB/s - W: 350 MB/s] (100 USD)
+  2. hdd01 - HDD (512 GB) - [7200rpm] (120 USD)
+
+>> Tổng giá: 2120 USD
 -------------------
