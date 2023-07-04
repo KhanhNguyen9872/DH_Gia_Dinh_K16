@@ -135,7 +135,9 @@ public class Lib {
             }
             return Lib.getlang("NO_INFORMATION") + " " + Lib.getlang("RAM") + "\n";
         }
-        String str = "\n";
+        String str;
+        if(is_conf) str = "";
+        else str = "\n";
         for(RAM j : i.dsRAM) {
             if(is_conf) {
                 str += j.export_config();
@@ -172,7 +174,9 @@ public class Lib {
             return Lib.getlang("NO_INFORMATION") + " " + Lib.getlang("HARDDISK") + "\n";
         }
         int count = 1;
-        String str = "\n";
+        String str;
+        if(is_conf) str = "";
+        else str = "\n";
         for(HardDisk j : i.dsHardDisk) {
             if(is_conf) {
                 str += j.export_config();
