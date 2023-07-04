@@ -1,6 +1,6 @@
 
 public class Language {
-    private final String lang_path = "./data/lang/";
+    private final String lang_path = Lib.read_config("lang_path");
     private String[] all_language = new String[100];
     private String[] all_path_lang = new String[100];
     private int count = 0;
@@ -58,7 +58,7 @@ public class Language {
     public void load_language() {
         for(String s : Lib.lsdir(this.lang_path)) {
             if(s.contains(".lang")) {
-                this.all_language[this.count] = Lib.read_data(this.lang_path + s, "name")[0];
+                this.all_language[this.count] = Lib.read_data(this.lang_path + s, "name", true, false)[0];
                 this.all_path_lang[this.count] = this.lang_path + s;
                 this.count++;
             }

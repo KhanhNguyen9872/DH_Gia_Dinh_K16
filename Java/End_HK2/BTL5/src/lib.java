@@ -12,12 +12,13 @@ import java.util.Properties;
 
 public class Lib {
     private static Language lang = null;
-    private static String[] is_load_path = new String[100];
-    private static int[] properties_index = new int[100];
+    private static int MAX_DATA = 20;
+    private static String[] is_load_path = new String[Lib.MAX_DATA];
+    private static int[] properties_index = new int[Lib.MAX_DATA];
     private static int loaded = 0;
     private static ArrayList<Properties> properties = new ArrayList<Properties>();
     private static FileInputStream inputStream = null;
-    private static final String FILE_CONFIG = "data/data.properties";
+    private static final String FILE_CONFIG = "data/config.properties";
     protected static Scanner keyboard = new Scanner(System.in, "UTF-8");
     
     protected static void clear_console(){
@@ -98,12 +99,14 @@ public class Lib {
     
     protected static void printAll(ArrayList<Laptop> dsLaptop){
         int count = 0;
+        System.out.println(">> " + Lib.getlang("LIST_LAPTOP") + ": ");
         for(Laptop i : dsLaptop) {
             System.out.println("  " 
                 + String.valueOf(count+1) 
                 + ". "
                 + String.valueOf(i.getMa_laptop())
             );
+            count++;
         }
     }
     
@@ -132,7 +135,7 @@ public class Lib {
             }
             return Lib.getlang("NO_INFORMATION") + " " + Lib.getlang("RAM") + "\n";
         }
-        String str = "";
+        String str = "\n";
         for(RAM j : i.dsRAM) {
             if(is_conf) {
                 str += j.export_config();
@@ -169,7 +172,7 @@ public class Lib {
             return Lib.getlang("NO_INFORMATION") + " " + Lib.getlang("HARDDISK") + "\n";
         }
         int count = 1;
-        String str = "";
+        String str = "\n";
         for(HardDisk j : i.dsHardDisk) {
             if(is_conf) {
                 str += j.export_config();
@@ -189,7 +192,7 @@ public class Lib {
                 if(!is_conf) {
                     full_str += "-------------------\n";
                 } else {
-                    full_str += "# Config by KhanhNguyen9872\n";
+                    full_str += "# Config by KhanhNguyen9872\n\n";
                 }
                 
                 // number laptop
@@ -231,7 +234,7 @@ public class Lib {
                 
                 // RAM
                 if(!is_conf) {
-                    full_str += "- " + Lib.getlang("RAM") + ": \n";
+                    full_str += "- " + Lib.getlang("RAM") + ": ";
                 } else {
                     full_str += "\nram" + String.valueOf(count) + " = ";
                 }
@@ -247,9 +250,9 @@ public class Lib {
                 
                 // HARDDISK
                 if(!is_conf) {
-                    full_str += "- " + Lib.getlang("HARDDISK") + ": \n";
+                    full_str += "- " + Lib.getlang("HARDDISK") + ": ";
                 } else {
-                    full_str += "harddisk" + String.valueOf(count) + " = ";
+                    full_str += "\nharddisk" + String.valueOf(count) + " = ";
                 }
                 full_str += gettext_harddisk(i, is_conf);
                 
@@ -292,22 +295,44 @@ public class Lib {
         if(Lib.lang == null) {
             load_language();
         }
-        return Lib.read_data(Lib.lang.Path(), code)[0];
+        boolean a = false;
+        String str = "";
+        for(String s : Lib.read_data(Lib.lang.Path(), code, true, false)) {
+            if(a) {
+                str += ",";
+            }
+            str += s;
+            a = true;
+        }
+        return str;
+    }
+    
+    protected static String read_config(String target) {
+        return Lib.arrToString(read_data(FILE_CONFIG, target, true, false));
     }
     
     protected static String[] read_data(String target) {
-        return read_data(FILE_CONFIG, target);
+        return read_data(Lib.read_config("data_path"), target, true, false);
     }
     
-    protected static String[] read_data(String file, String target) {
+    protected static String[] read_data(String file, String target, boolean is_exit, boolean is_err_null) {
         Properties tmp_properties = new Properties();
         if(!is_load(file)) {
+            if(Lib.loaded >= Lib.MAX_DATA) {
+                System.out.println("\nCannot load data! Program limited " + Lib.MAX_DATA + " data!\n");
+                Lib.pause_console();
+                return null;
+            }
             try {
                 Lib.inputStream = new FileInputStream(new File(file));
                 tmp_properties.load(new InputStreamReader(Lib.inputStream, Charset.forName("UTF-8")));
             } catch (Exception e) {
-                System.out.println("!! Failed when read file: " + String.valueOf(file));
-                System.exit(1);
+                if(!is_err_null) System.out.println("!! " + Lib.getlang("READ_FAILED") + ": " + String.valueOf(file));
+                if(is_exit) {
+                    System.exit(1);
+                } else {
+                    return null;
+                }
             }
             Lib.properties.add(tmp_properties);
             Lib.is_load_path[Lib.loaded] = file;
@@ -323,8 +348,12 @@ public class Lib {
                 );
             }
         } catch (Exception e) {
-            System.out.println("\n!! Missing data [" + String.valueOf(target) + "] from [" + String.valueOf(file) + "] !!");
-            System.exit(1);
+            if(!is_err_null) System.out.println("\n!! Missing data [" + String.valueOf(target) + "] from [" + String.valueOf(file) + "] !!\n");
+            if(is_exit) {
+                System.exit(1);
+            } else {
+                return null;
+            }
         }
         return null;
     }
@@ -389,7 +418,21 @@ public class Lib {
         return Empty;
     }
     
-    protected static String arrToString(String[] arr, String name, boolean is_id) {
+    protected static String arrToString(String[] arr) {
+        return arrToString(arr, ",");
+    }
+    
+    protected static String arrToString(String[] arr, String var) {
+        if(arr == null) return null;
+        String tmpStr = "";
+        for(String ss : arr) {
+            if(!tmpStr.isBlank()) tmpStr += var;
+            tmpStr += ss;
+        }
+        return tmpStr;
+    }
+    
+    protected static String arrToListString(String[] arr, String name, boolean is_id) {
         if(name == null) {
             name = "";
         }
@@ -436,9 +479,9 @@ public class Lib {
         return lstFile; 
     }
     
-    protected static void write(String filename, String s) throws IOException {
+    protected static void fwrite(String filename, String s, boolean is_append) throws IOException {
         Writer output;
-        output = new BufferedWriter(new FileWriter(filename,false));
+        output = new BufferedWriter(new FileWriter(filename, is_append));
         output.append(s);
         output.close();
     }

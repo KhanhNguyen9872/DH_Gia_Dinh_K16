@@ -5,7 +5,7 @@ public class CPU extends Laptop {
     private String ma_cpu; // CPU1, CPU2, CPU3
     private String loai_cpu; // i3, i5, i7
     private long don_gia; // 100, 200, 300
-    private String hang_cpu = "Intel";
+    private String hang_cpu = Lib.arrToString(Lib.read_data("cpu_company"));
     private final String[] cpu_arr = Lib.read_data("cpu_type");
     private final String[] cpu_price_arr = Lib.read_data("cpu_price");
     
@@ -13,6 +13,13 @@ public class CPU extends Laptop {
         this.ma_cpu = "";
         this.loai_cpu = "";
         this.don_gia = 0;
+    }
+    
+    public CPU(String ma_cpu, String loai_cpu, String hang_cpu, long don_gia) {
+        this.ma_cpu = ma_cpu;
+        this.hang_cpu = hang_cpu;
+        this.loai_cpu = loai_cpu;
+        this.don_gia = don_gia;
     }
     
     public void nhapTTCPU(){
@@ -36,7 +43,7 @@ public class CPU extends Laptop {
                         + " "
                         + Lib.getlang("CPU_CODE")
                         + " " 
-                        + String.valueOf(Lib.arrToString(this.cpu_arr, "CPU", true)) 
+                        + String.valueOf(Lib.arrToListString(this.cpu_arr, "CPU", true)) 
                         + ": "
                 );
                 ma_cpu = Lib.str_input();
@@ -54,7 +61,7 @@ public class CPU extends Laptop {
                             + " " 
                             + Lib.getlang("CPU_CODE") 
                             + " " 
-                            + String.valueOf(Lib.arrToString(tmpArr, "CPU", true)) 
+                            + String.valueOf(Lib.arrToListString(tmpArr, "CPU", true)) 
                             + ": "
                     );
                     ma_cpu = Lib.str_input();

@@ -18,6 +18,14 @@ public class Screen {
         this.don_gia = 0;
         this.chong_loa = 0;
     }
+    
+    public Screen(String ma_manhinh, String hang_sanxuat, String do_phangiai, long don_gia, int chong_loa) {
+        this.ma_manhinh = ma_manhinh;
+        this.hang_sanxuat = hang_sanxuat;
+        this.do_phangiai = do_phangiai;
+        this.don_gia = don_gia;
+        this.chong_loa = chong_loa;
+    }
 
     public void nhapTTScreen(int type_laptop){
         int tmp;
@@ -32,14 +40,14 @@ public class Screen {
             tmpArr = Lib.readDataLaptop(type_laptop)[2].split("/");
             System.out.print("    " + Lib.getlang("SCREEN_TYPE"));
             if(tmpArr[0].toLowerCase().equals("null")) {
-                System.out.print(" " + String.valueOf(Lib.arrToString(this.screen_arr, null, false)) + ": ");
+                System.out.print(" " + String.valueOf(Lib.arrToListString(this.screen_arr, null, false)) + ": ");
                 this.do_phangiai = Lib.str_input();
             } else {
                 if(tmpArr.length < 2) {
                     this.do_phangiai = String.valueOf(tmpArr[0]);
                     System.out.println(": " + this.do_phangiai);
                 } else {
-                    System.out.print(" " + String.valueOf(Lib.arrToString(tmpArr, null, false) + ": "));
+                    System.out.print(" " + String.valueOf(Lib.arrToListString(tmpArr, null, false) + ": "));
                     this.do_phangiai = Lib.str_input();
                     try {
                         if(!Arrays.asList(this.screen_arr).contains(tmpArr[Lib.getIndexArr(tmpArr, this.do_phangiai)])){
@@ -57,7 +65,7 @@ public class Screen {
                 this.don_gia = Long.valueOf(this.screen_price_arr[Lib.getIndexArr(this.screen_arr, this.do_phangiai)]);
             } else {
                 while(true) {
-                    tmp = (int)Lib.int_input(Lib.getlang("SCREEN_STD"), Lib.arrToString(tmp2, null, false), true, true, false);
+                    tmp = (int)Lib.int_input(Lib.getlang("SCREEN_STD"), Lib.arrToListString(tmp2, null, false), true, true, false);
                     try {
                         this.don_gia = Long.valueOf(this.screen_price_arr[Lib.getIndexArr(this.screen_arr, this.do_phangiai)].split("/")[tmp-1]);
                     } catch (Exception e) {
@@ -114,19 +122,11 @@ public class Screen {
     }
     
     public String export_config() {
-        String str = "";
-        str += String.valueOf(this.ma_manhinh)
-                + "/"
-                + String.valueOf(this.hang_sanxuat)
-                + "/"
-                + String.valueOf(this.do_phangiai)
-                + "/"
-                + String.valueOf(this.don_gia);
-        if(this.chong_loa != 0) {
-            str += "/" + String.valueOf(this.chong_loa);
-        }
-        str += "/" + String.valueOf(this.don_gia);            
-        return str;
+        return String.valueOf(this.ma_manhinh)
+                + "/" + String.valueOf(this.hang_sanxuat)
+                + "/" + String.valueOf(this.do_phangiai)
+                + "/" + String.valueOf(this.chong_loa)
+                + "/" + String.valueOf(this.don_gia);         
     }
     
     @Override

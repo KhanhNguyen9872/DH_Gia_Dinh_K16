@@ -18,6 +18,14 @@ public class RAM extends Laptop {
         this.don_gia = 0;
     }
     
+    public RAM(int so_luong, String[] ma_ram, String loai_ram, int dung_luong, long don_gia) {
+        this.so_luong = so_luong;
+        this.ma_ram = ma_ram;
+        this.loai_ram = loai_ram;
+        this.dung_luong = dung_luong;
+        this.don_gia = don_gia;
+    }
+    
     public void nhapTTRam(int type_laptop) {
         String str;
         System.out.print(">> RAM:\n");
@@ -27,7 +35,7 @@ public class RAM extends Laptop {
         while(true){
             tmpArr = Lib.readDataLaptop(type_laptop)[1].split("/");
             if(tmpArr[0].toLowerCase().equals("null")) {
-                tmp = (int)Lib.int_input(Lib.getlang("RAM_TYPE"), Lib.arrToString(this.ram_arr, null, true), true, true,false);
+                tmp = (int)Lib.int_input(Lib.getlang("RAM_TYPE"), Lib.arrToListString(this.ram_arr, null, true), true, true,false);
             } else {
                 if(tmpArr.length < 2) {
                     tmp = Lib.getIndexArr(this.ram_arr, tmpArr[0]);
@@ -38,7 +46,7 @@ public class RAM extends Laptop {
                             + String.valueOf(tmpArr[0])
                     );
                 } else {
-                    tmp = (int)Lib.int_input(Lib.getlang("RAM_TYPE"), Lib.arrToString(tmpArr, null, true), true, true,false);
+                    tmp = (int)Lib.int_input(Lib.getlang("RAM_TYPE"), Lib.arrToListString(tmpArr, null, true), true, true,false);
                     try {
                         if(!Arrays.asList(this.ram_arr).contains(tmpArr[tmp-1])){
                             Integer.valueOf("KhanhNguyen9872");
