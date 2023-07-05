@@ -67,7 +67,15 @@ public class HardDisk extends Laptop {
             set_type_harddisk(type_laptop);
         }
         String tmp = "";
-        tmp = this.harddisk_price[Lib.getIndexArr(this.harddisk_arr, this.kieu_ocung)];
+        while(true) {
+            try {
+                tmp = this.harddisk_price[Lib.getIndexArr(this.harddisk_arr, this.kieu_ocung)];
+            } catch (Exception e) {
+                set_type_harddisk(type_laptop);
+                continue;
+            }
+            break;
+        }
         System.out.print("    " + Lib.getlang("HARDDISK_CODE") + ": ");
         this.ma_ocung = Lib.str_input();
         this.dung_luong = (int)Lib.int_input(Lib.getlang("HARDDISK_CAPACITY"), "(GB)", true, true,false);
