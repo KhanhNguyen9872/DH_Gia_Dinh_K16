@@ -88,7 +88,7 @@ public class Laptop {
             }
             System.out.print("): ");
             try {
-                if (this.setDong_laptop(Lib.keyboard.nextInt())) {
+                if (this.setDong_laptop(Integer.valueOf(Lib.keyboard.next() + Lib.keyboard.nextLine()))) {
                     break;
                 }
             } catch (Exception e) {

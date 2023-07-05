@@ -46,7 +46,7 @@ public class HardDisk extends Laptop {
                     System.out.println(": " + this.kieu_ocung);
                 } else {
                     System.out.print(" " + String.valueOf(Lib.arrToListString(tmpArr, null, false) + ": "));
-                    this.kieu_ocung = Lib.str_input();
+                    this.kieu_ocung = Lib.str_input().toUpperCase();
                     try {
                         if(!Arrays.asList(this.harddisk_arr).contains(tmpArr[Lib.getIndexArr(tmpArr, this.kieu_ocung)])){
                             Integer.valueOf("KhanhNguyen9872");
