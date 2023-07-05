@@ -1,7 +1,7 @@
 
 import java.util.Arrays;
 
-public class RAM extends Laptop {
+public class RAM {
     private int so_luong; // 1 thanh, 2 thanh
     private String[] ma_ram; // ram1, ram2
     private String loai_ram; // DDR3, DDR4

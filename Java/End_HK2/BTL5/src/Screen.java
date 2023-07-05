@@ -1,7 +1,7 @@
 
 import java.util.Arrays;
 
-public class Screen extends Laptop {
+public class Screen {
     private String ma_manhinh;
     private String hang_sanxuat;
     private String do_phangiai;

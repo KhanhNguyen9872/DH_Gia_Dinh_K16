@@ -1,7 +1,7 @@
 
 import java.util.Arrays;
 
-public class HardDisk extends Laptop {
+public class HardDisk {
     private String kieu_ocung = null;
     private String ma_ocung;
     private long don_gia;

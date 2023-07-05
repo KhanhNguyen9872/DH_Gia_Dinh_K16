@@ -1,7 +1,7 @@
 
 import java.util.Arrays;
 
-public class CPU extends Laptop {
+public class CPU {
     private String ma_cpu; // CPU1, CPU2, CPU3
     private String loai_cpu; // i3, i5, i7
     private long don_gia; // 100, 200, 300

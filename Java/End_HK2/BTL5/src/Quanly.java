@@ -17,9 +17,14 @@ public class Quanly {
             System.out.print(">> " + String.valueOf(Lib.getlang("ENTER_PARAMETERS_OF_LAPTOP")) + " " + String.valueOf(i+1) + ":\n");
             newlaptop.nhapTTLaptop(this.dsLaptop);
             // CPU
-            CPU newCPU = new CPU();
-            newCPU.nhapTTCPU(newlaptop.getDong_laptop());
-            newlaptop.dsCPU.add(newCPU);
+            /////////////////////////////////
+            /// !! Phần này có kế thừa !! ///
+            /////////////////////////////////
+            newlaptop.nhapTTCPU(newlaptop.getDong_laptop());
+            newlaptop.dsCPU.add(newlaptop);
+//            CPU newCPU = new CPU();
+//            newCPU.nhapTTCPU(newlaptop.getDong_laptop());
+//            newlaptop.dsCPU.add(newCPU);
             // RAM
             RAM newRAM = new RAM();
             newRAM.nhapTTRam(newlaptop.getDong_laptop());
