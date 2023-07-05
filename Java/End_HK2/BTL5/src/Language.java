@@ -1,33 +1,25 @@
 
 public class Language {
-    private final String lang_path = Lib.read_config("lang_path");
-    private String[] all_language = new String[100];
-    private String[] all_path_lang = new String[100];
-    private int count = 0;
-    public String current_lang = "";
-    public String current_path_lang = "";
+    private static String lang_path = null;
+    private static String[] all_language = new String[100];
+    private static String[] all_path_lang = new String[100];
+    private static int count = 0;
+    protected static String current_lang = null;
+    protected static String current_path_lang = null;
     
-    public Language() {
+    public static void Language() {
         load_language();
         set_language();
     }
-
-    public String Lang() {
-        return current_lang;
-    }
     
-    public String Path() {
-        return current_path_lang;
-    }
-    
-    public void set_language() {
+    private static void set_language() {
         int count;
         int choose;
         while(true) {
             count = 1;
             Lib.clear_console();
             System.out.println(">> SET LANGUAGE <<");
-            for(String s : this.all_language) {
+            for(String s : Language.all_language) {
                 if(s == null) {
                     continue;
                 }
@@ -36,7 +28,7 @@ public class Language {
                         + ". " 
                         + String.valueOf(s) 
                         + " (" 
-                        + String.valueOf(this.all_path_lang[count-1].replace(this.lang_path, "")) 
+                        + String.valueOf(Language.all_path_lang[count-1].replace(Language.lang_path, "")) 
                         + ")"
                 );
                 count++;
@@ -44,9 +36,9 @@ public class Language {
             System.out.println();
             choose = (int)Lib.int_input(" - Choose", null, false, true, false)-1;
             try {
-                if(this.all_language[choose] != null) {
-                    this.current_lang = this.all_language[choose];
-                    this.current_path_lang = this.all_path_lang[choose];
+                if(Language.all_language[choose] != null) {
+                    Language.current_lang = Language.all_language[choose];
+                    Language.current_path_lang = Language.all_path_lang[choose];
                     break;
                 }
             } catch (Exception e) {
@@ -55,12 +47,13 @@ public class Language {
         }
     }
     
-    public void load_language() {
-        for(String s : Lib.lsdir(this.lang_path)) {
+    private static void load_language() {
+        Language.lang_path = Lib.read_config("lang_path");
+        for(String s : Lib.lsdir(Language.lang_path)) {
             if(s.contains(".lang")) {
-                this.all_language[this.count] = Lib.read_data(this.lang_path + s, "name", true, false)[0];
-                this.all_path_lang[this.count] = this.lang_path + s;
-                this.count++;
+                Language.all_language[Language.count] = Lib.read_data(Language.lang_path + s, "name", true, false)[0];
+                Language.all_path_lang[Language.count] = Language.lang_path + s;
+                Language.count++;
             }
         }
     }

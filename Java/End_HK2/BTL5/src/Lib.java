@@ -10,8 +10,7 @@ import java.io.Writer;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
-public class Lib {
-    private static Language lang = null;
+public class Lib extends Language {
     private static int MAX_DATA = 20;
     private static String[] is_load_path = new String[Lib.MAX_DATA];
     private static int[] properties_index = new int[Lib.MAX_DATA];
@@ -292,16 +291,16 @@ public class Lib {
     }
     
     protected static void load_language() {
-        Lib.lang = new Language();
+        Language();
     }
     
     protected static String getlang(String code) {
-        if(Lib.lang == null) {
+        if(current_lang == null) {
             load_language();
         }
         boolean a = false;
         String str = "";
-        for(String s : Lib.read_data(Lib.lang.Path(), code, true, false)) {
+        for(String s : Lib.read_data(current_path_lang, code, true, false)) {
             if(a) {
                 str += ",";
             }

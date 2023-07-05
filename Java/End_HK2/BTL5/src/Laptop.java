@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class Laptop extends CPU {
+public class Laptop {
     private String ma_laptop;
     private String ten_laptop;
     private int dong_laptop;
