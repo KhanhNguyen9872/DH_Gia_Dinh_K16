@@ -13,7 +13,7 @@ wall_portrait = random.randint(4, 31)
 wall_landscape = random.randint(2, 13)
 
 landscape = wall_landscape
-timeout = 0.05
+timeout = 0.06
 boolvar = False
 string_ball = "O"
 string_wall_portrait = color[-1] + "="
@@ -32,7 +32,7 @@ def __wall_portrait__():
     global wall_portrait, is_exit, timeout
     orig = wall_portrait
     try:
-        time.sleep(5)
+        time.sleep(3)
         while 1:
             if is_exit:
                 return
@@ -43,8 +43,8 @@ def __wall_portrait__():
                         wall_portrait += 1
                     elif orig < wall_portrait:
                         wall_portrait -= 1
-                    time.sleep(timeout + 0.03)
-            time.sleep(5)
+                    time.sleep(timeout + 0.05)
+            time.sleep(3)
     except KeyboardInterrupt:
         return
 
@@ -52,7 +52,7 @@ def __wall_landscape__():
     global wall_landscape, is_exit, timeout
     orig = wall_landscape
     try:
-        time.sleep(5)
+        time.sleep(3)
         while 1:
             if is_exit:
                 return
@@ -63,8 +63,8 @@ def __wall_landscape__():
                         wall_landscape += 1
                     elif orig < wall_landscape:
                         wall_landscape -= 1
-                    time.sleep(timeout + 0.03)
-            time.sleep(5)
+                    time.sleep(timeout + 0.05)
+            time.sleep(3)
     except KeyboardInterrupt:
         return
 
