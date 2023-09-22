@@ -10,8 +10,8 @@ color = ["\033[94m", "\033[96m", "\033[92m", "\033[93m", "\033[91m", "\033[95m",
 stdout = khanhnguyen9872.stdout()
 stdout_2 = khanhnguyen9872.stdout()
 
-wall_portrait = 13
-wall_landscape = 4
+wall_portrait = random.randint(9, 16)
+wall_landscape = random.randint(3, 6)
 
 landscape = wall_landscape
 timeout = 0.05
@@ -49,7 +49,6 @@ stdout_2.write("\n>> Hello World!\n>> Hey! What are you doing?\n[Ctrl + C] -> EX
 
 try:
 	while 1:
-		# stdout.write(string_wall_portrait*int(wall_portrait+len(string_ball)+2) + "\n")
 		stdout.write(string_wall_portrait*int(wall_portrait+len(string_ball)+2) + "\n")
 		stdout.write(
 			str(f"{string_wall_landspace}" + " "*int(wall_portrait+len(string_ball)) + string_wall_landspace + "\n")*landscape
@@ -58,7 +57,7 @@ try:
 				+ " "*portrait
 			    + (random.choice(color) + string_ball)
 			    + " "*int(wall_portrait-portrait)
-			    + string_wall_landspace + "\n"
+			    + (string_wall_landspace if wall_portrait+1 > portrait else f"{string_wall_landspace}<<==") + "\n"
 			) 
 			+ str(f"{string_wall_landspace}" + " "*int(wall_portrait+len(string_ball)) + string_wall_landspace + "\n")*(wall_landscape-landscape-0) # -1, -2, -3,... cho trấn động, -0 là tĩnh lặng =)) 
 		)
