@@ -25,26 +25,19 @@ class stdout:
         self.stdout.flush()
 
     def print(self, string, end = "\n") -> None:
-        if str(type(string)) == "<class 'bytes'>":
-            raise TypeError("print() argument must be str, not bytes")
-
         return self.write(string + end)
 
     def write(self, string : str) -> None:
-        if str(type(string)) == "<class 'bytes'>":
-            raise TypeError("write() argument must be str, not bytes")
-
         self.stdout.write(string)
         self.flush()
         self.full_str += string
 
     def clear(self) -> None:
-        
-        if not self.full_str:
+        try:
+            if self.full_str[-1] != "\n":
+                self.stdout.write("\n")
+        except IndexError:
             return None
-
-        if self.full_str[-1] != "\n":
-            self.stdout.write("\n")
 
         for _ in range(len(self.full_str[:-1].split("\n"))):
             self.stdout.write("\x1b[1A\x1b[2K")
