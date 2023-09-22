@@ -13,7 +13,7 @@ line = 9 # portrait
 count = line
 timeout = 0.04
 boolvar = False
-string = "\033[1m" + "O"
+string = "O"
 string_wall_portrait = color[-1] + "="
 string_wall_landspace = color[-1] + "|"
 
