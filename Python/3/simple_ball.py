@@ -11,7 +11,7 @@ size = 35 # landscape
 line = 9 # portrait
 
 count = line
-timeout = 0.04
+timeout = 0.2
 boolvar = False
 string = "O"
 string_wall_portrait = color[-1] + "="
@@ -24,22 +24,22 @@ bool_ball_portrait = True
 stdout_2.hide_cursor()
 stdout_2.write(color[-1])
 stdout_2.write("\n>> Hello World!\n>> Hey! What are you doing?\n\n")
-stdout_2.write(string_wall_portrait*int(size+3) + "\n")
+stdout_2.write(string_wall_portrait*int(size+len(string)+2) + "\n")
 
 try:
 	while 1:
 		stdout.write(
-			str(f"{string_wall_landspace}" + " "*int(size+1) + string_wall_landspace + "\n")*count
+			str(f"{string_wall_landspace}" + " "*int(size+len(string)) + string_wall_landspace + "\n")*count
 			+ ( 
 				string_wall_landspace
 				+ " "*portrait
 			    + (random.choice(color) + string)
-			    + " "*int((size-portrait))
+			    + " "*int(size-portrait)
 			    + string_wall_landspace + "\n"
 			) 
-			+ str(f"{string_wall_landspace}" + " "*int(size+1) + string_wall_landspace + "\n")*(line-count-0) # -1, -2, -3,... cho trấn động, -0 là tĩnh lặng =)) 
+			+ str(f"{string_wall_landspace}" + " "*int(size+len(string)) + string_wall_landspace + "\n")*(line-count-0) # -1, -2, -3,... cho trấn động, -0 là tĩnh lặng =)) 
 		)
-		stdout.write(string_wall_portrait * int(size+3))
+		stdout.write(string_wall_portrait * int(size+len(string)+2))
 
 		if count >= line or count <= 0:
 			boolvar = not boolvar
