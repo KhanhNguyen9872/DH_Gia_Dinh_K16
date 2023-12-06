@@ -14,7 +14,7 @@ public class DBManager {
     protected static String MYSQL_HOST = "127.0.0.1";
     protected static int MYSQL_PORT = 3306;
     protected static String MYSQL_USER = "root";
-    private static final String MYSQL_PASSWD = "1234567";    
+    private static final String MYSQL_PASSWD = "12345678";    
     
     public static Connection connect(String host, int port, String user, String passwd, String db_name) throws ClassNotFoundException, SQLException, InterruptedException {
         Connection conn = null;
@@ -119,12 +119,13 @@ public class DBManager {
         String fromTable = "";
         
         for(String s : columnNames) {
-            column += "`" + s + "`,";
+            column += "" + s + ",";
         }
         column = Core.removeLastLine(column);
+        //if(column == "'*'")
         
         for(String s : fromTableNames) {
-            fromTable += "'" + s + "',";
+            fromTable += "`" + s + "`,";
         }
         fromTable = Core.removeLastLine(fromTable);
         

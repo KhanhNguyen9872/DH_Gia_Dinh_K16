@@ -1,5 +1,6 @@
 package com.N4.C_221402.lib;
 
+import com.N4.C_221402.obj.NhanVien;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,10 +30,6 @@ import javax.swing.SwingConstants;
 
 public class GUI {
     private static boolean SQL_is_passwd_hide = false;
-    
-    public void GUI() {
-        
-    }
     
     public static void run() {
         System.out.println("[@] Working dir: " + System.getProperty("user.dir"));
@@ -54,12 +52,13 @@ public class GUI {
         if(conn == null) {
             SQLConnectBox();
         } else {
-            mainGUI(conn);
+            loginUI(conn);
         }
     }
     
     private static void mainGUI(Connection conn) {
-        try {            
+        try {
+            ArrayList<NhanVien> dsNhanVien = Core.getArrayList_NhanVien(conn, "NHANVIEN");
             System.out.println("[*] Show: \'Main window\'");
             JFrame mainFrame = createFrame("Main Program", true);
             JLabel label = new JLabel("Table NHANVIEN");
@@ -84,7 +83,7 @@ public class GUI {
             mainFrame.setVisible(true);
             DBManager.disconnect(conn);
         } catch (Exception ex) {
-            String err = Core.getLessLog(ex);
+            String err = Core.getFullLog(ex);
             System.err.println("[!] Error log: " + err);
             PopupFrameOK(err, true);
         }
@@ -216,14 +215,14 @@ public class GUI {
                     );
                     destroyFrame(SQLFrame, "SQL Connect Box");
                 } catch (Exception ex) {
-                    String err = Core.getLessLog(ex);
+                    String err = Core.getCauseLog(ex);
                     destroyFrame(connectFrame, "MySQL - N4");
                     System.err.println("[!] Error log: " + err);
                     PopupFrameOK(err, false);
                 }
                 if(conn != null) {
                     destroyFrame(connectFrame, "MySQL - N4");
-                    mainGUI(conn);
+                    loginUI(conn);
                 }
             }
         });
@@ -284,5 +283,96 @@ public class GUI {
             });
         }
         return frame;
+    }
+    
+    public static void loginUI(Connection conn) {
+        JFrame mainLoginFrame = createFrame("Admin Login", true);
+        JLabel USERNAME_LABEL = new JLabel("Username: ");
+        JLabel PASSWORD_LABEL = new JLabel("Password");
+        
+        JTextField USERNAME = new JTextField(13);
+        JPasswordField PASSWORD = new JPasswordField(14);
+        
+        JButton SHOW_HIDE_BUTTON = new JButton();
+        JButton EXIT_BUTTON = new JButton("Close");
+        JButton LOGIN_BUTTON = new JButton("Login");
+        
+        GUI.SQL_is_passwd_hide = true;
+        if(GUI.SQL_is_passwd_hide) {
+            SHOW_HIDE_BUTTON.setText("Show");
+        } else {
+            SHOW_HIDE_BUTTON.setText("Hide");
+        }
+        
+        LOGIN_BUTTON.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String[] columnNames = {"*"};
+                String[] fromTableNames = {"account"};
+                try {
+                    String username = "";
+                    String password = "";
+                    ResultSet result = DBManager.selectData(conn, columnNames, fromTableNames, "");
+                    while(result.next()) {
+                        String user = result.getString("username");
+                        String pass = result.getString("password");
+                        String usern = USERNAME.getText();
+                        String passwd = new String(PASSWORD.getPassword());
+                        System.out.println(user + " - " + pass);
+                        System.out.println(usern + " - " + passwd);
+                        if((user == usern) && (pass == passwd)) {
+                            destroyFrame(mainLoginFrame, "Admin Login");
+                            mainGUI(conn);
+                            return;
+                        }
+                        break;
+                    }
+                    System.out.println("[!!] Tài khoản hoặc mật khẩu không chính xác");
+                    PopupFrameOK("Tài khoản hoặc mật khẩu không chính xác", false);
+                } catch (Exception ex) {
+                    String err = Core.getLessLog(ex);
+                    System.err.println(err);
+                    PopupFrameOK(err, false);
+                }
+            }
+        });
+        
+        SHOW_HIDE_BUTTON.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(GUI.SQL_is_passwd_hide) {
+                    PASSWORD.setEchoChar((char) 0);
+                    SHOW_HIDE_BUTTON.setText("Hide");
+                    GUI.SQL_is_passwd_hide = false;
+                } else {
+                    PASSWORD.setEchoChar('*');
+                    SHOW_HIDE_BUTTON.setText("Show");
+                    GUI.SQL_is_passwd_hide = true;
+                }
+            }
+        });
+        
+        EXIT_BUTTON.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        
+        mainLoginFrame.getRootPane().setDefaultButton(LOGIN_BUTTON);
+        
+        JPanel panel_USERNAME = new JPanel();
+        JPanel panel_PASSWORD = new JPanel();
+        
+        panel_USERNAME.add(USERNAME_LABEL);
+        panel_USERNAME.add(USERNAME);
+        panel_PASSWORD.add(PASSWORD_LABEL);
+        panel_PASSWORD.add(PASSWORD);
+        
+        mainLoginFrame.add(panel_USERNAME);
+        mainLoginFrame.add(panel_PASSWORD);
+        mainLoginFrame.add(EXIT_BUTTON);
+        mainLoginFrame.add(SHOW_HIDE_BUTTON);
+        mainLoginFrame.add(LOGIN_BUTTON);
+        mainLoginFrame.pack();
+        mainLoginFrame.setSize(250, 150);
+        mainLoginFrame.setVisible(true);
     }
 }
