@@ -3,3 +3,5 @@
 *.dtmp
 *.stackdump
 *.exe
+/Java/CSDL/build/
+/Java/CSDL/dist/
