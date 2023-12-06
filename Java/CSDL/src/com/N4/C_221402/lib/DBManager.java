@@ -61,7 +61,7 @@ public class DBManager {
     }
     
     public static boolean deleteTable(Connection conn, String tableName) throws SQLException {
-        String txt = "DELETE FROM " + tableName + ";";
+        String txt = "DELETE FROM '" + tableName + "';";
         if (queryUpdate(conn, txt) == 1) {
             return true;
         }
@@ -72,7 +72,7 @@ public class DBManager {
         String s = "";
         
         for(int i=0; i<columnNames.length; i++) {
-            s += columnNames[i] + " = \'" + values[i] + "\',";
+            s += "`" + columnNames[i] + "` = \'" + values[i] + "\',";
         }
         s = Core.removeLastLine(s);
         
@@ -119,12 +119,12 @@ public class DBManager {
         String fromTable = "";
         
         for(String s : columnNames) {
-            column += s + ",";
+            column += "`" + s + "`,";
         }
         column = Core.removeLastLine(column);
         
         for(String s : fromTableNames) {
-            fromTable += s + ",";
+            fromTable += "'" + s + "',";
         }
         fromTable = Core.removeLastLine(fromTable);
         
