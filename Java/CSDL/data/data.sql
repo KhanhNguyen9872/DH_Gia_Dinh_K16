@@ -1,6 +1,4 @@
-﻿---- Nhom 4 - 221402 ----
-DROP TABLE IF EXISTS NHANVIEN;
-
+﻿
 CREATE TABLE `NHANVIEN` (
 	`MANV` int NOT NULL AUTO_INCREMENT,
 	`HONV` varchar(32) NOT NULL,
@@ -12,7 +10,7 @@ CREATE TABLE `NHANVIEN` (
 	`NOISINH` varchar(255) NOT NULL,
 	`PHG` int(16) NOT NULL DEFAULT -1,
 	PRIMARY KEY (`MANV`)
-)
+);
 
 INSERT INTO `NHANVIEN` (
 	`HONV`,
@@ -30,6 +28,5 @@ INSERT INTO `NHANVIEN` (
 	'2004-07-02 12:00:00',
 	'Binh Thuan',
 	'Lagi'
-)
+);
 
----------- END ----------
