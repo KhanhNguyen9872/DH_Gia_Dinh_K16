@@ -309,17 +309,10 @@ public class GUI {
                 String[] columnNames = {"*"};
                 String[] fromTableNames = {"account"};
                 try {
-                    String username = "";
-                    String password = "";
                     ResultSet result = DBManager.selectData(conn, columnNames, fromTableNames, "");
                     while(result.next()) {
-                        String user = result.getString("username");
-                        String pass = result.getString("password");
-                        String usern = USERNAME.getText();
-                        String passwd = new String(PASSWORD.getPassword());
-                        System.out.println(user + " - " + pass);
-                        System.out.println(usern + " - " + passwd);
-                        if((user == usern) && (pass == passwd)) {
+                        if((result.getString("username").equals(USERNAME.getText())) 
+                        && (result.getString("password").equals(new String(PASSWORD.getPassword())))) {
                             destroyFrame(mainLoginFrame, "Admin Login");
                             mainGUI(conn);
                             return;
