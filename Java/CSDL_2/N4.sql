@@ -16,8 +16,8 @@ GO
 -- Create table
 CREATE TABLE GIAOVIEN (
 	MA VARCHAR(8) NOT NULL,
-	HO NVARCHAR(16) NOT NULL,
-	TENLOT NVARCHAR(16) NOT NULL,
+	HO NVARCHAR(16) NOT NULL DEFAULT '',
+	TENLOT NVARCHAR(16) NOT NULL DEFAULT '',
 	TEN NVARCHAR(16) NOT NULL,
 	PHAI CHAR(3) NOT NULL CHECK (PHAI IN ('NAM', 'NỮ')),
 	NGSINH DATETIME NOT NULL,
@@ -68,6 +68,7 @@ CREATE TABLE DIA_CHI (
 	DUONG NVARCHAR(32),
 	QUAN NVARCHAR(32),
 	THANHPHO NVARCHAR(32),
+	PRIMARY KEY (MAGV),
 	FOREIGN KEY (MAGV) REFERENCES GIAOVIEN (MA)
 );
 
@@ -90,25 +91,37 @@ CREATE TABLE DE_TAI (
 	FOREIGN KEY (CHU_DE) REFERENCES CHU_DE (MA)
 );
 
+CREATE TABLE NGUOI_THAN (
+	MA INT NOT NULL IDENTITY(1,1), 
+	HO NVARCHAR(16) NOT NULL DEFAULT '',
+	TENLOT NVARCHAR(16) NOT NULL DEFAULT '',
+	TEN NVARCHAR(16) NOT NULL,
+	PHAI VARCHAR(3) NOT NULL CHECK (PHAI IN ('NAM', 'NỮ')),
+	NGSINH DATETIME NOT NULL,
+	MAGV VARCHAR(8) NOT NULL,
+	PRIMARY KEY (MA),
+	FOREIGN KEY (MAGV) REFERENCES GIAOVIEN (MA)
+);
+
 BEGIN
 	ALTER TABLE GIAOVIEN
 	NOCHECK CONSTRAINT ALL
 	INSERT INTO GIAOVIEN 
 		(MA, HO, TENLOT, TEN, PHAI, NGSINH, BO_MON, KHOA, LUONG)
 	VALUES 
-		('001', 'Nguyễn', 'Văn', 'Khánh', 'NAM', '02/07/2004', '200', '100', 10000000),
-		('002', 'Lê', 'Lâm Chiến', 'Thắng', 'NAM', '01/01/2004', '201', '101', 20000000),
-		('003', 'Nguyễn', 'Văn', 'Sang', 'NAM', '02/01/2004', '202', '102', 30000000),
-		('004', 'Nguyễn', 'Trần Hoàng', 'Thịnh', 'NAM', '03/01/2004', '200', '103', 40000000),
-		('005', 'Nguyễn', 'Văn', 'A', 'NAM', '01/02/2000', '203', '103', 5000000),
-		('006', 'Nguyễn', 'Thị', 'B', 'NỮ', '02/02/2000', '200', '102', 4000000),
-		('007', 'Nguyễn', '', 'Cường', 'NAM', '03/02/2000', '202', '101', 6000000),
-		('008', 'Nguyễn', 'Tiến', 'D', 'NAM', '04/02/2000', '203', '100', 7000000),
-		('009', 'Trần', 'Thị', 'E', 'NỮ', '05/02/2000', '200', '103', 3000000),
-		('010', 'Trần', 'Văn', 'F', 'NAM', '06/02/2000', '203', '101', 4000000),
-		('011', 'Trần', 'Văn', 'Khánh', 'NAM', '07/02/2000', '200', '100', 8000000),
-		('012', 'Lê', 'Hồng', 'Phong', 'NAM', '01/01/1998', '203', '103', 5656565),
-		('013', 'Nguyễn', 'Thị', 'Kiều', 'NỮ', '01/01/1988', '202', '102', 5600000)
+		('001', 'Nguyễn', 'Văn', 'Khánh', 'NAM', '02/07/2004', 'HTTT', '100', 10000000),
+		('002', 'Lê', 'Lâm Chiến', 'Thắng', 'NAM', '01/01/2004', 'MMT', '101', 20000000),
+		('003', 'Nguyễn', 'Văn', 'Sang', 'NAM', '02/01/2004', 'KTPM', '102', 30000000),
+		('004', 'Nguyễn', 'Trần Hoàng', 'Thịnh', 'NAM', '03/01/2004', 'HTTT', '103', 40000000),
+		('005', 'Nguyễn', 'Văn', 'A', 'NAM', '01/02/2000', 'KTPM', '103', 5000000),
+		('006', 'Nguyễn', 'Thị', 'B', 'NỮ', '02/02/2000', 'MMT', '102', 4000000),
+		('007', 'Nguyễn', '', 'Cường', 'NAM', '03/02/2000', 'NNA', '101', 6000000),
+		('008', 'Nguyễn', 'Tiến', 'D', 'NAM', '04/02/2000', 'NNT', '100', 7000000),
+		('009', 'Trần', 'Thị', 'E', 'NỮ', '05/02/2000', 'HTTT', '103', 3000000),
+		('010', 'Trần', 'Văn', 'F', 'NAM', '06/02/2000', 'TKDH', '101', 4000000),
+		('011', 'Trần', 'Văn', 'Khánh', 'NAM', '07/02/2000', 'MMT', '100', 8000000),
+		('012', 'Lê', 'Hồng', 'Phong', 'NAM', '01/01/1998', 'TKDH', '103', 5656565),
+		('013', 'Nguyễn', 'Thị', 'Kiều', 'NỮ', '01/01/1988', 'KTPM', '102', 5600000)
 	ALTER TABLE GIAOVIEN
 	CHECK CONSTRAINT ALL
 END
@@ -170,14 +183,50 @@ BEGIN
 	INSERT INTO BO_MON 
 		(MA, TEN, PHONG, SO_DIEN_THOAI, MA_KHOA, TRUONG_BO_MON, NGAY_NHAN_CHUC)
 	VALUES 
-		('200', 'Hệ thống thông tin', 'B000', '', '', '001', '02/02/2022'),
-		('201', 'Mạng máy tính', 'B001', '', '', '002', '02/03/2022'),
-		('202', 'Kỹ thuật phần mềm', 'B002', '', '', '003', '02/04/2022'),
-		('203', 'Thiết kế đồ họa', 'B003', '', '', '008', '02/05/2022')
+		('HTTT', 'Hệ thống thông tin', 'B000', '', '', '001', '02/02/2022'),
+		('MMT', 'Mạng máy tính', 'B001', '', '', '002', '02/03/2022'),
+		('KTPM', 'Kỹ thuật phần mềm', 'B002', '', '', '003', '02/04/2022'),
+		('TKDH', 'Thiết kế đồ họa', 'B003', '', '', '008', '02/05/2022'),
+		('NNA', 'Ngôn ngữ Anh', 'B004', '', '', '008', '02/06/2022'),
+		('NNT', 'Ngôn ngữ Trung', 'B005', '', '', '008', '02/07/2022')
 	ALTER TABLE BO_MON
 	CHECK CONSTRAINT ALL
 END
 
+BEGIN
+	ALTER TABLE NGUOI_THAN
+	NOCHECK CONSTRAINT ALL
+	INSERT INTO NGUOI_THAN 
+		(HO, TENLOT, TEN, PHAI, NGSINH, MAGV)
+	VALUES
+		('Nguyễn', 'Văn', 'Q', 'NAM', '12/31/1980', '001'),
+		('Ngô', 'Thị Minh', 'H', 'NỮ', '12/31/1981', '001'),
+		('Nguyễn', 'Chính', 'N', 'NAM', '12/31/1982', '002'),
+		('Ngô', 'Thị Minh', 'H', 'NỮ', '12/31/1976', '003'),
+		('Bùi', '', 'Tiến', 'NAM', '12/31/1984', '004')
+	ALTER TABLE NGUOI_THAN
+	CHECK CONSTRAINT ALL
+END
+
+BEGIN
+	ALTER TABLE DIA_CHI
+	NOCHECK CONSTRAINT ALL
+	INSERT INTO DIA_CHI 
+		(MAGV, SONHA, DUONG, QUAN, THANHPHO)
+	VALUES
+		('001', '1000', 'Nguyễn Văn Cừ', 'Quận 1', 'TP.HCM'),
+		('002', '1001', 'Nguyễn Văn Nghi', 'Gò Vấp', 'TP.HCM'),
+		('003', '1002', 'Nguyễn Thái Học', 'Quận 1', 'TP.HCM'),
+		('004', '1003', 'Cách Mạng Tháng 8', 'Quận 10', 'TP.HCM'),
+		('005', '1004', 'Nguyễn Văn Cừ', 'Quận 1', 'TP.HCM'),
+		('006', '1005', 'Lê Hồng Phong', 'Quận 10', 'TP.HCM'),
+		('007', '1006', 'Chu Văn An', 'Bình Thạnh', 'TP.HCM'),
+		('008', '1007', 'Phan Văn Trị', 'Bình Thạnh', 'TP.HCM'),
+		('009', '1008', 'Quang Trung', 'Gò Vấp', 'TP.HCM'),
+		('010', '1009', 'Thích Quảng Đức', 'Phú Nhuận', 'TP.HCM')
+	ALTER TABLE DIA_CHI
+	CHECK CONSTRAINT ALL
+END
 
 -- BAI TAP
 -- 5. Hãy cho biết thông tin giáo viên (mã giáo viên, họ tên) là trưởng bộ môn hoặc trưởng khoa.
@@ -318,33 +367,225 @@ WHERE (
 -----------------------------
 
 -- 15.Cho biết mã giáo viên, họ tên và lương. Kết quả trả về sắp xếp mức lương tăng dần.
+
+SELECT
+	GIAOVIEN.MA AS 'Mã giáo viên',
+	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng khoa',
+	CAST(GIAOVIEN.LUONG AS INT) AS 'Lương'
+FROM 
+	GIAOVIEN, BO_MON
+ORDER BY GIAOVIEN.LUONG;
+
+-----------------------------
+
 -- 16.Cho biết mã đề tài, số thứ tự công việc, tên công việc. Kết quả trả về sắp xếp mã đề tài tăng dần, số thứ tự công việc giảm dần.
+
+
+	
+
+-----------------------------
+
 -- 17.Cho biết những giáo viên có lương >= 2500 hoặc có người thân là nam.
+
+SELECT 
+	GIAOVIEN.MA AS 'Mã giáo viên',
+	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng khoa'
+FROM
+	GIAOVIEN, NGUOI_THAN
+WHERE (
+	(GIAOVIEN.LUONG >= 2500)
+	OR
+	(
+		(NGUOI_THAN.MAGV = GIAOVIEN.MA) 
+		AND
+		(NGUOI_THAN.PHAI = 'NAM')
+	)
+);
+
+-----------------------------
+
+
 -- 18.Tính tổng lương, lương lớn nhất, lương nhỏ nhất và lương trung bình của giáo viên thuộc bộ môn “Hệ thống thông tin”.
+
+SELECT
+	SUM(GIAOVIEN.LUONG) AS 'Tổng lương',
+	MAX(GIAOVIEN.LUONG) AS 'Lương lớn nhất',
+	MIN(GIAOVIEN.LUONG) AS 'Lương nhỏ nhất'
+FROM 
+	GIAOVIEN, BO_MON
+WHERE (
+	GIAOVIEN.BO_MON = BO_MON.MA AND GIAOVIEN.BO_MON = 'HTTT'
+);
+
+-----------------------------
+
 -- 19.Cho biết số lượng giáo viên tham gia cho mỗi đề tài.
+
+
+
+-----------------------------
+
 -- 20.Cho biết đề tài nào có nhiều giáo viên tham gia nhất.
+
+
+
+-----------------------------
+
 -- 21.Cho biết có bao nhiêu giáo viên không tham gia bất kỳ đề tài nào.
+
+
+
+-----------------------------
+
 -- 22.Cho biết thông tin các trưởng bộ môn nhận chức từ đầu năm 2015 đến hết năm 2016.
+
+
+
+-----------------------------
+
 -- 23.Cho biết thông tin các giáo viên có mức phụ cấp tham gia đề tài từ 1.5 đến 2.0
+
+
+
+-----------------------------
+
 -- 24.Xuất ra danh sách giáo viên có mức lương > mức lương trung bình của tất cả giáo viên.
+
+
+
+-----------------------------
+
 -- 25.Xuất ra thông tin của khoa có nhiều hơn 2 giáo viên.
+
+
+
+-----------------------------
+
 -- 26.Cho biết danh sách các bộ môn và tên của người làm trưởng bộ môn.
+
+
+
+-----------------------------
+
 -- 27.Cho biết thông tin các bộ môn và tên của người làm trưởng bộ môn, đối với những bộ môn chưa biết giáo viên nào làm trưởng bộ môn thì tại các cột cho biết mã và tên của trưởng bộ môn mang giá trị rỗng (null).
+
+
+
+-----------------------------
+
 -- 28.Cho biết danh sách gồm mã, họ tên, phái, ngày sinh của các giáo viên thuộc bộ môn tên là “Hệ thống thông tin”.
+
+
+
+-----------------------------
+
 -- 29.Cho biết danh sách giáo viên và tên người quản lý chuyên môn với kết quả gồm các cột sau: MAGV, HOTEN, NGAYSINH, TEN_GVQLCM. Chỉ xuất thông tin các giáo viên có người quản lý chuyên môn.
+
+
+
+-----------------------------
+
 -- 30.Cho biết danh sách gồm mã và tên giáo viên có tham gia đề tài tên là “HTTT quản lý các trường ĐH” hoặc đề tài có tên là “HTTT quản lý giáo vụ cho một Khoa”.
+
+
+
+-----------------------------
+
 -- 31.Cho biết danh sách các giáo viên tham gia tất cả các công việc của đề tài mã là 001.
+
+
+
+-----------------------------
+
 -- 32.Cho biết các giáo viên có người quản lý chuyên môn không ở cùng một thành phố.
+
+
+
+-----------------------------
+
 -- 33.Cho biết mã đề tài, số thứ tự công việc, tên công việc. Kết quả trả về sắp xếp mã đề tài tăng dần, số thứ tự công việc giảm dần.
+
+
+
+-----------------------------
+
 -- 34.Cho biết mã giáo viên của những giáo viên có lương >= 1500 và có người thân là nam.
+
+
+
+-----------------------------
+
 -- 35.Cho biết những giáo viên nào ở khoa CNTT đã tham gia ít nhất 1 đề tài.
+
+
+
+-----------------------------
+
 -- 36.Cho biết số lượng đề tài của mỗi chủ đề (Mã chủ đề, tên chủ đề, số lượng đề tài).
+
+
+
+-----------------------------
+
 -- 37.Mỗi bộ môn có bao nhiêu giáo viên (Mã bộ môn, tên bộ môn, số giáo viên).
+
+
+
+-----------------------------
+
 -- 38.Cho biết danh sách gồm mã các giáo viên có tham gia đề tài mã số 001 hoặc mã số 002.
+
+
+
+-----------------------------
+
 -- 39.Cho biết danh sách gồm mã các giáo viên có tham gia đề tài mã số 001 nhưng không tham gia đề tài mã số 002.
+
+
+
+-----------------------------
+
 -- 40.Liệt kê danh sách các thể hiện cho biết các giáo viên thuộc bộ môn tên là “Mạng máy tính” tham  cả các công việc liên quan đến đề tài tên là “Ứng dụng hóa học xanh”.
+
+
+
+-----------------------------
+
 -- 41.Liệt  sách các thể hiện cho biết các giáo viên thuộc bộ môn mã là MMT tham gia tất cả các công việc liên quan đến đề tài 001.
+
+
+
+-----------------------------
+
 -- 42.Cho biết các giáo viên thuộc bộ môn HTTT tham gia tất cả các công việc của các đề tài cấp trường. Danh sách kết xuất gồm mã giáo viên, mã đề tài, số thứ tự.
+
+
+
+-----------------------------
+
 -- 43.Thêm vào bảng THAMGIADT các bộ dữ liệu cho biết giáo viên mã là 003 tham gia tất cả các công việc của đề tài mã là 001.
+
+
+
+-----------------------------
+
 -- 44.Xóa các dòng dữ liệu liên quan đến đề tài 002 trong bảng THAMGIADT.
+
+
+
+-----------------------------
+
 -- 45.Cập nhật lương của những giáo viên thuộc bộ môn mã là HTTT tăng 1.5 lần.
+
+SELECT
+	GIAOVIEN.MA AS 'Mã giáo viên',
+	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng khoa',
+	BO_MON.TEN AS 'Tên bộ môn',
+	CAST(GIAOVIEN.LUONG*1.5 AS INT) AS 'Lương'
+FROM 
+	GIAOVIEN, BO_MON
+WHERE (
+	GIAOVIEN.BO_MON = BO_MON.MA AND GIAOVIEN.BO_MON = 'HTTT'
+);
+
+-----------------------------
