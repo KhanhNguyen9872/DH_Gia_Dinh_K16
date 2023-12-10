@@ -314,7 +314,7 @@ WHERE (
 SELECT
 	KHOA.MA AS 'Mã khoa',
 	KHOA.TEN AS 'Tên khoa',
-	GIAOVIEN.TEN AS 'Tên giáo viên'
+	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Họ tên giáo viên' 
 FROM 
 	GIAOVIEN, KHOA
 WHERE (
@@ -365,7 +365,8 @@ WHERE (
 
 SELECT 
 	GIAOVIEN.MA AS 'Mã giáo viên',
-	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Họ tên'
+	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Họ tên',
+	KHOA.TEN AS 'Tên khoa'
 FROM 
 	GIAOVIEN, KHOA
 WHERE (
@@ -440,7 +441,7 @@ SELECT
 	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng khoa',
 	CAST(GIAOVIEN.LUONG AS INT) AS 'Lương'
 FROM 
-	GIAOVIEN, BO_MON
+	GIAOVIEN
 ORDER BY GIAOVIEN.LUONG;
 
 -----------------------------
