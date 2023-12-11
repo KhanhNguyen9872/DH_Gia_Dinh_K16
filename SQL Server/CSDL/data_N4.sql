@@ -1,8 +1,8 @@
 ﻿-- 221402 - N4
 
-use [master];
-ALTER DATABASE [QLNCKH] SET OFFLINE WITH ROLLBACK IMMEDIATE;
-ALTER DATABASE [QLNCKH] SET ONLINE;
+use master;
+ALTER DATABASE QLNCKH SET OFFLINE WITH ROLLBACK IMMEDIATE;
+ALTER DATABASE QLNCKH SET ONLINE;
 
 DROP DATABASE QLNCKH;
 
@@ -205,13 +205,13 @@ BEGIN
 	INSERT INTO KHOA 
 		(MA, TEN, NAM_THANH_LAP, PHONG_LAM_VIEC, SO_DIEN_THOAI, TRUONG_KHOA, NGAY_NHAN_CHUC)
 	VALUES 
-		('CNTT', 'Công nghệ thông tin', '02/02/1980', '', '', '001', '02/02/2020'),
-		('MKT', 'Marketing', '02/03/2020', '', '', '002', '02/02/2022'),
-		('NN', 'Ngôn ngữ', '02/04/1990', '', '', '003', '02/02/2021'),
-		('TT', 'Truyền thông', '02/05/2020', '', '', '006', '02/02/2022'),
-		('KHCT', 'Khoa học chính trị', '04/06/1985', '', '', '001', '01/04/2005'),
-		('TLH', 'Tâm lý học', '04/06/1991', '', '', '', ''),
-		('KT', 'Kế toán', '06/12/2000', '', '', '004', '09/08/2001')
+		('CNTT', N'Công nghệ thông tin', '02/02/1980', '', '', '001', '02/02/2020'),
+		('MKT', N'Marketing', '02/03/2020', '', '', '002', '02/02/2022'),
+		('NN', N'Ngôn ngữ', '02/04/1990', '', '', '003', '02/02/2021'),
+		('TT', N'Truyền thông', '02/05/2020', '', '', '006', '02/02/2022'),
+		('KHCT', N'Khoa học chính trị', '04/06/1985', '', '', '001', '01/04/2005'),
+		('TLH', N'Tâm lý học', '04/06/1991', '', '', '', ''),
+		('KT', N'Kế toán', '06/12/2000', '', '', '004', '09/08/2001')
 	ALTER TABLE KHOA
 	CHECK CONSTRAINT ALL
 END
