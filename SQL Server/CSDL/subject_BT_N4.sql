@@ -651,15 +651,12 @@ WHERE (
 
 -- 45.Cập nhật lương của những giáo viên thuộc bộ môn mã là HTTT tăng 1.5 lần.
 
-SELECT
-	GIAOVIEN.MA AS 'Mã giáo viên',
-	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng khoa',
-	BO_MON.TEN AS 'Tên bộ môn',
-	CAST(GIAOVIEN.LUONG*1.5 AS INT) AS 'Lương'
-FROM 
-	GIAOVIEN, BO_MON
+UPDATE 
+	GIAOVIEN
+SET
+	LUONG = LUONG*1.5
 WHERE (
-	GIAOVIEN.BO_MON = BO_MON.MA AND GIAOVIEN.BO_MON = 'HTTT'
-);
+	GIAOVIEN.BO_MON = 'HTTT'
+)
 
 -----------------------------
