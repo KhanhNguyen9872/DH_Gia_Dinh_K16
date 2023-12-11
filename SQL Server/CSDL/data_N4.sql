@@ -20,9 +20,10 @@ CREATE TABLE GIAOVIEN (
 	TEN NVARCHAR(32) NOT NULL,
 	PHAI NVARCHAR(3) NOT NULL CHECK (PHAI IN (N'NAM', N'NỮ')),
 	NGSINH DATETIME NOT NULL,
-	LUONG INT NOT NULL DEFAULT -1,
+	LUONG INT NOT NULL DEFAULT 0,
 	BO_MON VARCHAR(8),
 	KHOA VARCHAR(8),
+	PHU_CAP FLOAT NOT NULL DEFAULT 0,
 	PRIMARY KEY (MA),
 );
 
@@ -100,10 +101,10 @@ CREATE TABLE NGUOI_THAN (
 );
 
 CREATE TABLE CONG_VIEC (
-	MACONGVIEC INT NOT NULL,
+	STT_CONGVIEC INT NOT NULL,
 	MA VARCHAR(8) NOT NULL,
 	TEN NVARCHAR(255) NOT NULL,
-	PRIMARY KEY (MACONGVIEC),
+	PRIMARY KEY (STT_CONGVIEC),
 	FOREIGN KEY (MA) REFERENCES DE_TAI (MA)
 );
 
@@ -111,11 +112,11 @@ CREATE TABLE THAMGIADT (
 	STT INT NOT NULL IDENTITY(1,1),
 	MA VARCHAR(8) NOT NULL,
 	MAGV VARCHAR(8) NOT NULL,
-	MACONGVIEC INT NOT NULL,
+	STT_CONGVIEC INT NOT NULL,
 	PRIMARY KEY (STT),
 	FOREIGN KEY (MA) REFERENCES DE_TAI (MA),
 	FOREIGN KEY (MAGV) REFERENCES GIAOVIEN (MA),
-	FOREIGN KEY (MACONGVIEC) REFERENCES CONG_VIEC (MACONGVIEC)
+	FOREIGN KEY (STT_CONGVIEC) REFERENCES CONG_VIEC (STT_CONGVIEC)
 );
 
 ALTER TABLE GIAOVIEN ADD FOREIGN KEY (KHOA) REFERENCES KHOA (MA);
@@ -127,24 +128,24 @@ BEGIN
 	INSERT INTO GIAOVIEN 
 		(MA, HO, TENLOT, TEN, PHAI, NGSINH, BO_MON, KHOA, LUONG)
 	VALUES 
-		('001', N'Nguyễn', N'Văn', N'Khánh', N'NAM', '02/07/2004', 'HTTT', 'CNTT', 10000000),
-		('002', N'Lê', N'Lâm Chiến', N'Thắng', N'NAM', '01/01/2004', 'MMT', 'MKT', 20000000),
-		('003', N'Nguyễn', N'Văn', N'Sang', N'NAM', '02/01/2004', 'KTPM', 'NN', 30000000),
-		('004', N'Nguyễn', N'Trần Hoàng', N'Thịnh', N'NAM', '03/01/2004', 'HTTT', 'TT', 40000000),
-		('005', N'Nguyễn', N'Văn', N'A', N'NAM', '01/02/2000', 'KTPM', 'TT', 5000000),
-		('006', N'Nguyễn', N'Thị', N'B', N'NỮ', '02/02/2000', 'MMT', 'NN', 4000000),
-		('007', N'Nguyễn', N'', N'Cường', N'NAM', '03/02/2000', 'NNA', 'MKT', 6000000),
-		('008', N'Nguyễn', N'Tiến', N'D', N'NAM', '04/02/2000', 'NNT', 'CNTT', 7000000),
-		('009', N'Trần', N'Thị', N'E', N'NỮ', '05/02/2000', 'HTTT', 'TT', 3000000),
-		('010', N'Trần', N'Văn', N'F', N'NAM', '06/02/2000', 'TKDH', 'MKT', 4000000),
-		('011', N'Trần', N'Văn', N'Khánh', N'NAM', '07/02/2000', 'MMT', 'CNTT', 8000000),
-		('012', N'Lê', N'Hồng', N'Phong', N'NAM', '01/01/1998', 'TKDH', 'TT', 5656565),
-		('013', N'Nguyễn', N'Thị', N'Kiều', N'NỮ', '01/01/1988', 'KTPM', 'MKT', 5600000),
-		('014', N'Nguyễn', N'Anh', N'Quốc', N'NAM', '01/01/1985', 'KTPM', 'CNTT', 10000000),
-		('015', N'Nguyễn', N'Quốc', N'Anh', N'NAM', '01/01/1986', 'MMT', 'NN', 20000000),
-		('016', N'Nguyễn', N'Thị', N'Chi', N'Nữ', '01/01/1995', 'NNT', 'KT', 15000000),
-		('017', N'Nguyễn', N'Thanh', N'Quốc', N'NAM', '01/01/1999', 'TKDH', 'KHCT', 25000000),
-		('018', N'Nguyễn', N'Văn', N'Chánh', N'NAM', '01/06/1997', 'MMT', 'CNTT', 3000000)
+		('001', N'Nguyễn', N'Văn', N'Khánh', N'NAM', '02/07/2004', 'HTTT', 'CNTT', 3000),
+		('002', N'Lê', N'Lâm Chiến', N'Thắng', N'NAM', '01/01/2004', 'MMT', 'MKT', 2500),
+		('003', N'Nguyễn', N'Văn', N'Sang', N'NAM', '02/01/2004', 'KTPM', 'NN', 2000),
+		('004', N'Nguyễn', N'Trần Hoàng', N'Thịnh', N'NAM', '03/01/2004', 'HTTT', 'TT', 1500),
+		('005', N'Nguyễn', N'Văn', N'A', N'NAM', '01/02/2000', 'KTPM', 'TT', 1000),
+		('006', N'Nguyễn', N'Thị', N'B', N'NỮ', '02/02/2000', 'MMT', 'NN', 1600),
+		('007', N'Nguyễn', N'', N'Cường', N'NAM', '03/02/2000', 'NNA', 'MKT', 1700),
+		('008', N'Nguyễn', N'Tiến', N'D', N'NAM', '04/02/2000', 'NNT', 'CNTT', 1100),
+		('009', N'Trần', N'Thị', N'E', N'NỮ', '05/02/2000', 'HTTT', 'TT', 1150),
+		('010', N'Trần', N'Văn', N'F', N'NAM', '06/02/2000', 'TKDH', 'MKT', 1200),
+		('011', N'Trần', N'Văn', N'Khánh', N'NAM', '07/02/2000', 'MMT', 'CNTT', 1250),
+		('012', N'Lê', N'Hồng', N'Phong', N'NAM', '01/01/1998', 'TKDH', 'TT', 1275),
+		('013', N'Nguyễn', N'Thị', N'Kiều', N'NỮ', '01/01/1988', 'KTPM', 'MKT', 1300),
+		('014', N'Nguyễn', N'Anh', N'Quốc', N'NAM', '01/01/1985', 'KTPM', 'CNTT', 1325),
+		('015', N'Nguyễn', N'Quốc', N'Anh', N'NAM', '01/01/1986', 'MMT', 'NN', 1400),
+		('016', N'Nguyễn', N'Thị', N'Chi', N'Nữ', '01/01/1995', 'NNT', 'KT', 1550),
+		('017', N'Nguyễn', N'Thanh', N'Quốc', N'NAM', '01/01/1999', 'TKDH', 'KHCT', 1575),
+		('018', N'Nguyễn', N'Văn', N'Chánh', N'NAM', '01/06/1997', 'MMT', 'CNTT', 1625)
 	ALTER TABLE GIAOVIEN
 	CHECK CONSTRAINT ALL
 END
@@ -291,21 +292,21 @@ BEGIN
 	INSERT INTO DE_TAI 
 		(MA, TEN, CAP_QUAN_LY, KINH_PHI, NGAY_BAT_DAU, NGAY_KET_THUC, CHU_DE)
 	VALUES
-		('001', N'HTTT quản lý các trường ĐH', '001', 1000000, '01/01/2023', '01/01/2025', '400'),
-		('002', N'HTTT quản lý giáo vụ cho một Khoa', '002', 2000000, '02/01/2023', '01/01/2026', '401'),
-		('003', N'Ứng dụng hóa học xanh', '003', 3000000, '03/01/2023', '01/01/2027', '402'),
-		('004', N'HTTT quản lý các trường TH', '004', 4000000, '04/01/2023', '01/01/2028', '403'),
-		('005', N'Ứng dụng Di động React Native', '005', 5000000, '05/01/2023', '01/01/2029', '404'),
-		('006', N'Nhận dạng Hình ảnh sử dụng Máy học', '006', 6000000, '06/01/2023', '01/01/2030', '405'),
-		('007', N'Ảnh hưởng của Thói quen Ăn đối với Tim mạch', '007', 7000000, '07/01/2023', '01/01/2031', '400'),
-		('008', N'Dự đoán Ung thư qua Genomic', '007', 7000000, '07/01/2023', '01/01/2031', '400'),
-		('009', N'Yếu tố ảnh hưởng đến Hạnh phúc', '007', 7000000, '07/01/2023', '01/01/2031', '400'),
-		('010', N'Biến đổi Khí hậu và Rừng Amazon', '007', 7000000, '07/01/2023', '01/01/2031', '400'),
-		('011', N'Sáng tạo trong Quảng cáo: Màu sắc và Hình ảnh', '007', 7000000, '07/01/2023', '01/01/2031', '400'),
-		('012', N'Cơ chế Enzyme trong Tiêu hóa thức ăn', '007', 7000000, '07/01/2023', '01/01/2031', '400'),
-		('013', N'Ứng dụng VR cho Trải nghiệm Nghệ thuật tương tác', '007', 7000000, '07/01/2023', '01/01/2031', '400'),
-		('014', N'Văn hóa và Quyết định Kinh tế cá nhân', '007', 7000000, '07/01/2023', '01/01/2031', '400'),
-		('015', N'Nghiên cứu Vắc xin mới chống Vi khuẩn Kháng thuốc', '007', 7000000, '07/01/2023', '01/01/2031', '400')
+		('001', N'HTTT quản lý các trường ĐH', '001', 150000, '01/01/2023', '01/01/2025', '400'),
+		('002', N'HTTT quản lý giáo vụ cho một Khoa', '002', 150000, '02/01/2023', '01/01/2026', '401'),
+		('003', N'Ứng dụng hóa học xanh', '003', 120000, '03/01/2023', '01/01/2027', '402'),
+		('004', N'HTTT quản lý các trường TH', '004', 125000, '04/01/2023', '01/01/2028', '403'),
+		('005', N'Ứng dụng Di động React Native', '005', 115000, '05/01/2023', '01/01/2029', '404'),
+		('006', N'Nhận dạng Hình ảnh sử dụng Máy học', '006', 117500, '06/01/2023', '01/01/2030', '405'),
+		('007', N'Ảnh hưởng của Thói quen Ăn đối với Tim mạch', '007', 107000, '07/01/2023', '01/01/2031', '400'),
+		('008', N'Dự đoán Ung thư qua Genomic', '007', 90000, '07/01/2023', '01/01/2031', '400'),
+		('009', N'Yếu tố ảnh hưởng đến Hạnh phúc', '007', 80000, '07/01/2023', '01/01/2031', '400'),
+		('010', N'Biến đổi Khí hậu và Rừng Amazon', '007', 100000, '07/01/2023', '01/01/2031', '400'),
+		('011', N'Sáng tạo trong Quảng cáo: Màu sắc và Hình ảnh', '007', 110000, '07/01/2023', '01/01/2031', '400'),
+		('012', N'Cơ chế Enzyme trong Tiêu hóa thức ăn', '007', 140000, '07/01/2023', '01/01/2031', '400'),
+		('013', N'Ứng dụng VR cho Trải nghiệm Nghệ thuật tương tác', '007', 130000, '07/01/2023', '01/01/2031', '400'),
+		('014', N'Văn hóa và Quyết định Kinh tế cá nhân', '007', 115000, '07/01/2023', '01/01/2031', '400'),
+		('015', N'Nghiên cứu Vắc xin mới chống Vi khuẩn Kháng thuốc', '007', 117000, '07/01/2023', '01/01/2031', '400')
 	ALTER TABLE DE_TAI
 	CHECK CONSTRAINT ALL
 END
@@ -314,14 +315,14 @@ BEGIN
 	ALTER TABLE CONG_VIEC
 	NOCHECK CONSTRAINT ALL
 	INSERT INTO CONG_VIEC 
-		(MACONGVIEC, MA, TEN)
+		(STT_CONGVIEC, MA, TEN)
 	VALUES 
-		(2000, '001', N'Làm công ăn lương'),
-		(2001, '002', N'Ngủ trên công ty'),
-		(2002, '003', N'Sắp xếp tài liệu'),
-		(2003, '001', N'Làm công'),
-		(2004, '004', N'Chơi game'),
-		(2005, '003', N'Tính toán tài liệu')
+		(0, '001', N'Làm công ăn lương'),
+		(1, '002', N'Ngủ trên công ty'),
+		(2, '003', N'Sắp xếp tài liệu'),
+		(3, '001', N'Làm công'),
+		(4, '004', N'Chơi game'),
+		(5, '003', N'Tính toán tài liệu')
 	ALTER TABLE CONG_VIEC
 	CHECK CONSTRAINT ALL
 END
@@ -330,21 +331,21 @@ BEGIN
 	ALTER TABLE THAMGIADT
 	NOCHECK CONSTRAINT ALL
 	INSERT INTO THAMGIADT 
-		(MA, MAGV, MACONGVIEC)
+		(MA, MAGV, STT_CONGVIEC)
 	VALUES
-		('001', '001', 2000),
-		('001', '006', 2000),
-		('001', '006', 2003),
-		('001', '009', 2000),
-		('001', '008', 2003),
-		('002', '008', 2001),
-		('002', '001', 2001),
-		('003', '002', 2002),
-		('004', '003', 2003),
-		('005', '004', 2004),
-		('003', '002', 2005),
-		('001', '018', 2003),
-		('001', '018', 2000)
+		('001', '001', 0),
+		('001', '006', 0),
+		('001', '006', 3),
+		('001', '009', 0),
+		('001', '008', 3),
+		('002', '008', 1),
+		('002', '001', 1),
+		('003', '002', 2),
+		('004', '003', 3),
+		('005', '004', 4),
+		('003', '002', 5),
+		('001', '018', 3),
+		('001', '018', 0)
 	ALTER TABLE THAMGIADT
 	CHECK CONSTRAINT ALL
 END

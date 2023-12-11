@@ -397,14 +397,14 @@ FROM (
 	GROUP BY GIAOVIEN.MA
 	HAVING COUNT(GIAOVIEN.MA) = (
 		SELECT 
-			COUNT(NHOM4.MACONGVIEC)
+			COUNT(NHOM4.STT_CONGVIEC)
 		FROM (
 			SELECT DISTINCT
-				THAMGIADT.MACONGVIEC
+				THAMGIADT.STT_CONGVIEC
 			FROM 
 				THAMGIADT 
 			JOIN 
-				CONG_VIEC ON CONG_VIEC.MACONGVIEC = THAMGIADT.MACONGVIEC
+				CONG_VIEC ON CONG_VIEC.STT_CONGVIEC = THAMGIADT.STT_CONGVIEC
 			WHERE (
 				CONG_VIEC.MA = '001'
 			)
@@ -576,14 +576,14 @@ FROM (
 	GROUP BY GIAOVIEN.MA
 	HAVING COUNT(GIAOVIEN.MA) = (
 		SELECT 
-			COUNT(NHOM4.MACONGVIEC)
+			COUNT(NHOM4.STT_CONGVIEC)
 		FROM (
 			SELECT DISTINCT
-				THAMGIADT.MACONGVIEC
+				THAMGIADT.STT_CONGVIEC
 			FROM 
 				THAMGIADT 
 			JOIN 
-				CONG_VIEC ON CONG_VIEC.MACONGVIEC = THAMGIADT.MACONGVIEC
+				CONG_VIEC ON CONG_VIEC.STT_CONGVIEC = THAMGIADT.STT_CONGVIEC
 			WHERE (
 				CONG_VIEC.MA = (
 					SELECT
@@ -625,14 +625,14 @@ FROM (
 	GROUP BY GIAOVIEN.MA
 	HAVING COUNT(GIAOVIEN.MA) = (
 		SELECT 
-			COUNT(NHOM4.MACONGVIEC)
+			COUNT(NHOM4.STT_CONGVIEC)
 		FROM (
 			SELECT DISTINCT
-				THAMGIADT.MACONGVIEC
+				THAMGIADT.STT_CONGVIEC
 			FROM 
 				THAMGIADT 
 			JOIN 
-				CONG_VIEC ON CONG_VIEC.MACONGVIEC = THAMGIADT.MACONGVIEC
+				CONG_VIEC ON CONG_VIEC.STT_CONGVIEC = THAMGIADT.STT_CONGVIEC
 			WHERE (
 				CONG_VIEC.MA = '001'
 			)
@@ -645,7 +645,7 @@ WHERE (
 
 -----------------------------
 
--- 42.Cho biết các giáo viên thuộc bộ môn HTTT tham gia tất cả các công việc của các đề tài cấp trường. Danh sách kết xuất gồm mã giáo viên, mã đề tài, số thứ tự.
+-- 42.Cho biết các giáo viên thuộc bộ môn HTTT tham gia tất cả các công việc của các đề tài cấp trường. Danh sách kết quả xuất ra bao gồm mã giáo viên, mã đề tài, số thứ tự.
 
 
 
@@ -654,10 +654,10 @@ WHERE (
 -- 43.Thêm vào bảng THAMGIADT các bộ dữ liệu cho biết giáo viên mã là 003 tham gia tất cả các công việc của đề tài mã là 001.
 
 INSERT INTO THAMGIADT 
-	(MA, MAGV, MACONGVIEC)
+	(MA, MAGV, STT_CONGVIEC)
 VALUES
-	('001', '003', 2000),
-	('001', '003', 2003)
+	('001', '003', 0),
+	('001', '003', 3)
 
 -----------------------------
 
