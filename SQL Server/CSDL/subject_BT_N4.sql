@@ -8,7 +8,9 @@ SELECT DISTINCT
 FROM 
 	GIAOVIEN, BO_MON, KHOA
 WHERE (
-	GIAOVIEN.MA = BO_MON.TRUONG_BO_MON OR GIAOVIEN.MA = KHOA.TRUONG_KHOA
+	GIAOVIEN.MA = BO_MON.TRUONG_BO_MON 
+	OR 
+	GIAOVIEN.MA = KHOA.TRUONG_KHOA
 );
 
 -----------------------------
@@ -263,7 +265,15 @@ WHERE (
 
 -- 23.Cho biết thông tin các giáo viên có mức phụ cấp tham gia đề tài từ 1.5 đến 2.0
 
-
+SELECT
+	GIAOVIEN.MA AS 'Mã giáo viên',
+	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Mã giáo viên',
+	GIAOVIEN.PHU_CAP AS 'Phụ cấp'
+FROM
+	GIAOVIEN
+WHERE (
+	GIAOVIEN.PHU_CAP BETWEEN 1.5 AND 2.0
+);
 
 -----------------------------
 
@@ -656,7 +666,10 @@ WHERE (
 INSERT INTO THAMGIADT 
 	(MA, MAGV, STT_CONGVIEC)
 VALUES
-	('001', '003', 0),
+	('001', '003', 0)
+INSERT INTO THAMGIADT
+	(MA, MAGV, STT_CONGVIEC)
+VALUES
 	('001', '003', 3)
 
 -----------------------------

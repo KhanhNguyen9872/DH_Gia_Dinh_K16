@@ -311,8 +311,7 @@ public class GUI {
                 try {
                     ResultSet result = DBManager.selectData(conn, columnNames, fromTableNames, "");
                     while(result.next()) {
-                        if((result.getString("username").equals(USERNAME.getText())) 
-                        && (result.getString("password").equals(new String(PASSWORD.getPassword())))) {
+                        if((result.getString("username").equals(USERNAME.getText())) && (result.getString("password").equals(new String(PASSWORD.getPassword())))) {
                             destroyFrame(mainLoginFrame, "Admin Login");
                             mainGUI(conn);
                             return;
