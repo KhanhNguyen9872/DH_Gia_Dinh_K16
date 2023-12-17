@@ -96,7 +96,8 @@ CREATE TABLE DE_TAI (
 	LA_CAPTRUONG BIT NOT NULL DEFAULT 0,
 	PRIMARY KEY (MA),
 	FOREIGN KEY (CAP_QUAN_LY) REFERENCES GIAOVIEN (MA),
-	FOREIGN KEY (CHU_DE) REFERENCES CHU_DE (MA)
+	FOREIGN KEY (CHU_DE) REFERENCES CHU_DE (MA),
+	CHECK (NGAY_BAT_DAU <= NGAY_KET_THUC)
 );
 
 CREATE TABLE NGUOI_THAN (
@@ -118,7 +119,8 @@ CREATE TABLE CONG_VIEC (
 	NGAY_BAT_DAU DATETIME DEFAULT NULL,
 	NGAY_KET_THUC DATETIME DEFAULT NULL,
 	PRIMARY KEY (STT_CONGVIEC),
-	FOREIGN KEY (MA) REFERENCES DE_TAI (MA)
+	FOREIGN KEY (MA) REFERENCES DE_TAI (MA),
+	CHECK (NGAY_BAT_DAU <= NGAY_KET_THUC)
 );
 
 CREATE TABLE THAMGIADT (
@@ -240,25 +242,25 @@ BEGIN
 	INSERT INTO GIAOVIEN 
 		(MA, HO, TENLOT, TEN, PHAI, NGSINH, BO_MON, KHOA, LUONG, PHU_CAP)
 	VALUES 
-		('001', N'Nguyễn', N'Văn', N'Khánh', N'NAM', '02/07/2004', 'HTTT', 'CNTT', 3000, 1.5),
-		('002', N'Lê', N'Lâm Chiến', N'Thắng', N'NAM', '01/01/2004', 'MMT', 'MKT', 2500, 2.5),
-		('003', N'Nguyễn', N'Văn', N'Sang', N'NAM', '02/01/2004', 'KTPM', 'NN', 2000, 0.5),
-		('004', N'Nguyễn', N'Trần Hoàng', N'Thịnh', N'NAM', '03/01/2004', 'HTTT', 'TT', 1500, 3),
-		('005', N'Nguyễn', N'Văn', N'A', N'NAM', '01/02/2000', 'KTPM', 'TT', 1000, 0),
-		('006', N'Nguyễn', N'Thị', N'B', N'NỮ', '02/02/2000', 'MMT', 'NN', 1600, 1),
-		('007', N'Nguyễn', N'', N'Cường', N'NAM', '03/02/2000', 'NNA', 'MKT', 1700, 0),
-		('008', N'Nguyễn', N'Tiến', N'D', N'NAM', '04/02/2000', 'NNT', 'CNTT', 1100, 1),
-		('009', N'Trần', N'Thị', N'E', N'NỮ', '05/02/2000', 'HTTT', 'TT', 1150, 0.5),
-		('010', N'Trần', N'Văn', N'F', N'NAM', '06/02/2000', 'TKDH', 'MKT', 1200, 0),
-		('011', N'Trần', N'Văn', N'Khánh', N'NAM', '07/02/2000', 'MMT', 'CNTT', 1250, 0),
-		('012', N'Lê', N'Hồng', N'Phong', N'NAM', '01/01/1998', 'TKDH', 'TT', 1275, 0),
-		('013', N'Nguyễn', N'Thị', N'Kiều', N'NỮ', '01/01/1988', 'KTPM', 'MKT', 1300, 0),
-		('014', N'Nguyễn', N'Anh', N'Quốc', N'NAM', '01/01/1985', 'KTPM', 'CNTT', 1325, 0),
-		('015', N'Nguyễn', N'Quốc', N'Anh', N'NAM', '01/01/1986', 'MMT', 'NN', 1400, 0),
-		('016', N'Nguyễn', N'Thị', N'Chi', N'Nữ', '01/01/1995', 'NNT', 'KT', 1550, 0),
-		('017', N'Nguyễn', N'Thanh', N'Quốc', N'NAM', '01/01/1999', 'TKDH', 'KHCT', 1575, 0),
-		('018', N'Nguyễn', N'Văn', N'Chánh', N'NAM', '01/06/1997', 'MMT', 'CNTT', 1625, 1),
-		('019', N'Nguyễn', N'Hành', N'Chánh', N'NAM', '01/06/1994', '', 'MKT', 1625, 0)
+		('GV001', N'Nguyễn', N'Văn', N'Khánh', N'NAM', '02/07/2004', 'HTTT', 'CNTT', 3000, 1.5),
+		('GV002', N'Lê', N'Lâm Chiến', N'Thắng', N'NAM', '01/01/2004', 'MMT', 'MKT', 2500, 2.5),
+		('GV003', N'Nguyễn', N'Văn', N'Sang', N'NAM', '02/01/2004', 'KTPM', 'NN', 2000, 0.5),
+		('GV004', N'Nguyễn', N'Trần Hoàng', N'Thịnh', N'NAM', '03/01/2004', 'HTTT', 'TT', 1500, 3),
+		('GV005', N'Nguyễn', N'Văn', N'A', N'NAM', '01/02/2000', 'KTPM', 'TT', 1000, 0),
+		('GV006', N'Nguyễn', N'Thị', N'B', N'NỮ', '02/02/2000', 'MMT', 'NN', 1600, 1),
+		('GV007', N'Nguyễn', NULL, N'Cường', N'NAM', '03/02/2000', 'NNA', 'MKT', 1700, 0),
+		('GV008', N'Nguyễn', N'Tiến', N'D', N'NAM', '04/02/2000', 'NNT', 'CNTT', 1100, 1),
+		('GV009', N'Trần', N'Thị', N'E', N'NỮ', '05/02/2000', 'HTTT', 'TT', 1150, 0.5),
+		('GV010', N'Trần', N'Văn', N'F', N'NAM', '06/02/2000', 'TKDH', 'MKT', 1200, 0),
+		('GV011', N'Trần', N'Văn', N'Khánh', N'NAM', '07/02/2000', 'MMT', 'CNTT', 1250, 0),
+		('GV012', N'Lê', N'Hồng', N'Phong', N'NAM', '01/01/1998', 'TKDH', 'TT', 1275, 0),
+		('GV013', N'Nguyễn', N'Thị', N'Kiều', N'NỮ', '01/01/1988', 'KTPM', 'MKT', 1300, 0),
+		('GV014', N'Nguyễn', N'Anh', N'Quốc', N'NAM', '01/01/1985', 'KTPM', 'CNTT', 1325, 0),
+		('GV015', N'Nguyễn', N'Quốc', N'Anh', N'NAM', '01/01/1986', 'MMT', 'NN', 1400, 0),
+		('GV016', N'Nguyễn', N'Thị', N'Chi', N'Nữ', '01/01/1995', 'NNT', 'KT', 1550, 0),
+		('GV017', N'Nguyễn', N'Thanh', N'Quốc', N'NAM', '01/01/1999', 'TKDH', 'KHCT', 1575, 0),
+		('GV018', N'Nguyễn', N'Văn', N'Chánh', N'NAM', '01/06/1997', 'MMT', 'CNTT', 1625, 1),
+		('GV019', N'Nguyễn', N'Hành', N'Chánh', N'NAM', '01/06/1994', NULL, 'MKT', 1625, 0)
 	ALTER TABLE GIAOVIEN
 	CHECK CONSTRAINT ALL
 END
@@ -267,42 +269,53 @@ BEGIN
 	INSERT INTO SDT 
 		(MAGV, SO_DIEN_THOAI)
 	VALUES 
-		('001', '0937927510'),
-		('001', '0937927511'),
-		('001', '0937927512'),
-		('001', '0937927513'),
-		('002', '0123456789'),
-		('002', '0123456780'),
-		('003', '0987654321'),
-		('004', '0101010101'),
-		('004', '0202020202'),
-		('005', '0120120120'),
-		('006', '0011221100'),
-		('007', '0909080807'),
-		('008', '0120120121')
+		('GV001', '0987456231'),
+		('GV001', '0321987456'),
+		('GV001', '0950321698'),
+		('GV001', '0376543210'),
+		('GV002', '0912345678'),
+		('GV002', '0398765432'),
+		('GV003', '0945678901'),
+		('GV004', '0389012345'),
+		('GV004', '0956789012'),
+		('GV005', '0323456789'),
+		('GV006', '0932109876'),
+		('GV007', '0365432109'),
+		('GV008', '0978901234'),
+		('GV009', '0343210987'),
+		('GV010', '0921098765'),
+		('GV011', '0387654321'),
+		('GV012', '0963524178'),
+		('GV013', '0311223344'),
+		('GV014', '0955443322'),
+		('GV015', '0387659876'),
+		('GV016', '0998765432'),
+		('GV017', '0334567890'),
+		('GV018', '0987654321'),
+		('GV019', '0365432101')
 END
 
 BEGIN
 	INSERT INTO DIA_CHI 
 		(MAGV, SONHA, DUONG, QUAN, THANHPHO)
 	VALUES
-		('001', N'371', N'Nguyễn Kiệm', N'Gò Vấp', N'TP.HCM'),
-		('002', N'162T', N'Trường Chinh', N'Tân Bình', N'TP.HCM'),
-		('003', N'8 Đ', N'Song Hành', N'Quận 12', N'Bà Rịa Vũng Tàu'),
-		('004', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Cao Bằng'),
-		('005', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Ninh Thuận'),
-		('006', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Bình Thuận'),
-		('007', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Hà Nội'),
-		('008', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'TP.HCM'),
-		('009', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Bình Thuận'),
-		('010', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'TP.HCM'),
-		('011', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Cao Bằng'),
-		('012', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Sóc Trăng'),
-		('013', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Ninh Thuận'),
-		('014', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Tây Ninh'),
-		('015', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Hà Giang'),
-		('016', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Cà Mau'),
-		('017', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Cao Bằng')
+		('GV001', N'371', N'Nguyễn Kiệm', N'Gò Vấp', N'TP.HCM'),
+		('GV002', N'162T', N'Trường Chinh', N'Tân Bình', N'TP.HCM'),
+		('GV003', N'8 Đ', N'Song Hành', N'Quận 12', N'Bà Rịa Vũng Tàu'),
+		('GV004', N'10', N'3', N'Nà Cạn', N'Cao Bằng'),
+		('GV005', N'195', N'Yên Ninh', N'Phan Rang-Tháp Chàm', N'Ninh Thuận'),
+		('GV006', N'8', N'Số 5', N'Hàm Tân', N'Bình Thuận'),
+		('GV007', N'1', N'Tràng Tiền', N'Hoàn Kiếm', N'Hà Nội'),
+		('GV008', N'50 Đ', N'Thành Thái', N'Quận 10', N'TP.HCM'),
+		('GV009', N'4', N'Số 9', N'Hàm Tân', N'Bình Thuận'),
+		('GV010', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'TP.HCM'),
+		('GV011', N'024', N'tổ 23 cũ', N'Nà Cạn', N'Cao Bằng'),
+		('GV012', N'265/2', N'Trần Hưng Đạo', N'Khóm 8', N'Sóc Trăng'),
+		('GV013', N'8', N'Tân Sơn 2', N'Phan Rang-Tháp Chàm', N'Ninh Thuận'),
+		('GV014', N'12', N'An Bình', N'Trảng Bàng', N'Tây Ninh'),
+		('GV015', N'48B', N'Hoàng Hoa Thám', N'Tổ 1', N'Hà Giang'),
+		('GV016', N'81', N'Phan Ngọc Hiển', N'Phường 4', N'Cà Mau'),
+		('GV017', N'18', N'Hồng Việt', N'Hợp giang', N'Cao Bằng')
 END
 
 BEGIN
@@ -310,24 +323,24 @@ BEGIN
 		(MA, TEN)
 	VALUES 
 		('01', N'E001'),
-		('02', N'E002'),
-		('03', N'E003'),
+		('02', N'B002'),
+		('03', N'A003'),
 		('04', N'E004'),
-		('05', N'E005'),
-		('06', N'E006'),
-		('07', N'E007'),
+		('05', N'A005'),
+		('06', N'A006'),
+		('07', N'C007'),
 		('08', N'E008'),
-		('09', N'E009'),
-		('10', N'E010'),
+		('09', N'D009'),
+		('10', N'B010'),
 		('11', N'E011'),
 		('12', N'E012'),
-		('13', N'E013'),
+		('13', N'C013'),
 		('14', N'E014'),
-		('15', N'E015'),
+		('15', N'D015'),
 		('16', N'E016'),
-		('17', N'E017'),
-		('18', N'E018'),
-		('19', N'E019'),
+		('17', N'F017'),
+		('18', N'C018'),
+		('19', N'A019'),
 		('20', N'E020')
 END
 
@@ -337,13 +350,13 @@ BEGIN
 	INSERT INTO KHOA 
 		(MA, TEN, NAM_THANH_LAP, PHONG_LAM_VIEC, SO_DIEN_THOAI, TRUONG_KHOA, NGAY_NHAN_CHUC)
 	VALUES 
-		('CNTT', N'Công nghệ thông tin', '1980', '01', '', '001', '02/02/2020'),
-		('MKT', N'Marketing', '2020', '02', '', '002', '02/02/2022'),
-		('NN', N'Ngôn ngữ', '1990', '03', '', '003', '02/02/2021'),
-		('TT', N'Truyền thông', '2020', '04', '', '006', '02/02/2022'),
-		('KHCT', N'Khoa học chính trị', '1985', '05', '', '001', '01/04/2005'),
-		('TLH', N'Tâm lý học', '1991', '06', '', '', ''),
-		('KT', N'Kế toán', '2000', '07', '', '004', '09/08/2001')
+		('CNTT', N'Công nghệ thông tin', '1980', '01', NULL, 'GV001', '02/02/2020'),
+		('MKT', N'Marketing', '2020', '02', NULL, 'GV002', '02/02/2022'),
+		('NN', N'Ngôn ngữ', '1990', '03', NULL, 'GV003', '02/02/2021'),
+		('TT', N'Truyền thông', '2020', '04', NULL, 'GV006', '02/02/2022'),
+		('KHCT', N'Khoa học chính trị', '1985', '05', NULL, 'GV001', '01/04/2005'),
+		('TLH', N'Tâm lý học', '1991', '06', NULL, NULL, NULL),
+		('KT', N'Kế toán', '2000', '07', NULL, 'GV004', '09/08/2001')
 	ALTER TABLE KHOA
 	CHECK CONSTRAINT ALL
 END
@@ -354,14 +367,14 @@ BEGIN
 	INSERT INTO BO_MON 
 		(MA, TEN, PHONG, SO_DIEN_THOAI, MA_KHOA, TRUONG_BO_MON, NGAY_NHAN_CHUC)
 	VALUES 
-		('HTTT', N'Hệ thống thông tin', 'B000', '', 'CNTT', '001', '02/02/2015'),
-		('MMT', N'Mạng máy tính', 'B001', '', 'CNTT', '002', '02/03/2014'),
-		('KTPM', N'Kỹ thuật phần mềm', 'B002', '', 'CNTT', '003', '02/04/2016'),
-		('TKDH', N'Thiết kế đồ họa', 'B003', '', 'CNTT', '008', '02/05/2017'),
-		('NNA', N'Ngôn ngữ Anh', 'B004', '', 'NN', '007', '02/06/2022'),
-		('NNT', N'Ngôn ngữ Trung', 'B005', '', 'NN', '006', '02/07/2022'),
-		('CCH', N'Chính trị học', 'B006', '', 'KHCT', '', '02/07/2022'),
-		('KT', N'Kiến trúc', 'B007', '', 'KT', '', '02/07/2022')
+		('HTTT', N'Hệ thống thông tin', 'B000', NULL, 'CNTT', 'GV001', '02/02/2015'),
+		('MMT', N'Mạng máy tính', 'B001', NULL, 'CNTT', 'GV002', '02/03/2014'),
+		('KTPM', N'Kỹ thuật phần mềm', 'B002', NULL, 'CNTT', 'GV003', '02/04/2016'),
+		('TKDH', N'Thiết kế đồ họa', 'B003', NULL, 'CNTT', 'GV008', '02/05/2017'),
+		('NNA', N'Ngôn ngữ Anh', 'B004', NULL, 'NN', 'GV007', '02/06/2022'),
+		('NNT', N'Ngôn ngữ Trung', 'B005', NULL, 'NN', 'GV006', '02/07/2022'),
+		('CCH', N'Chính trị học', 'B006', NULL, 'KHCT', NULL, NULL),
+		('KT', N'Kiến trúc', 'B007', NULL, 'KT', NULL, NULL)
 	ALTER TABLE BO_MON
 	CHECK CONSTRAINT ALL
 END
@@ -370,64 +383,45 @@ BEGIN
 	INSERT INTO NGUOI_THAN 
 		(HO, TENLOT, TEN, PHAI, NGSINH, MAGV)
 	VALUES
-		(N'Nguyễn', N'Văn', N'Q', N'NAM', '12/31/1980', '001'),
-		(N'Ngô', N'Thị', N'H', N'NỮ', '12/31/1981', '001'),
-		(N'Nguyễn', N'Chính', N'N', N'NAM', '12/31/1982', '002'),
-		(N'Ngô', N'Thị Minh', N'H', N'NỮ', '12/31/1976', '003'),
-		(N'Bùi', N'', N'Tiến', N'NAM', '12/31/1984', '004')
-END
-
-BEGIN
-	INSERT INTO DIA_CHI 
-		(MAGV, SONHA, DUONG, QUAN, THANHPHO)
-	VALUES
-		('001', N'1000', N'Nguyễn Văn Cừ', N'Quận 1', N'TP.HCM'),
-		('002', N'1001', N'Nguyễn Văn Nghi', N'Gò Vấp', N'TP.HCM'),
-		('003', N'1002', N'Nguyễn Thái Học', N'Quận 1', N'TP.HCM'),
-		('004', N'1003', N'Cách Mạng Tháng 8', N'Quận 10', N'TP.HCM'),
-		('005', N'1004', N'Nguyễn Văn Cừ', N'Quận 1', N'TP.HCM'),
-		('006', N'1005', N'Lê Hồng Phong', N'Quận 10', N'TP.HCM'),
-		('007', N'1006', N'Chu Văn An', N'Bình Thạnh', N'TP.HCM'),
-		('008', N'1007', N'Phan Văn Trị', N'Bình Thạnh', N'TP.HCM'),
-		('009', N'1008', N'Quang Trung', N'Gò Vấp', N'TP.HCM'),
-		('010', N'1009', N'Thích Quảng Đức', N'Phú Nhuận', N'TP.HCM')
+		(N'Nguyễn', N'Văn', N'Q', N'NAM', '12/31/1980', 'GV001'),
+		(N'Ngô', N'Thị', N'H', N'NỮ', '12/31/1981', 'GV001'),
+		(N'Nguyễn', N'Chính', N'N', N'NAM', '12/31/1982', 'GV002'),
+		(N'Ngô', N'Thị Minh', N'H', N'NỮ', '12/31/1976', 'GV003'),
+		(N'Bùi', N'', N'Tiến', N'NAM', '12/31/1984', 'GV004')
 END
 
 BEGIN
 	INSERT INTO CHU_DE 
 		(MA, TEN)
 	VALUES
-		('400', N'Chủ đề 0'),
-		('401', N'Chủ đề 1'),
-		('402', N'Chủ đề 2'),
-		('403', N'Chủ đề 3'),
-		('404', N'Chủ đề 4'),
-		('405', N'Chủ đề 5')
+		('CD400', N'Trí tuệ nhân tạo (AI) và Máy học'),
+		('CD401', N'An toàn thông tin và Bảo mật mạng'),
+		('CD402', N'Phát triển Phần mềm và Lập trình'),
+		('CD403', N'Nội dung Tiếp thị'),
+		('CD404', N'Marketing số'),
+		('CD405', N'Chính trị Xã hội và Đa dạng'),
+		('CD406', N'Y tế cộng đồng')
 END
 
 BEGIN
-	ALTER TABLE DE_TAI
-	NOCHECK CONSTRAINT ALL
 	INSERT INTO DE_TAI 
 		(MA, TEN, CAP_QUAN_LY, KINH_PHI, NGAY_BAT_DAU, NGAY_KET_THUC, CHU_DE, LA_CAPTRUONG)
 	VALUES
-		('001', N'HTTT quản lý các trường ĐH', '001', 150000, '01/01/2023', '01/01/2025', '400', 1),
-		('002', N'HTTT quản lý giáo vụ cho một Khoa', '002', 150000, '02/01/2023', '01/01/2026', '401', 1),
-		('003', N'Ứng dụng hóa học xanh', '003', 120000, '03/01/2023', '01/01/2027', '402', 1),
-		('004', N'HTTT quản lý các trường TH', '004', 125000, '04/01/2023', '01/01/2028', '403', 1),
-		('005', N'Ứng dụng Di động React Native', '005', 115000, '05/01/2023', '01/01/2029', '404', 1),
-		('006', N'Nhận dạng Hình ảnh sử dụng Máy học', '006', 117500, '06/01/2023', '01/01/2030', '405', 0),
-		('007', N'Ảnh hưởng của Thói quen Ăn đối với Tim mạch', '007', 107000, '07/01/2023', '01/01/2031', '400', 0),
-		('008', N'Dự đoán Ung thư qua Genomic', '007', 90000, '07/01/2023', '01/01/2031', '400', 0),
-		('009', N'Yếu tố ảnh hưởng đến Hạnh phúc', '007', 80000, '07/01/2023', '01/01/2031', '400', 0),
-		('010', N'Biến đổi Khí hậu và Rừng Amazon', '007', 100000, '07/01/2023', '01/01/2031', '400', 0),
-		('011', N'Sáng tạo trong Quảng cáo: Màu sắc và Hình ảnh', '007', 110000, '07/01/2023', '01/01/2031', '400', 0),
-		('012', N'Cơ chế Enzyme trong Tiêu hóa thức ăn', '007', 140000, '07/01/2023', '01/01/2031', '400', 0),
-		('013', N'Ứng dụng VR cho Trải nghiệm Nghệ thuật tương tác', '007', 130000, '07/01/2023', '01/01/2031', '400', 0),
-		('014', N'Văn hóa và Quyết định Kinh tế cá nhân', '007', 115000, '07/01/2023', '01/01/2031', '400', 0),
-		('015', N'Nghiên cứu Vắc xin mới chống Vi khuẩn Kháng thuốc', '007', 117000, '07/01/2023', '01/01/2031', '400', 0)
-	ALTER TABLE DE_TAI
-	CHECK CONSTRAINT ALL
+		('001', N'HTTT quản lý các trường ĐH', 'GV001', 150000, '01/01/2023', '01/01/2025', 'CD400', 1),
+		('002', N'HTTT quản lý giáo vụ cho một Khoa', 'GV002', 150000, '02/01/2023', '01/01/2026', 'CD401', 1),
+		('003', N'Ứng dụng hóa học xanh', 'GV003', 120000, '03/01/2023', '01/01/2027', 'CD402', 1),
+		('004', N'HTTT quản lý các trường TH', 'GV004', 125000, '04/01/2023', '01/01/2028', 'CD403', 1),
+		('005', N'Ứng dụng Di động React Native', 'GV005', 115000, '05/01/2023', '01/01/2029', 'CD402', 1),
+		('006', N'Nhận dạng Hình ảnh sử dụng Máy học', 'GV006', 117500, '06/01/2023', '01/01/2030', 'CD400', 0),
+		('007', N'Ảnh hưởng của Thói quen Ăn đối với Tim mạch', 'GV007', 107000, '07/01/2023', '01/01/2031', 'CD406', 0),
+		('008', N'Dự đoán Ung thư qua Genomic', 'GV008', 90000, '07/01/2023', '01/01/2031', 'CD406', 0),
+		('009', N'Yếu tố ảnh hưởng đến Hạnh phúc', 'GV009', 80000, '07/01/2023', '01/01/2031', 'CD406', 0),
+		('010', N'Biến đổi Khí hậu và Rừng Amazon', 'GV010', 100000, '07/01/2023', '01/01/2031', 'CD400', 0),
+		('011', N'Sáng tạo trong Quảng cáo: Màu sắc và Hình ảnh', 'GV011', 110000, '07/01/2023', '01/01/2031', 'CD403', 0),
+		('012', N'Cơ chế Enzyme trong Tiêu hóa thức ăn', 'GV012', 140000, '07/01/2023', '01/01/2031', 'CD406', 0),
+		('013', N'Ứng dụng VR cho Trải nghiệm Nghệ thuật tương tác', 'GV013', 130000, '07/01/2023', '01/01/2031', 'CD402', 0),
+		('014', N'Văn hóa và Quyết định Kinh tế cá nhân', 'GV014', 115000, '07/01/2023', '01/01/2031', 'CD405', 0),
+		('015', N'Nghiên cứu Vắc xin mới chống Vi khuẩn Kháng thuốc', 'GV015', 117000, '07/01/2023', '01/01/2031', 'CD406', 0)
 END
 
 BEGIN
@@ -436,14 +430,16 @@ BEGIN
 	INSERT INTO CONG_VIEC 
 		(STT_CONGVIEC, MA, TEN, NGAY_BAT_DAU, NGAY_KET_THUC)
 	VALUES 
-		(0, '001', N'Làm công ăn lương', '01/01/2023', '01/01/2024'),
-		(1, '002', N'Ngủ trên công ty', '02/01/2023', '01/01/2025'),
+		(0, '001', N'Thu thập yêu cầu', '01/01/2023', '01/01/2024'),
+		(1, '002', N'Triển khai và hổ trợ', '02/01/2023', '01/01/2025'),
 		(2, '003', N'Sắp xếp tài liệu', '03/01/2023', '01/01/2026'),
-		(3, '001', N'Làm công', '04/01/2023', '01/01/2027'),
-		(4, '004', N'Chơi game', '05/01/2023', '01/01/2028'),
+		(3, '001', N'Thiết kế hệ thống', '04/01/2023', '01/01/2027'),
+		(4, '004', N'Thu thập yêu cầu', '05/01/2023', '01/01/2028'),
 		(5, '003', N'Tính toán tài liệu', '06/01/2023', '01/01/2029'),
-		(6, '001', N'Làm công 2', '04/01/2023', '01/01/2027'),
-		(7, '005', N'Nghe nhạc', '05/12/2023', '01/04/2024')
+		(6, '001', N'Thống kê và báo cáo', '04/01/2023', '01/01/2027'),
+		(7, '005', N'Thiết kế phần mềm', '05/12/2023', '01/04/2024'),
+		(8, '002', N'Quản lý hoạt động', '02/01/2023', '01/01/2025'),
+		(9, '005', N'Kiểm thử phần mềm', '05/12/2023', '01/04/2025')
 	ALTER TABLE CONG_VIEC
 	CHECK CONSTRAINT ALL
 END
@@ -452,28 +448,28 @@ BEGIN
 	INSERT INTO THAMGIADT 
 		(MA, MAGV, STT_CONGVIEC)
 	VALUES 
-		('001', '001', 0),
-		('001', '001', 3),
-		('001', '001', 6),
-		('001', '006', 0),
-		('001', '006', 3),
-		('001', '009', 0),
-		('001', '008', 3),
-		('002', '008', 1),
-		('003', '002', 2),
-		('004', '003', 4),
-		('005', '004', 7),
-		('003', '002', 5),
-		('001', '018', 3),
-		('001', '018', 0),
-		('001', '002', 0),
-		('001', '002', 3),
-		('001', '002', 6),
-		('001', '004', 0),
-		('002', '004', 1),
-		('003', '004', 2),
-		('004', '004', 4),
-		('005', '004', 7)
+		('001', 'GV001', 0),
+		('001', 'GV001', 3),
+		('001', 'GV001', 6),
+		('001', 'GV006', 0),
+		('001', 'GV006', 3),
+		('001', 'GV009', 0),
+		('001', 'GV008', 3),
+		('002', 'GV008', 1),
+		('003', 'GV002', 2),
+		('004', 'GV003', 4),
+		('005', 'GV004', 7),
+		('003', 'GV002', 5),
+		('001', 'GV018', 3),
+		('001', 'GV018', 0),
+		('001', 'GV002', 0),
+		('001', 'GV002', 3),
+		('001', 'GV002', 6),
+		('001', 'GV004', 0),
+		('002', 'GV004', 1),
+		('003', 'GV004', 2),
+		('004', 'GV004', 4),
+		('005', 'GV004', 7)
 END
 
 

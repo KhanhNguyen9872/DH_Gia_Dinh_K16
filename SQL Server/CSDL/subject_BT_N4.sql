@@ -723,11 +723,11 @@ WHERE (
 INSERT INTO THAMGIADT 
 	(MA, MAGV, STT_CONGVIEC)
 VALUES
-	('001', '003', 0)
+	('001', 'GV003', 0)
 INSERT INTO THAMGIADT
 	(MA, MAGV, STT_CONGVIEC)
 VALUES
-	('001', '003', 3)
+	('001', 'GV003', 3)
 
 -----------------------------
 
