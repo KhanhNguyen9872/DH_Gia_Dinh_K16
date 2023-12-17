@@ -93,6 +93,7 @@ CREATE TABLE DE_TAI (
 	NGAY_BAT_DAU DATETIME,
 	NGAY_KET_THUC DATETIME,
 	CHU_DE VARCHAR(8),
+	LA_CAPTRUONG BIT NOT NULL DEFAULT 0,
 	PRIMARY KEY (MA),
 	FOREIGN KEY (CAP_QUAN_LY) REFERENCES GIAOVIEN (MA),
 	FOREIGN KEY (CHU_DE) REFERENCES CHU_DE (MA)
@@ -189,6 +190,22 @@ BEGIN
 END;
 GO
 
+GO
+CREATE FUNCTION dbo.CHECK_THAMGIADT_MADT (@STT_CONGVIEC VARCHAR(8))
+RETURNS VARCHAR(8)
+AS
+BEGIN
+    RETURN (
+		SELECT DISTINCT
+			MA
+		FROM 
+			CONG_VIEC
+		WHERE (
+			CONG_VIEC.STT_CONGVIEC = @STT_CONGVIEC
+		)
+	);
+END;
+GO
 -- 
 
 ALTER TABLE 
@@ -209,39 +226,44 @@ ADD CHECK (
 	dbo.CHECK_DE_TAI_NGAY_KET_THUC(MA) >= NGAY_KET_THUC
 );
 
+ALTER TABLE 
+	THAMGIADT 
+ADD CHECK (
+	dbo.CHECK_THAMGIADT_MADT(STT_CONGVIEC) = MA
+);
+
 -- DATA
 
 BEGIN
 	ALTER TABLE GIAOVIEN
 	NOCHECK CONSTRAINT ALL
 	INSERT INTO GIAOVIEN 
-		(MA, HO, TENLOT, TEN, PHAI, NGSINH, BO_MON, KHOA, LUONG)
+		(MA, HO, TENLOT, TEN, PHAI, NGSINH, BO_MON, KHOA, LUONG, PHU_CAP)
 	VALUES 
-		('001', N'Nguyễn', N'Văn', N'Khánh', N'NAM', '02/07/2004', 'HTTT', 'CNTT', 3000),
-		('002', N'Lê', N'Lâm Chiến', N'Thắng', N'NAM', '01/01/2004', 'MMT', 'MKT', 2500),
-		('003', N'Nguyễn', N'Văn', N'Sang', N'NAM', '02/01/2004', 'KTPM', 'NN', 2000),
-		('004', N'Nguyễn', N'Trần Hoàng', N'Thịnh', N'NAM', '03/01/2004', 'HTTT', 'TT', 1500),
-		('005', N'Nguyễn', N'Văn', N'A', N'NAM', '01/02/2000', 'KTPM', 'TT', 1000),
-		('006', N'Nguyễn', N'Thị', N'B', N'NỮ', '02/02/2000', 'MMT', 'NN', 1600),
-		('007', N'Nguyễn', N'', N'Cường', N'NAM', '03/02/2000', 'NNA', 'MKT', 1700),
-		('008', N'Nguyễn', N'Tiến', N'D', N'NAM', '04/02/2000', 'NNT', 'CNTT', 1100),
-		('009', N'Trần', N'Thị', N'E', N'NỮ', '05/02/2000', 'HTTT', 'TT', 1150),
-		('010', N'Trần', N'Văn', N'F', N'NAM', '06/02/2000', 'TKDH', 'MKT', 1200),
-		('011', N'Trần', N'Văn', N'Khánh', N'NAM', '07/02/2000', 'MMT', 'CNTT', 1250),
-		('012', N'Lê', N'Hồng', N'Phong', N'NAM', '01/01/1998', 'TKDH', 'TT', 1275),
-		('013', N'Nguyễn', N'Thị', N'Kiều', N'NỮ', '01/01/1988', 'KTPM', 'MKT', 1300),
-		('014', N'Nguyễn', N'Anh', N'Quốc', N'NAM', '01/01/1985', 'KTPM', 'CNTT', 1325),
-		('015', N'Nguyễn', N'Quốc', N'Anh', N'NAM', '01/01/1986', 'MMT', 'NN', 1400),
-		('016', N'Nguyễn', N'Thị', N'Chi', N'Nữ', '01/01/1995', 'NNT', 'KT', 1550),
-		('017', N'Nguyễn', N'Thanh', N'Quốc', N'NAM', '01/01/1999', 'TKDH', 'KHCT', 1575),
-		('018', N'Nguyễn', N'Văn', N'Chánh', N'NAM', '01/06/1997', 'MMT', 'CNTT', 1625)
+		('001', N'Nguyễn', N'Văn', N'Khánh', N'NAM', '02/07/2004', 'HTTT', 'CNTT', 3000, 1.5),
+		('002', N'Lê', N'Lâm Chiến', N'Thắng', N'NAM', '01/01/2004', 'MMT', 'MKT', 2500, 2.5),
+		('003', N'Nguyễn', N'Văn', N'Sang', N'NAM', '02/01/2004', 'KTPM', 'NN', 2000, 0.5),
+		('004', N'Nguyễn', N'Trần Hoàng', N'Thịnh', N'NAM', '03/01/2004', 'HTTT', 'TT', 1500, 3),
+		('005', N'Nguyễn', N'Văn', N'A', N'NAM', '01/02/2000', 'KTPM', 'TT', 1000, 0),
+		('006', N'Nguyễn', N'Thị', N'B', N'NỮ', '02/02/2000', 'MMT', 'NN', 1600, 1),
+		('007', N'Nguyễn', N'', N'Cường', N'NAM', '03/02/2000', 'NNA', 'MKT', 1700, 0),
+		('008', N'Nguyễn', N'Tiến', N'D', N'NAM', '04/02/2000', 'NNT', 'CNTT', 1100, 1),
+		('009', N'Trần', N'Thị', N'E', N'NỮ', '05/02/2000', 'HTTT', 'TT', 1150, 0.5),
+		('010', N'Trần', N'Văn', N'F', N'NAM', '06/02/2000', 'TKDH', 'MKT', 1200, 0),
+		('011', N'Trần', N'Văn', N'Khánh', N'NAM', '07/02/2000', 'MMT', 'CNTT', 1250, 0),
+		('012', N'Lê', N'Hồng', N'Phong', N'NAM', '01/01/1998', 'TKDH', 'TT', 1275, 0),
+		('013', N'Nguyễn', N'Thị', N'Kiều', N'NỮ', '01/01/1988', 'KTPM', 'MKT', 1300, 0),
+		('014', N'Nguyễn', N'Anh', N'Quốc', N'NAM', '01/01/1985', 'KTPM', 'CNTT', 1325, 0),
+		('015', N'Nguyễn', N'Quốc', N'Anh', N'NAM', '01/01/1986', 'MMT', 'NN', 1400, 0),
+		('016', N'Nguyễn', N'Thị', N'Chi', N'Nữ', '01/01/1995', 'NNT', 'KT', 1550, 0),
+		('017', N'Nguyễn', N'Thanh', N'Quốc', N'NAM', '01/01/1999', 'TKDH', 'KHCT', 1575, 0),
+		('018', N'Nguyễn', N'Văn', N'Chánh', N'NAM', '01/06/1997', 'MMT', 'CNTT', 1625, 1),
+		('019', N'Nguyễn', N'Hành', N'Chánh', N'NAM', '01/06/1994', '', 'MKT', 1625, 0)
 	ALTER TABLE GIAOVIEN
 	CHECK CONSTRAINT ALL
 END
 
 BEGIN
-	ALTER TABLE SDT
-	NOCHECK CONSTRAINT ALL
 	INSERT INTO SDT 
 		(MAGV, SO_DIEN_THOAI)
 	VALUES 
@@ -258,13 +280,9 @@ BEGIN
 		('006', '0011221100'),
 		('007', '0909080807'),
 		('008', '0120120121')
-	ALTER TABLE SDT
-	CHECK CONSTRAINT ALL
 END
 
 BEGIN
-	ALTER TABLE DIA_CHI
-	NOCHECK CONSTRAINT ALL
 	INSERT INTO DIA_CHI 
 		(MAGV, SONHA, DUONG, QUAN, THANHPHO)
 	VALUES
@@ -285,38 +303,32 @@ BEGIN
 		('015', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Hà Giang'),
 		('016', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Cà Mau'),
 		('017', N'17', N'Nguyễn Văn Lạc', N'Bình Thạnh', N'Cao Bằng')
-	ALTER TABLE DIA_CHI
-	CHECK CONSTRAINT ALL
 END
 
 BEGIN
-	ALTER TABLE PHONG
-	NOCHECK CONSTRAINT ALL
 	INSERT INTO PHONG 
 		(MA, TEN)
 	VALUES 
-		('01', ''),
-		('02', ''),
-		('03', ''),
-		('04', ''),
-		('05', ''),
-		('06', ''),
-		('07', ''),
-		('08', ''),
-		('09', ''),
-		('10', ''),
-		('11', ''),
-		('12', ''),
-		('13', ''),
-		('14', ''),
-		('15', ''),
-		('16', ''),
-		('17', ''),
-		('18', ''),
-		('19', ''),
-		('20', '')
-	ALTER TABLE PHONG
-	CHECK CONSTRAINT ALL
+		('01', N'E001'),
+		('02', N'E002'),
+		('03', N'E003'),
+		('04', N'E004'),
+		('05', N'E005'),
+		('06', N'E006'),
+		('07', N'E007'),
+		('08', N'E008'),
+		('09', N'E009'),
+		('10', N'E010'),
+		('11', N'E011'),
+		('12', N'E012'),
+		('13', N'E013'),
+		('14', N'E014'),
+		('15', N'E015'),
+		('16', N'E016'),
+		('17', N'E017'),
+		('18', N'E018'),
+		('19', N'E019'),
+		('20', N'E020')
 END
 
 BEGIN
@@ -355,23 +367,17 @@ BEGIN
 END
 
 BEGIN
-	ALTER TABLE NGUOI_THAN
-	NOCHECK CONSTRAINT ALL
 	INSERT INTO NGUOI_THAN 
 		(HO, TENLOT, TEN, PHAI, NGSINH, MAGV)
 	VALUES
 		(N'Nguyễn', N'Văn', N'Q', N'NAM', '12/31/1980', '001'),
-		(N'Ngô', N'Thị Minh', N'H', N'NỮ', '12/31/1981', '001'),
+		(N'Ngô', N'Thị', N'H', N'NỮ', '12/31/1981', '001'),
 		(N'Nguyễn', N'Chính', N'N', N'NAM', '12/31/1982', '002'),
 		(N'Ngô', N'Thị Minh', N'H', N'NỮ', '12/31/1976', '003'),
 		(N'Bùi', N'', N'Tiến', N'NAM', '12/31/1984', '004')
-	ALTER TABLE NGUOI_THAN
-	CHECK CONSTRAINT ALL
 END
 
 BEGIN
-	ALTER TABLE DIA_CHI
-	NOCHECK CONSTRAINT ALL
 	INSERT INTO DIA_CHI 
 		(MAGV, SONHA, DUONG, QUAN, THANHPHO)
 	VALUES
@@ -385,13 +391,9 @@ BEGIN
 		('008', N'1007', N'Phan Văn Trị', N'Bình Thạnh', N'TP.HCM'),
 		('009', N'1008', N'Quang Trung', N'Gò Vấp', N'TP.HCM'),
 		('010', N'1009', N'Thích Quảng Đức', N'Phú Nhuận', N'TP.HCM')
-	ALTER TABLE DIA_CHI
-	CHECK CONSTRAINT ALL
 END
 
 BEGIN
-	ALTER TABLE CHU_DE
-	NOCHECK CONSTRAINT ALL
 	INSERT INTO CHU_DE 
 		(MA, TEN)
 	VALUES
@@ -401,31 +403,29 @@ BEGIN
 		('403', N'Chủ đề 3'),
 		('404', N'Chủ đề 4'),
 		('405', N'Chủ đề 5')
-	ALTER TABLE CHU_DE
-	CHECK CONSTRAINT ALL
 END
 
 BEGIN
 	ALTER TABLE DE_TAI
 	NOCHECK CONSTRAINT ALL
 	INSERT INTO DE_TAI 
-		(MA, TEN, CAP_QUAN_LY, KINH_PHI, NGAY_BAT_DAU, NGAY_KET_THUC, CHU_DE)
+		(MA, TEN, CAP_QUAN_LY, KINH_PHI, NGAY_BAT_DAU, NGAY_KET_THUC, CHU_DE, LA_CAPTRUONG)
 	VALUES
-		('001', N'HTTT quản lý các trường ĐH', '001', 150000, '01/01/2023', '01/01/2025', '400'),
-		('002', N'HTTT quản lý giáo vụ cho một Khoa', '002', 150000, '02/01/2023', '01/01/2026', '401'),
-		('003', N'Ứng dụng hóa học xanh', '003', 120000, '03/01/2023', '01/01/2027', '402'),
-		('004', N'HTTT quản lý các trường TH', '004', 125000, '04/01/2023', '01/01/2028', '403'),
-		('005', N'Ứng dụng Di động React Native', '005', 115000, '05/01/2023', '01/01/2029', '404'),
-		('006', N'Nhận dạng Hình ảnh sử dụng Máy học', '006', 117500, '06/01/2023', '01/01/2030', '405'),
-		('007', N'Ảnh hưởng của Thói quen Ăn đối với Tim mạch', '007', 107000, '07/01/2023', '01/01/2031', '400'),
-		('008', N'Dự đoán Ung thư qua Genomic', '007', 90000, '07/01/2023', '01/01/2031', '400'),
-		('009', N'Yếu tố ảnh hưởng đến Hạnh phúc', '007', 80000, '07/01/2023', '01/01/2031', '400'),
-		('010', N'Biến đổi Khí hậu và Rừng Amazon', '007', 100000, '07/01/2023', '01/01/2031', '400'),
-		('011', N'Sáng tạo trong Quảng cáo: Màu sắc và Hình ảnh', '007', 110000, '07/01/2023', '01/01/2031', '400'),
-		('012', N'Cơ chế Enzyme trong Tiêu hóa thức ăn', '007', 140000, '07/01/2023', '01/01/2031', '400'),
-		('013', N'Ứng dụng VR cho Trải nghiệm Nghệ thuật tương tác', '007', 130000, '07/01/2023', '01/01/2031', '400'),
-		('014', N'Văn hóa và Quyết định Kinh tế cá nhân', '007', 115000, '07/01/2023', '01/01/2031', '400'),
-		('015', N'Nghiên cứu Vắc xin mới chống Vi khuẩn Kháng thuốc', '007', 117000, '07/01/2023', '01/01/2031', '400')
+		('001', N'HTTT quản lý các trường ĐH', '001', 150000, '01/01/2023', '01/01/2025', '400', 1),
+		('002', N'HTTT quản lý giáo vụ cho một Khoa', '002', 150000, '02/01/2023', '01/01/2026', '401', 1),
+		('003', N'Ứng dụng hóa học xanh', '003', 120000, '03/01/2023', '01/01/2027', '402', 1),
+		('004', N'HTTT quản lý các trường TH', '004', 125000, '04/01/2023', '01/01/2028', '403', 1),
+		('005', N'Ứng dụng Di động React Native', '005', 115000, '05/01/2023', '01/01/2029', '404', 1),
+		('006', N'Nhận dạng Hình ảnh sử dụng Máy học', '006', 117500, '06/01/2023', '01/01/2030', '405', 0),
+		('007', N'Ảnh hưởng của Thói quen Ăn đối với Tim mạch', '007', 107000, '07/01/2023', '01/01/2031', '400', 0),
+		('008', N'Dự đoán Ung thư qua Genomic', '007', 90000, '07/01/2023', '01/01/2031', '400', 0),
+		('009', N'Yếu tố ảnh hưởng đến Hạnh phúc', '007', 80000, '07/01/2023', '01/01/2031', '400', 0),
+		('010', N'Biến đổi Khí hậu và Rừng Amazon', '007', 100000, '07/01/2023', '01/01/2031', '400', 0),
+		('011', N'Sáng tạo trong Quảng cáo: Màu sắc và Hình ảnh', '007', 110000, '07/01/2023', '01/01/2031', '400', 0),
+		('012', N'Cơ chế Enzyme trong Tiêu hóa thức ăn', '007', 140000, '07/01/2023', '01/01/2031', '400', 0),
+		('013', N'Ứng dụng VR cho Trải nghiệm Nghệ thuật tương tác', '007', 130000, '07/01/2023', '01/01/2031', '400', 0),
+		('014', N'Văn hóa và Quyết định Kinh tế cá nhân', '007', 115000, '07/01/2023', '01/01/2031', '400', 0),
+		('015', N'Nghiên cứu Vắc xin mới chống Vi khuẩn Kháng thuốc', '007', 117000, '07/01/2023', '01/01/2031', '400', 0)
 	ALTER TABLE DE_TAI
 	CHECK CONSTRAINT ALL
 END
@@ -441,32 +441,39 @@ BEGIN
 		(2, '003', N'Sắp xếp tài liệu', '03/01/2023', '01/01/2026'),
 		(3, '001', N'Làm công', '04/01/2023', '01/01/2027'),
 		(4, '004', N'Chơi game', '05/01/2023', '01/01/2028'),
-		(5, '003', N'Tính toán tài liệu', '06/01/2023', '01/01/2029')
+		(5, '003', N'Tính toán tài liệu', '06/01/2023', '01/01/2029'),
+		(6, '001', N'Làm công 2', '04/01/2023', '01/01/2027'),
+		(7, '005', N'Nghe nhạc', '05/12/2023', '01/04/2024')
 	ALTER TABLE CONG_VIEC
 	CHECK CONSTRAINT ALL
 END
 
 BEGIN
-	ALTER TABLE THAMGIADT
-	NOCHECK CONSTRAINT ALL
 	INSERT INTO THAMGIADT 
 		(MA, MAGV, STT_CONGVIEC)
-	VALUES
+	VALUES 
 		('001', '001', 0),
+		('001', '001', 3),
+		('001', '001', 6),
 		('001', '006', 0),
 		('001', '006', 3),
 		('001', '009', 0),
 		('001', '008', 3),
 		('002', '008', 1),
-		('002', '001', 1),
 		('003', '002', 2),
-		('004', '003', 3),
-		('005', '004', 4),
+		('004', '003', 4),
+		('005', '004', 7),
 		('003', '002', 5),
 		('001', '018', 3),
-		('001', '018', 0)
-	ALTER TABLE THAMGIADT
-	CHECK CONSTRAINT ALL
+		('001', '018', 0),
+		('001', '002', 0),
+		('001', '002', 3),
+		('001', '002', 6),
+		('001', '004', 0),
+		('002', '004', 1),
+		('003', '004', 2),
+		('004', '004', 4),
+		('005', '004', 7)
 END
 
 
@@ -485,6 +492,23 @@ BEGIN
 	);
 END;
 
+-- TRIGGER BEFORE INSERT
+
+/*
+GO
+CREATE TRIGGER AUTO_THAMGIADT
+ON THAMGIADT
+INSTEAD OF INSERT
+AS
+BEGIN
+
+    INSERT INTO THAMGIADT
+		(MA, MAGV, STT_CONGVIEC)
+	SELECT MA, MAGV, STT_CONGVIEC
+    FROM inserted;
+END;
+*/
+
 -- TRIGGER UPDATE
 
 GO
@@ -495,6 +519,14 @@ AS
 BEGIN
 	IF UPDATE(TRUONG_BO_MON)
 	BEGIN
+		UPDATE BO_MON
+		SET NGAY_NHAN_CHUC = CURRENT_TIMESTAMP
+		FROM BO_MON
+		INNER JOIN inserted ON BO_MON.MA = inserted.MA
+		WHERE (
+			inserted.TRUONG_BO_MON IS NOT NULL
+		);
+
 		UPDATE BO_MON
 		SET NGAY_NHAN_CHUC = NULL
 		FROM BO_MON
@@ -513,6 +545,14 @@ AS
 BEGIN
 	IF UPDATE(TRUONG_KHOA)
 	BEGIN
+		UPDATE KHOA
+		SET NGAY_NHAN_CHUC = CURRENT_TIMESTAMP
+		FROM KHOA
+		INNER JOIN inserted ON KHOA.MA = inserted.MA
+		WHERE (
+			inserted.TRUONG_KHOA IS NOT NULL
+		);
+
 		UPDATE KHOA
 		SET NGAY_NHAN_CHUC = NULL
 		FROM KHOA

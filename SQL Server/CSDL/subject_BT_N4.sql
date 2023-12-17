@@ -84,15 +84,15 @@ WHERE (
 -- 11.Cho biết giáo viên nào đang sử dụng nhiều hơn một số điện thoại.
 
 SELECT 
-	SO_DIEN_THOAI.MAGV AS 'Mã giáo viên',
+	SDT.MAGV AS 'Mã giáo viên',
 	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Họ tên'
 FROM 
-	GIAOVIEN, SO_DIEN_THOAI
+	GIAOVIEN, SDT
 WHERE (
-	GIAOVIEN.MA = SO_DIEN_THOAI.MAGV
+	GIAOVIEN.MA = SDT.MAGV
 )
-GROUP BY SO_DIEN_THOAI.MAGV, GIAOVIEN.HO, GIAOVIEN.TENLOT, GIAOVIEN.TEN
-HAVING COUNT(SO_DIEN_THOAI.SO_DIEN_THOAI) > 1;
+GROUP BY SDT.MAGV, GIAOVIEN.HO, GIAOVIEN.TENLOT, GIAOVIEN.TEN
+HAVING COUNT(SDT.SO_DIEN_THOAI) > 1;
 
 -----------------------------
 
@@ -128,15 +128,14 @@ SELECT
 	KHOA.MA AS 'Mã khoa',
 	KHOA.TEN AS 'Tên khoa',
 	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng khoa',
-	YEAR(KHOA.NAM_THANH_LAP) AS 'Năm thành lập'
+	KHOA.NAM_THANH_LAP AS 'Năm thành lập'
 FROM 
 	KHOA, GIAOVIEN
 WHERE (
-	(KHOA.NAM_THANH_LAP BETWEEN '01/01/1980' AND '12/31/1990')
+	(KHOA.NAM_THANH_LAP BETWEEN 1980 AND 1990)
 	AND
 	(GIAOVIEN.MA = KHOA.TRUONG_KHOA)
 );
-
 
 -----------------------------
 
@@ -166,7 +165,7 @@ ORDER BY MA, STT DESC;
 
 -- 17.Cho biết những giáo viên có lương >= 2500 hoặc có người thân là nam.
 
-SELECT 
+SELECT DISTINCT
 	GIAOVIEN.MA AS 'Mã giáo viên',
 	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng khoa'
 FROM
@@ -193,7 +192,9 @@ SELECT
 FROM 
 	GIAOVIEN, BO_MON
 WHERE (
-	GIAOVIEN.BO_MON = BO_MON.MA AND GIAOVIEN.BO_MON = 'HTTT'
+	(GIAOVIEN.BO_MON = BO_MON.MA) 
+	AND 
+	(BO_MON.TEN = N'Hệ thống thông tin')
 );
 
 -----------------------------
@@ -209,7 +210,7 @@ FROM
 LEFT JOIN 
 	THAMGIADT ON THAMGIADT.MA = DE_TAI.MA
 GROUP BY 
-	DE_TAI.MA, DE_TAI.TEN
+	DE_TAI.MA, DE_TAI.TEN;
 
 -----------------------------
 
@@ -250,8 +251,7 @@ WHERE (
 -- 22.Cho biết thông tin các trưởng bộ môn nhận chức từ đầu năm 2015 đến hết năm 2016.
 
 SELECT
-	GIAOVIEN.MA AS 'Mã giáo viên',
-	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng bộ môn',
+	GIAOVIEN.*,
 	BO_MON.NGAY_NHAN_CHUC AS 'Ngày nhận chức'
 FROM
 	GIAOVIEN, BO_MON
@@ -266,9 +266,7 @@ WHERE (
 -- 23.Cho biết thông tin các giáo viên có mức phụ cấp tham gia đề tài từ 1.5 đến 2.0
 
 SELECT
-	GIAOVIEN.MA AS 'Mã giáo viên',
-	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Mã giáo viên',
-	GIAOVIEN.PHU_CAP AS 'Phụ cấp'
+	*
 FROM
 	GIAOVIEN
 WHERE (
@@ -292,21 +290,23 @@ WHERE LUONG > (SELECT AVG(LUONG) FROM GIAOVIEN);
 -- 25.Xuất ra thông tin của khoa có nhiều hơn 2 giáo viên.
 
 SELECT 
-	*
+	KHOA.*,
+	"Tổng giáo viên"
 FROM (
 	SELECT 
 		KHOA.MA AS 'Mã khoa',
-		KHOA.TEN AS 'Tên khoa',
 		COUNT(GIAOVIEN.MA) AS 'Tổng giáo viên'
 	FROM
 		GIAOVIEN, KHOA
 	WHERE (
 		GIAOVIEN.KHOA = KHOA.MA
 	)
-	GROUP BY KHOA.MA, KHOA.TEN
-) NHOM4
+	GROUP BY KHOA.MA
+) NHOM4, KHOA
 WHERE (
-	"Tổng giáo viên" > 2
+	("Tổng giáo viên" > 2)
+	AND
+	(KHOA.MA = "Mã khoa")
 );
 
 -----------------------------
@@ -328,8 +328,7 @@ WHERE (
 -- 27.Cho biết thông tin các bộ môn và tên của người làm trưởng bộ môn, đối với những bộ môn chưa biết giáo viên nào làm trưởng bộ môn thì tại các cột cho biết mã và tên của trưởng bộ môn mang giá trị rỗng (null).
 
 SELECT
-	BO_MON.MA AS 'Mã bộ môn',
-	BO_MON.TEN AS 'Tên bộ môn',
+	BO_MON.*,
 	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng bộ môn'
 FROM
 	BO_MON
@@ -357,7 +356,25 @@ WHERE (
 
 -- 29.Cho biết danh sách giáo viên và tên người quản lý chuyên môn với kết quả gồm các cột sau: MAGV, HOTEN, NGAYSINH, TEN_GVQLCM. Chỉ xuất thông tin các giáo viên có người quản lý chuyên môn.
 
-
+SELECT
+	GIAOVIEN.MA AS MAGV,
+	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS HOTEN,
+	GIAOVIEN.NGSINH AS NGAYSINH,
+	NHOM4.TENGV AS TEN_GVQLCM
+FROM
+	GIAOVIEN, (
+		SELECT 
+			BO_MON.MA AS MA_BOMON,
+			GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS TENGV
+		FROM
+			GIAOVIEN, BO_MON
+		WHERE (
+			BO_MON.TRUONG_BO_MON = GIAOVIEN.MA
+		)
+	) NHOM4
+WHERE (
+	GIAOVIEN.BO_MON = NHOM4.MA_BOMON
+)
 
 -----------------------------
 
@@ -466,7 +483,7 @@ SELECT
 	TEN AS 'Tên công việc'
 FROM
 	DE_TAI
-ORDER BY "Mã đề tài", "Số thứ tự công việc" DESC;
+ORDER BY "Mã đề tài" ASC, "Số thứ tự công việc" DESC;
 
 -----------------------------
 
@@ -657,7 +674,20 @@ WHERE (
 
 -- 42.Cho biết các giáo viên thuộc bộ môn HTTT tham gia tất cả các công việc của các đề tài cấp trường. Danh sách kết quả xuất ra bao gồm mã giáo viên, mã đề tài, số thứ tự.
 
-
+SELECT
+	CONG_VIEC.STT_CONGVIEC
+FROM (
+	SELECT DISTINCT 
+		MA
+	FROM
+		DE_TAI 
+	WHERE (
+		DE_TAI.LA_CAPTRUONG = 1
+	)
+) NHOM4, CONG_VIEC
+WHERE (
+	
+);
 
 -----------------------------
 
