@@ -674,19 +674,46 @@ WHERE (
 
 -- 42.Cho biết các giáo viên thuộc bộ môn HTTT tham gia tất cả các công việc của các đề tài cấp trường. Danh sách kết quả xuất ra bao gồm mã giáo viên, mã đề tài, số thứ tự.
 
-SELECT
-	CONG_VIEC.STT_CONGVIEC
-FROM (
-	SELECT DISTINCT 
-		MA
-	FROM
-		DE_TAI 
-	WHERE (
-		DE_TAI.LA_CAPTRUONG = 1
-	)
-) NHOM4, CONG_VIEC
+SELECT DISTINCT
+    GIAOVIEN.MA AS 'Mã giáo viên',
+    DE_TAI.MA AS 'Mã đề tài',
+    DE_TAI.STT AS 'Số thứ tự'
+FROM
+    GIAOVIEN
+JOIN
+    THAMGIADT ON GIAOVIEN.MA = THAMGIADT.MAGV
+JOIN
+    CONG_VIEC ON THAMGIADT.STT_CONGVIEC = CONG_VIEC.STT_CONGVIEC
+JOIN
+    DE_TAI ON THAMGIADT.MA = DE_TAI.MA
 WHERE (
-	
+    (GIAOVIEN.BO_MON = 'HTTT')
+    AND 
+	(DE_TAI.CAP_QUAN_LY = GIAOVIEN.MA)
+    AND 
+	(DE_TAI.LA_CAPTRUONG = 1)
+    AND NOT EXISTS (
+        SELECT 
+			1
+        FROM 
+			CONG_VIEC
+        WHERE (
+			(CONG_VIEC.MA = DE_TAI.MA)
+            AND 
+			(CONG_VIEC.STT_CONGVIEC NOT IN (
+                SELECT 
+					THAMGIADT.STT_CONGVIEC
+                FROM 
+					THAMGIADT
+                WHERE ( 
+					(THAMGIADT.MA = DE_TAI.MA)
+                    AND 
+					(THAMGIADT.MAGV = GIAOVIEN.MA)
+					)
+				)
+			)
+		)
+	)
 );
 
 -----------------------------
