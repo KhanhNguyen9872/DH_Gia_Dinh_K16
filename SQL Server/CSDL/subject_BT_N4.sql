@@ -114,8 +114,8 @@ WHERE (
 -- 13.Cho biết thông tin các giáo viên có độ tuổi từ 25 đến 35 tuổi.
 
 SELECT 
-	GIAOVIEN.MA AS 'Mã giáo viên',
-	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Họ tên'
+	*,
+	YEAR(current_timestamp) - YEAR(GIAOVIEN.NGSINH) AS TUOI
 FROM 
 	GIAOVIEN
 WHERE (
@@ -125,9 +125,7 @@ WHERE (
 -- 14.Cho biết thông tin các khoa thành lập từ năm 1980 đến năm 1990.
 
 SELECT 
-	KHOA.MA AS 'Mã khoa',
-	KHOA.TEN AS 'Tên khoa',
-	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng khoa',
+	KHOA.*,
 	KHOA.NAM_THANH_LAP AS 'Năm thành lập'
 FROM 
 	KHOA, GIAOVIEN
