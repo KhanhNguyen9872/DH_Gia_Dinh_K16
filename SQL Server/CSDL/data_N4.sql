@@ -207,6 +207,23 @@ BEGIN
 	);
 END;
 GO
+
+GO
+CREATE FUNCTION dbo.CHECK_KHOA (@MA_BOMON VARCHAR(8))
+RETURNS VARCHAR(8)
+AS
+BEGIN
+    RETURN (
+		SELECT DISTINCT
+			MA_KHOA
+		FROM 
+			BO_MON
+		WHERE (
+			BO_MON.MA = @MA_BOMON
+		)
+	);
+END;
+GO
 -- 
 
 ALTER TABLE 
@@ -233,6 +250,11 @@ ADD CHECK (
 	dbo.CHECK_THAMGIADT_MADT(STT_CONGVIEC) = MA
 );
 
+ALTER TABLE 
+	GIAOVIEN 
+ADD CHECK (
+	dbo.CHECK_KHOA(BO_MON) = KHOA
+);
 -- DATA
 
 BEGIN
@@ -247,7 +269,7 @@ BEGIN
 		('GV004', N'Nguyễn', N'Trần Hoàng', N'Thịnh', N'NAM', '03/01/2004', 'HTTT', 'TT', 1500, 3),
 		('GV005', N'Nguyễn', N'Văn', N'A', N'NAM', '01/02/2000', 'KTPM', 'TT', 1000, 0),
 		('GV006', N'Nguyễn', N'Thị', N'B', N'NỮ', '02/02/2000', 'MMT', 'NN', 1600, 1),
-		('GV007', N'Nguyễn', NULL, N'Cường', N'NAM', '03/02/2000', 'NNA', 'MKT', 1700, 0),
+		('GV007', N'Nguyễn', '', N'Cường', N'NAM', '03/02/2000', 'NNA', 'MKT', 1700, 0),
 		('GV008', N'Nguyễn', N'Tiến', N'D', N'NAM', '04/02/2000', 'NNT', 'CNTT', 1100, 1),
 		('GV009', N'Trần', N'Thị', N'E', N'NỮ', '05/02/2000', 'HTTT', 'TT', 1150, 0.5),
 		('GV010', N'Trần', N'Văn', N'F', N'NAM', '06/02/2000', 'TKDH', 'MKT', 1200, 0),
@@ -353,7 +375,7 @@ BEGIN
 		('MKT', N'Marketing', '2020', '02', '0398765432', 'GV002', '02/02/2022'),
 		('NN', N'Ngôn ngữ', '1990', '03', '0945678901', 'GV003', '02/02/2021'),
 		('TT', N'Truyền thông', '2020', '04', '0932109876', 'GV006', '02/02/2022'),
-		('KHCT', N'Khoa học chính trị', '1985', '05', '0321987456', 'GV001', '01/04/2005'),
+		('KHCT', N'Khoa học chính trị', '1985', '05', '0321987456', 'GV007', '01/04/2005'),
 		('TLH', N'Tâm lý học', '1991', '06', NULL, NULL, NULL),
 		('KT', N'Kế toán', '2000', '07', '0389012345', 'GV004', '09/08/2001')
 	ALTER TABLE KHOA
