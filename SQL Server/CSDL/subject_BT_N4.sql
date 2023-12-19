@@ -372,7 +372,7 @@ FROM
 	) NHOM4
 WHERE (
 	GIAOVIEN.BO_MON = NHOM4.MA_BOMON
-)
+);
 
 -----------------------------
 
@@ -752,6 +752,6 @@ SET
 	LUONG = LUONG*1.5
 WHERE (
 	GIAOVIEN.BO_MON = 'HTTT'
-)
+);
 
 -----------------------------
