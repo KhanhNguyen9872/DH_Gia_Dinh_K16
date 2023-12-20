@@ -327,7 +327,7 @@ WHERE (
 
 SELECT
 	BO_MON.*,
-	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Trưởng bộ môn'
+	GIAOVIEN.HO + ' ' + GIAOVIEN.TENLOT + ' ' + GIAOVIEN.TEN AS 'Tên trưởng bộ môn'
 FROM
 	BO_MON
 LEFT JOIN 
@@ -731,6 +731,9 @@ INSERT INTO THAMGIADT
 VALUES
 	('001', 'GV003', 6)
 
+SELECT * FROM THAMGIADT WHERE MAGV = 'GV003' AND MA = '001';
+
+
 -----------------------------
 
 -- 44.Xóa các dòng dữ liệu liên quan đến đề tài 002 trong bảng THAMGIADT.
@@ -741,6 +744,8 @@ DELETE FROM
 WHERE (
 	THAMGIADT.MA = '002'
 );
+
+SELECT * FROM THAMGIADT WHERE MA = '002';
 
 -----------------------------
 
@@ -753,5 +758,7 @@ SET
 WHERE (
 	GIAOVIEN.BO_MON = 'HTTT'
 );
+SELECT * FROM GIAOVIEN WHERE BO_MON = 'HTTT';
+
 
 -----------------------------
