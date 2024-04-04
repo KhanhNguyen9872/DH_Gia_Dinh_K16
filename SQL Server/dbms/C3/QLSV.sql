@@ -779,7 +779,7 @@ values
 insert into sinhvien
 	(masv, hodem, ten, ngaysinh, gioitinh, noisinh, malop)
 values
-	(2400, N'Nguyễn Văn', N'Khánh', '2004/02/07', 1, 'Bình Thuận', 'NA24')
+	(2400, N'Nguyễn Văn', N'Khánh', '2004/02/07', 1, N'Bình Thuận', 'NA24')
 
 -- bai 03
 /*
@@ -893,6 +893,63 @@ set sinhvien.xetlenlop = (
 		)
 	) ds
 )
+
+
+
+------
+go
+drop proc sp_timSV
+go
+
+
+go
+create proc sp_timSV (@masv int)
+as
+	begin
+		if not exists (
+			select * from sinhvien where masv = @masv
+		) 
+			print(N'Sinh viên này không tồn tại!')
+		 else (
+			select * from sinhvien where masv = @masv
+		)
+	end
+go
+
+sp_timSV 2400
+
+
+go
+drop proc sp_sosanhSV
+go
+go
+-- so sánh 2 sinh viên có học cùng lớp hay không
+create proc sp_sosanhSV(@masv1 int, @masv2 int)
+as
+	begin
+		if not exists (
+			select * from sinhvien where masv = @masv1
+		) 
+			print(N'Sinh viên 1 không tồn tại!')
+		 else if not exists (
+			select * from sinhvien where masv = @masv2
+		)
+			print(N'Sinh viên 2 không tồn tại!')
+		else if (@masv1 != @masv2)
+			print(N'Cả hai sinh viên không được cùng mã sinh viên')
+		else if (
+			(select malop from sinhvien where masv = @masv1)
+			=
+			(select malop from sinhvien where masv = @masv2)
+		)
+		print(N'Cả hai sinh viên có cùng lớp với nhau!')
+		else
+		print(N'Cả hai sinh viên không cùng lớp với nhau!')
+
+	end
+go
+
+sp_sosanhSV 2400, 2401
 
 
 
