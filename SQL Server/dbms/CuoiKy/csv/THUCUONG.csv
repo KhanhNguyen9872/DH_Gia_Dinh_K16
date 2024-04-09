@@ -1,12 +1,12 @@
 MATU,MALOAI,TENTU,DONGIA
-TU0,T01,Trà dâu,25000
-TU1 ,S02,Sữa chua ,20000
-TU2,T03,Trà vải,25000
-TU3,S04,Sữa đậu nành,25000
-TU4,C05,Cam vắt,20000
-TU5,C06,Cam ép,25000
-TU6,T07,Trà sữa,20000
-TU7,T08,Trà nhiệt đới,20000
-TU8,S09,Sữa dừa,30000
-TU9,C10,Cam mix ổi,25000
+TU00,tea,Trà dâu,25000
+TU01,S02,Sữa chua ,20000
+TU02,T03,Trà vải,25000
+TU03,S04,Sữa đậu nành,25000
+TU04,C05,Cam vắt,20000
+TU05,C06,Cam ép,25000
+TU06,T07,Trà sữa,20000
+TU07,T08,Trà nhiệt đới,20000
+TU08,S09,Sữa dừa,30000
+TU09,C10,Cam mix ổi,25000
 TU10,C10,Cam mix chanh,20000

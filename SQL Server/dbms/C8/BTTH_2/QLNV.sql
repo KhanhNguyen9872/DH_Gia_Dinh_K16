@@ -243,7 +243,7 @@ begin
 		from TDNN
 		join DMNN on DMNN.mann = TDNN.mann
 		where (
-			DMNN.tennn = N'Anh'
+			DMNN.tennn = @tennn
 		)
 	)
 end

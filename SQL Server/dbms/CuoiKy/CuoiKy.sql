@@ -296,7 +296,6 @@ begin
 	alter table phieuphuthu check constraint all
 end
 
-/* 
 begin
 	alter table phieuchi nocheck constraint all
 	delete from phieuchi
@@ -309,7 +308,6 @@ begin
 	);
 	alter table phieuchi check constraint all
 end
-*/
 
 begin
 	alter table phieunhap nocheck constraint all
@@ -476,13 +474,11 @@ where makv in (
 
 update thucuong
 set dongia = dongia * 0.8
-where matu in (
+where matu not in (
 	select matu
 	from hoadon
     right join chitiet_hoadon on hoadon.mahd = chitiet_hoadon.mahd
     where month(hoadon.ngaylap) = 1 and year(hoadon.ngaylap) = 2024
-    group by matu
-    having sum(chitiet_hoadon.soluong) is null or sum(chitiet_hoadon.soluong) = 0
 )
 
 -- 13.
@@ -530,10 +526,11 @@ where maloai = 'tea'
 	 Xuất ra danh sách thức uống không chứa nguyên liệu sữa đặc. 
 */
 
-select * -- !!!!!!!!!!!!!!!
+select distinct thucuong.* 
 from thucuong
 join congthuc on congthuc.matu = thucuong.matu
 join nguyenlieu on nguyenlieu.manl = congthuc.manl
+where not tennl = N'sữa đặc'
 
 -- 18.
 /*
@@ -549,11 +546,11 @@ where dongia < 50000
 	 Hãy lọc ra những nguyên liệu được cung cấp bởi nhà cung cấp NCC1. 
 */
 
-select *
+select nguyenlieu.*
 from nguyenlieu
 join chitiet_phieunhap on chitiet_phieunhap.manl = nguyenlieu.manl
 join phieunhap on phieunhap.mapn = chitiet_phieunhap.mapn
-where mancc = 'NCC1'
+where mancc = 'NCC01'
 
 -- 20.
 /*
@@ -571,8 +568,9 @@ join nhacungcap on nhacungcap.mancc = phieunhap.mancc
 	 Hãy liệt kê danh sách nhân viên theo chi nhánh 1, 2, 3.
 */
 
-select *
+select macn, manv, tennv
 from nhanvien
+where macn = 'CN1' or macn = 'CN2' or macn = 'CN3'
 order by macn
 
 -- 22.
@@ -590,10 +588,14 @@ order by soluong2 desc
 	Viết câu lệnh tìm khu vực khách hàng chọn nhiều nhất. 
 */
 
+
+
 -- 24.
 /*
 	 Viết câu lệnh thống kê tổng chi theo từng quý.
 */
+
+
 
 -- 25.
 /*
@@ -605,20 +607,60 @@ order by soluong2 desc
 	 Viết câu lệnh để tính doanh thu toàn hệ thống năm 2023.
 */
 
+select sum(dongia * soluong) as doanhthu
+from hoadon
+left join chitiet_hoadon on chitiet_hoadon.mahd = hoadon.mahd
+left join thucuong on thucuong.matu = chitiet_hoadon.matu
+where YEAR(hoadon.ngaylap) = 2023
+
 -- 27.
 /*
 	Viết câu lệnh để tính doanh thu toàn hệ thống của quý 1 năm 2024. 
 */
+
+select sum(dongia * soluong) as doanhthu
+from hoadon
+left join chitiet_hoadon on chitiet_hoadon.mahd = hoadon.mahd
+left join thucuong on thucuong.matu = chitiet_hoadon.matu
+where YEAR(hoadon.ngaylap) = 2024 and MONTH(hoadon.ngaylap) = 1
 
 -- 28.
 /*
 	 Tính lợi nhuận toàn hệ thống năm 2023.
 */
 
+select (ds1.doanhthu - ds2.tongtien) as loinhuan
+from (
+	select sum(dongia * soluong) as doanhthu
+	from hoadon
+	left join chitiet_hoadon on chitiet_hoadon.mahd = hoadon.mahd
+	left join thucuong on thucuong.matu = chitiet_hoadon.matu
+	where YEAR(hoadon.ngaylap) = 2023
+) ds1,
+(
+	select tongtien
+	from phieunhap
+) ds2
+
+
 -- 29.
 /*
 	Tính lợi nhuận theo từng chi nhánh. 
 */
+
+select (ds1.doanhthu - ds2.tongtien) as loinhuan
+from (
+	select sum(dongia * soluong) as doanhthu
+	from hoadon
+	left join chitiet_hoadon on chitiet_hoadon.mahd = hoadon.mahd
+	left join thucuong on thucuong.matu = chitiet_hoadon.matu
+	where YEAR(hoadon.ngaylap) = 2023
+) ds1,
+(
+	select tongtien
+	from phieunhap
+) ds2
+
 
 -- 30.
 /*
@@ -651,11 +693,45 @@ mã thức uống, mã loại thức uống, tên thức uống, đơn giá. Ki�
 tham số truyền vào là mã loại, tên loại thức uống.
 */
 
+go
+create proc proc_bai34(@maloai char(5), @tenloai nvarchar(100))
+as
+begin
+	if exists (select * from loaithucuong where maloai = @maloai)
+	begin
+		print N'Loại thức uống này đã tồn tại!'
+	end
+	else
+	begin
+		insert into loaithucuong
+			(maloai, tenloai)
+		values
+			(@maloai, @tenloai)
+	end
+end
+
 -- 35.
 /*
 	Viết thủ tục thêm mới một nguyên vào bảng NGUYENLIEU với tham số đầu vào 
 là mã nguyên liệu, tên nguyên liệu, số lượng, đơn vị.  
 */
+
+go
+create proc proc_bai35(@manl char(10), @tennl nvarchar(100), @soluong float, @donvi nvarchar(25))
+as
+begin
+	if exists (select * from nguyenlieu where manl = @manl)
+	begin
+		print N'Nguyên liệu này đã tồn tại!'
+	end
+	else
+	begin
+		insert into nguyenlieu
+			(manl, tennl, soluong, donvi)
+		values
+			(@manl, @tennl, @soluong, @donvi)
+	end
+end
 
 -- 36.
 /*
