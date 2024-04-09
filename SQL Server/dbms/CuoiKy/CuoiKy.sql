@@ -168,8 +168,9 @@ nhất một dòng giá trị, yêu cầu đọc dữ liệu từ file .csv).
 
 begin
 	alter table nhanvien nocheck constraint all
+	delete from nhanvien
 	bulk insert nhanvien
-	from 'nhanvien.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\nhanvien.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -180,8 +181,9 @@ end
 
 begin
 	alter table chucvu nocheck constraint all
+	delete from chucvu
 	bulk insert chucvu
-	from 'chucvu.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\chucvu.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -192,8 +194,9 @@ end
 
 begin
 	alter table loaithucuong nocheck constraint all
+	delete from loaithucuong
 	bulk insert loaithucuong
-	from 'loaithucuong.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\loaithucuong.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -204,8 +207,9 @@ end
 
 begin
 	alter table thucuong nocheck constraint all
+	delete from thucuong
 	bulk insert thucuong
-	from 'thucuong.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\thucuong.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -216,8 +220,9 @@ end
 
 begin
 	alter table khuvuc nocheck constraint all
+	delete from khuvuc
 	bulk insert khuvuc
-	from 'khuvuc.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\khuvuc.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -228,8 +233,9 @@ end
 
 begin
 	alter table congthuc nocheck constraint all
+	delete from congthuc
 	bulk insert congthuc
-	from 'congthuc.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\congthuc.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -240,8 +246,9 @@ end
 
 begin
 	alter table chinhanh nocheck constraint all
+	delete from chinhanh
 	bulk insert chinhanh
-	from 'chinhanh.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\chinhanh.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -252,8 +259,9 @@ end
 
 begin
 	alter table baocao nocheck constraint all
+	delete from baocao
 	bulk insert baocao
-	from 'baocao.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\baocao.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -264,8 +272,9 @@ end
 	
 begin
 	alter table nhacungcap nocheck constraint all
+	delete from nhacungcap
 	bulk insert nhacungcap
-	from 'nhacungcap.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\nhacungcap.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -276,8 +285,9 @@ end
 
 begin
 	alter table phieuphuthu nocheck constraint all
+	delete from phieuphuthu
 	bulk insert phieuphuthu
-	from 'phieuphuthu.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\phieuphuthu.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -286,10 +296,12 @@ begin
 	alter table phieuphuthu check constraint all
 end
 
+/* 
 begin
 	alter table phieuchi nocheck constraint all
+	delete from phieuchi
 	bulk insert phieuchi
-	from 'phieuchi.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\phieuchi.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -297,11 +309,13 @@ begin
 	);
 	alter table phieuchi check constraint all
 end
+*/
 
 begin
 	alter table phieunhap nocheck constraint all
+	delete from phieunhap
 	bulk insert phieunhap
-	from 'phieuchi.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\phieunhap.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -312,8 +326,9 @@ end
 
 begin
 	alter table hoadon nocheck constraint all
+	delete from hoadon
 	bulk insert hoadon
-	from 'phieuchi.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\hoadon.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -324,8 +339,9 @@ end
 
 begin
 	alter table chitiet_hoadon nocheck constraint all
+	delete from chitiet_hoadon
 	bulk insert chitiet_hoadon
-	from 'chitiet_hoadon.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\chitiet_hoadon.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -336,8 +352,9 @@ end
 
 begin
 	alter table chitiet_phieunhap nocheck constraint all
+	delete from chitiet_phieunhap
 	bulk insert chitiet_phieunhap
-	from 'chitiet_phieunhap.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\chitiet_phieunhap.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -348,8 +365,9 @@ end
 
 begin
 	alter table nguyenlieu nocheck constraint all
+	delete from nguyenlieu
 	bulk insert nguyenlieu
-	from 'nguyenlieu.csv'
+	from 'C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\SQL Server\dbms\CuoiKy\csv\nguyenlieu.csv'
 	with (
 		format = 'CSV',
 		firstrow = 2,
@@ -368,7 +386,7 @@ NV1, mã khu vực KV1, ngày lập 12/2/2024, tổng tiền là 83000.
 insert into hoadon
 	(mahd, manv, makv, ngaylap, tongtien)
 values
-	('HD01', 'NV1', 'KV1', '02/12/2024', 83000)
+	('HD101', 'NV1', 'KV1', '02/12/2024', 83000)
 
 -- 5.
 /*
@@ -414,7 +432,7 @@ thu là 30000.
 insert into phieuphuthu
 	(maphieupt, manv, tenppt, ngaylap, sotien)
 values
-	('PTT63', 'NV2', N'Khách làm vỡ ly', '20/11/2024', 30000)
+	('PTT63', 'NV2', N'Khách làm vỡ ly', '11/20/2024', 30000)
 
 -- 9.
 /*
@@ -456,10 +474,30 @@ where makv in (
 	 Giảm 20% giá các thức uống không bán được trong tháng 1/2024.
 */
 
+update thucuong
+set dongia = dongia * 0.8
+where matu in (
+	select matu
+	from hoadon
+    right join chitiet_hoadon on hoadon.mahd = chitiet_hoadon.mahd
+    where month(hoadon.ngaylap) = 1 and year(hoadon.ngaylap) = 2024
+    group by matu
+    having sum(chitiet_hoadon.soluong) is null or sum(chitiet_hoadon.soluong) = 0
+)
+
 -- 13.
 /*
 	Tăng thêm 50% giá các thức uống bán chạy nhất. 
 */
+
+update thucuong
+set dongia = dongia * 1.5
+where matu in (
+	select top 1 matu
+	from chitiet_hoadon
+    group by matu
+	order by sum(soluong) desc
+)
 
 -- 14.
 /*
@@ -541,6 +579,11 @@ order by macn
 /*
 	 Viết câu lệnh để liệt kê thức uống bán nhiều nhất. 
 */
+
+select top 1 matu, sum(soluong) as soluong2
+from chitiet_hoadon
+group by matu
+order by soluong2 desc
 
 -- 23.
 /*
