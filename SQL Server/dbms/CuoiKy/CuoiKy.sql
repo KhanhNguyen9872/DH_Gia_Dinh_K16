@@ -174,7 +174,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table nhanvien check constraint all
 end
@@ -187,7 +188,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table chucvu check constraint all
 end
@@ -200,7 +202,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table loaithucuong check constraint all
 end
@@ -213,7 +216,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table thucuong check constraint all
 end
@@ -226,7 +230,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table khuvuc check constraint all
 end
@@ -239,7 +244,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table congthuc check constraint all
 end
@@ -252,7 +258,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table chinhanh check constraint all
 end
@@ -265,7 +272,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table baocao check constraint all
 end
@@ -278,7 +286,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table nhacungcap check constraint all
 end
@@ -291,7 +300,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table phieuphuthu check constraint all
 end
@@ -304,7 +314,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table phieuchi check constraint all
 end
@@ -317,7 +328,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table phieunhap check constraint all
 end
@@ -330,7 +342,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table hoadon check constraint all
 end
@@ -343,7 +356,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table chitiet_hoadon check constraint all
 end
@@ -356,7 +370,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table chitiet_phieunhap check constraint all
 end
@@ -369,7 +384,8 @@ begin
 	with (
 		format = 'CSV',
 		firstrow = 2,
-		rowterminator = '0x0a'
+		rowterminator = '0x0a',
+		CODEPAGE = '65001'
 	);
 	alter table nguyenlieu check constraint all
 end
@@ -588,58 +604,90 @@ order by soluong2 desc
 	Viết câu lệnh tìm khu vực khách hàng chọn nhiều nhất. 
 */
 
-
+select top 1 makv, count(mahd) as soluong
+from hoadon
+group by makv
+order by soluong desc
 
 -- 24.
 /*
 	 Viết câu lệnh thống kê tổng chi theo từng quý.
 */
 
+SELECT
+    YEAR(ngaylap) AS Nam,
+    DATEPART(QUARTER, ngaylap) AS Quy,
+    SUM(tongtien) AS TongChi
+FROM
+    (
+    SELECT
+        ngaylap,
+        SUM(tongtien) AS tongtien
+    FROM
+        phieunhap
+    GROUP BY
+        ngaylap
 
+    UNION ALL
+
+    SELECT
+        ngaylap,
+        SUM(tongtien) AS tongtien
+    FROM
+        phieuchi
+    GROUP BY
+        ngaylap
+    ) AS TongChiTheoQuy
+GROUP BY
+    YEAR(ngaylap),
+    DATEPART(QUARTER, ngaylap)
+ORDER BY
+    YEAR(ngaylap),
+    DATEPART(QUARTER, ngaylap);
 
 -- 25.
 /*
 	 Viết câu lệnh để thống kê tổng phụ thu. 
 */
 
+select ngaylap, sum(sotien) as tongphuthu
+from phieuphuthu
+group by ngaylap
+order by ngaylap
+
 -- 26.
 /*
 	 Viết câu lệnh để tính doanh thu toàn hệ thống năm 2023.
 */
 
-select sum(dongia * soluong) as doanhthu
+select sum(tongtien) as doanhthu
 from hoadon
-left join chitiet_hoadon on chitiet_hoadon.mahd = hoadon.mahd
-left join thucuong on thucuong.matu = chitiet_hoadon.matu
-where YEAR(hoadon.ngaylap) = 2023
+where YEAR(ngaylap) = 2023
 
 -- 27.
 /*
 	Viết câu lệnh để tính doanh thu toàn hệ thống của quý 1 năm 2024. 
 */
 
-select sum(dongia * soluong) as doanhthu
+select sum(tongtien) as doanhthu
 from hoadon
-left join chitiet_hoadon on chitiet_hoadon.mahd = hoadon.mahd
-left join thucuong on thucuong.matu = chitiet_hoadon.matu
-where YEAR(hoadon.ngaylap) = 2024 and MONTH(hoadon.ngaylap) = 1
+where YEAR(ngaylap) = 2024 and MONTH(hoadon.ngaylap) = 1
 
 -- 28.
 /*
 	 Tính lợi nhuận toàn hệ thống năm 2023.
 */
 
-select (ds1.doanhthu - ds2.tongtien) as loinhuan
+select (ds1.doanhthu - ds2.tongchi) as loinhuan
 from (
-	select sum(dongia * soluong) as doanhthu
+	select sum(tongtien) as doanhthu
 	from hoadon
-	left join chitiet_hoadon on chitiet_hoadon.mahd = hoadon.mahd
-	left join thucuong on thucuong.matu = chitiet_hoadon.matu
-	where YEAR(hoadon.ngaylap) = 2023
+	where YEAR(ngaylap) = 2023
 ) ds1,
 (
-	select tongtien
-	from phieunhap
+	select sum(phieuchi.tongtien + phieunhap.tongtien) as tongchi
+	from phieuchi
+	join phieunhap on phieunhap.manv = phieuchi.manv
 ) ds2
 
 
@@ -648,17 +696,16 @@ from (
 	Tính lợi nhuận theo từng chi nhánh. 
 */
 
-select (ds1.doanhthu - ds2.tongtien) as loinhuan
+select	ds1.makv, (ds1.doanhthu - ds2.tongchi) as loinhuan
 from (
-	select sum(dongia * soluong) as doanhthu
+	select makv, sum(tongtien) as doanhthu
 	from hoadon
-	left join chitiet_hoadon on chitiet_hoadon.mahd = hoadon.mahd
-	left join thucuong on thucuong.matu = chitiet_hoadon.matu
-	where YEAR(hoadon.ngaylap) = 2023
+	group by makv
 ) ds1,
 (
-	select tongtien
-	from phieunhap
+	select sum(phieuchi.tongtien + phieunhap.tongtien) as tongchi
+	from phieuchi
+	join phieunhap on phieunhap.manv = phieuchi.manv
 ) ds2
 
 
@@ -667,10 +714,20 @@ from (
 	 Thống kê số lượng tồn của tất cả các nguyên liệu còn dưới mức quy định.
 */
 
+select *
+from nguyenlieu
+where soluong < 10;
+
+
 -- 31.
 /*
 	Liệt kê loại nguyên liệu được sử dụng nhiều nhất. 
 */
+
+select top 1 manl, sum(soluong) as soluong
+from congthuc
+group by manl
+order by soluong desc
 
 -- 32.
 /*
@@ -680,12 +737,56 @@ vào, ngày nghĩ (có thể null). Kiểm tra ngày vào phải lớn hơn ngà
 (01/01/2020) và ràng buộc tồn tại các mã chức vụ, mã chi nhánh.
 */
 
+go
+create proc proc_bai32(@manv char(5), @tennv nvarchar(100), @macv char(3), @macn char(3), @gioitinh bit, @ngayvao datetime, @ngaynghi datetime)
+as
+begin
+	if (@ngayvao > 01/01/2020)
+	begin
+		if not exists (select * from chucvu where macv = @macv)
+		begin
+			print N'Mã chức vụ không tồn tại'
+		end
+		else
+		begin
+			if not exists (select * from chinhanh where macn = @macn)
+			begin
+				print N'Mã chi nhánh không tồn tại'
+			end
+			else
+			begin
+				insert into nhanvien
+					(manv, tennv, macv, macn, gioitinh, ngayvao, ngaynghi)
+				values
+					(@manv, @tennv, @macv, @macn, @gioitinh, @ngayvao, @ngaynghi)
+			end
+		end
+	end
+end
+
 -- 33.
 /*
 	Viết thủ tục thêm một thức uống vào bảng THUCUONG với tham số truyền vào là 
 mã thức uống, mã loại thức uống, tên thức uống, đơn giá. Kiểm tra tham số vào 
 (kiểm tra tồn tại mã loại thức uống). 
 */
+
+go
+create proc proc_bai33(@matu char(5), @maloai char(5), @tentu nvarchar(100), @dongia decimal) 
+as
+begin
+	if not exists (select * from loaithucuong where maloai = @maloai)
+	begin
+		print N'Mã loại thức uống không tồn tại'
+	end
+	else
+	begin
+		insert into thucuong
+			(matu, maloai, tentu, dongia)
+		values
+			(@matu, @maloai, @tentu, @dongia)
+	end
+end
 
 -- 34.
 /*
@@ -740,11 +841,50 @@ tham số đầu vào là mã thức uống, mã loại thức uống, tên th�
 tra ràng buộc tồn tại thức uống và mã loại thức uống.
 */
 
+go
+create proc proc_bai36(@matu char(5), @maloai char(5), @tentu nvarchar(100), @dongia decimal)
+as
+begin
+	if not exists (select * from thucuong where matu = @matu)
+	begin
+		print N'Thức uống này khồng tồn tại!'
+	end
+	else
+	begin
+		if not exists (select * from loaithucuong where maloai = @maloai)
+		begin
+			print N'Loại thức uống không tồn tại!'
+		end
+		else
+		begin
+			update thucuong
+			set matu = @matu, maloai = @maloai, tentu = @tentu, dongia = @dongia
+		end
+	end
+end
+
 -- 37.
 /*
 	Viết thủ tục liệt kê các thức uống thuộc một loại thức uống bất kì, với tham số truyền 
 vào là tên loại. Kiểm tra ràng buộc tồn tại tên loại.   
 */
+
+go
+create proc proc_bai37(@tenloai nvarchar(100))
+as
+begin
+	if not exists (select * from loaithucuong where tenloai = @tenloai)
+	begin
+		print N'Tên loại thức uống không tồn tại!'
+	end
+	else
+	begin
+		select *
+		from thucuong
+		join loaithucuong on loaithucuong.maloai = thucuong.maloai
+		where tenloai = @tenloai
+	end
+end
 
 -- 38.
 /*
@@ -753,6 +893,26 @@ kho, đơn vị) của một thức uống bất kì, với tham số truyền v
 tra ràng buộc tồn tại tên thức uống. 
 */
 
+go
+create proc proc_bai38(@tentu nvarchar(100))
+as
+begin
+	if not exists (select * from thucuong where tentu = @tentu)
+	begin
+		print N'Tên thức uống không tồn tại!'
+	end
+	else
+	begin
+		declare @matu char(5)
+		set @matu = (select matu from thucuong where tentu = @tentu)
+
+		select nguyenlieu.*
+		from congthuc
+		join nguyenlieu on nguyenlieu.manl = congthuc.manl
+		where matu = @matu
+	end
+end
+
 -- 39.
 /*
 	Viết thủ tục dùng để tìm những thức uống không bán được của chi nhánh bất kì trong 
@@ -760,11 +920,42 @@ khoảng thời gian nào đó. Với tham số đầu vào là tên chi nhánh,
 thời gian kết thúc.   
 */
 
+go
+create proc proc_bai39(@tencn nvarchar(100), @batdau datetime, @ketthuc datetime)
+as
+begin
+	select *
+	from thucuong
+	where matu not in (
+		select *
+		from hoadon
+		where ngaylap between @batdau and @ketthuc
+	)
+end
+
 -- 40.
 /*
 	Viết thủ tục liệt kê tên các nguyên liệu của một nhà cung cấp bất kì, với tham số đầu 
 vào là tên nhà cung cấp, kiểm tra ràng buộc tồn tại tên nhà cung cấp.  
 */
+
+go
+create proc proc_bai40(@tenncc nvarchar(10))
+as
+begin
+	if not exists (select * from nhacungcap where tenncc = @tenncc)
+	begin
+		print N'Tên nhà cung cấp không tồn tại!'
+	end
+	else
+	begin
+		select manl
+		from nhacungcap
+		join phieunhap on phieunhap.mancc = nhacungcap.mancc
+		join chitiet_phieunhap on chitiet_phieunhap.mapn = phieunhap.mapn
+		where tenncc = @tenncc
+	end
+end
 
 -- 41.
 /*
@@ -773,6 +964,28 @@ uống và hệ số giá. Điều kiện tên thức uống tồn tại và h�
 đồng thời không nhỏ hơn -0.5. 
 */
 
+go
+create proc proc_bai41(@tentu nvarchar(100), @hesogia float)
+as
+begin
+	if not exists (select * from thucuong where tentu = @tentu)
+	begin
+		print N'Tên thức uống không tồn tại!'
+	end
+	else
+	begin
+		if (@hesogia < 1 and @hesogia >= -0.5)
+		begin
+			update thucuong
+			set dongia = dongia * (1 + @hesogia)
+		end
+		else
+		begin
+			print N'Hệ số giá sai!'
+		end
+	end
+end
+
 -- 42.
 /*
 	Viết thủ tục tính tổng tiền phụ thu của một chi nhánh bất kì trong thời gian bất kì. 
@@ -780,12 +993,31 @@ Với tham số truyền vào là tên chi nhánh, thời gian bắt đầu và 
 kiện ràng buộc thời gian bắt đầu phải trước thời gian kết thúc.     
 */
 
+go
+create proc proc_bai42(@tencn nvarchar(100), @batdau datetime, @ketthuc datetime)
+as
+begin
+	if (@batdau < @ketthuc)
+	begin
+		select sum(sotien) as tienphuthu
+		from chinhanh
+		join nhanvien on nhanvien.macn = chinhanh.macn
+		join phieuphuthu on phieuphuthu.manv = nhanvien.manv
+		where tencn = @tencn and (ngaylap between @batdau and @ketthuc)
+	end
+	else
+	begin
+		print N'Thời gian không hợp lệ!'
+	end
+end
+
 -- 43.
 /*
 	Viết thủ tục tính lợi nhuận của hệ thống trong khoảng thời gian bất kì. Với tham số 
 đầu vào là thời gian bắt đầu, thời gian kết thúc. Tham sô đầu ra là tổng lợi nhuận của 
 hệ thống (lợi nhuận = tổng doanh thu - tổng chi). 
 */
+
 
 -- 44.
 /*

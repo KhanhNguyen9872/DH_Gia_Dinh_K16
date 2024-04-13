@@ -1,11 +1,11 @@
 MANL,TENNL,SOLUONG,DONVI
-NL00,Trà,1,1
-NL01,sữa chua,1,1
-NL02,vải,1,1
-NL03,sữa đặc,1,1
-NL04,cam ,1,1
-NL05,tắc,1,1
-NL06,chanh,1,1
-NL07,muối,1,1
-NL08,dừa,1,1
-NL09,ổi,1,1
+NL00,Trà,20,1
+NL01,sữa chua,30,1
+NL02,vải,25,1
+NL03,sữa đặc,35,1
+NL04,cam ,15,1
+NL05,tắc,10,1
+NL06,chanh,40,1
+NL07,muối,20,1
+NL08,dừa,30,1
+NL09,ổi,5,1
