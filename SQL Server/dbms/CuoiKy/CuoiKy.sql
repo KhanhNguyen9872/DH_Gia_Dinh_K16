@@ -660,18 +660,34 @@ order by ngaylap
 	 Viết câu lệnh để tính doanh thu toàn hệ thống năm 2023.
 */
 
-select sum(tongtien) as doanhthu
-from hoadon
-where YEAR(ngaylap) = 2023
+select (ds1.doanhthu + ds2.phuthu) as doanhthu
+from (
+	select sum(tongtien) as doanhthu
+	from hoadon
+	where YEAR(ngaylap) = 2023
+) ds1,
+(
+	select sum(sotien) as phuthu
+	from phieuphuthu
+	where YEAR(ngaylap) = 2023
+) ds2
 
 -- 27.
 /*
 	Viết câu lệnh để tính doanh thu toàn hệ thống của quý 1 năm 2024. 
 */
 
-select sum(tongtien) as doanhthu
-from hoadon
-where YEAR(ngaylap) = 2024 and MONTH(hoadon.ngaylap) = 1
+select (ds1.doanhthu + ds2.phuthu) as doanhthu
+from (
+	select sum(tongtien) as doanhthu
+	from hoadon
+	where YEAR(ngaylap) = 2024 and MONTH(ngaylap) = 1
+) ds1,
+(
+	select sum(sotien) as phuthu
+	from phieuphuthu
+	where YEAR(ngaylap) = 2024 and MONTH(ngaylap) = 1
+) ds2
 
 -- 28.
 /*
@@ -688,6 +704,7 @@ from (
 	select sum(phieuchi.tongtien + phieunhap.tongtien) as tongchi
 	from phieuchi
 	join phieunhap on phieunhap.manv = phieuchi.manv
+	where YEAR(phieunhap.ngaylap) = 2023 and YEAR(phieuchi.ngaylap) = 2023
 ) ds2
 
 
@@ -1018,6 +1035,23 @@ end
 hệ thống (lợi nhuận = tổng doanh thu - tổng chi). 
 */
 
+go
+create proc proc_bai43(@batdau datetime, @ketthuc datetime)
+as
+begin
+	select (ds1.doanhthu - ds2.tongchi) as loinhuan
+	from (
+		select sum(tongtien) as doanhthu
+		from hoadon
+		where ngaylap between @batdau and @ketthuc
+	) ds1,
+	(
+		select sum(phieuchi.tongtien + phieunhap.tongtien) as tongchi
+		from phieuchi
+		join phieunhap on phieunhap.manv = phieuchi.manv
+		where (phieuchi.ngaylap between @batdau and @ketthuc) and (phieunhap.ngaylap between @batdau and @ketthuc)
+	) ds2
+end
 
 -- 44.
 /*
@@ -1026,11 +1060,53 @@ bất kì, với tham số truyền vào là tên chi nhánh, thời gian bắt 
 thúc. Điều kiện thời gian bắt đầu trước thời gian kết thúc.   
 */
 
+go
+create proc proc_bai44(@tencn nvarchar(100), @batdau datetime, @ketthuc datetime)
+as
+begin
+	if (@batdau < @ketthuc)
+	begin
+		select top 1 thucuong.*
+		from hoadon
+		join chitiet_hoadon on chitiet_hoadon.mahd = hoadon.mahd
+		join thucuong on thucuong.matu = chitiet_hoadon.matu
+		join nhanvien on nhanvien.manv = hoadon.manv
+		join chinhanh on chinhanh.macn = nhanvien.macn
+		where (tencn = @tencn) and (hoadon.ngaylap between @batdau and @ketthuc)
+		order by soluong desc
+	end
+	else
+	begin
+		print N'Thời gian không hợp lệ!'
+	end
+end
+
 -- 45.
 /*
 	 Viết thủ tục tính tổng số tiền doanh thu của hệ thống trong một ngày bất kì với tham 
 số đầu vào là ngày và tham số đầu ra là tổng doanh thu của ngày đó. 
 */
+
+go
+create proc proc_bai45(@ngay date)
+as
+begin
+	declare @tienhd bigint
+	set @tienhd = (
+		select sum(tongtien) as doanhthu
+		from hoadon
+		where ngaylap = @ngay
+	)
+
+	declare @tienpt bigint
+	set @tienpt = (
+		select sum(sotien) as phuthu
+		from phieuphuthu
+		where ngaylap = @ngay
+	)
+
+	select (@tienhd + @tienpt) as doanhthu
+end
 
 -- 46.
 /*
@@ -1039,11 +1115,40 @@ với tham số truyền vào là thời gian bắt đầu và thời gian kết
 bắt đầu trước thời gian kết thúc.  
 */
 
+go
+create proc proc_bai46(@batdau datetime, @ketthuc datetime)
+as
+begin
+	if (@batdau < @ketthuc)
+	begin
+		select top 1 thucuong.*
+		from hoadon
+		join chitiet_hoadon on chitiet_hoadon.mahd = hoadon.mahd
+		join thucuong on thucuong.matu = chitiet_hoadon.matu
+		where ngaylap between @batdau and @ketthuc
+		order by soluong desc
+	end
+	else
+	begin
+		print N'Thời gian không hợp lệ!'
+	end
+end
+
 -- 47.
 /*
 	 Viết thủ tục liệt kê các loại nguyên liệu (tên, số lượng tồn, đơn vị) của một phiếu 
 nhập bất kì, với tham số đầu vào là mã phiếu nhập. 
 */
+
+go
+create proc proc_bai47(@mapn char(10))
+as
+begin
+	select tennl, nguyenlieu.soluong, donvi
+	from chitiet_phieunhap
+	join nguyenlieu on nguyenlieu.manl = chitiet_phieunhap.manl
+	where mapn = @mapn
+end
 
 -- 48.
 /*
@@ -1052,6 +1157,27 @@ tham số đầu vào là thời gian bắt đầu, thời gian kết thúc. Tha
 doanh thu của hệ thống (doanh thu= tổng tiền hóa đơn + tổng tiền phụ thu).  
 */
 
+go
+create proc proc_bai48(@batdau datetime, @ketthuc datetime)
+as
+begin
+	declare @tienhd bigint
+	set @tienhd = (
+		select sum(tongtien) as doanhthu
+		from hoadon
+		where ngaylap between @batdau and @ketthuc
+	)
+
+	declare @tienpt bigint
+	set @tienpt = (
+		select sum(sotien) as phuthu
+		from phieuphuthu
+		where ngaylap between @batdau and @ketthuc
+	)
+
+	select (@tienhd + @tienpt) as doanhthu
+end
+
 -- 49.
 /*
 	Viết thủ tục tính tổng chi tiêu của hệ thống trong khoảng thời gian bất kì. Với tham 
@@ -1059,11 +1185,43 @@ số đầu vào là thời gian bắt đầu, thời gian kết thúc. Tham sô
 của hệ thống (tổng chi= tổng tiền phiếu nhập + tổng tiền phiếu chi).
 */
 
+go
+create proc proc_bai49(@batdau datetime, @ketthuc datetime)
+as
+begin
+	declare @tienpn bigint
+	set @tienpn = (
+		select sum(tongtien) as tienpn
+		from phieunhap
+		where ngaylap between @batdau and @ketthuc
+	)
+
+	declare @tienpc bigint
+	set @tienpc = (
+		select sum(tongtien) as tienpc
+		from phieuchi
+		where ngaylap between @batdau and @ketthuc
+	)
+
+	select (@tienpn + @tienpc) as tongchi
+end
+
 -- 50.
 /*
 	 Viết một thủ tục với tùy chọn ‘with encryption’, mã hóa không cho người dùng xem 
 được nội dung của thủ tục.  
 */
+
+go
+create proc proc_bai50(@mapn char(10))
+with encryption
+as
+begin
+	select tennl, nguyenlieu.soluong, donvi
+	from chitiet_phieunhap
+	join nguyenlieu on nguyenlieu.manl = chitiet_phieunhap.manl
+	where mapn = @mapn
+end
 
 -- 51.
 /*
@@ -1079,12 +1237,60 @@ kiện còn lại.
 lượng thức uống trong chi tiết hóa đơn thì phải sửa số lượng tồn của nguyên liệu. 
 */
 
+go
+CREATE TRIGGER trg_bai52
+ON CHITIET_HOADON
+AFTER UPDATE
+AS
+BEGIN
+    IF UPDATE(soluong)
+    BEGIN
+        UPDATE nguyenlieu
+        SET soluong = soluong - (
+			SELECT soluong * so_luong_nguyen_lieu 
+            FROM inserted
+            INNER JOIN thucuong tc ON inserted.matu = tc.matu
+		)
+        FROM nguyenlieu
+        JOIN (
+            SELECT matu, SUM(soluong) AS so_luong_nguyen_lieu 
+            FROM inserted
+            GROUP BY matu
+        ) AS i ON nguyenlieu.manl = i.matu
+        WHERE EXISTS (
+			SELECT 1 FROM inserted i WHERE nguyenlieu.manl = i.matu
+		)
+    END
+END
+
 -- 53.
 /*
 	 Viết Trigger bắt lỗi cho lệnh Delete vào bảng CHITIET_HOADON. Khi xóa chi tiết 
 hóa đơn thì phải tăng số lượng tồn của nguyên liệu kiểm tra nếu xóa hết mã hóa đơn 
 đó thì xóa lun bên bảng hóa đơn. 
 */
+
+go
+CREATE TRIGGER trg_bai53
+ON CHITIET_HOADON
+AFTER DELETE
+AS
+BEGIN
+    UPDATE nguyenlieu
+    SET soluong = nguyenlieu.soluong + deleted.soluong
+    FROM deleted
+    INNER JOIN thucuong ON deleted.matu = thucuong.matu
+    INNER JOIN congthuc ON thucuong.matu = congthuc.matu
+    INNER JOIN nguyenlieu ON congthuc.manl = nguyenlieu.manl;
+
+    DELETE FROM HOADON
+    WHERE mahd IN (
+        SELECT mahd
+        FROM deleted
+        GROUP BY mahd
+        HAVING COUNT(*) = 0
+    );
+END
 
 -- 54.
 /*
@@ -1093,12 +1299,70 @@ tiết nhập thì kiểm tra trùng mã, bắt không được nhập số âm 
 của nguyên liệu (nhập hàng). 
 */
 
+go
+CREATE TRIGGER trg_bai54
+ON CHITIET_PHIEUNHAP
+AFTER INSERT
+AS
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM CHITIET_PHIEUNHAP cp
+        INNER JOIN inserted i ON cp.manl = i.manl
+        GROUP BY cp.manl
+        HAVING COUNT(*) > 1
+    )
+    BEGIN
+        PRINT N'Mã nguyên liệu bị trùng!'
+        ROLLBACK TRANSACTION
+    END
+
+    IF EXISTS (
+        SELECT *
+        FROM inserted i
+        WHERE i.soluong < 0
+    )
+    BEGIN
+        PRINT N'Số lượng nhập không được âm!'
+        ROLLBACK TRANSACTION
+    END
+
+    UPDATE nguyenlieu
+    SET soluong = nguyenlieu.soluong + i.soluong
+    FROM inserted i
+    WHERE nguyenlieu.manl = i.manl
+END
+
 -- 55.
 /*
 	Viết Trigger bắt lỗi cho lệnh Update vào bảng CHITIET_PHIEUNHAP. Khi sửa số 
 lượng nguyên liệu trong chi tiết phiếu nhập thì: không được sửa số âm, phải sửa số 
 lượng tồn của nguyên liệu. 
 */
+
+go
+CREATE TRIGGER trg_bai55
+ON CHITIET_PHIEUNHAP
+AFTER UPDATE
+AS
+BEGIN
+    IF EXISTS (
+        SELECT *
+        FROM inserted i
+        WHERE i.soluong < 0
+    )
+    BEGIN
+        PRINT N'Số lượng nhập không được âm!'
+        ROLLBACK TRANSACTION
+        RETURN
+    END
+
+    UPDATE nguyenlieu
+    SET soluong = nguyenlieu.soluong + i.soluong - d.soluong
+    FROM inserted i
+    INNER JOIN deleted d ON i.manl = d.manl
+    WHERE nguyenlieu.manl = i.manl
+END
 
 -- 56.
 /*
@@ -1108,11 +1372,59 @@ Mã phiếu nhập vừa xóa còn trong bảng chi tiết phiếu nhập hay kh
 xóa phiếu nhập đó bên bảng PHIEUNHAP. 
 */
 
+go
+CREATE TRIGGER trg_bai56
+ON CHITIET_PHIEUNHAP
+AFTER DELETE
+AS
+BEGIN
+    UPDATE nguyenlieu
+    SET soluong = nguyenlieu.soluong - d.soluong
+    FROM deleted d
+    WHERE nguyenlieu.manl = d.manl;
+
+    IF NOT EXISTS (
+        SELECT *
+        FROM CHITIET_PHIEUNHAP
+        WHERE mapn IN (SELECT mapn FROM deleted)
+    )
+    BEGIN
+        DELETE FROM PHIEUNHAP
+        WHERE mapn IN (SELECT mapn FROM deleted);
+    END
+END
+
 -- 57.
 /*
 	 Viết Trigger cho lệnh Delete của bảng NHANVIEN. Khi xóa nhân viên thì tự động 
 xóa các bảng có liên quan ( chỉ xóa nhân viên đã nghĩ hơn 12 tháng). 
 */
+
+go
+CREATE TRIGGER trg_bai57
+ON NHANVIEN
+AFTER DELETE
+AS
+BEGIN
+	DECLARE @NhanVienNghi TABLE (manv char(5))
+
+    INSERT INTO @NhanVienNghi (manv)
+    SELECT manv
+    FROM deleted
+    WHERE DATEDIFF(MONTH, ngaynghi, GETDATE()) > 12
+
+    DELETE FROM phieuphuthu
+    WHERE manv IN (SELECT manv FROM @NhanVienNghi)
+
+    DELETE FROM phieuchi
+    WHERE manv IN (SELECT manv FROM @NhanVienNghi)
+
+    DELETE FROM hoadon
+    WHERE manv IN (SELECT manv FROM @NhanVienNghi)
+
+    DELETE FROM phieunhap
+    WHERE manv IN (SELECT manv FROM @NhanVienNghi)
+END
 
 -- 58.
 /*
@@ -1120,11 +1432,103 @@ xóa các bảng có liên quan ( chỉ xóa nhân viên đã nghĩ hơn 12 thá
 kiện nhân viên phải trên 18 tuổi. 
 */
 
+go
+CREATE TRIGGER trg_bai58
+ON NHANVIEN
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM inserted WHERE (year(CURRENT_TIMESTAMP) - year(ngaysinh)) <= 18)
+    BEGIN
+        print N'Nhân viên phải trên 18 tuổi!'
+        ROLLBACK TRANSACTION
+    END
+END
+
 -- 59.
 /*
 	Viết Trigger bắt lỗi dữ liệu không âm cho các trường số lượng , tổng tiền,.. (kiểu số) 
 có các bảng dữ liệu.
 */
+
+go
+CREATE TRIGGER trg_bai59_phieuphuthu
+ON phieuphuthu
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM inserted WHERE sotien < 0)
+    BEGIN
+        print N'Dữ liệu không được âm!'
+        ROLLBACK TRANSACTION
+    END
+END
+
+go
+CREATE TRIGGER trg_bai59_phieuchi
+ON phieuchi
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM inserted WHERE tongtien < 0)
+    BEGIN
+        print N'Dữ liệu không được âm!'
+        ROLLBACK TRANSACTION
+    END
+END
+
+go
+CREATE TRIGGER trg_bai59_phieunhap
+ON phieunhap
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM inserted WHERE tongtien < 0)
+    BEGIN
+        print N'Dữ liệu không được âm!'
+        ROLLBACK TRANSACTION
+    END
+END
+
+go
+CREATE TRIGGER trg_bai59_hoadon
+ON hoadon
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM inserted WHERE tongtien < 0)
+    BEGIN
+        print N'Dữ liệu không được âm!'
+        ROLLBACK TRANSACTION
+    END
+END
+
+go
+CREATE TRIGGER trg_bai59_chitiet_hoadon
+ON chitiet_hoadon
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM inserted WHERE soluong < 0)
+    BEGIN
+        print N'Dữ liệu không được âm!'
+        ROLLBACK TRANSACTION
+    END
+END
+
+go
+CREATE TRIGGER trg_bai59_nguyenlieu
+ON nguyenlieu
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM inserted WHERE soluong < 0)
+    BEGIN
+        print N'Dữ liệu không được âm!'
+        ROLLBACK TRANSACTION
+    END
+END
+
 
 -- 60.
 /*
@@ -1132,3 +1536,50 @@ có các bảng dữ liệu.
 phân quyền cho từng nhóm này theo mô tả ở Phần II.
 */
 
+-- BANHANG
+
+GRANT SELECT, INSERT ON HOADON TO BANHANG;
+GRANT SELECT, INSERT ON CHITIET_HOADON TO BANHANG;
+GRANT SELECT, INSERT ON PHIEUPHUTHU TO BANHANG;
+GRANT SELECT, INSERT ON PHIEUCHI TO BANHANG;
+
+DENY UPDATE, DELETE ON LOAITHUCUONG TO BANHANG;
+DENY UPDATE, DELETE ON THUCUONG TO BANHANG;
+DENY UPDATE, DELETE ON NGUYENLIEU TO BANHANG;
+DENY UPDATE, DELETE ON KHUVUC TO BANHANG;
+DENY UPDATE, DELETE ON CHINHANH TO BANHANG;
+DENY UPDATE, DELETE ON CONGTHUC TO BANHANG;
+
+-- KIEMKHO
+
+GRANT SELECT, INSERT ON PHIEUNHAP TO KIEMKHO;
+GRANT SELECT, INSERT ON CHITIET_PHIEUNHAP TO KIEMKHO;
+GRANT SELECT ON NGUYENLIEU TO KIEMKHO;
+
+DENY UPDATE, DELETE ON PHIEUNHAP TO KIEMKHO;
+DENY UPDATE, DELETE ON CHITIET_PHIEUNHAP TO KIEMKHO;
+DENY UPDATE, DELETE ON NGUYENLIEU TO KIEMKHO;
+
+-- QUANLY
+
+GRANT SELECT, INSERT, UPDATE ON NHANVIEN TO QUANLY;
+GRANT SELECT, INSERT, UPDATE ON BAOCAO TO QUANLY;
+GRANT SELECT, INSERT, UPDATE ON CONGTHUC TO QUANLY;
+GRANT SELECT, INSERT, UPDATE ON KHUVUC TO QUANLY;
+GRANT SELECT, INSERT, UPDATE ON CHINHANH TO QUANLY;
+GRANT SELECT, INSERT, UPDATE ON LOAITHUCUONG TO QUANLY;
+GRANT SELECT, INSERT, UPDATE ON NHACUNGCAP TO QUANLY;
+
+GRANT SELECT, INSERT ON HOADON TO QUANLY;
+GRANT SELECT, INSERT ON CHITIET_HOADON TO QUANLY;
+GRANT SELECT, INSERT ON PHIEUPHUTHU TO QUANLY;
+GRANT SELECT, INSERT ON PHIEUCHI TO QUANLY;
+GRANT SELECT, INSERT ON PHIEUNHAP TO QUANLY;
+GRANT SELECT, INSERT ON CHITIET_PHIEUNHAP TO QUANLY;
+GRANT SELECT ON THUCUONG TO QUANLY;
+
+DENY UPDATE, DELETE ON CHUCVU TO QUANLY;
+
+-- GIAMDOC
+
+GRANT ALL PRIVILEGES TO GIAMDOC;
