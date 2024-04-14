@@ -434,7 +434,7 @@ viên là NV3, mã nhà cung cấp là NCC1, ngày lập 12/1/2024 và tổng ti
 insert into phieunhap
 	(mapn, manv, mancc, ngaylap, tongtien)
 values
-	('PN55', 'NV3', 'NCC1', '01/12/2024', 1200000)
+	('PN55', 'NV3', 'NCC01', '01/12/2024', 1200000)
 
 -- 8.
 /*
@@ -614,36 +614,18 @@ order by soluong desc
 	 Viết câu lệnh thống kê tổng chi theo từng quý.
 */
 
-SELECT
-    YEAR(ngaylap) AS Nam,
-    DATEPART(QUARTER, ngaylap) AS Quy,
-    SUM(tongtien) AS TongChi
-FROM
-    (
-    SELECT
-        ngaylap,
-        SUM(tongtien) AS tongtien
-    FROM
-        phieunhap
-    GROUP BY
-        ngaylap
-
+SELECT YEAR(ngaylap) AS Nam, DATEPART(QUARTER, ngaylap) AS Quy, SUM(tongtien) AS TongChi
+FROM (
+    SELECT ngaylap, SUM(tongtien) AS tongtien
+    FROM phieunhap
+    GROUP BY ngaylap
     UNION ALL
-
-    SELECT
-        ngaylap,
-        SUM(tongtien) AS tongtien
-    FROM
-        phieuchi
-    GROUP BY
-        ngaylap
-    ) AS TongChiTheoQuy
-GROUP BY
-    YEAR(ngaylap),
-    DATEPART(QUARTER, ngaylap)
-ORDER BY
-    YEAR(ngaylap),
-    DATEPART(QUARTER, ngaylap);
+    SELECT ngaylap, SUM(tongtien) AS tongtien
+    FROM phieuchi
+    GROUP BY ngaylap
+) AS TongChiTheoQuy
+GROUP BY YEAR(ngaylap), DATEPART(QUARTER, ngaylap)
+ORDER BY YEAR(ngaylap), DATEPART(QUARTER, ngaylap)
 
 -- 25.
 /*
@@ -677,7 +659,7 @@ from (
 	Viết câu lệnh để tính doanh thu toàn hệ thống của quý 1 năm 2024. 
 */
 
-select (ds1.doanhthu + ds2.phuthu) as doanhthu
+select (isnull(ds1.doanhthu, 0) + isnull(ds2.phuthu,0)) as doanhthu
 from (
 	select sum(tongtien) as doanhthu
 	from hoadon
@@ -694,7 +676,7 @@ from (
 	 Tính lợi nhuận toàn hệ thống năm 2023.
 */
 
-select (ds1.doanhthu - ds2.tongchi) as loinhuan
+select (isnull(ds1.doanhthu, 0) - isnull(ds2.tongchi, 0)) as loinhuan
 from (
 	select sum(tongtien) as doanhthu
 	from hoadon
@@ -713,7 +695,7 @@ from (
 	Tính lợi nhuận theo từng chi nhánh. 
 */
 
-select	ds1.makv, (ds1.doanhthu - ds2.tongchi) as loinhuan
+select	ds1.makv, (isnull(ds1.doanhthu, 0) - isnull(ds2.tongchi,0)) as loinhuan
 from (
 	select makv, sum(tongtien) as doanhthu
 	from hoadon
@@ -1230,6 +1212,32 @@ tiết hóa đơn thì kiểm tra trùng mã, kiểm tra nhập số lượng â
 nguyên liệu nếu hết và phải giảm số lượng tồn của nguyên liệu nếu thỏa các điều 
 kiện còn lại.
 */
+
+go
+CREATE TRIGGER trg_bai51
+ON CHITIET_HOADON AFTER INSERT AS
+BEGIN
+    IF EXISTS (SELECT * FROM CHITIET_HOADON ch INNER JOIN inserted i ON ch.matu = i.matu AND ch.mahd = i.mahd)
+    BEGIN
+        PRINT N'Mã thức uống bị trùng trong chi tiết hóa đơn.'
+        ROLLBACK TRANSACTION
+    END
+    IF EXISTS (SELECT * FROM inserted I WHERE i.soluong <= 0)
+    BEGIN
+        PRINT N'Số lượng không được âm hoặc bằng 0.'
+        ROLLBACK TRANSACTION
+    END
+    IF EXISTS (SELECT * FROM nguyenlieu nl INNER JOIN inserted i ON nl.manl = i.manl WHERE nl.soluong < i.soluong)
+    BEGIN
+        PRINT N'Không đủ nguyên liệu cho chi tiết hóa đơn.'
+        ROLLBACK TRANSACTION
+    END
+
+    UPDATE nguyenlieu
+    SET soluong = soluong - i.soluong
+    FROM inserted i
+    WHERE nguyenlieu.manl = i.manl;
+END
 
 -- 52.
 /*
