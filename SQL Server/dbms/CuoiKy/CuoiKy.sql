@@ -758,10 +758,14 @@ begin
 					(manv, tennv, macv, macn, gioitinh, ngayvao, ngaynghi)
 				values
 					(@manv, @tennv, @macv, @macn, @gioitinh, @ngayvao, @ngaynghi)
+				
 			end
 		end
 	end
 end
+
+proc_bai32 'NV200', N'Nguyen Van A', 'CV1', 'CN1', '0', '01/01/2023', '12/31/2023'
+select * from nhanvien
 
 -- 33.
 /*
@@ -787,6 +791,9 @@ begin
 	end
 end
 
+proc_bai33 'TU70', 'tea', N'Rồng đỏ', '5000'
+select * from thucuong
+
 -- 34.
 /*
 	Viết thủ tục thêm mới một loại thức uống mới vào bảng LOAITHUCUONG với 
@@ -810,6 +817,9 @@ begin
 	end
 end
 
+proc_bai34 'L50', N'loại t50'
+select * from loaithucuong
+
 -- 35.
 /*
 	Viết thủ tục thêm mới một nguyên vào bảng NGUYENLIEU với tham số đầu vào 
@@ -832,6 +842,9 @@ begin
 			(@manl, @tennl, @soluong, @donvi)
 	end
 end
+
+proc_bai35 'NL50', 'Nguyenlieu', 50, 'cái'
+select * from nguyenlieu
 
 -- 36.
 /*
@@ -857,10 +870,14 @@ begin
 		else
 		begin
 			update thucuong
-			set matu = @matu, maloai = @maloai, tentu = @tentu, dongia = @dongia
+			set maloai = @maloai, tentu = @tentu, dongia = @dongia
+			where matu = @matu
 		end
 	end
 end
+
+proc_bai36 'TU10', 'tea', 'Thucuong10', 50000
+select * from thucuong
 
 -- 37.
 /*
@@ -884,6 +901,8 @@ begin
 		where tenloai = @tenloai
 	end
 end
+
+proc_bai37 'Orange'
 
 -- 38.
 /*
@@ -912,6 +931,8 @@ begin
 	end
 end
 
+proc_bai38 N'Trà dâu'
+
 -- 39.
 /*
 	Viết thủ tục dùng để tìm những thức uống không bán được của chi nhánh bất kì trong 
@@ -920,17 +941,23 @@ thời gian kết thúc.
 */
 
 go
-create proc proc_bai39(@tencn nvarchar(100), @batdau datetime, @ketthuc datetime)
+alter proc proc_bai39(@tencn nvarchar(100), @batdau datetime, @ketthuc datetime)
 as
 begin
 	select *
 	from thucuong
 	where matu not in (
-		select *
-		from hoadon
-		where ngaylap between @batdau and @ketthuc
-	)
+		select matu
+		from chitiet_hoadon
+		join hoadon on chitiet_hoadon.mahd = hoadon.mahd
+		join nhanvien on nhanvien.manv = hoadon.manv
+		join chinhanh on chinhanh.macn = nhanvien.macn
+		where (ngaylap between @batdau and @ketthuc)
+	) and (tencn = @tencn)
 end
+
+proc_bai39 N'Chi nhánh Ngọc Lan', '01/01/2023', '12/04/2024'
+select * from hoadon
 
 -- 40.
 /*
@@ -956,6 +983,9 @@ begin
 	end
 end
 
+proc_bai40 N'ABC'
+
+
 -- 41.
 /*
 	 Viết thủ tục tăng giá của một thức uống bất kì với tham số truyền vào là tên thức 
@@ -977,6 +1007,7 @@ begin
 		begin
 			update thucuong
 			set dongia = dongia * (1 + @hesogia)
+			where tentu = @tentu
 		end
 		else
 		begin
@@ -984,6 +1015,9 @@ begin
 		end
 	end
 end
+
+proc_bai41 N'Trà dâu', 0.5
+select * from thucuong
 
 -- 42.
 /*
@@ -1010,6 +1044,8 @@ begin
 	end
 end
 
+proc_bai42 N'Chi nhánh Ngọc Lan', '01/01/2023', '12/31/2024'
+
 -- 43.
 /*
 	Viết thủ tục tính lợi nhuận của hệ thống trong khoảng thời gian bất kì. Với tham số 
@@ -1034,6 +1070,8 @@ begin
 		where (phieuchi.ngaylap between @batdau and @ketthuc) and (phieunhap.ngaylap between @batdau and @ketthuc)
 	) ds2
 end
+
+proc_bai43 '01/01/2023', '12/31/2024'
 
 -- 44.
 /*
@@ -1063,6 +1101,8 @@ begin
 	end
 end
 
+proc_bai44 N'Chi nhánh Bình Minh', '01/01/2023', '12/31/2024'
+
 -- 45.
 /*
 	 Viết thủ tục tính tổng số tiền doanh thu của hệ thống trong một ngày bất kì với tham 
@@ -1075,20 +1115,22 @@ as
 begin
 	declare @tienhd bigint
 	set @tienhd = (
-		select sum(tongtien) as doanhthu
+		select sum(isnull(tongtien, 0)) as doanhthu
 		from hoadon
 		where ngaylap = @ngay
 	)
 
 	declare @tienpt bigint
 	set @tienpt = (
-		select sum(sotien) as phuthu
+		select sum(isnull(sotien, 0)) as phuthu
 		from phieuphuthu
 		where ngaylap = @ngay
 	)
 
-	select (@tienhd + @tienpt) as doanhthu
+	select isnull(@tienhd, 0) + isnull(@tienpt, 0) as doanhthu
 end
+
+proc_bai45 '04/04/2024'
 
 -- 46.
 /*
@@ -1116,6 +1158,8 @@ begin
 	end
 end
 
+proc_bai46 '01/01/2023', '12/31/2024'
+
 -- 47.
 /*
 	 Viết thủ tục liệt kê các loại nguyên liệu (tên, số lượng tồn, đơn vị) của một phiếu 
@@ -1131,6 +1175,8 @@ begin
 	join nguyenlieu on nguyenlieu.manl = chitiet_phieunhap.manl
 	where mapn = @mapn
 end
+
+proc_bai47 'PN01'
 
 -- 48.
 /*
@@ -1157,8 +1203,10 @@ begin
 		where ngaylap between @batdau and @ketthuc
 	)
 
-	select (@tienhd + @tienpt) as doanhthu
+	select isnull(@tienhd, 0) + isnull(@tienpt, 0) as doanhthu
 end
+
+proc_bai48 '01/01/2024', '12/31/2024'
 
 -- 49.
 /*
@@ -1185,8 +1233,11 @@ begin
 		where ngaylap between @batdau and @ketthuc
 	)
 
-	select (@tienpn + @tienpc) as tongchi
+	select (isnull(@tienpn, 0) + isnull(@tienpc, 0)) as tongchi
 end
+
+proc_bai49 '01/01/2024', '12/31/2024'
+
 
 -- 50.
 /*
@@ -1204,6 +1255,8 @@ begin
 	join nguyenlieu on nguyenlieu.manl = chitiet_phieunhap.manl
 	where mapn = @mapn
 end
+
+proc_bai50 'PN01'
 
 -- 51.
 /*
