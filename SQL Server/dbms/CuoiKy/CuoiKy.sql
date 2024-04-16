@@ -950,13 +950,12 @@ begin
 		select matu
 		from chitiet_hoadon
 		join hoadon on chitiet_hoadon.mahd = hoadon.mahd
-		join nhanvien on nhanvien.manv = hoadon.manv
-		join chinhanh on chinhanh.macn = nhanvien.macn
-		where (ngaylap between @batdau and @ketthuc)
-	) and (tencn = @tencn)
+		where ngaylap between @batdau and @ketthuc
+	)
 end
 
-proc_bai39 N'Chi nhánh Ngọc Lan', '01/01/2023', '12/04/2024'
+
+proc_bai39 N'Chi nhánh Bình Minh', '01/01/2023', '12/04/2024'
 select * from hoadon
 
 -- 40.
