@@ -1267,29 +1267,44 @@ kiện còn lại.
 
 go
 CREATE TRIGGER trg_bai51
-ON CHITIET_HOADON AFTER INSERT AS
+ON CHITIET_HOADON
+INSTEAD OF INSERT
+AS
 BEGIN
-    IF EXISTS (SELECT * FROM CHITIET_HOADON ch INNER JOIN inserted i ON ch.matu = i.matu AND ch.mahd = i.mahd)
-    BEGIN
-        PRINT N'Mã thức uống bị trùng trong chi tiết hóa đơn.'
-        ROLLBACK TRANSACTION
-    END
-    IF EXISTS (SELECT * FROM inserted I WHERE i.soluong <= 0)
-    BEGIN
-        PRINT N'Số lượng không được âm hoặc bằng 0.'
-        ROLLBACK TRANSACTION
-    END
-    IF EXISTS (SELECT * FROM nguyenlieu nl INNER JOIN inserted i ON nl.manl = i.manl WHERE nl.soluong < i.soluong)
-    BEGIN
-        PRINT N'Không đủ nguyên liệu cho chi tiết hóa đơn.'
-        ROLLBACK TRANSACTION
-    END
+	 DECLARE @MATU CHAR(5)
+	 DECLARE @MAHD NVARCHAR(20)
+	 DECLARE @SOLUONG FLOAT
+	 SELECT @MATU = MATU, @MAHD = MAHD, @SOLUONG = SOLUONG FROM inserted
 
-    UPDATE nguyenlieu
-    SET soluong = soluong - i.soluong
-    FROM inserted i
-    WHERE nguyenlieu.manl = i.manl;
+	 IF EXISTS (SELECT 1 FROM CHITIET_HOADON WHERE MATU = @MATU AND MAHD = @MAHD)
+	 BEGIN
+		 PRINT N'Mã thức uống đã tồn tại'
+		 ROLLBACK TRANSACTION
+		 RETURN
+	 END
+	 IF @SOLUONG < 0
+	 BEGIN
+		 PRINT N'Số lượng không thể âm'
+		 ROLLBACK TRANSACTION
+		 RETURN
+	 END
+	 IF NOT EXISTS (SELECT 1 FROM NGUYENLIEU WHERE MANL = @MATU AND SOLUONG >= @SOLUONG)
+	 BEGIN
+		 PRINT N'Không đủ nguyên liệu để thêm'
+		 ROLLBACK TRANSACTION
+		 RETURN
+	 END
+
+	 UPDATE NGUYENLIEU
+	 SET SOLUONG = SOLUONG - @SOLUONG
+	 WHERE MANL = @MATU
+
+	 INSERT INTO CHITIET_HOADON (MATU, MAHD, SOLUONG) VALUES (@MATU, @MAHD, @SOLUONG)
 END
+
+INSERT INTO CHITIET_HOADON (MATU, MAHD, SOLUONG)
+VALUES ('TU01', 'HD00', 100)
+
 
 -- 52.
 /*
@@ -1299,29 +1314,25 @@ lượng thức uống trong chi tiết hóa đơn thì phải sửa số lượ
 
 go
 CREATE TRIGGER trg_bai52
-ON CHITIET_HOADON
-AFTER UPDATE
-AS
+ON CHITIET_HOADON AFTER UPDATE AS
 BEGIN
-    IF UPDATE(soluong)
+    IF UPDATE(SOLUONG)
     BEGIN
-        UPDATE nguyenlieu
-        SET soluong = soluong - (
-			SELECT soluong * so_luong_nguyen_lieu 
-            FROM inserted
-            INNER JOIN thucuong tc ON inserted.matu = tc.matu
-		)
-        FROM nguyenlieu
-        JOIN (
-            SELECT matu, SUM(soluong) AS so_luong_nguyen_lieu 
-            FROM inserted
-            GROUP BY matu
-        ) AS i ON nguyenlieu.manl = i.matu
-        WHERE EXISTS (
-			SELECT 1 FROM inserted i WHERE nguyenlieu.manl = i.matu
-		)
+        DECLARE @MATU CHAR(5)
+        DECLARE @SOLUONG_OLD FLOAT
+        DECLARE @SOLUONG_NEW FLOAT
+        SELECT @MATU = INSERTED.MATU, @SOLUONG_OLD = d.SOLUONG, @SOLUONG_NEW = INSERTED.SOLUONG FROM INSERTED INNER JOIN DELETED d ON INSERTED.MATU = d.MATU AND INSERTED.MAHD = d.MAHD
+        IF NOT EXISTS (SELECT * FROM NGUYENLIEU WHERE MANL = @MATU AND SOLUONG >= @SOLUONG_NEW) BEGIN
+            PRINT N'Phải sửa số lượng tồn của nguyên liệu.'; ROLLBACK TRANSACTION; RETURN;
+        END
+        ELSE UPDATE NGUYENLIEU SET SOLUONG = SOLUONG - (@SOLUONG_NEW - @SOLUONG_OLD) WHERE MANL = @MATU
     END
 END
+
+UPDATE CHITIET_HOADON SET SOLUONG = 50
+WHERE MATU = 'TU01' AND MAHD = 'HD01';
+
+
 
 -- 53.
 /*
@@ -1332,25 +1343,23 @@ hóa đơn thì phải tăng số lượng tồn của nguyên liệu kiểm tra
 
 go
 CREATE TRIGGER trg_bai53
-ON CHITIET_HOADON
-AFTER DELETE
-AS
+ON CHITIET_HOADON AFTER DELETE AS
 BEGIN
-    UPDATE nguyenlieu
-    SET soluong = nguyenlieu.soluong + deleted.soluong
-    FROM deleted
-    INNER JOIN thucuong ON deleted.matu = thucuong.matu
-    INNER JOIN congthuc ON thucuong.matu = congthuc.matu
-    INNER JOIN nguyenlieu ON congthuc.manl = nguyenlieu.manl;
-
-    DELETE FROM HOADON
-    WHERE mahd IN (
-        SELECT mahd
-        FROM deleted
-        GROUP BY mahd
-        HAVING COUNT(*) = 0
-    );
+    DECLARE @DeletedHoaDon NVARCHAR(20)
+    SELECT @DeletedHoaDon = MAHD FROM deleted;
+    IF @DeletedHoaDon IS NULL
+		PRINT N'Không có chi tiết hóa đơn nào được xóa.';RETURN;
+    UPDATE NGUYENLIEU SET SOLUONG = SOLUONG + (SELECT SUM(SOLUONG) FROM deleted WHERE MAHD = @DeletedHoaDon) WHERE MANL IN (SELECT MANL FROM deleted)
+    IF NOT EXISTS (SELECT 1 FROM CHITIET_HOADON WHERE MAHD = @DeletedHoaDon)
+    BEGIN
+        DELETE FROM HOADON WHERE MAHD = @DeletedHoaDon;
+        PRINT N'Đã xóa hóa đơn ' + @DeletedHoaDon + N' do không còn chi tiết hóa đơn liên quan.';
+    END
+    ELSE
+        PRINT N'Đã xóa chi tiết hóa đơn và cập nhật số lượng tồn của nguyên liệu.'
 END
+
+DELETE FROM CHITIET_HOADON WHERE MAHD = 'HD100' AND MATU = 'TU09';
 
 -- 54.
 /*
@@ -1361,37 +1370,30 @@ của nguyên liệu (nhập hàng).
 
 go
 CREATE TRIGGER trg_bai54
-ON CHITIET_PHIEUNHAP
-AFTER INSERT
-AS
+ON CHITIET_PHIEUNHAP INSTEAD OF INSERT AS
 BEGIN
-    IF EXISTS (
-        SELECT *
-        FROM CHITIET_PHIEUNHAP cp
-        INNER JOIN inserted i ON cp.manl = i.manl
-        GROUP BY cp.manl
-        HAVING COUNT(*) > 1
-    )
+    DECLARE @MANL CHAR(5);
+    DECLARE @SOLUONG INT;
+    SELECT @MANL = MANL, @SOLUONG = SOLUONG FROM inserted;
+    IF @SOLUONG < 0
     BEGIN
-        PRINT N'Mã nguyên liệu bị trùng!'
-        ROLLBACK TRANSACTION
+        PRINT N'Số lượng không được âm.';ROLLBACK TRANSACTION;RETURN;
     END
-
-    IF EXISTS (
-        SELECT *
-        FROM inserted i
-        WHERE i.soluong < 0
-    )
+    IF NOT EXISTS (SELECT 1 FROM CHITIET_PHIEUNHAP WHERE MANL = @MANL)
     BEGIN
-        PRINT N'Số lượng nhập không được âm!'
-        ROLLBACK TRANSACTION
-    END
+        UPDATE NGUYENLIEU SET SOLUONG = SOLUONG + @SOLUONG WHERE MANL = @MANL;
 
-    UPDATE nguyenlieu
-    SET soluong = nguyenlieu.soluong + i.soluong
-    FROM inserted i
-    WHERE nguyenlieu.manl = i.manl
-END
+        INSERT INTO CHITIET_PHIEUNHAP (MANL, SOLUONG)
+        SELECT MANL, SOLUONG FROM inserted;
+    END
+    ELSE
+    BEGIN
+        PRINT N'Mã nguyên liệu đã tồn tại trong chi tiết phiếu nhập.';ROLLBACK TRANSACTION;RETURN;
+    END
+END;
+
+INSERT INTO CHITIET_PHIEUNHAP (MANL, SOLUONG)
+VALUES ('NL01', -20);
 
 -- 55.
 /*
@@ -1402,27 +1404,32 @@ lượng tồn của nguyên liệu.
 
 go
 CREATE TRIGGER trg_bai55
-ON CHITIET_PHIEUNHAP
-AFTER UPDATE
-AS
+ON CHITIET_PHIEUNHAP INSTEAD OF UPDATE AS
 BEGIN
-    IF EXISTS (
-        SELECT *
-        FROM inserted i
-        WHERE i.soluong < 0
-    )
+    DECLARE @UpdatedRows TABLE (MANL CHAR(5),SOLUONG FLOAT);
+    DECLARE @OldManl CHAR(5);DECLARE @OldSoluong FLOAT;
+    DECLARE @NewManl CHAR(5);DECLARE @NewSoluong FLOAT;
+    INSERT INTO @UpdatedRows (MANL, SOLUONG) SELECT i.MANL, i.SOLUONG FROM inserted i INNER JOIN deleted d ON i.MANL = d.MANL;
+    IF EXISTS (SELECT * FROM @UpdatedRows WHERE SOLUONG < 0)
     BEGIN
-        PRINT N'Số lượng nhập không được âm!'
-        ROLLBACK TRANSACTION
-        RETURN
-    END
+        PRINT N'Số lượng không được âm.';ROLLBACK TRANSACTION;RETURN;
+    END;
+    DECLARE @RowCount INT = (SELECT COUNT(*) FROM @UpdatedRows);
+    IF @RowCount > 0 BEGIN
+        DECLARE @Index INT = 1;
+        WHILE @Index <= @RowCount
+        BEGIN
+            SELECT @OldManl = MANL, @OldSoluong = SOLUONG FROM @UpdatedRows WHERE @@ROWCOUNT = 1;
+            SELECT @NewManl = MANL, @NewSoluong = SOLUONG FROM @UpdatedRows WHERE @@ROWCOUNT = 1;
+            UPDATE NGUYENLIEU SET SOLUONG = SOLUONG - @OldSoluong + @NewSoluong WHERE MANL = @NewManl;
+            PRINT N'Đã sửa số lượng tồn của nguyên liệu thành công.';
+            SET @Index = @Index + 1;
+        END;
+    END;
+    UPDATE CHITIET_PHIEUNHAP SET SOLUONG = u.SOLUONG FROM CHITIET_PHIEUNHAP cp JOIN @UpdatedRows u ON cp.MANL = u.MANL;
+END;
 
-    UPDATE nguyenlieu
-    SET soluong = nguyenlieu.soluong + i.soluong - d.soluong
-    FROM inserted i
-    INNER JOIN deleted d ON i.manl = d.manl
-    WHERE nguyenlieu.manl = i.manl
-END
+UPDATE CHITIET_PHIEUNHAP SET SOLUONG = -50 WHERE MANL = 'NL01';
 
 -- 56.
 /*
@@ -1434,25 +1441,32 @@ xóa phiếu nhập đó bên bảng PHIEUNHAP.
 
 go
 CREATE TRIGGER trg_bai56
-ON CHITIET_PHIEUNHAP
-AFTER DELETE
-AS
+ON CHITIET_PHIEUNHAP INSTEAD OF DELETE AS
 BEGIN
-    UPDATE nguyenlieu
-    SET soluong = nguyenlieu.soluong - d.soluong
-    FROM deleted d
-    WHERE nguyenlieu.manl = d.manl;
+    IF NOT EXISTS (SELECT * FROM deleted) BEGIN PRINT N'Không có chi tiết phiếu nhập nào được xóa.';ROLLBACK TRANSACTION;RETURN;END;
+    DECLARE @DeletedRows TABLE (MANL CHAR(5), SOLUONG FLOAT); DECLARE @Mapn CHAR(10);
+    INSERT INTO @DeletedRows (MANL, SOLUONG) SELECT MANL, SOLUONG FROM deleted;
+    DECLARE @RowCount INT = (SELECT COUNT(*) FROM @DeletedRows);
+    IF @RowCount > 0 BEGIN
+        DECLARE @Index INT = 1;
+        WHILE @Index <= @RowCount BEGIN
+            DECLARE @ManlToDelete CHAR(5);DECLARE @SoluongToDelete FLOAT;
+            SELECT @ManlToDelete = MANL, @SoluongToDelete = SOLUONG FROM @DeletedRows WHERE @@ROWCOUNT = 1;
+            UPDATE NGUYENLIEU SET SOLUONG = SOLUONG - @SoluongToDelete WHERE MANL = @ManlToDelete;
+            PRINT N'Đã giảm số lượng tồn của nguyên liệu thành công.';
+            SET @Index = @Index + 1;
+        END;
+    END;
+    SELECT @Mapn = MAPN FROM deleted;
+    IF NOT EXISTS (SELECT 1 FROM CHITIET_PHIEUNHAP WHERE MAPN = @Mapn) BEGIN
+        DELETE FROM PHIEUNHAP WHERE MAPN = @Mapn;
+        PRINT N'Đã xóa phiếu nhập ' + @Mapn + N' và chi tiết phiếu nhập tương ứng thành công.'; END
+    ELSE
+        PRINT N'Đã xóa chi tiết phiếu nhập thành công.';
+END;
 
-    IF NOT EXISTS (
-        SELECT *
-        FROM CHITIET_PHIEUNHAP
-        WHERE mapn IN (SELECT mapn FROM deleted)
-    )
-    BEGIN
-        DELETE FROM PHIEUNHAP
-        WHERE mapn IN (SELECT mapn FROM deleted);
-    END
-END
+DELETE FROM CHITIET_PHIEUNHAP WHERE MANL ='NL01'
+
 
 -- 57.
 /*
@@ -1463,28 +1477,24 @@ xóa các bảng có liên quan ( chỉ xóa nhân viên đã nghĩ hơn 12 thá
 go
 CREATE TRIGGER trg_bai57
 ON NHANVIEN
-AFTER DELETE
+INSTEAD OF DELETE
 AS
 BEGIN
-	DECLARE @NhanVienNghi TABLE (manv char(5))
-
-    INSERT INTO @NhanVienNghi (manv)
-    SELECT manv
-    FROM deleted
-    WHERE DATEDIFF(MONTH, ngaynghi, GETDATE()) > 12
-
-    DELETE FROM phieuphuthu
-    WHERE manv IN (SELECT manv FROM @NhanVienNghi)
-
-    DELETE FROM phieuchi
-    WHERE manv IN (SELECT manv FROM @NhanVienNghi)
-
-    DELETE FROM hoadon
-    WHERE manv IN (SELECT manv FROM @NhanVienNghi)
-
-    DELETE FROM phieunhap
-    WHERE manv IN (SELECT manv FROM @NhanVienNghi)
+    DECLARE @DeletedEmployees TABLE (manv CHAR(5));
+    INSERT INTO @DeletedEmployees (manv) SELECT manv FROM deleted where DATEDIFF(MONTH, ngaynghi, GETDATE()) > 12;
+    DELETE FROM baocao WHERE manv IN (SELECT manv FROM @DeletedEmployees)
+	DELETE FROM phieuphuthu WHERE manv IN (SELECT manv FROM @DeletedEmployees)
+    DELETE FROM phieuchi WHERE manv IN (SELECT manv FROM @DeletedEmployees)
+	DECLARE @TablePhieuNhap TABLE (mapn CHAR(10));
+	INSERT INTO @TablePhieuNhap (mapn) SELECT mapn FROM phieunhap WHERE manv IN (SELECT manv FROM @DeletedEmployees)
+	DELETE FROM chitiet_phieunhap where mapn in (select mapn from @TablePhieuNhap)
+    DELETE FROM phieunhap WHERE mapn IN (SELECT mapn FROM @TablePhieuNhap)
+    DELETE FROM hoadon WHERE manv IN (SELECT manv FROM @DeletedEmployees)
+    DELETE FROM NHANVIEN WHERE manv IN (SELECT manv FROM @DeletedEmployees) 
 END
+
+DELETE FROM NHANVIEN WHERE MANV = 'NV0';
+
 
 -- 58.
 /*
@@ -1504,6 +1514,11 @@ BEGIN
         ROLLBACK TRANSACTION
     END
 END
+
+insert into NHANVIEN
+	(MANV,TENNV,MACV,MACN,NGAYSINH,GIOITINH,SODT,EMAIL,DIACHI,NGAYVAO,NGAYNGHI)
+values
+	('NV200', N'Trần Thị Tú', 'CV0', 'CN0', '01/01/2018', 1, '6464336535' ,'tttu@gmail.com', N'123 Nguyen Trai - Q.1 - TP.HCM', '04/14/2024', NULL)
 
 -- 59.
 /*
@@ -1588,6 +1603,11 @@ BEGIN
         ROLLBACK TRANSACTION
     END
 END
+
+insert into chitiet_hoadon
+	(MATU,MAHD,SOLUONG)
+values
+	('TU01', 'HD07', -1)
 
 
 -- 60.
