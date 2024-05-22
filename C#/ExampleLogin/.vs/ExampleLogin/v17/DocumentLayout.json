@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\forgotpassform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\forgotpassform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\captcha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\captcha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\registerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,11 +23,7 @@
       "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\forgotpassform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\forgotpassform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\forgotpassform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -39,10 +43,6 @@
       "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\loginform.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\captcha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\captcha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -58,17 +58,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "RegisterForm.cs",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\RegisterForm.cs",
               "RelativeDocumentMoniker": "ExampleLogin\\RegisterForm.cs",
               "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\RegisterForm.cs",
               "RelativeToolTip": "ExampleLogin\\RegisterForm.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAADQAAAAUAAAA",
+              "ViewState": "AQIAADIAAAAAAAAAAAAwwD0AAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-22T09:01:47.46Z",
               "IsPinned": true,
@@ -76,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "ForgotPassForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\ForgotPassForm.cs",
               "RelativeDocumentMoniker": "ExampleLogin\\ForgotPassForm.cs",
@@ -89,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "RegisterForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\RegisterForm.cs",
               "RelativeDocumentMoniker": "ExampleLogin\\RegisterForm.cs",
@@ -102,31 +102,43 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Captcha.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\Captcha.cs",
+              "RelativeDocumentMoniker": "ExampleLogin\\Captcha.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\Captcha.cs",
+              "RelativeToolTip": "ExampleLogin\\Captcha.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T09:12:55.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ForgotPassForm.cs",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\ForgotPassForm.cs",
               "RelativeDocumentMoniker": "ExampleLogin\\ForgotPassForm.cs",
               "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\ForgotPassForm.cs",
               "RelativeToolTip": "ExampleLogin\\ForgotPassForm.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAgwCYAAAApAAAA",
+              "ViewState": "AQIAACEAAAAAAAAAAAAowDMAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-22T09:48:40.325Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "MainForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\MainForm.cs",
               "RelativeDocumentMoniker": "ExampleLogin\\MainForm.cs",
               "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\MainForm.cs [Design]",
               "RelativeToolTip": "ExampleLogin\\MainForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T08:39:15.568Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-05-22T08:39:15.568Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "LoginForm.cs",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\LoginForm.cs",
               "RelativeDocumentMoniker": "ExampleLogin\\LoginForm.cs",
@@ -138,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "LoginForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\LoginForm.cs",
               "RelativeDocumentMoniker": "ExampleLogin\\LoginForm.cs",
@@ -149,7 +161,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "LoginForm.Designer.cs",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\LoginForm.Designer.cs",
               "RelativeDocumentMoniker": "ExampleLogin\\LoginForm.Designer.cs",
@@ -161,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "LoginForm.resx",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\LoginForm.resx",
               "RelativeDocumentMoniker": "ExampleLogin\\LoginForm.resx",
@@ -169,18 +181,6 @@
               "RelativeToolTip": "ExampleLogin\\LoginForm.resx",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
               "WhenOpened": "2024-05-22T10:04:15.093Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Captcha.cs",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\Captcha.cs",
-              "RelativeDocumentMoniker": "ExampleLogin\\Captcha.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\Captcha.cs",
-              "RelativeToolTip": "ExampleLogin\\Captcha.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAowAcAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T09:12:55.104Z"
             },
             {
               "$type": "Document",
@@ -204,8 +204,7 @@
               "RelativeToolTip": "ExampleLogin\\RegisterForm.Designer.cs",
               "ViewState": "AQIAAAgAAAAAAAAAAAAQwA8AAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T08:45:04.453Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-22T08:45:04.453Z"
             }
           ]
         }

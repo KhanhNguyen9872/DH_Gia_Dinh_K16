@@ -28,7 +28,7 @@ public class Captcha
         this.first = random.Next(0, 25);
         this.second = random.Next(1, 25);
         string calc_str = "";
-        int calc = random.Next(0, 4);
+        int calc = random.Next(0, 3); // no div '/'
         if (calc == 0)
         {
             calc_str = " + ";

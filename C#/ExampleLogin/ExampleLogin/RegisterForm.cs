@@ -32,10 +32,12 @@ namespace ExampleLogin
             string email = this.tbEmail.Text;
             string password = this.tbPassword.Text;
             string confirmPass = this.tbConfirmPass.Text;
+            string captchaResult = this.tbCaptcha.Text;
             if (string.IsNullOrEmpty(username) || 
                 string.IsNullOrEmpty(email) ||
                 string.IsNullOrEmpty(password) || 
-                string.IsNullOrEmpty(confirmPass)
+                string.IsNullOrEmpty(confirmPass) ||
+                string.IsNullOrEmpty(captchaResult)
                 )
             {
                 MessageBox.Show("?? Did you forget anything ??", "ERROR", MessageBoxButtons.OK);
@@ -45,10 +47,20 @@ namespace ExampleLogin
             }
             else
             {
+                
                 if (password == confirmPass)
                 {
-                    MessageBox.Show("Register successfully!", "Successfully", MessageBoxButtons.OK);
-                    this.Close();
+                    if (Convert.ToInt32(captchaResult) == this.captcha.getResult())
+                    {
+                        MessageBox.Show("Register successfully!", "Successfully", MessageBoxButtons.OK);
+                        this.Close();
+                    } else
+                    {
+                        MessageBox.Show("Captcha Error!", "ERROR", MessageBoxButtons.OK);
+                        this.captcha.renew();
+                        this.lbCaptcha.Text = this.captcha.getString();
+                        this.tbCaptcha.Text = "";
+                    }
                 }
                 else
                 {
