@@ -12,9 +12,13 @@ namespace ExampleLogin
 {
     public partial class RegisterForm : Form
     {
+        private Captcha captcha = null;
         public RegisterForm()
         {
             InitializeComponent();
+            this.captcha = new Captcha();
+            this.lbCaptcha.Text = this.captcha.getString();
+            this.tbCaptcha.Text = "";
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -35,6 +39,9 @@ namespace ExampleLogin
                 )
             {
                 MessageBox.Show("?? Did you forget anything ??", "ERROR", MessageBoxButtons.OK);
+                this.captcha.renew();
+                this.lbCaptcha.Text = this.captcha.getString();
+                this.tbCaptcha.Text = "";
             }
             else
             {
@@ -46,6 +53,9 @@ namespace ExampleLogin
                 else
                 {
                     MessageBox.Show("Confirm password not same!", "WARNING", MessageBoxButtons.OK);
+                    this.captcha.renew();
+                    this.lbCaptcha.Text = this.captcha.getString();
+                    this.tbCaptcha.Text = "";
                 }
             }
         }

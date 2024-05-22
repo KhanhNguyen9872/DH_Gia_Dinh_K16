@@ -22,3 +22,4 @@ C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\Exampl
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.csproj.CoreCompileInputs.cache
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.exe
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.pdb
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.MainForm.resources
