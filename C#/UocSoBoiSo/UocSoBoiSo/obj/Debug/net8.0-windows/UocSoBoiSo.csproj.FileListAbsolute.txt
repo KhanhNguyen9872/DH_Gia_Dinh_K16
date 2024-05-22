@@ -1,0 +1,16 @@
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\bin\Debug\net8.0-windows\UocSoBoiSo.exe
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\bin\Debug\net8.0-windows\UocSoBoiSo.deps.json
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\bin\Debug\net8.0-windows\UocSoBoiSo.runtimeconfig.json
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\bin\Debug\net8.0-windows\UocSoBoiSo.dll
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\bin\Debug\net8.0-windows\UocSoBoiSo.pdb
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\UocSoBoiSo.Form1.resources
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\UocSoBoiSo.csproj.GenerateResource.cache
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\UocSoBoiSo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\UocSoBoiSo.AssemblyInfoInputs.cache
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\UocSoBoiSo.AssemblyInfo.cs
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\UocSoBoiSo.csproj.CoreCompileInputs.cache
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\UocSoBoiSo.dll
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\refint\UocSoBoiSo.dll
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\UocSoBoiSo.pdb
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\UocSoBoiSo.genruntimeconfig.cache
+C:\Users\KhanhNguyen9872\source\repos\UocSoBoiSo\UocSoBoiSo\obj\Debug\net8.0-windows\ref\UocSoBoiSo.dll
