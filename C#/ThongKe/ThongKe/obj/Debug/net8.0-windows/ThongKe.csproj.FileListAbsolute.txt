@@ -1,0 +1,17 @@
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\bin\Debug\net8.0-windows\ThongKe.exe
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\bin\Debug\net8.0-windows\ThongKe.deps.json
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\bin\Debug\net8.0-windows\ThongKe.runtimeconfig.json
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\bin\Debug\net8.0-windows\ThongKe.dll
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\bin\Debug\net8.0-windows\ThongKe.pdb
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ThongKe.Form1.resources
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ThongKe.Properties.Resources.resources
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ThongKe.csproj.GenerateResource.cache
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ThongKe.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ThongKe.AssemblyInfoInputs.cache
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ThongKe.AssemblyInfo.cs
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ThongKe.csproj.CoreCompileInputs.cache
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ThongKe.dll
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\refint\ThongKe.dll
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ThongKe.pdb
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ThongKe.genruntimeconfig.cache
+C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\obj\Debug\net8.0-windows\ref\ThongKe.dll
