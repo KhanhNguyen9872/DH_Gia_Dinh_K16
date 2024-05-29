@@ -19,11 +19,11 @@ namespace ExampleLogin
         public LoginForm()
         {
             InitializeComponent();
-            String server = "DESKTOP-UI9AO8H";
+            // String server = "DESKTOP-UI9AO8H";
             String db = "Nhom1";
-            String user = "root";
-            String passwd = "root";
-            this.connSQL = new SQLToolBox(server, db, user, passwd);
+            // String user = "root";
+            // String passwd = "root";
+            this.connSQL = new SQLToolBox(db);
             this.connSQL.connect();
         }
 
@@ -49,10 +49,10 @@ namespace ExampleLogin
                 MessageBox.Show("?? Did you forget anything ??", "ERROR", MessageBoxButtons.OK);
             } else
             {
-                List<Dictionary<string, string>> data = this.connSQL.select("SELECT username, password FROM account;");
+                SQLTable data = this.connSQL.select("SELECT username, password FROM account;");
                 for(int i = 0; i < data.Count; i++)
                 {
-                    if ((username.Equals(data[i]["username"])) && (password.Equals(data[i]["password"])))
+                    if ((username.Equals(data.Row(i).Column("username"))) && (password.Equals(data.Row(i).Column("password"))))
                     {
                         MessageBox.Show("Welcome " + username + "!\nClose this window to start program!", "Successfully", MessageBoxButtons.OK);
                         Form main = new MainForm();

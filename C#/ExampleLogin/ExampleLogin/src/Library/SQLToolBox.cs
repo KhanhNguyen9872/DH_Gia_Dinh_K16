@@ -9,22 +9,22 @@ namespace ExampleLogin.src.Library
     public class SQLToolBox
     {
         private SqlConnection conn = null;
-        private String server;
+        // private String server;
         private String db;
-        private String username;
-        private String password;
+        // private String username;
+        // private String password;
 
-        public SQLToolBox(String server, String db, String user, String passwd)
+        public SQLToolBox(String db)
         {
-            this.server = server;
+            // this.server = server;
             this.db = db;
-            this.username = user;
-            this.password = passwd;
+            // this.username = user;
+            // this.password = passwd;
         }
 
         public void connect()
         {
-            this.conn = new SqlConnection("Data Source=" + this.server + ";Initial Catalog=" + this.db + ";User ID=" + this.username + ";Password=" + this.password + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
+            this.conn = new SqlConnection("Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
             this.conn.Open();
         }
 
@@ -63,11 +63,9 @@ namespace ExampleLogin.src.Library
 
             if (match.Success)
             {
-                string columnsPart = match.Groups[1].Value;
+                string[] columns = match.Groups[1].Value.Split(',');
 
-                string[] columns = columnsPart.Split(',');
-
-                foreach (var column in columns)
+                foreach (string column in columns)
                 {
                     columnNames.Add(column.Trim());
                 }
@@ -75,7 +73,7 @@ namespace ExampleLogin.src.Library
             return columnNames;
         }
 
-        public List<Dictionary<string, string>> select(String query)
+        public SQLTable select(String query)
         {
             List<string> get = this.getSelectKey(query);
 
@@ -100,7 +98,102 @@ namespace ExampleLogin.src.Library
                 reader.Close();
             }
             GC.Collect(0);
-            return data;
+            return new SQLTable(data);
+        }
+    }
+
+    public class SQLTable
+    {
+        private List<Dictionary<string, string>> data;
+        public int Count;
+
+        public SQLTable(List<Dictionary<string, string>> data)
+        {
+            this.data = data;
+            this.Count = data.Count;
+        }
+
+        public SQLRow Row(int index)
+        {
+            return new SQLRow(this.data[index]);
+        }
+
+        public SQLColumn Column(string key)
+        {
+            List<string> data = new List<string>();
+            for(int i = 0; i < this.data.Count; i++)
+            {
+                data.Add(this.data[i][key]);
+            }
+            return new SQLColumn(key, data);
+        }
+
+        public SQLColumn Column(int index)
+        {
+            int count = 0;
+            foreach(var s in this.data[0])
+            {
+                if (count == index)
+                {
+                    return this.Column(s.Key);
+                }
+                count++;
+            }
+            return null;
+        }
+    }
+
+    public class SQLColumn
+    {
+        private List<string> data;
+        private string key;
+        public int Count;
+
+        public SQLColumn(string key, List<string> data)
+        {
+            this.data = data;
+            this.Count = data.Count;
+        }
+
+        public string Row(int index)
+        {
+            return this.data[index];
+        }
+
+        public string GetName()
+        {
+            return this.key;
+        }
+    }
+
+    public class SQLRow
+    {
+        private Dictionary<string, string> data;
+        public int Count;
+
+        public SQLRow(Dictionary<string, string> data)
+        {
+            this.data = data;
+            this.Count = data.Count;
+        }
+
+        public string Column(string key)
+        {
+            return this.data[key];
+        }
+
+        public string Column(int index)
+        {
+            int count = 0;
+            foreach (var s in this.data)
+            {
+                if (count == index)
+                {
+                    return s.Value;
+                }
+                count++;
+            }
+            return null;
         }
     }
 }

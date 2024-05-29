@@ -34,12 +34,12 @@ namespace ExampleLogin
             {
                 if (this.captcha.verify(Convert.ToInt32(captchaResult)))
                 {
-                    List<Dictionary<string, string>> data = this.connSQL.select("SELECT username, password, email FROM account WHERE username='" + username + "' AND email='" + email + "';");
+                    SQLTable data = this.connSQL.select("SELECT username, password, email FROM account WHERE username='" + username + "' AND email='" + email + "';");
                     for(int i = 0; i < data.Count; i++)
                     {
-                        if (username.Equals(data[i]["username"]) && email.Equals(data[i]["email"]))
+                        if (username.Equals(data.Row(i).Column("username")) && email.Equals(data.Row(i).Column("email")))
                         {
-                            MessageBox.Show("Your password is '" + data[i]["password"] + "'", "Successfully", MessageBoxButtons.OK);
+                            MessageBox.Show("Your password is '" + data.Row(i).Column("password") + "'", "Successfully", MessageBoxButtons.OK);
                             this.Close();
                             return;
                         }
