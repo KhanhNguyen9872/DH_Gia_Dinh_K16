@@ -67,7 +67,7 @@
             // btnSubmit
             // 
             btnSubmit.BackColor = Color.Silver;
-            btnSubmit.Location = new Point(98, 231);
+            btnSubmit.Location = new Point(89, 231);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(95, 43);
             btnSubmit.TabIndex = 4;
@@ -78,7 +78,7 @@
             // btnExit
             // 
             btnExit.BackColor = Color.Silver;
-            btnExit.Location = new Point(327, 231);
+            btnExit.Location = new Point(342, 231);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(93, 43);
             btnExit.TabIndex = 5;

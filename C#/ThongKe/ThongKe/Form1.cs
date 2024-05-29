@@ -30,23 +30,30 @@ namespace ThongKe
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            foreach(string s in tbInput.Text.Replace('\n', ' ').Split(' ', StringSplitOptions.RemoveEmptyEntries))
+            foreach (string s in tbInput.Text.Replace("\r\n", " ").Replace("\n", " ").Replace("\r", " ").Split(' '))
             {
+                if (s == "")
+                {
+                    continue;
+                }
+
                 if (checkInDict(s) == 0)
                 {
                     this.dictStr.Add(s, 1);
-                } else
+                }
+                else
                 {
                     this.dictStr[s] = this.dictStr[s] + 1;
                 }
             }
             this.reloadListbox();
+            this.reset();
         }
 
         private void reloadListbox()
         {
             listBoxOutput.Items.Clear();
-            foreach(var s in this.dictStr)
+            foreach (var s in this.dictStr)
             {
                 listBoxOutput.Items.Add(s.Key + ": " + s.Value + " lần");
             }
@@ -62,8 +69,14 @@ namespace ThongKe
             {
 
             }
-            
+
             return 0;
+        }
+
+        private void reset()
+        {
+            this.dictStr = new Dictionary<string, int>();
+            GC.Collect(0);
         }
     }
 }

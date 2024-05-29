@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\KhanhNguyen9872\\source\\repos\\ThongKe\\ThongKe\\ThongKe.csproj",
+      "projectUniqueName": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ThongKe\\ThongKe\\ThongKe.csproj",
       "projectName": "ThongKe",
-      "projectPath": "C:\\Users\\KhanhNguyen9872\\source\\repos\\ThongKe\\ThongKe\\ThongKe.csproj",
+      "projectPath": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ThongKe\\ThongKe\\ThongKe.csproj",
       "packagesPath": "C:\\Users\\KhanhNguyen9872\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\KhanhNguyen9872\\source\\repos\\ThongKe\\ThongKe\\obj\\",
+      "outputPath": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ThongKe\\ThongKe\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\KhanhNguyen9872\\AppData\\Roaming\\NuGet\\NuGet.Config",

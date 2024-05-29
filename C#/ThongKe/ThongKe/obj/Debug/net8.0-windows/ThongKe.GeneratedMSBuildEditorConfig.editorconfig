@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ThongKe
-build_property.ProjectDir = C:\Users\KhanhNguyen9872\source\repos\ThongKe\ThongKe\
+build_property.ProjectDir = C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ThongKe\ThongKe\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
