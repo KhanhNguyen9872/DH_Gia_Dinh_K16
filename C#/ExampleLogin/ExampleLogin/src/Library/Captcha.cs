@@ -1,26 +1,28 @@
 ﻿using System;
+using System.Windows.Forms;
 
 public class Captcha
 {
     private int result;
     private int first;
     private int second;
-    private string full_calc;
     private Random random = new Random();
+    private Label lbCaptcha;
+    private TextBox tbCaptcha;
 
-    public Captcha()
+    public Captcha(Label lbCaptcha, TextBox tbCaptcha)
     {
-        this.renew();
+        this.lbCaptcha = lbCaptcha;
+        this.tbCaptcha = tbCaptcha;
     }
 
-    public string getString()
+    public bool verify(int userInput) 
     {
-        return this.full_calc;
-    }
-
-    public int getResult() 
-    {
-        return this.result;
+        if (userInput == this.result)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void renew()
@@ -49,6 +51,7 @@ public class Captcha
             calc_str = " / ";
             this.result = first / second;
         }
-        this.full_calc = first.ToString() + calc_str + second.ToString();
+        this.lbCaptcha.Text = first.ToString() + calc_str + second.ToString();
+        this.tbCaptcha.Text = "";
     }
 }

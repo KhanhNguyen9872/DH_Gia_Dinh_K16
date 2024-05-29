@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExampleLogin.src.Library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,17 @@ namespace ExampleLogin
 {
     public partial class LoginForm : Form
     {
+        private SQLToolBox connSQL = null;
+
         public LoginForm()
         {
             InitializeComponent();
+            String server = "DESKTOP-UI9AO8H";
+            String db = "Nhom1";
+            String user = "root";
+            String passwd = "root";
+            this.connSQL = new SQLToolBox(server, db, user, passwd);
+            this.connSQL.connect();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -40,24 +49,26 @@ namespace ExampleLogin
                 MessageBox.Show("?? Did you forget anything ??", "ERROR", MessageBoxButtons.OK);
             } else
             {
-                if ((username.Equals("root")) && (password.Equals("root")))
+                List<Dictionary<string, string>> data = this.connSQL.select("SELECT username, password FROM account;");
+                for(int i = 0; i < data.Count; i++)
                 {
-                    MessageBox.Show("Welcome " + username + "!\nClose this window to start program!", "Successfully", MessageBoxButtons.OK);
-                    Form main = new MainForm();
-                    this.Hide();
-                    main.ShowDialog();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Incorrect username or password!");
-                }
+                    if ((username.Equals(data[i]["username"])) && (password.Equals(data[i]["password"])))
+                    {
+                        MessageBox.Show("Welcome " + username + "!\nClose this window to start program!", "Successfully", MessageBoxButtons.OK);
+                        Form main = new MainForm();
+                        this.Hide();
+                        main.ShowDialog();
+                        this.Close();
+                        Application.Exit();
+                    }
+                }                
+                MessageBox.Show("Incorrect username or password!");
             }
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            Form main = new RegisterForm();
+            Form main = new RegisterForm(this.connSQL);
             this.Hide();
             main.ShowDialog();
             this.Show();
@@ -65,7 +76,7 @@ namespace ExampleLogin
 
         private void lkForgotPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form main = new ForgotPassForm();
+            Form main = new ForgotPassForm(this.connSQL);
             this.Hide();
             main.ShowDialog();
             this.Show();

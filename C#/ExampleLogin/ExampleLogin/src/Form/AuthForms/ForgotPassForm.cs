@@ -1,26 +1,21 @@
-﻿using System;
+﻿using ExampleLogin.src.Library;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ExampleLogin
 {
     public partial class ForgotPassForm : Form
     {
         private Captcha captcha = null;
-        public ForgotPassForm()
+        private SQLToolBox connSQL = null;
+
+        public ForgotPassForm(SQLToolBox connSQL)
         {
             InitializeComponent();
-            this.captcha = new Captcha();
-            this.lbCaptcha.Text = this.captcha.getString();
-            this.tbCaptcha.Text = "";
+            this.connSQL = connSQL;
+            this.captcha = new Captcha(this.lbCaptcha, this.tbCaptcha);
+            this.captcha.renew();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -35,21 +30,25 @@ namespace ExampleLogin
             {
                 MessageBox.Show("?? Did you forget anything ??", "ERROR", MessageBoxButtons.OK);
                 this.captcha.renew();
-                this.lbCaptcha.Text = this.captcha.getString();
-                this.tbCaptcha.Text = "";
             } else
             {
-                if (Convert.ToInt32(captchaResult) == this.captcha.getResult())
+                if (this.captcha.verify(Convert.ToInt32(captchaResult)))
                 {
-                    string password = "";
-                    MessageBox.Show("Your password is " + password, "Successfully", MessageBoxButtons.OK);
-                    this.Close();
+                    List<Dictionary<string, string>> data = this.connSQL.select("SELECT username, password, email FROM account WHERE username='" + username + "' AND email='" + email + "';");
+                    for(int i = 0; i < data.Count; i++)
+                    {
+                        if (username.Equals(data[i]["username"]) && email.Equals(data[i]["email"]))
+                        {
+                            MessageBox.Show("Your password is '" + data[i]["password"] + "'", "Successfully", MessageBoxButtons.OK);
+                            this.Close();
+                            return;
+                        }
+                    }
+                    MessageBox.Show("Wrong info", "ERROR", MessageBoxButtons.OK);
                 } else
                 {
                     MessageBox.Show("Captcha Error!", "ERROR", MessageBoxButtons.OK);
                     this.captcha.renew();
-                    this.lbCaptcha.Text = this.captcha.getString();
-                    this.tbCaptcha.Text = "";
                 }
             }
         }

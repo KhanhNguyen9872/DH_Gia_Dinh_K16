@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExampleLogin.src.Library;
+using System;
 using System.Windows.Forms;
 
 namespace ExampleLogin
@@ -13,12 +7,14 @@ namespace ExampleLogin
     public partial class RegisterForm : Form
     {
         private Captcha captcha = null;
-        public RegisterForm()
+        private SQLToolBox connSQL = null;
+
+        public RegisterForm(SQLToolBox connSQL)
         {
             InitializeComponent();
-            this.captcha = new Captcha();
-            this.lbCaptcha.Text = this.captcha.getString();
-            this.tbCaptcha.Text = "";
+            this.connSQL = connSQL;
+            this.captcha = new Captcha(lbCaptcha, tbCaptcha);
+            this.captcha.renew();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -42,32 +38,31 @@ namespace ExampleLogin
             {
                 MessageBox.Show("?? Did you forget anything ??", "ERROR", MessageBoxButtons.OK);
                 this.captcha.renew();
-                this.lbCaptcha.Text = this.captcha.getString();
-                this.tbCaptcha.Text = "";
             }
             else
             {
-                
                 if (password == confirmPass)
                 {
-                    if (Convert.ToInt32(captchaResult) == this.captcha.getResult())
+                    if (this.captcha.verify(Convert.ToInt32(captchaResult)))
                     {
-                        MessageBox.Show("Register successfully!", "Successfully", MessageBoxButtons.OK);
-                        this.Close();
+                        if (connSQL.execute("INSERT INTO account (username, password, email) VALUES ('" + username + "', '" + password + "', '" + email + "')"))
+                        {
+                            MessageBox.Show("Register successfully!", "Successfully", MessageBoxButtons.OK);
+                            this.Close();
+                        } else
+                        {
+                            MessageBox.Show("Register failed! Username or email already exists!", "Failed", MessageBoxButtons.OK);
+                        }
                     } else
                     {
                         MessageBox.Show("Captcha Error!", "ERROR", MessageBoxButtons.OK);
                         this.captcha.renew();
-                        this.lbCaptcha.Text = this.captcha.getString();
-                        this.tbCaptcha.Text = "";
                     }
                 }
                 else
                 {
                     MessageBox.Show("Confirm password not same!", "WARNING", MessageBoxButtons.OK);
                     this.captcha.renew();
-                    this.lbCaptcha.Text = this.captcha.getString();
-                    this.tbCaptcha.Text = "";
                 }
             }
         }

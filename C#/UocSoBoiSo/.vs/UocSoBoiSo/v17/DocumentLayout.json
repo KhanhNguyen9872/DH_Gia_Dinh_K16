@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\KhanhNguyen9872\\source\\repos\\UocSoBoiSo\\",
+  "WorkspaceRootPath": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\UocSoBoiSo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\uocsoboiso\\uocsoboiso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|solutionrelative:uocsoboiso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\uocsoboiso\\uocsoboiso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|solutionrelative:uocsoboiso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\uocsoboiso\\uocsoboiso\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\uocsoboiso\\uocsoboiso\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|solutionrelative:uocsoboiso\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\uocsoboiso\\uocsoboiso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|solutionrelative:uocsoboiso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\uocsoboiso\\uocsoboiso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2F88B99F-8ACC-448E-A4B5-571E5EB535AA}|UocSoBoiSo\\UocSoBoiSo.csproj|solutionrelative:uocsoboiso\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,15 +22,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\UocSoBoiSo\\UocSoBoiSo\\Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\UocSoBoiSo\\UocSoBoiSo\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "UocSoBoiSo\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\UocSoBoiSo\\UocSoBoiSo\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\UocSoBoiSo\\UocSoBoiSo\\Form1.Designer.cs",
               "RelativeToolTip": "UocSoBoiSo\\Form1.Designer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -39,24 +39,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\UocSoBoiSo\\UocSoBoiSo\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\UocSoBoiSo\\UocSoBoiSo\\Form1.cs",
               "RelativeDocumentMoniker": "UocSoBoiSo\\Form1.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\UocSoBoiSo\\UocSoBoiSo\\Form1.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\UocSoBoiSo\\UocSoBoiSo\\Form1.cs",
               "RelativeToolTip": "UocSoBoiSo\\Form1.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAxwAIAAAAlAAAA",
+              "ViewState": "AQIAACwAAAAAAAAAAAAIwAIAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-22T15:45:23.253Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\UocSoBoiSo\\UocSoBoiSo\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\UocSoBoiSo\\UocSoBoiSo\\Form1.cs",
               "RelativeDocumentMoniker": "UocSoBoiSo\\Form1.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\UocSoBoiSo\\UocSoBoiSo\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\UocSoBoiSo\\UocSoBoiSo\\Form1.cs [Design]",
               "RelativeToolTip": "UocSoBoiSo\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-22T15:41:23.803Z",
