@@ -22,7 +22,7 @@ namespace ExampleLogin.src.Library
             // this.password = passwd;
         }
 
-        public void connect()
+        public void Connect()
         {
             this.conn = new SqlConnection("Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
             this.conn.Open();
@@ -33,7 +33,7 @@ namespace ExampleLogin.src.Library
             this.conn.Close();
         }
 
-        public bool execute(String query)
+        public bool Execute(String query)
         {
             SqlCommand cmd = new SqlCommand(query, this.conn);
             int rows = 0;
@@ -53,7 +53,7 @@ namespace ExampleLogin.src.Library
             return false;
         }
 
-        private List<string> getSelectKey(String query)
+        private List<string> GetSelectKey(String query)
         {
             string pattern = @"SELECT\s+(.*?)\s+FROM";
             List<string> columnNames = new List<string>();
@@ -73,9 +73,9 @@ namespace ExampleLogin.src.Library
             return columnNames;
         }
 
-        public SQLTable select(String query)
+        public SQLTable Select(String query)
         {
-            List<string> get = this.getSelectKey(query);
+            List<string> get = this.GetSelectKey(query);
 
             SqlCommand cmd = new SqlCommand(query, this.conn);
             SqlDataReader reader = cmd.ExecuteReader();
@@ -152,6 +152,7 @@ namespace ExampleLogin.src.Library
         public SQLColumn(string key, List<string> data)
         {
             this.data = data;
+            this.key = key;
             this.Count = data.Count;
         }
 

@@ -34,7 +34,7 @@ namespace ExampleLogin
             {
                 if (this.captcha.verify(Convert.ToInt32(captchaResult)))
                 {
-                    SQLTable data = this.connSQL.select("SELECT username, password, email FROM account WHERE username='" + username + "' AND email='" + email + "';");
+                    SQLTable data = this.connSQL.Select("SELECT username, password, email FROM account WHERE username='" + username + "' AND email='" + email + "';");
                     for(int i = 0; i < data.Count; i++)
                     {
                         if (username.Equals(data.Row(i).Column("username")) && email.Equals(data.Row(i).Column("email")))

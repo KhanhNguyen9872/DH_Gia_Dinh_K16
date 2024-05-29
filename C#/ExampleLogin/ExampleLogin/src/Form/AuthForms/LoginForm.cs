@@ -24,7 +24,7 @@ namespace ExampleLogin
             // String user = "root";
             // String passwd = "root";
             this.connSQL = new SQLToolBox(db);
-            this.connSQL.connect();
+            this.connSQL.Connect();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace ExampleLogin
                 MessageBox.Show("?? Did you forget anything ??", "ERROR", MessageBoxButtons.OK);
             } else
             {
-                SQLTable data = this.connSQL.select("SELECT username, password FROM account;");
+                SQLTable data = this.connSQL.Select("SELECT username, password FROM account;");
                 for(int i = 0; i < data.Count; i++)
                 {
                     if ((username.Equals(data.Row(i).Column("username"))) && (password.Equals(data.Row(i).Column("password"))))

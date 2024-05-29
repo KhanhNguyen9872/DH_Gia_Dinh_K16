@@ -45,7 +45,7 @@ namespace ExampleLogin
                 {
                     if (this.captcha.verify(Convert.ToInt32(captchaResult)))
                     {
-                        if (connSQL.execute("INSERT INTO account (username, password, email) VALUES ('" + username + "', '" + password + "', '" + email + "')"))
+                        if (connSQL.Execute("INSERT INTO account (username, password, email) VALUES ('" + username + "', '" + password + "', '" + email + "')"))
                         {
                             MessageBox.Show("Register successfully!", "Successfully", MessageBoxButtons.OK);
                             this.Close();
