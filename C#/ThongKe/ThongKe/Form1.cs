@@ -17,7 +17,7 @@ namespace ThongKe
         public Form1()
         {
             InitializeComponent();
-            this.dictStr = new Dictionary<string, int>();
+            this.reset();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
