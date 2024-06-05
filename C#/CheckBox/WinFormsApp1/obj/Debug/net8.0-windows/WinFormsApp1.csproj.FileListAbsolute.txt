@@ -1,0 +1,17 @@
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.exe
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.deps.json
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.runtimeconfig.json
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.dll
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\bin\Debug\net8.0-windows\WinFormsApp1.pdb
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.Form1.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.GenerateResource.cache
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.AssemblyInfo.cs
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.sourcelink.json
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.dll
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\refint\WinFormsApp1.dll
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.pdb
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\WinFormsApp1.genruntimeconfig.cache
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\CheckBox\WinFormsApp1\obj\Debug\net8.0-windows\ref\WinFormsApp1.dll
