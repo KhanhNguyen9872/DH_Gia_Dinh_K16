@@ -18,8 +18,7 @@
             if (this.CheckName())
             {
                 this.Clear();
-                List<String> result = this.getResult();
-                foreach (String s in result) {
+                foreach (String s in this.getResult()) {
                     lbResult.Items.Add(s);
                     tbResult.Text = tbResult.Text + s + "\n";
                 };

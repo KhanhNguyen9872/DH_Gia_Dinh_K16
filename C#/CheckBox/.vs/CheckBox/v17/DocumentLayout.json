@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\CheckBox\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A29D1387-B7DB-4BEA-9E0A-6C7B2CF19B3F}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\checkbox\\winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A29D1387-B7DB-4BEA-9E0A-6C7B2CF19B3F}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A29D1387-B7DB-4BEA-9E0A-6C7B2CF19B3F}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\checkbox\\winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A29D1387-B7DB-4BEA-9E0A-6C7B2CF19B3F}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A29D1387-B7DB-4BEA-9E0A-6C7B2CF19B3F}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\checkbox\\winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A29D1387-B7DB-4BEA-9E0A-6C7B2CF19B3F}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,24 +18,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\CheckBox\\WinFormsApp1\\Form1.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\Form1.cs",
               "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\CheckBox\\WinFormsApp1\\Form1.cs",
               "RelativeToolTip": "WinFormsApp1\\Form1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAcAAAA",
+              "ViewState": "AQIAABoAAAAAAAAAAAAwwBsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-05T06:45:58.223Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\CheckBox\\WinFormsApp1\\Form1.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\Form1.cs",

@@ -1,6 +1,7 @@
-Họ và tên: asda
-Lớp: asdad
+Họ và tên: Nguyễn Văn Khánh
+Lớp: 221402
 Giới tính: Nam
+Lập trình trực quan
 Lập trình Website
 An ninh mạng
 
