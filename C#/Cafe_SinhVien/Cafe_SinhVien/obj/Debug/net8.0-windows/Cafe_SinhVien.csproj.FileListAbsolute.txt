@@ -1,0 +1,17 @@
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\bin\Debug\net8.0-windows\Cafe_SinhVien.exe
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\bin\Debug\net8.0-windows\Cafe_SinhVien.deps.json
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\bin\Debug\net8.0-windows\Cafe_SinhVien.runtimeconfig.json
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\bin\Debug\net8.0-windows\Cafe_SinhVien.dll
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\bin\Debug\net8.0-windows\Cafe_SinhVien.pdb
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\ThanhToan.Form.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\Cafe_SinhVien.csproj.GenerateResource.cache
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\Cafe_SinhVien.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\Cafe_SinhVien.AssemblyInfoInputs.cache
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\Cafe_SinhVien.AssemblyInfo.cs
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\Cafe_SinhVien.csproj.CoreCompileInputs.cache
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\Cafe_SinhVien.sourcelink.json
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\Cafe_SinhVien.dll
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\refint\Cafe_SinhVien.dll
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\Cafe_SinhVien.pdb
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\Cafe_SinhVien.genruntimeconfig.cache
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\Cafe_SinhVien\Cafe_SinhVien\obj\Debug\net8.0-windows\ref\Cafe_SinhVien.dll
