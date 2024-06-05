@@ -1,0 +1,16 @@
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\bin\Debug\net8.0-windows\ThanhToan.exe
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\bin\Debug\net8.0-windows\ThanhToan.deps.json
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\bin\Debug\net8.0-windows\ThanhToan.runtimeconfig.json
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\bin\Debug\net8.0-windows\ThanhToan.dll
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\bin\Debug\net8.0-windows\ThanhToan.pdb
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\ThanhToan.csproj.GenerateResource.cache
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\ThanhToan.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\ThanhToan.AssemblyInfoInputs.cache
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\ThanhToan.AssemblyInfo.cs
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\ThanhToan.csproj.CoreCompileInputs.cache
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\ThanhToan.dll
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\refint\ThanhToan.dll
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\ThanhToan.pdb
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\ThanhToan.genruntimeconfig.cache
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\ref\ThanhToan.dll
+C:\Users\KhanhNguyen9872\source\repos\ThanhToan\ThanhToan\obj\Debug\net8.0-windows\ThanhToan.Form.resources
