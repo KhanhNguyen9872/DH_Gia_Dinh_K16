@@ -133,7 +133,10 @@ namespace ThanhToan
         {
             char chr = e.KeyChar;
 
-            if ((chr < '0') || (chr > '9'))
+            if ((chr >= '0') || (chr <= '9') || (chr == 8))
+            {
+                
+            } else
             {
                 e.Handled = true;
             }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cafe_SinhVien")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e797c0d3b05b51892d42eb0cdeee0dc40cc3585a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc31c6479a38392a5d49d079694e723542cdb387")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cafe_SinhVien")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cafe_SinhVien")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
