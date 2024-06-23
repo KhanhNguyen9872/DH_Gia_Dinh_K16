@@ -39,6 +39,7 @@ namespace WinFormsApp2
 
         private void resetButton()
         {
+            btnThem.Enabled = true;
             txtMaNV.Enabled = true;
             txtMaNV.Text = "";
             txtName.Text = "";
@@ -54,6 +55,7 @@ namespace WinFormsApp2
             try
             {
                 this.reloadData();
+                this.resetButton();
 
             }
             catch (Exception ex)
@@ -76,6 +78,7 @@ namespace WinFormsApp2
             txtChucVu.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
             txtTienLuong.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
             txtMaNV.Enabled = false;
+            btnThem.Enabled = false;
         }
 
         private void QLNhanVien_FormClosing(object sender, FormClosingEventArgs e)

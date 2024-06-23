@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLNhanVien\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\qlnhanvien\\winformsapp2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|solutionrelative:winformsapp2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\qlnhanvien\\winformsapp2\\qlnhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|solutionrelative:winformsapp2\\qlnhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\qlnhanvien\\winformsapp2\\qlnhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLNhanVien\\winformsapp2\\qlnhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|solutionrelative:winformsapp2\\qlnhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\qlnhanvien\\winformsapp2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLNhanVien\\winformsapp2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|solutionrelative:winformsapp2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\qlnhanvien\\winformsapp2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\QLNhanVien.csproj|solutionrelative:winformsapp2\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{50A4DABD-EF4C-4923-A31B-191F3FA9E253}|WinFormsApp2\\WinFormsApp2.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLNhanVien\\winformsapp2\\qlnhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -54,7 +54,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "QLNhanVien.cs [Design]",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLNhanVien\\WinFormsApp2\\QLNhanVien.cs",
               "RelativeDocumentMoniker": "WinFormsApp2\\QLNhanVien.cs",
@@ -66,7 +66,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Login.cs [Design]",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLNhanVien\\WinFormsApp2\\Login.cs",
               "RelativeDocumentMoniker": "WinFormsApp2\\Login.cs",
@@ -86,31 +86,30 @@
               "RelativeToolTip": "WinFormsApp2\\QLNhanVien.Designer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T09:23:23.881Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-22T09:23:23.881Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLNhanVien\\WinFormsApp2\\Login.cs",
               "RelativeDocumentMoniker": "WinFormsApp2\\Login.cs",
               "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLNhanVien\\WinFormsApp2\\Login.cs",
               "RelativeToolTip": "WinFormsApp2\\Login.cs",
-              "ViewState": "AQIAADkAAAAAAAAAAAAAAG8AAAANAAAA",
+              "ViewState": "AQIAAKIAAAAAAAAAAAAowLEAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-22T09:19:58.543Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "QLNhanVien.cs",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLNhanVien\\WinFormsApp2\\QLNhanVien.cs",
               "RelativeDocumentMoniker": "WinFormsApp2\\QLNhanVien.cs",
               "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLNhanVien\\WinFormsApp2\\QLNhanVien.cs",
               "RelativeToolTip": "WinFormsApp2\\QLNhanVien.cs",
-              "ViewState": "AQIAALkAAAAAAAAAAAAcwMoAAAAAAAAA",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAIwFAAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-22T09:02:48.396Z",
               "EditorCaption": ""

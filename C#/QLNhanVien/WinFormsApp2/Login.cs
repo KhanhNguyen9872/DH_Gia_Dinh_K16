@@ -37,7 +37,7 @@ namespace WinFormsApp2
             try
             {
                 this.reloadData();
-
+                this.resetButton();
             }
             catch (Exception ex)
             {
@@ -51,6 +51,7 @@ namespace WinFormsApp2
 
         private void resetButton()
         {
+            btnThem.Enabled = true;
             txtUsername.Enabled = true;
             txtUsername.Text = "";
             txtPassword.Text = "";
@@ -170,6 +171,7 @@ namespace WinFormsApp2
             txtPassword.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
             txtType.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
             txtUsername.Enabled = false;
+            btnThem.Enabled = false;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
