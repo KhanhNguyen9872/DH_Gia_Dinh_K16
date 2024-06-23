@@ -49,6 +49,14 @@ namespace WinFormsApp2
             }
         }
 
+        private void resetButton()
+        {
+            txtUsername.Enabled = true;
+            txtUsername.Text = "";
+            txtPassword.Text = "";
+            txtType.Text = "";
+        }
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             conn.Open();
@@ -68,6 +76,7 @@ namespace WinFormsApp2
                 cmd.Parameters.AddWithValue("@type", type);
                 cmd.ExecuteNonQuery();
                 this.reloadData();
+                this.resetButton();
                 MessageBox.Show("Đã thêm thành công!");
             }
             catch (Exception ex)
@@ -96,6 +105,7 @@ namespace WinFormsApp2
 
                 cmd.ExecuteNonQuery();
                 this.reloadData();
+                this.resetButton();
                 MessageBox.Show("Đã xóa thành công!");
             }
             catch (Exception ex)
@@ -159,6 +169,7 @@ namespace WinFormsApp2
             txtUsername.Text = dataGridView1.Rows[index].Cells[0].Value.ToString();
             txtPassword.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
             txtType.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
+            txtUsername.Enabled = false;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -180,6 +191,7 @@ namespace WinFormsApp2
                 cmd.Parameters.AddWithValue("@type", type);
                 cmd.ExecuteNonQuery();
                 this.reloadData();
+                this.resetButton();
                 MessageBox.Show("Đã sửa thành công!");
             }
             catch (Exception ex)
@@ -197,7 +209,8 @@ namespace WinFormsApp2
             if (cbShowPass.Checked)
             {
                 txtPassword.PasswordChar = '\0';
-            } else
+            }
+            else
             {
                 txtPassword.PasswordChar = '*';
             }
@@ -207,5 +220,7 @@ namespace WinFormsApp2
         {
             Process.GetProcessById(Process.GetCurrentProcess().Id).Kill();
         }
+        
+
     }
 }

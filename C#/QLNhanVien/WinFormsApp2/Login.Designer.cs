@@ -172,7 +172,7 @@
             Controls.Add(dataGridView1);
             Name = "Login";
             Text = "Form1";
-            FormClosing += this.Login_FormClosing;
+            FormClosing += Login_FormClosing;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

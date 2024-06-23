@@ -37,6 +37,17 @@ namespace WinFormsApp2
             dataGridView1.DataSource = dt;
         }
 
+        private void resetButton()
+        {
+            txtMaNV.Enabled = true;
+            txtMaNV.Text = "";
+            txtName.Text = "";
+            cbGioiTinh.Text = "";
+            dateTimePicker1.ResetText();
+            txtChucVu.Text = "";
+            txtTienLuong.Text = "";
+        }
+
         private void QLNhanVien_Load(object sender, EventArgs e)
         {
             conn.Open();
@@ -64,6 +75,7 @@ namespace WinFormsApp2
             cbGioiTinh.Text = dataGridView1.Rows[index].Cells[3].Value.ToString();
             txtChucVu.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
             txtTienLuong.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
+            txtMaNV.Enabled = false;
         }
 
         private void QLNhanVien_FormClosing(object sender, FormClosingEventArgs e)
@@ -106,6 +118,7 @@ namespace WinFormsApp2
 
                 cmd.ExecuteNonQuery();
                 this.reloadData();
+                this.resetButton();
                 MessageBox.Show("Đã thêm thành công!");
             }
             catch (Exception ex)
@@ -134,6 +147,7 @@ namespace WinFormsApp2
 
                 cmd.ExecuteNonQuery();
                 this.reloadData();
+                this.resetButton();
                 MessageBox.Show("Đã xóa thành công!");
             }
             catch (Exception ex)
@@ -172,6 +186,7 @@ namespace WinFormsApp2
                 cmd.Parameters.AddWithValue("@tienluong", tienLuong);
                 cmd.ExecuteNonQuery();
                 this.reloadData();
+                this.resetButton();
                 MessageBox.Show("Đã sửa thành công!");
             }
             catch (Exception ex)
