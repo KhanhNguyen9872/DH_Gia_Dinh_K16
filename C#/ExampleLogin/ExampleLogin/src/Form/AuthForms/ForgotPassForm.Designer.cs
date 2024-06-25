@@ -158,6 +158,8 @@
             this.Controls.Add(this.tbUsername);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(343, 286);
+            this.MinimumSize = new System.Drawing.Size(343, 286);
             this.Name = "ForgotPassForm";
             this.Text = "Forget password | ExampleLogin";
             this.ResumeLayout(false);

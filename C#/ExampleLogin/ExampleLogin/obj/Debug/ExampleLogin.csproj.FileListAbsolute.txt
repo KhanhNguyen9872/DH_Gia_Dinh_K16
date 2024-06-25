@@ -23,3 +23,11 @@ C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\Exampl
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\bin\Debug\ExampleLogin.pdb
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.exe
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.pdb
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.AboutForm.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.BanHangForm.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.HoaDonForm.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.HangHoaForm.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.KhachHangForm.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.NhanVienForm.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.QuanLyForm.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.ThongKeForm.resources

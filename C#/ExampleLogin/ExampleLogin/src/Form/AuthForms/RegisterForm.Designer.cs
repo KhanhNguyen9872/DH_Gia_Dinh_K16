@@ -202,6 +202,8 @@
             this.Controls.Add(this.tbUsername);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(349, 354);
+            this.MinimumSize = new System.Drawing.Size(349, 354);
             this.Name = "RegisterForm";
             this.Text = "Register | ExampleLogin";
             this.ResumeLayout(false);

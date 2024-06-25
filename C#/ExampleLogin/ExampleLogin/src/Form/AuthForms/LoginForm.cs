@@ -54,8 +54,7 @@ namespace ExampleLogin
                 {
                     if ((username.Equals(data.Row(i).Column("username"))) && (password.Equals(data.Row(i).Column("password"))))
                     {
-                        MessageBox.Show("Welcome " + username + "!\nClose this window to start program!", "Successfully", MessageBoxButtons.OK);
-                        Form main = new MainForm();
+                        Form main = new MainForm(this.connSQL, username);
                         this.Hide();
                         main.ShowDialog();
                         this.Close();
