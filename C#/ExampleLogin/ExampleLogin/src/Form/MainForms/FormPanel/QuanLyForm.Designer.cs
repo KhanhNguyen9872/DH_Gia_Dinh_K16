@@ -45,6 +45,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cbTrangThaiTaiKhoan = new System.Windows.Forms.ComboBox();
             this.cbHienMatKhau = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbTimKiem = new System.Windows.Forms.TextBox();
+            this.cbTimKiem = new System.Windows.Forms.ComboBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -152,7 +156,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(498, 350);
+            this.btnThem.Location = new System.Drawing.Point(498, 275);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 11;
@@ -162,7 +166,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(590, 350);
+            this.btnXoa.Location = new System.Drawing.Point(590, 275);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 23);
             this.btnXoa.TabIndex = 12;
@@ -172,7 +176,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(683, 350);
+            this.btnSua.Location = new System.Drawing.Point(680, 275);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 23);
             this.btnSua.TabIndex = 13;
@@ -192,6 +196,7 @@
             // 
             // cbTrangThaiTaiKhoan
             // 
+            this.cbTrangThaiTaiKhoan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTrangThaiTaiKhoan.FormattingEnabled = true;
             this.cbTrangThaiTaiKhoan.Items.AddRange(new object[] {
             "Mở khóa",
@@ -212,12 +217,53 @@
             this.cbHienMatKhau.UseVisualStyleBackColor = true;
             this.cbHienMatKhau.CheckedChanged += new System.EventHandler(this.cbHienMatKhau_CheckedChanged);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(491, 342);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 17);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Tìm kiếm: ";
+            // 
+            // tbTimKiem
+            // 
+            this.tbTimKiem.Location = new System.Drawing.Point(571, 341);
+            this.tbTimKiem.Name = "tbTimKiem";
+            this.tbTimKiem.Size = new System.Drawing.Size(184, 20);
+            this.tbTimKiem.TabIndex = 18;
+            this.tbTimKiem.TextChanged += new System.EventHandler(this.tbTimKiem_TextChanged);
+            // 
+            // cbTimKiem
+            // 
+            this.cbTimKiem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTimKiem.FormattingEnabled = true;
+            this.cbTimKiem.Location = new System.Drawing.Point(634, 376);
+            this.cbTimKiem.Name = "cbTimKiem";
+            this.cbTimKiem.Size = new System.Drawing.Size(121, 21);
+            this.cbTimKiem.TabIndex = 19;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(680, 304);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 20;
+            this.btnRefresh.Text = "Làm mới";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // QuanLyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 412);
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.cbTimKiem);
+            this.Controls.Add(this.tbTimKiem);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.cbHienMatKhau);
             this.Controls.Add(this.cbTrangThaiTaiKhoan);
             this.Controls.Add(this.label6);
@@ -266,5 +312,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbTrangThaiTaiKhoan;
         private System.Windows.Forms.CheckBox cbHienMatKhau;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbTimKiem;
+        private System.Windows.Forms.ComboBox cbTimKiem;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

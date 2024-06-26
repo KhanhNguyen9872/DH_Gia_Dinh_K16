@@ -33,8 +33,15 @@ namespace ExampleLogin.src.Library
 
         public void Connect()
         {
-            this.conn = new SqlConnection(this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
-            this.conn.Open();
+            try
+            {
+                this.conn = new SqlConnection(this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
+                this.conn.Open();
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Server đang bảo trì, vui lòng thử lại sau!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Library.killPid(Library.getPid());
+            }
         }
 
         public void Close()
@@ -205,6 +212,21 @@ namespace ExampleLogin.src.Library
         {
             this.data = data;
             this.Count = data.Count;
+        }
+
+        public string ColumnName(int index)
+        {
+            int i = 0;
+            foreach(var s in this.data)
+            {
+                if (i == index)
+                {
+                    return s.Key;
+                }
+
+                i = i + 1;
+            }
+            return null;
         }
 
         public string Column(string key)

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleLogin
+namespace ExampleLogin.src.Library
 {
     public class Library
     {

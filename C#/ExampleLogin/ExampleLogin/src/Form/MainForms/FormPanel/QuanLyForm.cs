@@ -17,6 +17,8 @@ namespace ExampleLogin
     public partial class QuanLyForm : Form
     {
         private SQLToolBox connSQL;
+        private DataTable dtOld;
+
         public QuanLyForm(SQLToolBox connSQL)
         {
             InitializeComponent();
@@ -24,12 +26,31 @@ namespace ExampleLogin
             tbMatKhau.PasswordChar = '*';
         }
 
-        private void QuanLyForm_Load(object sender, EventArgs e)
+        private void loadData()
         {
             this.connSQL.Connect();
-            dataGridView1.DataSource = this.connSQL.Select("Select * from account;").getDataTable();
-
+            SQLTable s = this.connSQL.Select("Select * from account;");
             this.connSQL.Close();
+
+            dataGridView1.DataSource = s.getDataTable();
+            cbTimKiem.Items.Clear();
+
+            if (s.Count > 0)
+            {
+                for (int i = 0; i < s.Row(0).Count; i++)
+                {
+                    cbTimKiem.Items.Add(s.Row(0).ColumnName(i));
+                }
+
+                cbTimKiem.SelectedIndex = 0;
+            }
+
+            GC.Collect(0);
+        }
+
+        private void QuanLyForm_Load(object sender, EventArgs e)
+        {
+            this.loadData();
 
             this.wipeButton();
             this.tbTenTaiKhoan.Focus();
@@ -225,6 +246,61 @@ namespace ExampleLogin
             {
                 tbMatKhau.PasswordChar = '*';
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            tbTimKiem.Text = "";
+            this.tbTimKiem_TextChanged(sender, e);
+            this.loadData();
+        }
+
+        private void tbTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            if (tbTimKiem.Text.Length == 0)
+            {
+                dataGridView1.DataSource = this.dtOld;
+                this.dtOld = null;
+                return;
+            }
+            if (this.dtOld == null)
+            {
+                this.dtOld = (DataTable)dataGridView1.DataSource;
+            }
+
+            DataTable newDt = new DataTable();
+            string nameColumn = this.cbTimKiem.Text;
+            string userInput = this.tbTimKiem.Text;
+            string data;
+
+            dataGridView1.DataSource = this.dtOld;
+
+            // add column name to newDt
+            for (int i = 0; i < dataGridView1.ColumnCount; i++)
+            {
+                newDt.Columns.Add(dataGridView1.Columns[i].Name);
+            }
+
+            // add Row data to newDt
+            for(int i = 0; i < dataGridView1.RowCount - 1; i++)
+            {
+                data = dataGridView1.Rows[i].Cells[nameColumn].Value.ToString();
+
+                if (data.Contains(userInput))
+                {
+                    DataRow row = newDt.NewRow();
+                    DataGridViewRow r = dataGridView1.Rows[i];
+
+                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                    {
+                        row[j] = r.Cells[j].Value;
+                    }
+
+                    newDt.Rows.Add(row);
+                }
+            }
+
+            dataGridView1.DataSource = newDt;
         }
     }
 }
