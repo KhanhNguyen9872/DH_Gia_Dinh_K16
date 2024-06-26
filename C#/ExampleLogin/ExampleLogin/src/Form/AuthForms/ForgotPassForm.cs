@@ -25,40 +25,40 @@ namespace ExampleLogin
             string numberPhone = this.tbSDT.Text;
             string email = this.tbEmail.Text;
             string captchaResult = this.tbCaptcha.Text;
-            if (string.IsNullOrEmpty(username) ||
-                string.IsNullOrEmpty(email) ||
-                string.IsNullOrEmpty(captchaResult)
-                )
+            foreach (string s in new List<string>() { username, email, captchaResult })
             {
-                MessageBox.Show("?? Bạn đã quên thứ gì đó đúng không ??", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (string.IsNullOrEmpty(s))
+                {
+                    MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.captcha.renew();
+                    return;
+                }
+            }
+            if (this.captcha.verify(Convert.ToInt32(captchaResult)))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM account WHERE username = @username and sdt = @sdt and email = @email;");
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@sdt", numberPhone);
+                cmd.Parameters.AddWithValue("@email", email);
+                SQLTable data = this.connSQL.Select(cmd);
+                for(int i = 0; i < data.Count; i++)
+                {
+                    if (username.Equals(data.Row(i).Column("username")) &&
+                        numberPhone.Equals(data.Row(i).Column("sdt")) &&
+                        email.Equals(data.Row(i).Column("email"))
+                        )
+                    {
+                        MessageBox.Show("Mật khẩu của bạn là '" + data.Row(i).Column("password") + "'", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                        return;
+                    }
+                }
+                MessageBox.Show("Thông tin không chính xác", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.captcha.renew();
             } else
             {
-                if (this.captcha.verify(Convert.ToInt32(captchaResult)))
-                {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM account WHERE username = @username, sdt = @sdt, email = @email;");
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@sdt", numberPhone);
-                    cmd.Parameters.AddWithValue("@email", email);
-                    SQLTable data = this.connSQL.Select(cmd);
-                    for(int i = 0; i < data.Count; i++)
-                    {
-                        if (username.Equals(data.Row(i).Column("username")) &&
-                            numberPhone.Equals(data.Row(i).Column("sdt")) &&
-                            email.Equals(data.Row(i).Column("email"))
-                            )
-                        {
-                            MessageBox.Show("Mật khẩu của bạn là '" + data.Row(i).Column("password") + "'", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Close();
-                            return;
-                        }
-                    }
-                    MessageBox.Show("Thông tin không chính xác", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                } else
-                {
-                    MessageBox.Show("Xác thực sai!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.captcha.renew();
-                }
+                MessageBox.Show("Xác thực sai!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.captcha.renew();
             }
         }
 

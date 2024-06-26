@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace ExampleLogin.src.Library
 {
@@ -56,7 +57,7 @@ namespace ExampleLogin.src.Library
                 rows = cmd.ExecuteNonQuery();
             } catch (Exception e)
             {
-                Trace.WriteLine(e.StackTrace);
+                MessageBox.Show(e.ToString(), "ERROR");
                 return false;
             }
             

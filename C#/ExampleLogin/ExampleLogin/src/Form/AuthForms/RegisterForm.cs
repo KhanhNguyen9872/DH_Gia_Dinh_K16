@@ -1,5 +1,6 @@
 ﻿using ExampleLogin.src.Library;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -31,47 +32,43 @@ namespace ExampleLogin
             string password = this.tbPassword.Text;
             string confirmPass = this.tbConfirmPass.Text;
             string captchaResult = this.tbCaptcha.Text;
-            if (string.IsNullOrEmpty(username) || 
-                string.IsNullOrEmpty(numberPhone) ||
-                string.IsNullOrEmpty(email) ||
-                string.IsNullOrEmpty(password) || 
-                string.IsNullOrEmpty(confirmPass) ||
-                string.IsNullOrEmpty(captchaResult)
-                )
+            foreach (string s in new List<string>() { username, numberPhone, email, password, confirmPass, captchaResult })
             {
-                MessageBox.Show("?? Bạn đã quên thứ gì đó đúng không ??", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.captcha.renew();
+                if (string.IsNullOrEmpty(s))
+                {
+                    MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.captcha.renew();
+                    return;
+                }
+            }
+
+            if (password == confirmPass)
+            {
+                if (this.captcha.verify(Convert.ToInt32(captchaResult)))
+                {
+                    SqlCommand cmd = new SqlCommand("INSERT INTO account (username, password, sdt, email) VALUES (@username, @password, @sdt, @email)");
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@sdt", numberPhone);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    if (connSQL.Execute(cmd))
+                    {
+                        MessageBox.Show("Đăng ký thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    } else
+                    {
+                        MessageBox.Show("Đăng ký thất bại!\nTài khoản hoặc email đã tồn tại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                } else
+                {
+                    MessageBox.Show("Xác thực sai!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.captcha.renew();
+                }
             }
             else
             {
-                if (password == confirmPass)
-                {
-                    if (this.captcha.verify(Convert.ToInt32(captchaResult)))
-                    {
-                        SqlCommand cmd = new SqlCommand("INSERT INTO account (username, password, sdt, email) VALUES (@username, @password, @sdt, @email)");
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password);
-                        cmd.Parameters.AddWithValue("@sdt", numberPhone);
-                        cmd.Parameters.AddWithValue("@email", email);
-                        if (connSQL.Execute(cmd))
-                        {
-                            MessageBox.Show("Đăng ký thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Close();
-                        } else
-                        {
-                            MessageBox.Show("Đăng ký thất bại!\nTài khoản hoặc email đã tồn tại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    } else
-                    {
-                        MessageBox.Show("Xác thực sai!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.captcha.renew();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Nhập lại mật khẩu không trùng với nhau!", "CẢNH BÁO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.captcha.renew();
-                }
+                MessageBox.Show("Nhập lại mật khẩu không trùng với nhau!", "CẢNH BÁO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.captcha.renew();
             }
         }
     }

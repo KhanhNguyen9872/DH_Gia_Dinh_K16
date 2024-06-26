@@ -15,8 +15,9 @@ create table account (
 	username nvarchar(50) primary key,
 	password nvarchar(50) not null,
 	sdt nchar(10) not null,
-	email nvarchar(255) not null unique
+	email nvarchar(255) not null unique,
+	lock bit not null
 )
 
 insert into account values 
-	('root', 'root', '0123456789', 'root@localhost.com')
+	('root', 'root', '0123456789', 'root@localhost.com', 0)

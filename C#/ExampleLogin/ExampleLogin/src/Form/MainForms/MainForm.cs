@@ -15,11 +15,14 @@ namespace ExampleLogin
     {
         private Dictionary<Button, Form> listForm = null;
         private SQLToolBox connSQL = null;
+        private LoginForm loginForm = null;
+        private bool noAskExit = false;
 
-        public MainForm(SQLToolBox connSQL, string username)
+        public MainForm(LoginForm fm, SQLToolBox connSQL, string username)
         {
             InitializeComponent();
             this.listForm = new Dictionary<Button, Form>();
+            this.loginForm = fm;
             this.connSQL = connSQL;
             this.labelUsername.Text = username;
         }
@@ -30,11 +33,6 @@ namespace ExampleLogin
             fm.Show();
         }
 
-        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("You can't log out! Because dev is stupid!\nYou must exit program and log in again!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.exitApp();
@@ -42,7 +40,11 @@ namespace ExampleLogin
 
         private bool exitApp()
         {
-            if (MessageBox.Show("Bạn có muốn thoát không?", "THOÁT CHƯƠNG TRÌNH", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (this.noAskExit)
+            {
+                return true;
+            }
+            if (MessageBox.Show("Bạn có muốn thoát không?\nMọi công việc chưa lưu sẽ bị hủy!", "THOÁT CHƯƠNG TRÌNH", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Library.killPid(Library.getPid());
             }
@@ -251,6 +253,17 @@ namespace ExampleLogin
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.btnOptionBanHang_Click(sender, e);
+        }
+
+        private void logOutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn đăng xuất tài khoản không?\nMọi công việc chưa lưu sẽ bị hủy!", "ĐĂNG XUẤT", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.noAskExit = true;
+                this.Hide();
+                this.Close();
+                this.loginForm.Show();
+            }
         }
     }
 }

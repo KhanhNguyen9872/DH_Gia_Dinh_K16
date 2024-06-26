@@ -39,6 +39,12 @@
             this.tbMatKhau = new System.Windows.Forms.TextBox();
             this.tbSDT = new System.Windows.Forms.TextBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
+            this.btnThem = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbTrangThaiTaiKhoan = new System.Windows.Forms.ComboBox();
+            this.cbHienMatKhau = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +55,8 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 19);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(452, 366);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -98,7 +106,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(492, 148);
+            this.label4.Location = new System.Drawing.Point(492, 159);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 17);
             this.label4.TabIndex = 5;
@@ -108,7 +116,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(492, 184);
+            this.label5.Location = new System.Drawing.Point(492, 195);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 17);
             this.label5.TabIndex = 6;
@@ -130,17 +138,79 @@
             // 
             // tbSDT
             // 
-            this.tbSDT.Location = new System.Drawing.Point(602, 148);
+            this.tbSDT.Location = new System.Drawing.Point(602, 159);
             this.tbSDT.Name = "tbSDT";
             this.tbSDT.Size = new System.Drawing.Size(153, 20);
             this.tbSDT.TabIndex = 9;
             // 
             // tbEmail
             // 
-            this.tbEmail.Location = new System.Drawing.Point(602, 184);
+            this.tbEmail.Location = new System.Drawing.Point(602, 195);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(153, 20);
             this.tbEmail.TabIndex = 10;
+            // 
+            // btnThem
+            // 
+            this.btnThem.Location = new System.Drawing.Point(498, 350);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(75, 23);
+            this.btnThem.TabIndex = 11;
+            this.btnThem.Text = "Thêm";
+            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Location = new System.Drawing.Point(590, 350);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(75, 23);
+            this.btnXoa.TabIndex = 12;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnSua
+            // 
+            this.btnSua.Location = new System.Drawing.Point(683, 350);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(75, 23);
+            this.btnSua.TabIndex = 13;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(492, 237);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 17);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Trạng thái: ";
+            // 
+            // cbTrangThaiTaiKhoan
+            // 
+            this.cbTrangThaiTaiKhoan.FormattingEnabled = true;
+            this.cbTrangThaiTaiKhoan.Items.AddRange(new object[] {
+            "Mở khóa",
+            "Bị khóa"});
+            this.cbTrangThaiTaiKhoan.Location = new System.Drawing.Point(602, 237);
+            this.cbTrangThaiTaiKhoan.Name = "cbTrangThaiTaiKhoan";
+            this.cbTrangThaiTaiKhoan.Size = new System.Drawing.Size(153, 21);
+            this.cbTrangThaiTaiKhoan.TabIndex = 15;
+            // 
+            // cbHienMatKhau
+            // 
+            this.cbHienMatKhau.AutoSize = true;
+            this.cbHienMatKhau.Location = new System.Drawing.Point(660, 138);
+            this.cbHienMatKhau.Name = "cbHienMatKhau";
+            this.cbHienMatKhau.Size = new System.Drawing.Size(95, 17);
+            this.cbHienMatKhau.TabIndex = 16;
+            this.cbHienMatKhau.Text = "Hiện mật khẩu";
+            this.cbHienMatKhau.UseVisualStyleBackColor = true;
+            this.cbHienMatKhau.CheckedChanged += new System.EventHandler(this.cbHienMatKhau_CheckedChanged);
             // 
             // QuanLyForm
             // 
@@ -148,6 +218,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 412);
+            this.Controls.Add(this.cbHienMatKhau);
+            this.Controls.Add(this.cbTrangThaiTaiKhoan);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnSua);
+            this.Controls.Add(this.btnXoa);
+            this.Controls.Add(this.btnThem);
             this.Controls.Add(this.tbEmail);
             this.Controls.Add(this.tbSDT);
             this.Controls.Add(this.tbMatKhau);
@@ -184,5 +260,11 @@
         private System.Windows.Forms.TextBox tbMatKhau;
         private System.Windows.Forms.TextBox tbSDT;
         private System.Windows.Forms.TextBox tbEmail;
+        private System.Windows.Forms.Button btnThem;
+        private System.Windows.Forms.Button btnXoa;
+        private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbTrangThaiTaiKhoan;
+        private System.Windows.Forms.CheckBox cbHienMatKhau;
     }
 }

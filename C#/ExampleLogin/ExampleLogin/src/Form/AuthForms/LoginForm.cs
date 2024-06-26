@@ -3,19 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ExampleLogin
 {
     public partial class LoginForm : Form
     {
         private SQLToolBox connSQL = null;
-
+        private bool noAskExit = false;
         public LoginForm()
         {
             InitializeComponent();
@@ -36,26 +38,37 @@ namespace ExampleLogin
         {
             string username = this.tbUsername.Text;
             string password = this.tbPassword.Text;
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            foreach (string s in new List<string>() { username, password })
             {
-                MessageBox.Show("?? Bạn đã quên thứ gì đó đúng không ??", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else
-            {
-                SQLTable data = this.connSQL.Select("SELECT username, password FROM account;");
-                for(int i = 0; i < data.Count; i++)
+                if (string.IsNullOrEmpty(s))
                 {
-                    if ((username.Equals(data.Row(i).Column("username"))) && (password.Equals(data.Row(i).Column("password"))))
-                    {
-                        this.connSQL.Close();
-                        Form main = new MainForm(this.connSQL, username);
-                        this.Hide();
-                        main.ShowDialog();
-                        this.Close();
-                        Application.Exit();
-                    }
-                }                
-                MessageBox.Show("Sai tên tài khoản hoặc mật khẩu!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
+
+            SqlCommand cmd = new SqlCommand("SELECT username, password, lock FROM account WHERE (username = @username and password = @password);");
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+            SQLTable data = this.connSQL.Select(cmd);
+            for(int i = 0; i < data.Count; i++)
+            {
+                if ((username.Equals(data.Row(i).Column("username"))) && (password.Equals(data.Row(i).Column("password"))))
+                {
+                    if (data.Row(i).Column("lock").Equals("True"))
+                    {
+                        MessageBox.Show("Tài khoản đã bị khóa!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    this.connSQL.Close();
+                    Form main = new MainForm(this, this.connSQL, username);
+                    this.Hide();
+                    main.ShowDialog();
+                    this.connSQL.Connect();
+                    return;
+                }
+            }
+            MessageBox.Show("Sai tên tài khoản hoặc mật khẩu!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -93,6 +106,10 @@ namespace ExampleLogin
 
         private bool exitApp()
         {
+            if (this.noAskExit)
+            {
+                return true;
+            }
             if (MessageBox.Show("Bạn có muốn thoát không?", "THOÁT CHƯƠNG TRÌNH", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Library.killPid(Library.getPid());
