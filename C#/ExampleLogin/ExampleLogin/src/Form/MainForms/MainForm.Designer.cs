@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.hệThốngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.giớiThiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
@@ -48,8 +51,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelForm = new System.Windows.Forms.Panel();
             this.titlePanel = new System.Windows.Forms.GroupBox();
-            this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer0 = new System.Windows.Forms.Timer(this.components);
+            this.lbDateTime = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -63,11 +66,11 @@
             this.accountToolStripMenuItem,
             this.giớiThiệuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.MaximumSize = new System.Drawing.Size(924, 24);
-            this.menuStrip1.MinimumSize = new System.Drawing.Size(924, 24);
+            this.menuStrip1.MaximumSize = new System.Drawing.Size(1086, 24);
+            this.menuStrip1.MinimumSize = new System.Drawing.Size(1086, 24);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(924, 24);
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip1.Size = new System.Drawing.Size(1086, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -82,9 +85,24 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.exitToolStripMenuItem.Text = "Thoát";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // accountToolStripMenuItem
+            // 
+            this.accountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logOutToolStripMenuItem1});
+            this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
+            this.accountToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.accountToolStripMenuItem.Text = "Tài khoản";
+            // 
+            // logOutToolStripMenuItem1
+            // 
+            this.logOutToolStripMenuItem1.Name = "logOutToolStripMenuItem1";
+            this.logOutToolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
+            this.logOutToolStripMenuItem1.Text = "Đăng xuất";
+            this.logOutToolStripMenuItem1.Click += new System.EventHandler(this.logOutToolStripMenuItem1_Click);
             // 
             // giớiThiệuToolStripMenuItem
             // 
@@ -97,7 +115,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.aboutToolStripMenuItem.Text = "Thông tin";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -217,16 +235,16 @@
             this.panel1.Controls.Add(this.labelUsername);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(0, 467);
-            this.panel1.MaximumSize = new System.Drawing.Size(924, 33);
-            this.panel1.MinimumSize = new System.Drawing.Size(924, 33);
+            this.panel1.MaximumSize = new System.Drawing.Size(1102, 535);
+            this.panel1.MinimumSize = new System.Drawing.Size(1102, 535);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(924, 33);
+            this.panel1.Size = new System.Drawing.Size(1102, 535);
             this.panel1.TabIndex = 2;
             // 
             // labelVersion
             // 
             this.labelVersion.AutoSize = true;
-            this.labelVersion.Location = new System.Drawing.Point(888, 7);
+            this.labelVersion.Location = new System.Drawing.Point(1042, 9);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(31, 13);
             this.labelVersion.TabIndex = 3;
@@ -235,7 +253,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(846, 7);
+            this.label3.Location = new System.Drawing.Point(999, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 2;
@@ -244,20 +262,20 @@
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
-            this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsername.Location = new System.Drawing.Point(71, 7);
+            this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUsername.Location = new System.Drawing.Point(61, 7);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(33, 17);
+            this.labelUsername.Size = new System.Drawing.Size(28, 15);
             this.labelUsername.TabIndex = 1;
             this.labelUsername.Text = "root";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 17);
+            this.label1.Size = new System.Drawing.Size(56, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Account: ";
             // 
@@ -266,10 +284,10 @@
             this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelForm.Location = new System.Drawing.Point(3, 19);
-            this.panelForm.MaximumSize = new System.Drawing.Size(784, 412);
-            this.panelForm.MinimumSize = new System.Drawing.Size(784, 412);
+            this.panelForm.MaximumSize = new System.Drawing.Size(938, 412);
+            this.panelForm.MinimumSize = new System.Drawing.Size(938, 412);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(784, 412);
+            this.panelForm.Size = new System.Drawing.Size(938, 412);
             this.panelForm.TabIndex = 3;
             // 
             // titlePanel
@@ -278,31 +296,34 @@
             this.titlePanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titlePanel.Location = new System.Drawing.Point(130, 27);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(790, 434);
+            this.titlePanel.Size = new System.Drawing.Size(944, 434);
             this.titlePanel.TabIndex = 4;
             this.titlePanel.TabStop = false;
             this.titlePanel.Text = "Title";
             // 
-            // accountToolStripMenuItem
+            // timer0
             // 
-            this.accountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.logOutToolStripMenuItem1});
-            this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
-            this.accountToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.accountToolStripMenuItem.Text = "Tài khoản";
+            this.timer0.Enabled = true;
+            this.timer0.Interval = 999;
+            this.timer0.Tick += new System.EventHandler(this.timer0_Tick);
             // 
-            // logOutToolStripMenuItem1
+            // lbDateTime
             // 
-            this.logOutToolStripMenuItem1.Name = "logOutToolStripMenuItem1";
-            this.logOutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.logOutToolStripMenuItem1.Text = "Đăng xuất";
-            this.logOutToolStripMenuItem1.Click += new System.EventHandler(this.logOutToolStripMenuItem1_Click);
+            this.lbDateTime.AutoSize = true;
+            this.lbDateTime.BackColor = System.Drawing.Color.Transparent;
+            this.lbDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDateTime.Location = new System.Drawing.Point(900, 0);
+            this.lbDateTime.Name = "lbDateTime";
+            this.lbDateTime.Size = new System.Drawing.Size(29, 20);
+            this.lbDateTime.TabIndex = 5;
+            this.lbDateTime.Text = "     ";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 496);
+            this.ClientSize = new System.Drawing.Size(1086, 496);
+            this.Controls.Add(this.lbDateTime);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBoxOptions);
@@ -310,8 +331,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(940, 535);
-            this.MinimumSize = new System.Drawing.Size(940, 535);
+            this.MaximumSize = new System.Drawing.Size(1102, 535);
+            this.MinimumSize = new System.Drawing.Size(1102, 535);
             this.Name = "MainForm";
             this.Text = "Quản lý mua bán linh kiện | Nhóm 1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.exitToolStripMenuItem_Click);
@@ -351,5 +372,7 @@
         private System.Windows.Forms.GroupBox titlePanel;
         private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem1;
+        private System.Windows.Forms.Timer timer0;
+        private System.Windows.Forms.Label lbDateTime;
     }
 }

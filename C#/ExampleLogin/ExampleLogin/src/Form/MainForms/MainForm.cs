@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Management;
 
 namespace ExampleLogin
 {
@@ -17,6 +19,14 @@ namespace ExampleLogin
         private SQLToolBox connSQL = null;
         private LoginForm loginForm = null;
         private bool noAskExit = false;
+        private string windowsVersion = null;
+        private string cpuName = null;
+        private string username;
+
+        // info
+        PerformanceCounter cpuCounter = null;
+
+        // PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
 
         public MainForm(LoginForm fm, SQLToolBox connSQL, string username)
         {
@@ -24,7 +34,8 @@ namespace ExampleLogin
             this.listForm = new Dictionary<Button, Form>();
             this.loginForm = fm;
             this.connSQL = connSQL;
-            this.labelUsername.Text = username;
+            this.username = username;
+            labelUsername.Text = this.username;
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -265,5 +276,45 @@ namespace ExampleLogin
                 this.loginForm.Show();
             }
         }
+
+        private void timer0_Tick(object sender, EventArgs e)
+        {
+            if (this.cpuCounter == null)
+            {
+                this.cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            }
+
+            if (this.cpuName == null)
+            {
+                this.cpuName = "";
+                ManagementObjectSearcher mos = new ManagementObjectSearcher("select Name,Caption from Win32_Processor");
+                foreach (ManagementObject s in mos.Get())
+                {
+                    if (this.cpuName.Length == 0)
+                    {
+                        this.cpuName = this.cpuName + s["Name"].ToString();
+                    }
+                    else
+                    {
+                        this.cpuName = this.cpuName + " / " + s["Name"].ToString();
+                    }
+                }
+            }
+            if (this.windowsVersion == null)
+            {
+                this.windowsVersion = "";
+                ManagementObjectSearcher mos = new ManagementObjectSearcher("select Caption,OSArchitecture from Win32_OperatingSystem");
+                foreach (ManagementObject s in mos.Get())
+                {
+                    this.windowsVersion = s["Caption"].ToString() + " (" + s["OSArchitecture"].ToString() + ")";
+                }
+
+                this.windowsVersion = this.windowsVersion.Replace("Microsoft ", "");
+            }
+
+            lbDateTime.Text = DateTime.Now.ToString();
+            labelUsername.Text = this.username + "   |   " + this.windowsVersion + "   |   " + this.cpuName + " (Load: " + Math.Round(this.cpuCounter.NextValue(), 2).ToString() + "%)";
+        }
+
     }
 }

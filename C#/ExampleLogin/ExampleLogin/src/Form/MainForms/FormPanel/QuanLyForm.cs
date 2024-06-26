@@ -302,5 +302,14 @@ namespace ExampleLogin
 
             dataGridView1.DataSource = newDt;
         }
+
+        private void cbTimKiem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tbTimKiem.Text.Length == 0)
+            {
+                return;
+            }
+            this.tbTimKiem_TextChanged(sender, e);
+        }
     }
 }
