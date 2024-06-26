@@ -1,6 +1,7 @@
 ﻿using ExampleLogin.src.Library;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace ExampleLogin
@@ -21,6 +22,7 @@ namespace ExampleLogin
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             string username = this.tbUsername.Text;
+            string numberPhone = this.tbSDT.Text;
             string email = this.tbEmail.Text;
             string captchaResult = this.tbCaptcha.Text;
             if (string.IsNullOrEmpty(username) ||
@@ -28,26 +30,33 @@ namespace ExampleLogin
                 string.IsNullOrEmpty(captchaResult)
                 )
             {
-                MessageBox.Show("?? Did you forget anything ??", "ERROR", MessageBoxButtons.OK);
+                MessageBox.Show("?? Bạn đã quên thứ gì đó đúng không ??", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.captcha.renew();
             } else
             {
                 if (this.captcha.verify(Convert.ToInt32(captchaResult)))
                 {
-                    SQLTable data = this.connSQL.Select("SELECT username, password, email FROM account WHERE username='" + username + "' AND email='" + email + "';");
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM account WHERE username = @username, sdt = @sdt, email = @email;");
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@sdt", numberPhone);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    SQLTable data = this.connSQL.Select(cmd);
                     for(int i = 0; i < data.Count; i++)
                     {
-                        if (username.Equals(data.Row(i).Column("username")) && email.Equals(data.Row(i).Column("email")))
+                        if (username.Equals(data.Row(i).Column("username")) &&
+                            numberPhone.Equals(data.Row(i).Column("sdt")) &&
+                            email.Equals(data.Row(i).Column("email"))
+                            )
                         {
-                            MessageBox.Show("Your password is '" + data.Row(i).Column("password") + "'", "Successfully", MessageBoxButtons.OK);
+                            MessageBox.Show("Mật khẩu của bạn là '" + data.Row(i).Column("password") + "'", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                             return;
                         }
                     }
-                    MessageBox.Show("Wrong info", "ERROR", MessageBoxButtons.OK);
+                    MessageBox.Show("Thông tin không chính xác", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 } else
                 {
-                    MessageBox.Show("Captcha Error!", "ERROR", MessageBoxButtons.OK);
+                    MessageBox.Show("Xác thực sai!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.captcha.renew();
                 }
             }

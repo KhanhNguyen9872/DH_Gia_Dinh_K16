@@ -46,20 +46,19 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(99, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 20);
+            this.label1.Size = new System.Drawing.Size(140, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ExampleLogin";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Text = "Quản lý linh kiện";
             // 
             // lb_username
             // 
             this.lb_username.AutoSize = true;
             this.lb_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_username.Location = new System.Drawing.Point(29, 63);
+            this.lb_username.Location = new System.Drawing.Point(16, 61);
             this.lb_username.Name = "lb_username";
-            this.lb_username.Size = new System.Drawing.Size(65, 15);
+            this.lb_username.Size = new System.Drawing.Size(81, 15);
             this.lb_username.TabIndex = 1;
-            this.lb_username.Text = "Username";
+            this.lb_username.Text = "Tên tài khoản";
             // 
             // lb
             // 
@@ -67,15 +66,15 @@
             this.lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb.Location = new System.Drawing.Point(31, 95);
             this.lb.Name = "lb";
-            this.lb.Size = new System.Drawing.Size(61, 15);
+            this.lb.Size = new System.Drawing.Size(58, 15);
             this.lb.TabIndex = 2;
-            this.lb.Text = "Password";
+            this.lb.Text = "Mật khẩu";
             // 
             // tbUsername
             // 
             this.tbUsername.Location = new System.Drawing.Point(103, 60);
             this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(176, 20);
+            this.tbUsername.Size = new System.Drawing.Size(194, 20);
             this.tbUsername.TabIndex = 3;
             // 
             // tbPassword
@@ -83,7 +82,7 @@
             this.tbPassword.Location = new System.Drawing.Point(103, 92);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
-            this.tbPassword.Size = new System.Drawing.Size(117, 20);
+            this.tbPassword.Size = new System.Drawing.Size(135, 20);
             this.tbPassword.TabIndex = 4;
             // 
             // btnLogin
@@ -92,7 +91,7 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 5;
-            this.btnLogin.Text = "Login";
+            this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
@@ -102,19 +101,19 @@
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(75, 23);
             this.btnRegister.TabIndex = 6;
-            this.btnRegister.Text = "Register";
+            this.btnRegister.Text = "Đăng ký";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // lkForgotPass
             // 
             this.lkForgotPass.AutoSize = true;
-            this.lkForgotPass.Location = new System.Drawing.Point(188, 115);
+            this.lkForgotPass.Location = new System.Drawing.Point(206, 114);
             this.lkForgotPass.Name = "lkForgotPass";
-            this.lkForgotPass.Size = new System.Drawing.Size(91, 13);
+            this.lkForgotPass.Size = new System.Drawing.Size(86, 13);
             this.lkForgotPass.TabIndex = 7;
             this.lkForgotPass.TabStop = true;
-            this.lkForgotPass.Text = "Forgot password?";
+            this.lkForgotPass.Text = "Quên mật khẩu?";
             this.lkForgotPass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lkForgotPass_LinkClicked);
             // 
             // btnQuit
@@ -123,18 +122,18 @@
             this.btnQuit.Name = "btnQuit";
             this.btnQuit.Size = new System.Drawing.Size(75, 23);
             this.btnQuit.TabIndex = 8;
-            this.btnQuit.Text = "Quit";
+            this.btnQuit.Text = "Thoát";
             this.btnQuit.UseVisualStyleBackColor = true;
             this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
             // 
             // cbShowHide
             // 
             this.cbShowHide.AutoSize = true;
-            this.cbShowHide.Location = new System.Drawing.Point(226, 94);
+            this.cbShowHide.Location = new System.Drawing.Point(244, 94);
             this.cbShowHide.Name = "cbShowHide";
-            this.cbShowHide.Size = new System.Drawing.Size(53, 17);
+            this.cbShowHide.Size = new System.Drawing.Size(48, 17);
             this.cbShowHide.TabIndex = 9;
-            this.cbShowHide.Text = "Show";
+            this.cbShowHide.Text = "Hiện";
             this.cbShowHide.UseVisualStyleBackColor = true;
             this.cbShowHide.CheckedChanged += new System.EventHandler(this.cbShowHide_CheckedChanged);
             // 
@@ -156,7 +155,9 @@
             this.MaximumSize = new System.Drawing.Size(334, 238);
             this.MinimumSize = new System.Drawing.Size(334, 238);
             this.Name = "LoginForm";
-            this.Text = "Login | ExampleLogin";
+            this.Text = "Đăng nhập | Quản lý linh kiện";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

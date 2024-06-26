@@ -27,8 +27,8 @@ public class Captcha
 
     public void renew()
     {
-        this.first = random.Next(0, 25);
-        this.second = random.Next(1, 25);
+        this.first = random.Next(0, 10);
+        this.second = random.Next(1, 10);
         string calc_str = "";
         int calc = random.Next(0, 3); // no div '/'
         if (calc == 0)

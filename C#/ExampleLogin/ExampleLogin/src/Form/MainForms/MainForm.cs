@@ -42,7 +42,7 @@ namespace ExampleLogin
 
         private bool exitApp()
         {
-            if (MessageBox.Show("Do you want to exit?", "EXIT", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có muốn thoát không?", "THOÁT CHƯƠNG TRÌNH", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Library.killPid(Library.getPid());
             }
@@ -59,10 +59,12 @@ namespace ExampleLogin
 
         private void reloadChooseOptions(Button btn, Form fm)
         {
+            string buttonText = "";
             foreach(Button b in this.groupBoxOptions.Controls)
             {
                 if (btn == b)
                 {
+                    buttonText = b.Text;
                     b.Enabled = false;
                     b.Font = new Font(b.Font, FontStyle.Bold);
                 } else
@@ -83,6 +85,8 @@ namespace ExampleLogin
                     f.Hide();
                 }
             }
+
+            this.titlePanel.Text = buttonText;
         }
 
         private void btnOptionBanHang_Click(object sender, EventArgs e)
@@ -246,7 +250,7 @@ namespace ExampleLogin
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            this.btnOptionBanHang_Click(sender, e);
         }
     }
 }

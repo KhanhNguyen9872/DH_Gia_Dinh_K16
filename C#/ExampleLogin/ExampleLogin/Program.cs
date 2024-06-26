@@ -11,7 +11,7 @@ namespace ExampleLogin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm(new src.Library.SQLToolBox(""), "root"));
+            Application.Run(new LoginForm());
         }
     }
 }

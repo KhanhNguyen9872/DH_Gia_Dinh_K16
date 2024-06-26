@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -11,12 +12,19 @@ namespace ExampleLogin.src.Library
         private SqlConnection conn = null;
         // private String server;
         private String db;
+        private String dataSource;
         // private String username;
         // private String password;
 
+        public SQLToolBox(String dataSource, String db)
+        {
+            this.dataSource = "Data Source=" + dataSource + ";";
+            this.db = db;
+        }
+
         public SQLToolBox(String db)
         {
-            // this.server = server;
+            this.dataSource = "";
             this.db = db;
             // this.username = user;
             // this.password = passwd;
@@ -24,18 +32,24 @@ namespace ExampleLogin.src.Library
 
         public void Connect()
         {
-            this.conn = new SqlConnection("Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
+            this.conn = new SqlConnection(this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
             this.conn.Open();
         }
 
-        public void close()
+        public void Close()
         {
             this.conn.Close();
         }
 
         public bool Execute(String query)
         {
-            SqlCommand cmd = new SqlCommand(query, this.conn);
+            SqlCommand cmd = new SqlCommand(query);
+            return this.Execute(cmd);
+        }
+
+        public bool Execute(SqlCommand cmd)
+        {
+            cmd.Connection = this.conn;
             int rows = 0;
             try
             {
@@ -53,31 +67,15 @@ namespace ExampleLogin.src.Library
             return false;
         }
 
-        private List<string> GetSelectKey(String query)
-        {
-            string pattern = @"SELECT\s+(.*?)\s+FROM";
-            List<string> columnNames = new List<string>();
-            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
-
-            Match match = regex.Match(query);
-
-            if (match.Success)
-            {
-                string[] columns = match.Groups[1].Value.Split(',');
-
-                foreach (string column in columns)
-                {
-                    columnNames.Add(column.Trim());
-                }
-            }
-            return columnNames;
-        }
-
         public SQLTable Select(String query)
         {
-            List<string> get = this.GetSelectKey(query);
+            SqlCommand cmd = new SqlCommand(query);
+            return this.Select(cmd);
+        }
 
-            SqlCommand cmd = new SqlCommand(query, this.conn);
+        public SQLTable Select(SqlCommand cmd)
+        {
+            cmd.Connection = this.conn;
             SqlDataReader reader = cmd.ExecuteReader();
             List<Dictionary<string, string>> data = new List<Dictionary<string, string>>();
             Dictionary<string, string> value = new Dictionary<string, string>();
@@ -86,8 +84,9 @@ namespace ExampleLogin.src.Library
                 while (reader.Read())
                 {
                     value = new Dictionary<string, string>();
-                    foreach (String s in get)
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
+                        string s = reader.GetName(i);
                         value.Add(s, reader[s].ToString());
                     }
                     data.Add(value);
@@ -111,6 +110,35 @@ namespace ExampleLogin.src.Library
         {
             this.data = data;
             this.Count = data.Count;
+        }
+
+        public DataTable getDataTable()
+        {
+            DataTable dt = new DataTable();
+            this.Fill(dt);
+            return dt;
+        }
+
+        public void Fill(DataTable dt)
+        {
+            if (this.data.Count > 0)
+            {
+                foreach (var s in this.data[0])
+                {
+                    dt.Columns.Add(s.Key);
+                }
+
+                foreach (Dictionary<string, string> item in this.data)
+                {
+                    DataRow row = dt.NewRow();
+                    foreach (string key in item.Keys)
+                    {
+                        row[key] = item[key];
+                    }
+
+                    dt.Rows.Add(row);
+                }
+            }
         }
 
         public SQLRow Row(int index)

@@ -14,5 +14,9 @@ go
 create table account (
 	username nvarchar(50) primary key,
 	password nvarchar(50) not null,
-	email nvarchar(255) not null unique,
+	sdt nchar(10) not null,
+	email nvarchar(255) not null unique
 )
+
+insert into account values 
+	('root', 'root', '0123456789', 'root@localhost.com')

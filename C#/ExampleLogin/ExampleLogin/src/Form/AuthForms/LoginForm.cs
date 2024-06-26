@@ -19,25 +19,17 @@ namespace ExampleLogin
         public LoginForm()
         {
             InitializeComponent();
-            // String server = "DESKTOP-UI9AO8H";
+            String server = "DESKTOP-UI9AO8H";
             String db = "Nhom1";
             // String user = "root";
             // String passwd = "root";
-            this.connSQL = new SQLToolBox(db);
+            this.connSQL = new SQLToolBox(server, db);
             this.connSQL.Connect();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to exit?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            this.exitApp();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -46,7 +38,7 @@ namespace ExampleLogin
             string password = this.tbPassword.Text;
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("?? Did you forget anything ??", "ERROR", MessageBoxButtons.OK);
+                MessageBox.Show("?? Bạn đã quên thứ gì đó đúng không ??", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else
             {
                 SQLTable data = this.connSQL.Select("SELECT username, password FROM account;");
@@ -54,6 +46,7 @@ namespace ExampleLogin
                 {
                     if ((username.Equals(data.Row(i).Column("username"))) && (password.Equals(data.Row(i).Column("password"))))
                     {
+                        this.connSQL.Close();
                         Form main = new MainForm(this.connSQL, username);
                         this.Hide();
                         main.ShowDialog();
@@ -61,7 +54,7 @@ namespace ExampleLogin
                         Application.Exit();
                     }
                 }                
-                MessageBox.Show("Incorrect username or password!");
+                MessageBox.Show("Sai tên tài khoản hoặc mật khẩu!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -89,6 +82,29 @@ namespace ExampleLogin
             } else
             {
                 tbPassword.PasswordChar = '*';
+            }
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            this.tbUsername.Text = "root";
+            this.tbPassword.Text = "root";
+        }
+
+        private bool exitApp()
+        {
+            if (MessageBox.Show("Bạn có muốn thoát không?", "THOÁT CHƯƠNG TRÌNH", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                Library.killPid(Library.getPid());
+            }
+            return false;
+        }
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!this.exitApp())
+            {
+                e.Cancel = true;
             }
         }
     }

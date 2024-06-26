@@ -35,10 +35,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(523, 322);
+            this.ClientSize = new System.Drawing.Size(784, 412);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(523, 322);
-            this.MinimumSize = new System.Drawing.Size(523, 322);
+            this.MaximumSize = new System.Drawing.Size(784, 412);
+            this.MinimumSize = new System.Drawing.Size(784, 412);
             this.Name = "HangHoaForm";
             this.Text = "HangHoaForm";
             this.ResumeLayout(false);

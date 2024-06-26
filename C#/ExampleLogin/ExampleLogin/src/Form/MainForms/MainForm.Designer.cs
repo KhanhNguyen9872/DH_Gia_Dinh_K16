@@ -48,9 +48,11 @@
             this.labelUsername = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelForm = new System.Windows.Forms.Panel();
+            this.titlePanel = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.titlePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -59,10 +61,11 @@
             this.hệThốngToolStripMenuItem,
             this.giớiThiệuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.MaximumSize = new System.Drawing.Size(661, 24);
-            this.menuStrip1.MinimumSize = new System.Drawing.Size(661, 24);
+            this.menuStrip1.MaximumSize = new System.Drawing.Size(924, 24);
+            this.menuStrip1.MinimumSize = new System.Drawing.Size(924, 24);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(661, 24);
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.menuStrip1.Size = new System.Drawing.Size(924, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -113,18 +116,22 @@
             this.groupBoxOptions.Controls.Add(this.btnOptionHanghoa);
             this.groupBoxOptions.Controls.Add(this.btnOptionHoadon);
             this.groupBoxOptions.Controls.Add(this.btnOptionBanHang);
+            this.groupBoxOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxOptions.Location = new System.Drawing.Point(12, 27);
             this.groupBoxOptions.Name = "groupBoxOptions";
-            this.groupBoxOptions.Size = new System.Drawing.Size(108, 323);
+            this.groupBoxOptions.Size = new System.Drawing.Size(108, 434);
             this.groupBoxOptions.TabIndex = 1;
             this.groupBoxOptions.TabStop = false;
-            this.groupBoxOptions.Text = "Options";
+            this.groupBoxOptions.Text = "Mục";
             // 
             // btnOptionQuanly
             // 
-            this.btnOptionQuanly.Location = new System.Drawing.Point(6, 193);
+            this.btnOptionQuanly.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOptionQuanly.Location = new System.Drawing.Point(6, 325);
+            this.btnOptionQuanly.MaximumSize = new System.Drawing.Size(96, 45);
+            this.btnOptionQuanly.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionQuanly.Name = "btnOptionQuanly";
-            this.btnOptionQuanly.Size = new System.Drawing.Size(96, 23);
+            this.btnOptionQuanly.Size = new System.Drawing.Size(96, 45);
             this.btnOptionQuanly.TabIndex = 6;
             this.btnOptionQuanly.Text = "Quản lý";
             this.btnOptionQuanly.UseVisualStyleBackColor = true;
@@ -132,9 +139,12 @@
             // 
             // btnOptionNhanvien
             // 
-            this.btnOptionNhanvien.Location = new System.Drawing.Point(6, 164);
+            this.btnOptionNhanvien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOptionNhanvien.Location = new System.Drawing.Point(6, 274);
+            this.btnOptionNhanvien.MaximumSize = new System.Drawing.Size(96, 45);
+            this.btnOptionNhanvien.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionNhanvien.Name = "btnOptionNhanvien";
-            this.btnOptionNhanvien.Size = new System.Drawing.Size(96, 23);
+            this.btnOptionNhanvien.Size = new System.Drawing.Size(96, 45);
             this.btnOptionNhanvien.TabIndex = 5;
             this.btnOptionNhanvien.Text = "Nhân viên";
             this.btnOptionNhanvien.UseVisualStyleBackColor = true;
@@ -142,9 +152,12 @@
             // 
             // btnOptionKhachhang
             // 
-            this.btnOptionKhachhang.Location = new System.Drawing.Point(6, 135);
+            this.btnOptionKhachhang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOptionKhachhang.Location = new System.Drawing.Point(6, 223);
+            this.btnOptionKhachhang.MaximumSize = new System.Drawing.Size(96, 45);
+            this.btnOptionKhachhang.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionKhachhang.Name = "btnOptionKhachhang";
-            this.btnOptionKhachhang.Size = new System.Drawing.Size(96, 23);
+            this.btnOptionKhachhang.Size = new System.Drawing.Size(96, 45);
             this.btnOptionKhachhang.TabIndex = 4;
             this.btnOptionKhachhang.Text = "Khách hàng";
             this.btnOptionKhachhang.UseVisualStyleBackColor = true;
@@ -152,9 +165,12 @@
             // 
             // btnOptionThongke
             // 
-            this.btnOptionThongke.Location = new System.Drawing.Point(6, 106);
+            this.btnOptionThongke.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOptionThongke.Location = new System.Drawing.Point(6, 172);
+            this.btnOptionThongke.MaximumSize = new System.Drawing.Size(96, 45);
+            this.btnOptionThongke.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionThongke.Name = "btnOptionThongke";
-            this.btnOptionThongke.Size = new System.Drawing.Size(96, 23);
+            this.btnOptionThongke.Size = new System.Drawing.Size(96, 45);
             this.btnOptionThongke.TabIndex = 3;
             this.btnOptionThongke.Text = "Thống kê";
             this.btnOptionThongke.UseVisualStyleBackColor = true;
@@ -162,9 +178,12 @@
             // 
             // btnOptionHanghoa
             // 
-            this.btnOptionHanghoa.Location = new System.Drawing.Point(6, 77);
+            this.btnOptionHanghoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOptionHanghoa.Location = new System.Drawing.Point(6, 121);
+            this.btnOptionHanghoa.MaximumSize = new System.Drawing.Size(96, 45);
+            this.btnOptionHanghoa.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionHanghoa.Name = "btnOptionHanghoa";
-            this.btnOptionHanghoa.Size = new System.Drawing.Size(96, 23);
+            this.btnOptionHanghoa.Size = new System.Drawing.Size(96, 45);
             this.btnOptionHanghoa.TabIndex = 2;
             this.btnOptionHanghoa.Text = "Hàng hóa";
             this.btnOptionHanghoa.UseVisualStyleBackColor = true;
@@ -172,9 +191,12 @@
             // 
             // btnOptionHoadon
             // 
-            this.btnOptionHoadon.Location = new System.Drawing.Point(6, 48);
+            this.btnOptionHoadon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOptionHoadon.Location = new System.Drawing.Point(6, 70);
+            this.btnOptionHoadon.MaximumSize = new System.Drawing.Size(96, 45);
+            this.btnOptionHoadon.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionHoadon.Name = "btnOptionHoadon";
-            this.btnOptionHoadon.Size = new System.Drawing.Size(96, 23);
+            this.btnOptionHoadon.Size = new System.Drawing.Size(96, 45);
             this.btnOptionHoadon.TabIndex = 1;
             this.btnOptionHoadon.Text = "Hóa đơn";
             this.btnOptionHoadon.UseVisualStyleBackColor = true;
@@ -182,9 +204,12 @@
             // 
             // btnOptionBanHang
             // 
+            this.btnOptionBanHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOptionBanHang.Location = new System.Drawing.Point(6, 19);
+            this.btnOptionBanHang.MaximumSize = new System.Drawing.Size(96, 45);
+            this.btnOptionBanHang.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionBanHang.Name = "btnOptionBanHang";
-            this.btnOptionBanHang.Size = new System.Drawing.Size(96, 23);
+            this.btnOptionBanHang.Size = new System.Drawing.Size(96, 45);
             this.btnOptionBanHang.TabIndex = 0;
             this.btnOptionBanHang.Text = "Bán hàng";
             this.btnOptionBanHang.UseVisualStyleBackColor = true;
@@ -197,15 +222,17 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.labelUsername);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(0, 356);
+            this.panel1.Location = new System.Drawing.Point(0, 467);
+            this.panel1.MaximumSize = new System.Drawing.Size(924, 33);
+            this.panel1.MinimumSize = new System.Drawing.Size(924, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(661, 33);
+            this.panel1.Size = new System.Drawing.Size(924, 33);
             this.panel1.TabIndex = 2;
             // 
             // labelVersion
             // 
             this.labelVersion.AutoSize = true;
-            this.labelVersion.Location = new System.Drawing.Point(618, 9);
+            this.labelVersion.Location = new System.Drawing.Point(888, 7);
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(31, 13);
             this.labelVersion.TabIndex = 3;
@@ -214,7 +241,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(574, 9);
+            this.label3.Location = new System.Drawing.Point(846, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 2;
@@ -242,23 +269,40 @@
             // 
             // panelForm
             // 
-            this.panelForm.Location = new System.Drawing.Point(127, 28);
+            this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelForm.Location = new System.Drawing.Point(3, 19);
+            this.panelForm.MaximumSize = new System.Drawing.Size(784, 412);
+            this.panelForm.MinimumSize = new System.Drawing.Size(784, 412);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(523, 322);
+            this.panelForm.Size = new System.Drawing.Size(784, 412);
             this.panelForm.TabIndex = 3;
+            // 
+            // titlePanel
+            // 
+            this.titlePanel.Controls.Add(this.panelForm);
+            this.titlePanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titlePanel.Location = new System.Drawing.Point(130, 27);
+            this.titlePanel.Name = "titlePanel";
+            this.titlePanel.Size = new System.Drawing.Size(790, 434);
+            this.titlePanel.TabIndex = 4;
+            this.titlePanel.TabStop = false;
+            this.titlePanel.Text = "Title";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 387);
-            this.Controls.Add(this.panelForm);
+            this.ClientSize = new System.Drawing.Size(924, 496);
+            this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBoxOptions);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(940, 535);
+            this.MinimumSize = new System.Drawing.Size(940, 535);
             this.Name = "MainForm";
             this.Text = "ExampleLogin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.exitToolStripMenuItem_Click);
@@ -268,6 +312,7 @@
             this.groupBoxOptions.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.titlePanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +340,6 @@
         private System.Windows.Forms.Button btnOptionHanghoa;
         private System.Windows.Forms.Button btnOptionHoadon;
         private System.Windows.Forms.Panel panelForm;
+        private System.Windows.Forms.GroupBox titlePanel;
     }
 }

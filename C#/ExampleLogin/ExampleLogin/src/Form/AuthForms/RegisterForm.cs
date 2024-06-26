@@ -1,5 +1,6 @@
 ﻿using ExampleLogin.src.Library;
 using System;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace ExampleLogin
@@ -25,18 +26,20 @@ namespace ExampleLogin
         private void btnRegister_Click(object sender, EventArgs e)
         {
             string username = this.tbUsername.Text;
+            string numberPhone = this.tbSDT.Text;
             string email = this.tbEmail.Text;
             string password = this.tbPassword.Text;
             string confirmPass = this.tbConfirmPass.Text;
             string captchaResult = this.tbCaptcha.Text;
             if (string.IsNullOrEmpty(username) || 
+                string.IsNullOrEmpty(numberPhone) ||
                 string.IsNullOrEmpty(email) ||
                 string.IsNullOrEmpty(password) || 
                 string.IsNullOrEmpty(confirmPass) ||
                 string.IsNullOrEmpty(captchaResult)
                 )
             {
-                MessageBox.Show("?? Did you forget anything ??", "ERROR", MessageBoxButtons.OK);
+                MessageBox.Show("?? Bạn đã quên thứ gì đó đúng không ??", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.captcha.renew();
             }
             else
@@ -45,23 +48,28 @@ namespace ExampleLogin
                 {
                     if (this.captcha.verify(Convert.ToInt32(captchaResult)))
                     {
-                        if (connSQL.Execute("INSERT INTO account (username, password, email) VALUES ('" + username + "', '" + password + "', '" + email + "')"))
+                        SqlCommand cmd = new SqlCommand("INSERT INTO account (username, password, sdt, email) VALUES (@username, @password, @sdt, @email)");
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@password", password);
+                        cmd.Parameters.AddWithValue("@sdt", numberPhone);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        if (connSQL.Execute(cmd))
                         {
-                            MessageBox.Show("Register successfully!", "Successfully", MessageBoxButtons.OK);
+                            MessageBox.Show("Đăng ký thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         } else
                         {
-                            MessageBox.Show("Register failed! Username or email already exists!", "Failed", MessageBoxButtons.OK);
+                            MessageBox.Show("Đăng ký thất bại!\nTài khoản hoặc email đã tồn tại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     } else
                     {
-                        MessageBox.Show("Captcha Error!", "ERROR", MessageBoxButtons.OK);
+                        MessageBox.Show("Xác thực sai!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         this.captcha.renew();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Confirm password not same!", "WARNING", MessageBoxButtons.OK);
+                    MessageBox.Show("Nhập lại mật khẩu không trùng với nhau!", "CẢNH BÁO", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.captcha.renew();
                 }
             }
