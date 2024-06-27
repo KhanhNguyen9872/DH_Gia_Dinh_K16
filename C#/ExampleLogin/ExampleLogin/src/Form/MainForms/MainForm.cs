@@ -15,6 +15,7 @@ namespace ExampleLogin
 {
     public partial class MainForm : Form
     {
+        private PleaseWaitForm pleaseWaitForm = null;
         private Dictionary<Button, Form> listForm = null;
         private SQLToolBox connSQL = null;
         private LoginForm loginForm = null;
@@ -25,12 +26,12 @@ namespace ExampleLogin
 
         // info
         PerformanceCounter cpuCounter = null;
-
-        // PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+        PerformanceCounter ramCounter = null;
 
         public MainForm(LoginForm fm, SQLToolBox connSQL, string username)
         {
             InitializeComponent();
+            this.pleaseWaitForm = new PleaseWaitForm();
             this.listForm = new Dictionary<Button, Form>();
             this.loginForm = fm;
             this.connSQL = connSQL;
@@ -281,7 +282,14 @@ namespace ExampleLogin
         {
             if (this.cpuCounter == null)
             {
+                this.pleaseWaitForm.Show();
+                Application.DoEvents();
                 this.cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            }
+
+            if(this.ramCounter == null)
+            {
+                this.ramCounter = new PerformanceCounter("Memory", "Available MBytes");
             }
 
             if (this.cpuName == null)
@@ -310,10 +318,11 @@ namespace ExampleLogin
                 }
 
                 this.windowsVersion = this.windowsVersion.Replace("Microsoft ", "");
+                this.pleaseWaitForm.Hide();
             }
 
             lbDateTime.Text = DateTime.Now.ToString();
-            labelUsername.Text = this.username + "   |   " + this.windowsVersion + "   |   " + this.cpuName + " (Load: " + Math.Round(this.cpuCounter.NextValue(), 2).ToString() + "%)";
+            labelUsername.Text = this.username + "   |   " + this.windowsVersion + "   |   Available RAM: " + this.ramCounter.NextValue() + " MB   |   " + this.cpuName + "  (Load: " + Math.Round(this.cpuCounter.NextValue(), 2).ToString() + "%)";
         }
 
     }

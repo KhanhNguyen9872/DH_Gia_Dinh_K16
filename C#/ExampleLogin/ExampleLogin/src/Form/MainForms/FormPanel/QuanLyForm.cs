@@ -34,6 +34,7 @@ namespace ExampleLogin
 
             dataGridView1.DataSource = s.getDataTable();
             cbTimKiem.Items.Clear();
+            cbTimKiem.Items.Add("");
 
             if (s.Count > 0)
             {
@@ -42,9 +43,9 @@ namespace ExampleLogin
                     cbTimKiem.Items.Add(s.Row(0).ColumnName(i));
                 }
 
-                cbTimKiem.SelectedIndex = 0;
             }
 
+            cbTimKiem.SelectedIndex = 0;
             GC.Collect(0);
         }
 
@@ -53,6 +54,8 @@ namespace ExampleLogin
             this.loadData();
 
             this.wipeButton();
+            this.btnSua.Enabled = false;
+            this.btnXoa.Enabled = false;
             this.tbTenTaiKhoan.Focus();
         }
 
@@ -257,50 +260,7 @@ namespace ExampleLogin
 
         private void tbTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (tbTimKiem.Text.Length == 0)
-            {
-                dataGridView1.DataSource = this.dtOld;
-                this.dtOld = null;
-                return;
-            }
-            if (this.dtOld == null)
-            {
-                this.dtOld = (DataTable)dataGridView1.DataSource;
-            }
-
-            DataTable newDt = new DataTable();
-            string nameColumn = this.cbTimKiem.Text;
-            string userInput = this.tbTimKiem.Text;
-            string data;
-
-            dataGridView1.DataSource = this.dtOld;
-
-            // add column name to newDt
-            for (int i = 0; i < dataGridView1.ColumnCount; i++)
-            {
-                newDt.Columns.Add(dataGridView1.Columns[i].Name);
-            }
-
-            // add Row data to newDt
-            for(int i = 0; i < dataGridView1.RowCount - 1; i++)
-            {
-                data = dataGridView1.Rows[i].Cells[nameColumn].Value.ToString();
-
-                if (data.Contains(userInput))
-                {
-                    DataRow row = newDt.NewRow();
-                    DataGridViewRow r = dataGridView1.Rows[i];
-
-                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
-                    {
-                        row[j] = r.Cells[j].Value;
-                    }
-
-                    newDt.Rows.Add(row);
-                }
-            }
-
-            dataGridView1.DataSource = newDt;
+            this.dtOld = Library.searchGridData(dataGridView1, this.dtOld, tbTimKiem, cbTimKiem);
         }
 
         private void cbTimKiem_SelectedIndexChanged(object sender, EventArgs e)
