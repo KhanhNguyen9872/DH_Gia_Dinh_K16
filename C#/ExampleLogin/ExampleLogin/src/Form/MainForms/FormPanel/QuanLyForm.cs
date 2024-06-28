@@ -34,7 +34,7 @@ namespace ExampleLogin
             SQLTable s = this.connSQL.Select("Select * from account;");
             this.connSQL.Close();
 
-            dataGridView1.DataSource = s.getDataTable();
+            Library.setDataSource(dataGridView1, s.getDataTable());            
             cbTimKiem.Items.Clear();
             cbTimKiem.Items.Add("");
 

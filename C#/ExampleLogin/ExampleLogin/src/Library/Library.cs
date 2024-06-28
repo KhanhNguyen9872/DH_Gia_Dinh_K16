@@ -21,6 +21,12 @@ namespace ExampleLogin.src.Library
             return Process.GetCurrentProcess().Id;
         }
 
+        public static void setDataSource(DataGridView dataGridView, DataTable dataTable)
+        {
+            dataGridView.DataSource = dataTable;
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
         public static DataTable searchGridData(DataGridView dataGridView1, DataTable dtOld, TextBox tbTimKiem, ComboBox cbTimKiem)
         {
             if (tbTimKiem.Text.Length == 0)
@@ -96,7 +102,7 @@ namespace ExampleLogin.src.Library
                 }
             }
 
-            dataGridView1.DataSource = newDt;
+            Library.setDataSource(dataGridView1, newDt);
 
             if (pleaseWaitForm != null)
             {

@@ -50,6 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Form\MainForms\FormPanel\KhachHangForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Form\MainForms\FormPanel\KhachHangForm.Designer.cs">
+      <DependentUpon>KhachHangForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Form\MainForms\FormPanel\NhanVienForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Form\MainForms\FormPanel\NhanVienForm.Designer.cs">
+      <DependentUpon>NhanVienForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Form\MainForms\PleaseWaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,18 +85,6 @@
     </Compile>
     <Compile Include="src\Form\MainForms\FormPanel\HoaDonForm.Designer.cs">
       <DependentUpon>HoaDonForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\KhachHangForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\KhachHangForm.Designer.cs">
-      <DependentUpon>KhachHangForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\NhanVienForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\NhanVienForm.Designer.cs">
-      <DependentUpon>NhanVienForm.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm.cs">
       <SubType>Form</SubType>
@@ -133,6 +133,12 @@
     <Compile Include="src\Form\MainForms\FormPanel\ThongKeForm.Designer.cs">
       <DependentUpon>ThongKeForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\KhachHangForm.resx">
+      <DependentUpon>KhachHangForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\NhanVienForm.resx">
+      <DependentUpon>NhanVienForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Form\MainForms\PleaseWaitForm.resx">
       <DependentUpon>PleaseWaitForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,12 +150,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\Form\MainForms\FormPanel\HoaDonForm.resx">
       <DependentUpon>HoaDonForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\Form\MainForms\FormPanel\KhachHangForm.resx">
-      <DependentUpon>KhachHangForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\Form\MainForms\FormPanel\NhanVienForm.resx">
-      <DependentUpon>NhanVienForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Form\MainForms\FormPanel\QuanLyForm.resx">
       <DependentUpon>QuanLyForm.cs</DependentUpon>
