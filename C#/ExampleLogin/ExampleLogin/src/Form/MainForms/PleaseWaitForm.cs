@@ -16,5 +16,11 @@ namespace ExampleLogin
         {
             InitializeComponent();
         }
+
+        public PleaseWaitForm(string text)
+        {
+            InitializeComponent();
+            this.lbText.Text = text;
+        }
     }
 }

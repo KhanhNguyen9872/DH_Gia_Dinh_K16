@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
@@ -18,6 +19,7 @@ namespace ExampleLogin
     {
         private SQLToolBox connSQL;
         private DataTable dtOld;
+        private Thread threadSearch = null;
 
         public QuanLyForm(SQLToolBox connSQL)
         {
@@ -259,6 +261,18 @@ namespace ExampleLogin
         }
 
         private void tbTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            if (this.threadSearch != null)
+            {
+                this.threadSearch.Abort();
+            }
+
+            this.threadSearch = new Thread(new ThreadStart(search));
+            this.threadSearch.Start();
+            GC.Collect(0);
+        }
+
+        private void search()
         {
             this.dtOld = Library.searchGridData(dataGridView1, this.dtOld, tbTimKiem, cbTimKiem);
         }

@@ -10,12 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
+using System.Threading;
 
 namespace ExampleLogin
 {
     public partial class MainForm : Form
     {
-        private PleaseWaitForm pleaseWaitForm = null;
+        private Thread threadUpdateObj = null;
         private Dictionary<Button, Form> listForm = null;
         private SQLToolBox connSQL = null;
         private LoginForm loginForm = null;
@@ -31,7 +32,6 @@ namespace ExampleLogin
         public MainForm(LoginForm fm, SQLToolBox connSQL, string username)
         {
             InitializeComponent();
-            this.pleaseWaitForm = new PleaseWaitForm();
             this.listForm = new Dictionary<Button, Form>();
             this.loginForm = fm;
             this.connSQL = connSQL;
@@ -54,6 +54,7 @@ namespace ExampleLogin
         {
             if (this.noAskExit)
             {
+                this.threadUpdateObj.Abort();
                 return true;
             }
             if (MessageBox.Show("Bạn có muốn thoát không?\nMọi công việc chưa lưu sẽ bị hủy!", "THOÁT CHƯƠNG TRÌNH", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -265,6 +266,8 @@ namespace ExampleLogin
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.btnOptionBanHang_Click(sender, e);
+            this.threadUpdateObj = new Thread(new ThreadStart(update));
+            this.threadUpdateObj.Start();
         }
 
         private void logOutToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -273,56 +276,52 @@ namespace ExampleLogin
             {
                 this.noAskExit = true;
                 this.Hide();
-                this.Close();
                 this.loginForm.Show();
+                this.Close();
             }
         }
 
-        private void timer0_Tick(object sender, EventArgs e)
+        private void update()
         {
-            if (this.cpuCounter == null)
+            while (true)
             {
-                this.pleaseWaitForm.Show();
-                Application.DoEvents();
-                this.cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            }
-
-            if(this.ramCounter == null)
-            {
-                this.ramCounter = new PerformanceCounter("Memory", "Available MBytes");
-            }
-
-            if (this.cpuName == null)
-            {
-                this.cpuName = "";
-                ManagementObjectSearcher mos = new ManagementObjectSearcher("select Name,Caption from Win32_Processor");
-                foreach (ManagementObject s in mos.Get())
+                if (this.cpuCounter == null)
                 {
-                    if (this.cpuName.Length == 0)
+                    PleaseWaitForm pleaseWaitForm = new PleaseWaitForm("Đang khởi tạo...");
+                    pleaseWaitForm.Show();
+                    Application.DoEvents();
+                    this.cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+                    this.ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+
+                    this.cpuName = "";
+                    ManagementObjectSearcher mos = new ManagementObjectSearcher("select Name,Caption from Win32_Processor");
+                    foreach (ManagementObject s in mos.Get())
                     {
-                        this.cpuName = this.cpuName + s["Name"].ToString();
+                        if (this.cpuName.Length == 0)
+                        {
+                            this.cpuName = this.cpuName + s["Name"].ToString();
+                        }
+                        else
+                        {
+                            this.cpuName = this.cpuName + " / " + s["Name"].ToString();
+                        }
                     }
-                    else
+
+                    this.windowsVersion = "";
+                    mos = new ManagementObjectSearcher("select Caption,OSArchitecture from Win32_OperatingSystem");
+                    foreach (ManagementObject s in mos.Get())
                     {
-                        this.cpuName = this.cpuName + " / " + s["Name"].ToString();
+                        this.windowsVersion = s["Caption"].ToString() + " (" + s["OSArchitecture"].ToString() + ")";
                     }
-                }
-            }
-            if (this.windowsVersion == null)
-            {
-                this.windowsVersion = "";
-                ManagementObjectSearcher mos = new ManagementObjectSearcher("select Caption,OSArchitecture from Win32_OperatingSystem");
-                foreach (ManagementObject s in mos.Get())
-                {
-                    this.windowsVersion = s["Caption"].ToString() + " (" + s["OSArchitecture"].ToString() + ")";
+
+                    this.windowsVersion = this.windowsVersion.Replace("Microsoft ", "");
+                    pleaseWaitForm.Close();
                 }
 
-                this.windowsVersion = this.windowsVersion.Replace("Microsoft ", "");
-                this.pleaseWaitForm.Hide();
+                lbDateTime.Text = DateTime.Now.ToString();
+                labelUsername.Text = this.username + "   |   " + this.windowsVersion + "   |   Available RAM: " + this.ramCounter.NextValue() + " MB   |   " + this.cpuName + "  (Load: " + Math.Round(this.cpuCounter.NextValue(), 2).ToString() + "%)";
+                Thread.Sleep(1000);
             }
-
-            lbDateTime.Text = DateTime.Now.ToString();
-            labelUsername.Text = this.username + "   |   " + this.windowsVersion + "   |   Available RAM: " + this.ramCounter.NextValue() + " MB   |   " + this.cpuName + "  (Load: " + Math.Round(this.cpuCounter.NextValue(), 2).ToString() + "%)";
         }
 
     }

@@ -28,34 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbText = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // lbText
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(75, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(163, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Please wait....";
+            this.lbText.AutoSize = true;
+            this.lbText.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbText.Location = new System.Drawing.Point(69, 42);
+            this.lbText.Name = "lbText";
+            this.lbText.Size = new System.Drawing.Size(172, 26);
+            this.lbText.TabIndex = 0;
+            this.lbText.Text = "Vui lòng chờ....";
             // 
             // PleaseWaitForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 123);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(300, 115);
+            this.Controls.Add(this.lbText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(300, 123);
+            this.MaximumSize = new System.Drawing.Size(300, 115);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(300, 123);
+            this.MinimumSize = new System.Drawing.Size(300, 115);
             this.Name = "PleaseWaitForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PleaseWaitForm";
+            this.Text = "Vui lòng chờ";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -63,6 +65,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbText;
     }
 }

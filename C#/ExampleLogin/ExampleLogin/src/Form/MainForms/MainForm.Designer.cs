@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.hệThốngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +50,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelForm = new System.Windows.Forms.Panel();
             this.titlePanel = new System.Windows.Forms.GroupBox();
-            this.timer0 = new System.Windows.Forms.Timer(this.components);
             this.lbDateTime = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
@@ -301,12 +299,6 @@
             this.titlePanel.TabStop = false;
             this.titlePanel.Text = "Title";
             // 
-            // timer0
-            // 
-            this.timer0.Enabled = true;
-            this.timer0.Interval = 999;
-            this.timer0.Tick += new System.EventHandler(this.timer0_Tick);
-            // 
             // lbDateTime
             // 
             this.lbDateTime.AutoSize = true;
@@ -372,7 +364,6 @@
         private System.Windows.Forms.GroupBox titlePanel;
         private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem1;
-        private System.Windows.Forms.Timer timer0;
         private System.Windows.Forms.Label lbDateTime;
     }
 }
