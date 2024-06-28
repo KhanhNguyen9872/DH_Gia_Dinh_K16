@@ -18,20 +18,21 @@ namespace ExampleLogin
     public partial class KhachHangForm : Form
     {
         private SQLToolBox connSQL;
+        private string tableName = "KhachHang";
         private DataTable dtOld;
         private Thread threadSearch = null;
+        
 
         public KhachHangForm(SQLToolBox connSQL)
         {
             InitializeComponent();
             this.connSQL = connSQL;
-            tbMatKhau.PasswordChar = '*';
         }
 
         private void loadData()
         {
             this.connSQL.Connect();
-            SQLTable s = this.connSQL.Select("Select * from KhachHang;");
+            SQLTable s = this.connSQL.Select("Select * from " + this.tableName + ";");
             this.connSQL.Close();
 
             Library.setDataSource(dataGridView1, s.getDataTable());            
@@ -56,18 +57,60 @@ namespace ExampleLogin
             this.loadData();
 
             this.wipeButton();
+            this.btnThem.Enabled = true;
             this.btnSua.Enabled = false;
             this.btnXoa.Enabled = false;
-            this.tbTenTaiKhoan.Focus();
+            this.tbTenKhachHang.Focus();
+
+            this.generateMaKhachHang();
+        }
+
+        private void generateMaKhachHang()
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                string maKhachHang = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[dataGridView1.Columns[0].Name].Value.ToString();
+                if ((maKhachHang.Length >= 5) && (maKhachHang.StartsWith("KH")))
+                {
+                    try
+                    {
+                        int num = Convert.ToInt32(maKhachHang.Substring(2, maKhachHang.Length - 2)) + 1;
+                        maKhachHang = "KH";
+                        if (num <= 9)
+                        {
+                            maKhachHang = maKhachHang + "00";
+                        }
+                        else if (num <= 99)
+                        {
+                            maKhachHang = maKhachHang + "0";
+                        }
+                        maKhachHang = maKhachHang + num.ToString();
+                        tbMaKhachHang.Text = maKhachHang;
+                    }
+                    catch (Exception ex)
+                    {
+                        tbMaKhachHang.Text = "";
+                        tbMaKhachHang.ReadOnly = false;
+                    }
+
+                }
+                else
+                {
+                    tbMaKhachHang.Text = "";
+                    tbMaKhachHang.ReadOnly = false;
+                }
+            }
+            else
+            {
+                tbMaKhachHang.Text = "KH000";
+            }
         }
 
         private void wipeButton()
         {
-            this.tbTenTaiKhoan.Text = "";
-            this.tbMatKhau.Text = "";
-            this.tbSDT.Text = "";
-            this.tbEmail.Text = "";
-            this.cbTrangThaiTaiKhoan.SelectedIndex = 0;
+            foreach(TextBox s in new List<TextBox>() { tbMaKhachHang, tbTenKhachHang, tbDiaChi, tbSDT, tbEmail }) {
+                s.Text = "";
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -75,26 +118,20 @@ namespace ExampleLogin
             int index = dataGridView1.CurrentRow.Index;
             if ((dataGridView1.Rows.Count - 1) == index)
             {
-                tbTenTaiKhoan.Enabled = true;
                 btnThem.Enabled = true;
                 btnXoa.Enabled = false;
                 btnSua.Enabled = false;
                 this.wipeButton();
+                this.generateMaKhachHang();
             }
             else
             {
-                tbTenTaiKhoan.Text = dataGridView1.Rows[index].Cells[0].Value.ToString();
-                tbMatKhau.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
-                tbSDT.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
-                tbEmail.Text = dataGridView1.Rows[index].Cells[3].Value.ToString();
-                if (dataGridView1.Rows[index].Cells[4].Value.ToString().Equals("True"))
+                List<TextBox> list = new List<TextBox>() { tbMaKhachHang, tbTenKhachHang, tbDiaChi, tbSDT, tbEmail };
+                for (int i = 0; i < list.Count; i++)
                 {
-                    cbTrangThaiTaiKhoan.SelectedIndex = 1;
-                } else
-                {
-                    cbTrangThaiTaiKhoan.SelectedIndex = 0;
+                    list[i].Text = dataGridView1.Rows[index].Cells[i].Value.ToString();
                 }
-                tbTenTaiKhoan.Enabled = false;
+
                 btnThem.Enabled = false;
                 btnXoa.Enabled = true;
                 btnSua.Enabled = true;
@@ -106,13 +143,13 @@ namespace ExampleLogin
             try
             {
                 this.connSQL.Connect();
-                string username = tbTenTaiKhoan.Text;
-                string password = tbMatKhau.Text;
-                string numberPhone = tbSDT.Text;
+                string maKhachHang = tbMaKhachHang.Text;
+                string tenKhachHang = tbTenKhachHang.Text;
+                string diaChi = tbDiaChi.Text;
+                string sdt = tbSDT.Text;
                 string email = tbEmail.Text;
-                string trangthaiStr = cbTrangThaiTaiKhoan.Text;
-                int trangthai = 0;
-                foreach (string s in new List<string>() { username, password, numberPhone, email, trangthaiStr })
+                
+                foreach (string s in new List<string>() { maKhachHang, tenKhachHang, diaChi, sdt, email })
                 {
                     if (string.IsNullOrEmpty(s))
                     {
@@ -121,29 +158,21 @@ namespace ExampleLogin
                     }
                 }
 
-                if (trangthaiStr.Equals("Mở khóa"))
-                {
-                    trangthai = 0;
-                } else if (trangthaiStr.Equals("Bị khóa"))
-                {
-                    trangthai = 1;
-                }
-
-                SqlCommand cmd = new SqlCommand("INSERT INTO account (username, password, sdt, email, lock) VALUES (@username, @password, @sdt, @email, @lock);");
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@sdt", numberPhone);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@lock", trangthai.ToString());
+                SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaKH, TenKH, DiaChi, SDT, Email) VALUES (@MaKH, @TenKH, @DiaChi, @SDT, @Email);");
+                cmd.Parameters.AddWithValue("@MaKH", maKhachHang);
+                cmd.Parameters.AddWithValue("@TenKH", tenKhachHang);
+                cmd.Parameters.AddWithValue("@DiaChi", diaChi);
+                cmd.Parameters.AddWithValue("@SDT", sdt);
+                cmd.Parameters.AddWithValue("@Email", email);
 
                 if (this.connSQL.Execute(cmd))
                 {
                     this.QuanLyForm_Load(sender, e);
-                    MessageBox.Show("Thêm tài khoản thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Thêm khách hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Thêm tài khoản thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Thêm khách hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -160,18 +189,18 @@ namespace ExampleLogin
             try
             {
                 this.connSQL.Connect();
-                string username = tbTenTaiKhoan.Text;
+                string maKH = tbMaKhachHang.Text;
 
-                SqlCommand cmd = new SqlCommand("DELETE FROM account WHERE (username = @username);");
-                cmd.Parameters.AddWithValue("@username", username);
+                SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (MaKH = @MaKH);");
+                cmd.Parameters.AddWithValue("@MaKH", maKH);
 
                 if (this.connSQL.Execute(cmd))
                 {
-                    MessageBox.Show("Xóa tài khoản thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Xóa khách hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Xóa tài khoản thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Xóa khách hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 this.QuanLyForm_Load(sender, e);
@@ -191,13 +220,13 @@ namespace ExampleLogin
             try
             {
                 this.connSQL.Connect();
-                string username = tbTenTaiKhoan.Text;
-                string password = tbMatKhau.Text;
-                string numberPhone = tbSDT.Text;
+                string maKhachHang = tbMaKhachHang.Text;
+                string tenKhachHang = tbTenKhachHang.Text;
+                string diaChi = tbDiaChi.Text;
+                string sdt = tbSDT.Text;
                 string email = tbEmail.Text;
-                string trangthaiStr = cbTrangThaiTaiKhoan.Text;
-                int trangthai = 0;
-                foreach (string s in new List<string>(){ username, password, numberPhone, email, trangthaiStr })
+
+                foreach (string s in new List<string>() { maKhachHang, tenKhachHang, diaChi, sdt, email })
                 {
                     if (string.IsNullOrEmpty(s))
                     {
@@ -205,30 +234,23 @@ namespace ExampleLogin
                         return;
                     }
                 }
-                if (trangthaiStr.Equals("Mở khóa"))
-                {
-                    trangthai = 0;
-                }
-                else if (trangthaiStr.Equals("Bị khóa"))
-                {
-                    trangthai = 1;
-                }
 
-                SqlCommand cmd = new SqlCommand("UPDATE account set password = @password, sdt = @sdt, email = @email, lock = @lock WHERE (username = @username);");
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@sdt", numberPhone);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@lock", trangthai.ToString());
+
+                SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set TenKH = @TenKH, DiaChi = @DiaChi, SDT = @SDT, Email = @Email WHERE (MaKH = @MaKH);");
+                cmd.Parameters.AddWithValue("@MaKH", maKhachHang);
+                cmd.Parameters.AddWithValue("@TenKH", tenKhachHang);
+                cmd.Parameters.AddWithValue("@DiaChi", diaChi);
+                cmd.Parameters.AddWithValue("@SDT", sdt);
+                cmd.Parameters.AddWithValue("@Email", email);
 
                 if (this.connSQL.Execute(cmd))
                 {
                     this.QuanLyForm_Load(sender, e);
-                    MessageBox.Show("Sửa tài khoản thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Sửa khách hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Sửa tài khoản thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Sửa khách hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -238,18 +260,6 @@ namespace ExampleLogin
             finally
             {
                 this.connSQL.Close();
-            }
-        }
-
-        private void cbHienMatKhau_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbHienMatKhau.Checked)
-            {
-                tbMatKhau.PasswordChar = '\0';
-            }
-            else
-            {
-                tbMatKhau.PasswordChar = '*';
             }
         }
 

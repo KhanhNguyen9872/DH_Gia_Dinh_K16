@@ -20,6 +20,7 @@ namespace ExampleLogin
         private SQLToolBox connSQL;
         private DataTable dtOld;
         private Thread threadSearch = null;
+        private string tableName = "account";
 
         public QuanLyForm(SQLToolBox connSQL)
         {
@@ -63,10 +64,11 @@ namespace ExampleLogin
 
         private void wipeButton()
         {
-            this.tbTenTaiKhoan.Text = "";
-            this.tbMatKhau.Text = "";
-            this.tbSDT.Text = "";
-            this.tbEmail.Text = "";
+            foreach (TextBox s in new List<TextBox>() { tbTenTaiKhoan, tbMatKhau, tbSDT, tbEmail })
+            {
+                s.Text = "";
+            }
+
             this.cbTrangThaiTaiKhoan.SelectedIndex = 0;
         }
 
@@ -75,7 +77,7 @@ namespace ExampleLogin
             int index = dataGridView1.CurrentRow.Index;
             if ((dataGridView1.Rows.Count - 1) == index)
             {
-                tbTenTaiKhoan.Enabled = true;
+                tbTenTaiKhoan.ReadOnly = false;
                 btnThem.Enabled = true;
                 btnXoa.Enabled = false;
                 btnSua.Enabled = false;
@@ -83,10 +85,12 @@ namespace ExampleLogin
             }
             else
             {
-                tbTenTaiKhoan.Text = dataGridView1.Rows[index].Cells[0].Value.ToString();
-                tbMatKhau.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
-                tbSDT.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
-                tbEmail.Text = dataGridView1.Rows[index].Cells[3].Value.ToString();
+                List<TextBox> list = new List<TextBox>() { tbTenTaiKhoan, tbMatKhau, tbSDT, tbEmail };
+                for(int i = 0; i < list.Count; i++)
+                {
+                    list[i].Text = dataGridView1.Rows[index].Cells[i].Value.ToString();
+                }
+
                 if (dataGridView1.Rows[index].Cells[4].Value.ToString().Equals("True"))
                 {
                     cbTrangThaiTaiKhoan.SelectedIndex = 1;
@@ -94,7 +98,7 @@ namespace ExampleLogin
                 {
                     cbTrangThaiTaiKhoan.SelectedIndex = 0;
                 }
-                tbTenTaiKhoan.Enabled = false;
+                tbTenTaiKhoan.ReadOnly = true;
                 btnThem.Enabled = false;
                 btnXoa.Enabled = true;
                 btnSua.Enabled = true;
@@ -129,7 +133,7 @@ namespace ExampleLogin
                     trangthai = 1;
                 }
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO account (username, password, sdt, email, lock) VALUES (@username, @password, @sdt, @email, @lock);");
+                SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (username, password, sdt, email, lock) VALUES (@username, @password, @sdt, @email, @lock);");
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@sdt", numberPhone);
@@ -162,7 +166,7 @@ namespace ExampleLogin
                 this.connSQL.Connect();
                 string username = tbTenTaiKhoan.Text;
 
-                SqlCommand cmd = new SqlCommand("DELETE FROM account WHERE (username = @username);");
+                SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (username = @username);");
                 cmd.Parameters.AddWithValue("@username", username);
 
                 if (this.connSQL.Execute(cmd))
@@ -214,7 +218,7 @@ namespace ExampleLogin
                     trangthai = 1;
                 }
 
-                SqlCommand cmd = new SqlCommand("UPDATE account set password = @password, sdt = @sdt, email = @email, lock = @lock WHERE (username = @username);");
+                SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set password = @password, sdt = @sdt, email = @email, lock = @lock WHERE (username = @username);");
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@sdt", numberPhone);

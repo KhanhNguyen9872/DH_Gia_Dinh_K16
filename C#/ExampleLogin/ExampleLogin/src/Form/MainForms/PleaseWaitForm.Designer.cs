@@ -35,7 +35,7 @@
             // 
             this.lbText.AutoSize = true;
             this.lbText.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbText.Location = new System.Drawing.Point(69, 42);
+            this.lbText.Location = new System.Drawing.Point(64, 42);
             this.lbText.Name = "lbText";
             this.lbText.Size = new System.Drawing.Size(172, 26);
             this.lbText.TabIndex = 0;

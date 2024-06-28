@@ -21,6 +21,7 @@ namespace ExampleLogin
         {
             InitializeComponent();
             this.lbText.Text = text;
+            this.TopMost = true;
         }
     }
 }

@@ -69,7 +69,7 @@ namespace ExampleLogin.src.Library
                 rows = cmd.ExecuteNonQuery();
             } catch (Exception e)
             {
-                MessageBox.Show(e.ToString(), "ERROR");
+                MessageBox.Show(e.ToString(), "SQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             
