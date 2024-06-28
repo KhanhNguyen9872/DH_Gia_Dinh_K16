@@ -1,0 +1,27 @@
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\bin\Debug\LTTQBuoi6-QLSV.exe.config
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\bin\Debug\LTTQBuoi6-QLSV.exe
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\bin\Debug\LTTQBuoi6-QLSV.pdb
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\obj\Debug\LTTQBuoi6-QLSV.csproj.AssemblyReference.cache
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\obj\Debug\LTTQBuoi6_QLSV.Properties.Resources.resources
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\obj\Debug\LTTQBuoi6-QLSV.csproj.GenerateResource.cache
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\obj\Debug\LTTQBuoi6-QLSV.csproj.CoreCompileInputs.cache
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\obj\Debug\LTTQBuoi6-QLSV.exe
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\obj\Debug\LTTQBuoi6-QLSV.pdb
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\obj\Debug\LTTQBuoi6_QLSV.DanhSachSV.resources
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\obj\Debug\LTTQBuoi6_QLSV.Main.resources
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\obj\Debug\LTTQBuoi6_QLSV.DSLop.resources
+D:\OneDrive\TEACHING\LAP TRINH TRUC QUAN\Buoi6\LTTQBuoi6-QLSV\obj\Debug\LTTQBuoi6_QLSV.DSGiangVien.resources
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\bin\Debug\LTTQBuoi6-QLSV.exe.config
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\bin\Debug\LTTQBuoi6-QLSV.exe
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\bin\Debug\LTTQBuoi6-QLSV.pdb
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6-QLSV.csproj.AssemblyReference.cache
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6_QLSV.DSGiangVien.resources
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6_QLSV.DSLop.resources
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6_QLSV.Main.resources
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6_QLSV.Properties.Resources.resources
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6-QLSV.csproj.GenerateResource.cache
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6-QLSV.csproj.CoreCompileInputs.cache
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6-QLSV.exe
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6-QLSV.pdb
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6_QLSV.ThongTinSinhVien.resources
+C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\QLSV - Goi SV\obj\Debug\LTTQBuoi6_QLSV.ThongTinMonHoc.resources
