@@ -37,8 +37,6 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxOptions = new System.Windows.Forms.GroupBox();
             this.btnOptionQuanly = new System.Windows.Forms.Button();
-            this.btnOptionNhanvien = new System.Windows.Forms.Button();
-            this.btnOptionKhachhang = new System.Windows.Forms.Button();
             this.btnOptionThongke = new System.Windows.Forms.Button();
             this.btnOptionHanghoa = new System.Windows.Forms.Button();
             this.btnOptionHoadon = new System.Windows.Forms.Button();
@@ -120,16 +118,16 @@
             // groupBoxOptions
             // 
             this.groupBoxOptions.Controls.Add(this.btnOptionQuanly);
-            this.groupBoxOptions.Controls.Add(this.btnOptionNhanvien);
-            this.groupBoxOptions.Controls.Add(this.btnOptionKhachhang);
             this.groupBoxOptions.Controls.Add(this.btnOptionThongke);
             this.groupBoxOptions.Controls.Add(this.btnOptionHanghoa);
             this.groupBoxOptions.Controls.Add(this.btnOptionHoadon);
             this.groupBoxOptions.Controls.Add(this.btnOptionBanHang);
             this.groupBoxOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxOptions.Location = new System.Drawing.Point(12, 27);
+            this.groupBoxOptions.MaximumSize = new System.Drawing.Size(108, 470);
+            this.groupBoxOptions.MinimumSize = new System.Drawing.Size(108, 470);
             this.groupBoxOptions.Name = "groupBoxOptions";
-            this.groupBoxOptions.Size = new System.Drawing.Size(108, 434);
+            this.groupBoxOptions.Size = new System.Drawing.Size(108, 470);
             this.groupBoxOptions.TabIndex = 1;
             this.groupBoxOptions.TabStop = false;
             this.groupBoxOptions.Text = "Mục";
@@ -137,7 +135,7 @@
             // btnOptionQuanly
             // 
             this.btnOptionQuanly.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionQuanly.Location = new System.Drawing.Point(6, 325);
+            this.btnOptionQuanly.Location = new System.Drawing.Point(6, 223);
             this.btnOptionQuanly.MaximumSize = new System.Drawing.Size(96, 45);
             this.btnOptionQuanly.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionQuanly.Name = "btnOptionQuanly";
@@ -146,32 +144,6 @@
             this.btnOptionQuanly.Text = "Quản lý";
             this.btnOptionQuanly.UseVisualStyleBackColor = true;
             this.btnOptionQuanly.Click += new System.EventHandler(this.btnOptionQuanly_Click);
-            // 
-            // btnOptionNhanvien
-            // 
-            this.btnOptionNhanvien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionNhanvien.Location = new System.Drawing.Point(6, 274);
-            this.btnOptionNhanvien.MaximumSize = new System.Drawing.Size(96, 45);
-            this.btnOptionNhanvien.MinimumSize = new System.Drawing.Size(96, 45);
-            this.btnOptionNhanvien.Name = "btnOptionNhanvien";
-            this.btnOptionNhanvien.Size = new System.Drawing.Size(96, 45);
-            this.btnOptionNhanvien.TabIndex = 5;
-            this.btnOptionNhanvien.Text = "Nhân viên";
-            this.btnOptionNhanvien.UseVisualStyleBackColor = true;
-            this.btnOptionNhanvien.Click += new System.EventHandler(this.btnOptionNhanvien_Click);
-            // 
-            // btnOptionKhachhang
-            // 
-            this.btnOptionKhachhang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionKhachhang.Location = new System.Drawing.Point(6, 223);
-            this.btnOptionKhachhang.MaximumSize = new System.Drawing.Size(96, 45);
-            this.btnOptionKhachhang.MinimumSize = new System.Drawing.Size(96, 45);
-            this.btnOptionKhachhang.Name = "btnOptionKhachhang";
-            this.btnOptionKhachhang.Size = new System.Drawing.Size(96, 45);
-            this.btnOptionKhachhang.TabIndex = 4;
-            this.btnOptionKhachhang.Text = "Khách hàng";
-            this.btnOptionKhachhang.UseVisualStyleBackColor = true;
-            this.btnOptionKhachhang.Click += new System.EventHandler(this.btnOptionKhachhang_Click);
             // 
             // btnOptionThongke
             // 
@@ -232,11 +204,11 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.labelUsername);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(0, 467);
-            this.panel1.MaximumSize = new System.Drawing.Size(1102, 535);
-            this.panel1.MinimumSize = new System.Drawing.Size(1102, 535);
+            this.panel1.Location = new System.Drawing.Point(0, 503);
+            this.panel1.MaximumSize = new System.Drawing.Size(1102, 35);
+            this.panel1.MinimumSize = new System.Drawing.Size(1102, 35);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1102, 535);
+            this.panel1.Size = new System.Drawing.Size(1102, 35);
             this.panel1.TabIndex = 2;
             // 
             // labelVersion
@@ -279,13 +251,12 @@
             // 
             // panelForm
             // 
-            this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelForm.Location = new System.Drawing.Point(3, 19);
-            this.panelForm.MaximumSize = new System.Drawing.Size(938, 412);
-            this.panelForm.MinimumSize = new System.Drawing.Size(938, 412);
+            this.panelForm.MaximumSize = new System.Drawing.Size(938, 445);
+            this.panelForm.MinimumSize = new System.Drawing.Size(938, 445);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(938, 412);
+            this.panelForm.Size = new System.Drawing.Size(938, 445);
             this.panelForm.TabIndex = 3;
             // 
             // titlePanel
@@ -293,8 +264,10 @@
             this.titlePanel.Controls.Add(this.panelForm);
             this.titlePanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titlePanel.Location = new System.Drawing.Point(130, 27);
+            this.titlePanel.MaximumSize = new System.Drawing.Size(944, 470);
+            this.titlePanel.MinimumSize = new System.Drawing.Size(944, 470);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(944, 434);
+            this.titlePanel.Size = new System.Drawing.Size(944, 470);
             this.titlePanel.TabIndex = 4;
             this.titlePanel.TabStop = false;
             this.titlePanel.Text = "Title";
@@ -314,7 +287,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1086, 496);
+            this.ClientSize = new System.Drawing.Size(1086, 538);
             this.Controls.Add(this.lbDateTime);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.panel1);
@@ -323,8 +296,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1102, 535);
-            this.MinimumSize = new System.Drawing.Size(1102, 535);
+            this.MaximumSize = new System.Drawing.Size(1102, 577);
+            this.MinimumSize = new System.Drawing.Size(1102, 577);
             this.Name = "MainForm";
             this.Text = "Quản lý mua bán linh kiện | Nhóm 1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.exitToolStripMenuItem_Click);
@@ -355,8 +328,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnOptionBanHang;
         private System.Windows.Forms.Button btnOptionQuanly;
-        private System.Windows.Forms.Button btnOptionNhanvien;
-        private System.Windows.Forms.Button btnOptionKhachhang;
         private System.Windows.Forms.Button btnOptionThongke;
         private System.Windows.Forms.Button btnOptionHanghoa;
         private System.Windows.Forms.Button btnOptionHoadon;

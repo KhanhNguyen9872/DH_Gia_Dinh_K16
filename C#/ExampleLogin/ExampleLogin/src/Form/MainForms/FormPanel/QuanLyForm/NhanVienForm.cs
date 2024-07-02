@@ -12,18 +12,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ExampleLogin
 {
-    public partial class KhachHangForm : Form
+    public partial class NhanVienForm : Form
     {
         private SQLToolBox connSQL;
-        private string tableName = "KhachHang";
+        private string tableName = "NhanVien";
         private DataTable dtOld;
         private Thread threadSearch = null;
         
 
-        public KhachHangForm(SQLToolBox connSQL)
+        public NhanVienForm(SQLToolBox connSQL)
         {
             InitializeComponent();
             this.connSQL = connSQL;
@@ -60,7 +61,7 @@ namespace ExampleLogin
             this.btnThem.Enabled = true;
             this.btnSua.Enabled = false;
             this.btnXoa.Enabled = false;
-            this.tbTenKhachHang.Focus();
+            this.tbTenNhanVien.Focus();
 
             this.generateMaKhachHang();
         }
@@ -69,46 +70,46 @@ namespace ExampleLogin
         {
             if (dataGridView1.Rows.Count > 0)
             {
-                string maKhachHang = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[dataGridView1.Columns[0].Name].Value.ToString();
-                if ((maKhachHang.Length >= 5) && (maKhachHang.StartsWith("KH")))
+                string maNhanVien = dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[dataGridView1.Columns[0].Name].Value.ToString();
+                if ((maNhanVien.Length >= 5) && (maNhanVien.StartsWith("NV")))
                 {
                     try
                     {
-                        int num = Convert.ToInt32(maKhachHang.Substring(2, maKhachHang.Length - 2)) + 1;
-                        maKhachHang = "KH";
+                        int num = Convert.ToInt32(maNhanVien.Substring(2, maNhanVien.Length - 2)) + 1;
+                        maNhanVien = "NV";
                         if (num <= 9)
                         {
-                            maKhachHang = maKhachHang + "00";
+                            maNhanVien = maNhanVien + "00";
                         }
                         else if (num <= 99)
                         {
-                            maKhachHang = maKhachHang + "0";
+                            maNhanVien = maNhanVien + "0";
                         }
-                        maKhachHang = maKhachHang + num.ToString();
-                        tbMaKhachHang.Text = maKhachHang;
+                        maNhanVien = maNhanVien + num.ToString();
+                        tbMaNhanVien.Text = maNhanVien;
                     }
                     catch (Exception ex)
                     {
-                        tbMaKhachHang.Text = "";
-                        tbMaKhachHang.ReadOnly = false;
+                        tbMaNhanVien.Text = "";
+                        tbMaNhanVien.ReadOnly = false;
                     }
 
                 }
                 else
                 {
-                    tbMaKhachHang.Text = "";
-                    tbMaKhachHang.ReadOnly = false;
+                    tbMaNhanVien.Text = "";
+                    tbMaNhanVien.ReadOnly = false;
                 }
             }
             else
             {
-                tbMaKhachHang.Text = "KH000";
+                tbMaNhanVien.Text = "NV000";
             }
         }
 
         private void wipeButton()
         {
-            foreach(TextBox s in new List<TextBox>() { tbMaKhachHang, tbTenKhachHang, tbDiaChi, tbSDT, tbEmail }) {
+            foreach(TextBox s in new List<TextBox>() { tbMaNhanVien, tbTenNhanVien, tbDiaChi, tbSDT, tbEmail }) {
                 s.Text = "";
             }
         }
@@ -126,7 +127,7 @@ namespace ExampleLogin
             }
             else
             {
-                List<TextBox> list = new List<TextBox>() { tbMaKhachHang, tbTenKhachHang, tbDiaChi, tbSDT, tbEmail };
+                List<TextBox> list = new List<TextBox>() { tbMaNhanVien, tbTenNhanVien, tbDiaChi, tbSDT, tbEmail };
                 for (int i = 0; i < list.Count; i++)
                 {
                     list[i].Text = dataGridView1.Rows[index].Cells[i].Value.ToString();
@@ -143,13 +144,13 @@ namespace ExampleLogin
             try
             {
                 this.connSQL.Connect();
-                string maKhachHang = tbMaKhachHang.Text;
-                string tenKhachHang = tbTenKhachHang.Text;
+                string maNhanVien = tbMaNhanVien.Text;
+                string tenNhanVien = tbTenNhanVien.Text;
                 string diaChi = tbDiaChi.Text;
                 string sdt = tbSDT.Text;
                 string email = tbEmail.Text;
                 
-                foreach (string s in new List<string>() { maKhachHang, tenKhachHang, diaChi, sdt, email })
+                foreach (string s in new List<string>() { maNhanVien, tenNhanVien, diaChi, sdt, email })
                 {
                     if (string.IsNullOrEmpty(s))
                     {
@@ -158,9 +159,9 @@ namespace ExampleLogin
                     }
                 }
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaKH, TenKH, DiaChi, SDT, Email) VALUES (@MaKH, @TenKH, @DiaChi, @SDT, @Email);");
-                cmd.Parameters.AddWithValue("@MaKH", maKhachHang);
-                cmd.Parameters.AddWithValue("@TenKH", tenKhachHang);
+                SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaNV, TenNV, DiaChi, SDT, Email) VALUES (@MaNV, @TenNV, @DiaChi, @SDT, @Email);");
+                cmd.Parameters.AddWithValue("@MaNV", maNhanVien);
+                cmd.Parameters.AddWithValue("@TenNV", tenNhanVien);
                 cmd.Parameters.AddWithValue("@DiaChi", diaChi);
                 cmd.Parameters.AddWithValue("@SDT", sdt);
                 cmd.Parameters.AddWithValue("@Email", email);
@@ -168,7 +169,7 @@ namespace ExampleLogin
                 if (this.connSQL.Execute(cmd))
                 {
                     this.QuanLyForm_Load(sender, e);
-                    MessageBox.Show("Thêm khách hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Thêm nhân viên thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -188,19 +189,24 @@ namespace ExampleLogin
         {
             try
             {
-                this.connSQL.Connect();
-                string maKH = tbMaKhachHang.Text;
+                string maNV = tbMaNhanVien.Text;
+                if (MessageBox.Show("Bạn có muốn xóa nhân viên [" + maNV + "] không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                {
+                    return;
+                }
 
-                SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (MaKH = @MaKH);");
-                cmd.Parameters.AddWithValue("@MaKH", maKH);
+                this.connSQL.Connect();
+
+                SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (MaNV = @MaNV);");
+                cmd.Parameters.AddWithValue("@MaNV", maNV);
 
                 if (this.connSQL.Execute(cmd))
                 {
-                    MessageBox.Show("Xóa khách hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Xóa nhân viên thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Xóa khách hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Xóa nhân viên thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 this.QuanLyForm_Load(sender, e);
@@ -220,13 +226,13 @@ namespace ExampleLogin
             try
             {
                 this.connSQL.Connect();
-                string maKhachHang = tbMaKhachHang.Text;
-                string tenKhachHang = tbTenKhachHang.Text;
+                string maNhanVien = tbMaNhanVien.Text;
+                string tenNhanVien = tbTenNhanVien.Text;
                 string diaChi = tbDiaChi.Text;
                 string sdt = tbSDT.Text;
                 string email = tbEmail.Text;
 
-                foreach (string s in new List<string>() { maKhachHang, tenKhachHang, diaChi, sdt, email })
+                foreach (string s in new List<string>() { maNhanVien, tenNhanVien, diaChi, sdt, email })
                 {
                     if (string.IsNullOrEmpty(s))
                     {
@@ -236,9 +242,9 @@ namespace ExampleLogin
                 }
 
 
-                SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set TenKH = @TenKH, DiaChi = @DiaChi, SDT = @SDT, Email = @Email WHERE (MaKH = @MaKH);");
-                cmd.Parameters.AddWithValue("@MaKH", maKhachHang);
-                cmd.Parameters.AddWithValue("@TenKH", tenKhachHang);
+                SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set TenNV = @TenNV, DiaChi = @DiaChi, SDT = @SDT, Email = @Email WHERE (MaNV = @MaNV);");
+                cmd.Parameters.AddWithValue("@MaNV", maNhanVien);
+                cmd.Parameters.AddWithValue("@TenNV", tenNhanVien);
                 cmd.Parameters.AddWithValue("@DiaChi", diaChi);
                 cmd.Parameters.AddWithValue("@SDT", sdt);
                 cmd.Parameters.AddWithValue("@Email", email);
@@ -246,11 +252,11 @@ namespace ExampleLogin
                 if (this.connSQL.Execute(cmd))
                 {
                     this.QuanLyForm_Load(sender, e);
-                    MessageBox.Show("Sửa khách hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Sửa nhân viên thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Sửa khách hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Sửa nhân viên thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

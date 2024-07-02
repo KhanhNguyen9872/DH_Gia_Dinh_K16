@@ -1,6 +1,6 @@
 ﻿namespace ExampleLogin
 {
-    partial class QuanLyForm
+    partial class TaiKhoanForm
     {
         /// <summary>
         /// Required designer variable.

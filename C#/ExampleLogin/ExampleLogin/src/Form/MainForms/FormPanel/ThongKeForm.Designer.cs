@@ -35,10 +35,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Purple;
-            this.ClientSize = new System.Drawing.Size(938, 412);
+            this.ClientSize = new System.Drawing.Size(938, 445);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(938, 412);
-            this.MinimumSize = new System.Drawing.Size(938, 412);
+            this.MaximumSize = new System.Drawing.Size(938, 445);
+            this.MinimumSize = new System.Drawing.Size(938, 445);
             this.Name = "ThongKeForm";
             this.Text = "ThongKeForm";
             this.ResumeLayout(false);

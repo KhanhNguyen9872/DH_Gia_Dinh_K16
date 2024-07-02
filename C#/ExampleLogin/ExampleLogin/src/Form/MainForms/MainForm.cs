@@ -194,52 +194,6 @@ namespace ExampleLogin
             this.reloadChooseOptions(this.btnOptionThongke, this.listForm[this.btnOptionThongke]);
         }
 
-        private void btnOptionKhachhang_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.listForm[this.btnOptionKhachhang] == null)
-                {
-                    KhachHangForm fm = new KhachHangForm(this.connSQL);
-                    fm.TopLevel = false;
-                    fm.Size = new Size(this.panelForm.Width, this.panelForm.Height);
-                    this.panelForm.Controls.Add(fm);
-                    this.listForm[this.btnOptionKhachhang] = fm;
-                }
-            }
-            catch (Exception ex)
-            {
-                this.listForm[this.btnOptionKhachhang] = null;
-                this.btnOptionKhachhang_Click(sender, e);
-                return;
-            }
-
-            this.reloadChooseOptions(this.btnOptionKhachhang, this.listForm[this.btnOptionKhachhang]);
-        }
-
-        private void btnOptionNhanvien_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.listForm[this.btnOptionNhanvien] == null)
-                {
-                    NhanVienForm fm = new NhanVienForm(this.connSQL);
-                    fm.TopLevel = false;
-                    fm.Size = new Size(this.panelForm.Width, this.panelForm.Height);
-                    this.panelForm.Controls.Add(fm);
-                    this.listForm[this.btnOptionNhanvien] = fm;
-                }
-            }
-            catch (Exception ex)
-            {
-                this.listForm[this.btnOptionNhanvien] = null;
-                this.btnOptionNhanvien_Click(sender, e);
-                return;
-            }
-
-            this.reloadChooseOptions(this.btnOptionNhanvien, this.listForm[this.btnOptionNhanvien]);
-        }
-
         private void btnOptionQuanly_Click(object sender, EventArgs e)
         {
             try
@@ -324,5 +278,9 @@ namespace ExampleLogin
             }
         }
 
+        private void btnOptionNhanvien_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

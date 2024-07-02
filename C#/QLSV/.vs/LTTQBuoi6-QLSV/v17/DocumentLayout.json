@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\KhanhNguyen9872\\Documents\\Zalo Received Files\\QLSV - Goi SV\\",
+  "WorkspaceRootPath": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLSV\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DC007D63-8A3B-4AAA-B79B-2AC58C7279CA}|LTTQBuoi6-QLSV.csproj|c:\\users\\khanhnguyen9872\\documents\\zalo received files\\qlsv - goi sv\\thongtinmonhoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DC007D63-8A3B-4AAA-B79B-2AC58C7279CA}|LTTQBuoi6-QLSV.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\qlsv\\thongtinmonhoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DC007D63-8A3B-4AAA-B79B-2AC58C7279CA}|LTTQBuoi6-QLSV.csproj|solutionrelative:thongtinmonhoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DC007D63-8A3B-4AAA-B79B-2AC58C7279CA}|LTTQBuoi6-QLSV.csproj|c:\\users\\khanhnguyen9872\\documents\\zalo received files\\qlsv - goi sv\\thongtinmonhoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{DC007D63-8A3B-4AAA-B79B-2AC58C7279CA}|LTTQBuoi6-QLSV.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLSV\\thongtinmonhoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{DC007D63-8A3B-4AAA-B79B-2AC58C7279CA}|LTTQBuoi6-QLSV.csproj|solutionrelative:thongtinmonhoc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -24,9 +24,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "ThongTinMonHoc.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\Zalo Received Files\\QLSV - Goi SV\\ThongTinMonHoc.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLSV\\ThongTinMonHoc.cs",
               "RelativeDocumentMoniker": "ThongTinMonHoc.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\Zalo Received Files\\QLSV - Goi SV\\ThongTinMonHoc.cs [Design]",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLSV\\ThongTinMonHoc.cs [Design]",
               "RelativeToolTip": "ThongTinMonHoc.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-28T07:39:20.823Z",
@@ -36,11 +36,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "ThongTinMonHoc.cs",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\Zalo Received Files\\QLSV - Goi SV\\ThongTinMonHoc.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLSV\\ThongTinMonHoc.cs",
               "RelativeDocumentMoniker": "ThongTinMonHoc.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\Zalo Received Files\\QLSV - Goi SV\\ThongTinMonHoc.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\QLSV\\ThongTinMonHoc.cs",
               "RelativeToolTip": "ThongTinMonHoc.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAADwv0IAAAAAAAAA",
+              "ViewState": "AQIAACAAAAAAAAAAAADwvygAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-28T07:38:23.486Z",
               "EditorCaption": ""

@@ -50,16 +50,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Form\MainForms\FormPanel\NhanVienForm.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm\QuanLyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\NhanVienForm.Designer.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm\QuanLyForm.Designer.cs">
+      <DependentUpon>QuanLyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm\NhanVienForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm\NhanVienForm.Designer.cs">
       <DependentUpon>NhanVienForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\KhachHangForm.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm\KhachHangForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\KhachHangForm.Designer.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm\KhachHangForm.Designer.cs">
       <DependentUpon>KhachHangForm.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Form\MainForms\PleaseWaitForm.cs">
@@ -86,11 +92,11 @@
     <Compile Include="src\Form\MainForms\FormPanel\HoaDonForm.Designer.cs">
       <DependentUpon>HoaDonForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm\TaiKhoanForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm.Designer.cs">
-      <DependentUpon>QuanLyForm.cs</DependentUpon>
+    <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm\TaiKhoanForm.Designer.cs">
+      <DependentUpon>TaiKhoanForm.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Library\Library.cs" />
     <Compile Include="src\Form\MainForms\MenuBar\AboutForm.cs">
@@ -133,10 +139,13 @@
     <Compile Include="src\Form\MainForms\FormPanel\ThongKeForm.Designer.cs">
       <DependentUpon>ThongKeForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="src\Form\MainForms\FormPanel\NhanVienForm.resx">
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\QuanLyForm\QuanLyForm.resx">
+      <DependentUpon>QuanLyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\QuanLyForm\NhanVienForm.resx">
       <DependentUpon>NhanVienForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Form\MainForms\FormPanel\KhachHangForm.resx">
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\QuanLyForm\KhachHangForm.resx">
       <DependentUpon>KhachHangForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Form\MainForms\PleaseWaitForm.resx">
@@ -151,8 +160,8 @@
     <EmbeddedResource Include="src\Form\MainForms\FormPanel\HoaDonForm.resx">
       <DependentUpon>HoaDonForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Form\MainForms\FormPanel\QuanLyForm.resx">
-      <DependentUpon>QuanLyForm.cs</DependentUpon>
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\QuanLyForm\TaiKhoanForm.resx">
+      <DependentUpon>TaiKhoanForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Form\MainForms\MenuBar\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
