@@ -152,6 +152,7 @@
             this.Controls.Add(this.lb);
             this.Controls.Add(this.lb_username);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(334, 238);
             this.MinimumSize = new System.Drawing.Size(334, 238);
             this.Name = "LoginForm";

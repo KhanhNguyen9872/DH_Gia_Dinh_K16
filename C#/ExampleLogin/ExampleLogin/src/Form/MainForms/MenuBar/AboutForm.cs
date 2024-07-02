@@ -16,5 +16,25 @@ namespace ExampleLogin
         {
             InitializeComponent();
         }
+
+        private void labelKhanh_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://fb.me/khanh10a1");
+        }
+
+        private void labelThang_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://fb.me/sin.shinnosuke.7");
+        }
+
+        private void labelHao_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://fb.com/profile.php?id=100021878348576");
+        }
+
+        private void labelThinh_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://fb.com/profile.php?id=100044800832586");
+        }
     }
 }

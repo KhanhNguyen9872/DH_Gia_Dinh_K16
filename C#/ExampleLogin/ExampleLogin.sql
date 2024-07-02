@@ -16,11 +16,12 @@ create table account (
 	password nvarchar(50) not null,
 	sdt nchar(10) not null,
 	email nvarchar(255) not null unique,
-	lock bit not null
+	type int not null default 0,
+	lock bit not null default 0
 )
 
 insert into account values 
-	('root', 'root', '0123456789', 'root@localhost.com', 0)
+	('root', 'root', '0123456789', 'root@localhost.com', 0, 0)
 
 CREATE TABLE LoaiMatHang(
 	MaLoaiMH NVARCHAR(10) PRIMARY KEY,

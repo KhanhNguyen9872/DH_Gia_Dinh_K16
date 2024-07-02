@@ -36,3 +36,5 @@ C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\Exampl
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleL.CDE6ADE8.Up2Date
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.PleaseWaitForm.resources
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.TaiKhoanForm.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.InitForm.resources
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.DisabledForm.resources

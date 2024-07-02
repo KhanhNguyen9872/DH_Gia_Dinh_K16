@@ -1,45 +1,46 @@
 ﻿using ExampleLogin.src.Library;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExampleLogin
 {
     public partial class QuanLyForm : Form
     {
-        private SQLToolBox connSQL;
-        private KhachHangForm khachHangForm;
-        private NhanVienForm nhanVienForm;
-        private TaiKhoanForm taiKhoanForm;
 
-        public QuanLyForm(SQLToolBox connSQL)
+        public QuanLyForm(SQLToolBox connSQL, string accountName)
         {
             InitializeComponent();
-            this.connSQL = connSQL;
+            bool b = Library.checkAccount(connSQL, accountName);
 
-            this.khachHangForm = new KhachHangForm(this.connSQL);
-            this.khachHangForm.TopLevel = false;
+            KhachHangForm khachHangForm = new KhachHangForm(connSQL);
+            khachHangForm.TopLevel = false;
 
-            this.nhanVienForm = new NhanVienForm(connSQL);
-            this.nhanVienForm.TopLevel = false;
+            Form nhanVienForm;
+            if (b)
+            {
+                nhanVienForm = new NhanVienForm(connSQL);
+            } else
+            {
+                nhanVienForm = new DisabledForm();
+            }
+            nhanVienForm.TopLevel = false;
 
-            this.taiKhoanForm = new TaiKhoanForm(connSQL);
-            this.taiKhoanForm.TopLevel = false;
+            Form taiKhoanForm;
+            if (b)
+            {
+                taiKhoanForm = new TaiKhoanForm(connSQL);
+            } else
+            {
+                taiKhoanForm = new DisabledForm();
+            }
+            taiKhoanForm.TopLevel = false;
 
-            this.tabKhachHang.Controls.Add(this.khachHangForm);
-            this.tabNhanVien.Controls.Add(this.nhanVienForm);
-            this.tabTaiKhoan.Controls.Add(this.taiKhoanForm);
+            this.tabKhachHang.Controls.Add(khachHangForm);
+            this.tabNhanVien.Controls.Add(nhanVienForm);
+            this.tabTaiKhoan.Controls.Add(taiKhoanForm);
 
-            this.khachHangForm.Show();
-            this.nhanVienForm.Show();
-            this.taiKhoanForm.Show();
-        }
-
+            khachHangForm.Show();
+            nhanVienForm.Show();
+            taiKhoanForm.Show();
+        } 
     }
 }

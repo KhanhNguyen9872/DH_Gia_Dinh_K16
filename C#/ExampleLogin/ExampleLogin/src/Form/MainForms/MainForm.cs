@@ -42,7 +42,7 @@ namespace ExampleLogin
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm fm = new AboutForm();
-            fm.Show();
+            fm.ShowDialog();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -200,7 +200,7 @@ namespace ExampleLogin
             {
                 if (this.listForm[this.btnOptionQuanly] == null)
                 {
-                    QuanLyForm fm = new QuanLyForm(this.connSQL);
+                    QuanLyForm fm = new QuanLyForm(this.connSQL, this.username);
                     fm.TopLevel = false;
                     fm.Size = new Size(this.panelForm.Width, this.panelForm.Height);
                     this.panelForm.Controls.Add(fm);
@@ -241,8 +241,9 @@ namespace ExampleLogin
             {
                 if (this.cpuCounter == null)
                 {
-                    PleaseWaitForm pleaseWaitForm = new PleaseWaitForm("Đang khởi tạo...");
-                    pleaseWaitForm.Show();
+                    // PleaseWaitForm pleaseWaitForm = new PleaseWaitForm("Đang khởi tạo...");
+                    // pleaseWaitForm.Show();
+                    labelUsername.Text = this.username + "   |   Đang khởi tạo....";
                     Application.DoEvents();
                     this.cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
                     this.ramCounter = new PerformanceCounter("Memory", "Available MBytes");
@@ -269,7 +270,7 @@ namespace ExampleLogin
                     }
 
                     this.windowsVersion = this.windowsVersion.Replace("Microsoft ", "");
-                    pleaseWaitForm.Close();
+                    // pleaseWaitForm.Close();
                 }
 
                 lbDateTime.Text = DateTime.Now.ToString();

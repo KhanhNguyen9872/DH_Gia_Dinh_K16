@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -109,6 +110,25 @@ namespace ExampleLogin.src.Library
             pleaseWaitForm.Close();
 
             return dtOld;
+        }
+
+        public static bool checkAccount(SQLToolBox connSQL, string accountName)
+        {
+            bool b = false;
+            connSQL.Connect();
+
+            SqlCommand cmd = new SqlCommand("select type from account where (username = @username);");
+            cmd.Parameters.AddWithValue("@username", accountName);
+
+            SQLTable table = connSQL.Select(cmd);
+            int type = Convert.ToInt32(table.Row(0).Column(0));
+            if ((type == 1) || (type == -1))
+            {
+                b = true;
+            }
+
+            connSQL.Close();
+            return b;
         }
     }
 }

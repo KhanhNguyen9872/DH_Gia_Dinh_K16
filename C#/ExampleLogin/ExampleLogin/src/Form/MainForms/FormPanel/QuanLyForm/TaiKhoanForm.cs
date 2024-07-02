@@ -1,17 +1,10 @@
 ﻿using ExampleLogin.src.Library;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace ExampleLogin
 {
@@ -69,6 +62,7 @@ namespace ExampleLogin
                 s.Text = "";
             }
 
+            this.cbQuyenHan.SelectedIndex = 0;
             this.cbTrangThaiTaiKhoan.SelectedIndex = 0;
         }
 
@@ -91,7 +85,19 @@ namespace ExampleLogin
                     list[i].Text = dataGridView1.Rows[index].Cells[i].Value.ToString();
                 }
 
-                if (dataGridView1.Rows[index].Cells[4].Value.ToString().Equals("True"))
+                int type = Convert.ToInt32(dataGridView1.Rows[index].Cells[4].Value);
+                if (type == 0)
+                {
+                    cbQuyenHan.SelectedIndex = 0;
+                } else if (type == 1)
+                {
+                    cbQuyenHan.SelectedIndex = 1;
+                } else if (type == -1)
+                {
+                    cbQuyenHan.Text = "Quản trị";
+                }
+
+                if (dataGridView1.Rows[index].Cells[5].Value.ToString().Equals("True"))
                 {
                     cbTrangThaiTaiKhoan.SelectedIndex = 1;
                 } else
@@ -114,9 +120,10 @@ namespace ExampleLogin
                 string password = tbMatKhau.Text;
                 string numberPhone = tbSDT.Text;
                 string email = tbEmail.Text;
+                string quyenhan = cbQuyenHan.SelectedIndex.ToString();
                 string trangthaiStr = cbTrangThaiTaiKhoan.Text;
                 int trangthai = 0;
-                foreach (string s in new List<string>() { username, password, numberPhone, email, trangthaiStr })
+                foreach (string s in new List<string>() { username, password, numberPhone, email, quyenhan, trangthaiStr })
                 {
                     if (string.IsNullOrEmpty(s))
                     {
@@ -133,11 +140,12 @@ namespace ExampleLogin
                     trangthai = 1;
                 }
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (username, password, sdt, email, lock) VALUES (@username, @password, @sdt, @email, @lock);");
+                SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (username, password, sdt, email, type, lock) VALUES (@username, @password, @sdt, @email, @type, @lock);");
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@sdt", numberPhone);
                 cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@type", quyenhan);
                 cmd.Parameters.AddWithValue("@lock", trangthai.ToString());
 
                 if (this.connSQL.Execute(cmd))
@@ -210,6 +218,7 @@ namespace ExampleLogin
                 string password = tbMatKhau.Text;
                 string numberPhone = tbSDT.Text;
                 string email = tbEmail.Text;
+                string quyenhan = cbQuyenHan.SelectedIndex.ToString();
                 string trangthaiStr = cbTrangThaiTaiKhoan.Text;
                 int trangthai = 0;
                 foreach (string s in new List<string>(){ username, password, numberPhone, email, trangthaiStr })
@@ -229,11 +238,12 @@ namespace ExampleLogin
                     trangthai = 1;
                 }
 
-                SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set password = @password, sdt = @sdt, email = @email, lock = @lock WHERE (username = @username);");
+                SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set password = @password, sdt = @sdt, email = @email, type = @type, lock = @lock WHERE (username = @username);");
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
                 cmd.Parameters.AddWithValue("@sdt", numberPhone);
                 cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@type", quyenhan);
                 cmd.Parameters.AddWithValue("@lock", trangthai.ToString());
 
                 if (this.connSQL.Execute(cmd))

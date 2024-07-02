@@ -15,7 +15,7 @@ namespace ExampleLogin.src.Library
         private String db;
         private String dataSource;
 
-        private PleaseWaitForm fm = new PleaseWaitForm();
+        // private PleaseWaitForm fm = new PleaseWaitForm();
         // private String username;
         // private String password;
 
@@ -37,11 +37,11 @@ namespace ExampleLogin.src.Library
         {
             try
             {
-                this.fm.Show();
+                // this.fm.Show();
                 Application.DoEvents();
                 this.conn = new SqlConnection(this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
                 this.conn.Open();
-                this.fm.Hide();
+                // this.fm.Hide();
             } catch (Exception ex)
             {
                 MessageBox.Show("Server đang bảo trì, vui lòng thử lại sau!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);

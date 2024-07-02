@@ -50,6 +50,8 @@
             this.cbTimKiem = new System.Windows.Forms.ComboBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.lbQuyenHan = new System.Windows.Forms.Label();
+            this.cbQuyenHan = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +85,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(687, 28);
+            this.label1.Location = new System.Drawing.Point(687, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(198, 26);
             this.label1.TabIndex = 2;
@@ -93,7 +95,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(652, 78);
+            this.label2.Location = new System.Drawing.Point(652, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 17);
             this.label2.TabIndex = 3;
@@ -103,7 +105,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(652, 112);
+            this.label3.Location = new System.Drawing.Point(652, 88);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 17);
             this.label3.TabIndex = 4;
@@ -113,7 +115,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(652, 159);
+            this.label4.Location = new System.Drawing.Point(652, 137);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 17);
             this.label4.TabIndex = 5;
@@ -123,7 +125,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(652, 195);
+            this.label5.Location = new System.Drawing.Point(652, 171);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 17);
             this.label5.TabIndex = 6;
@@ -131,28 +133,28 @@
             // 
             // tbTenTaiKhoan
             // 
-            this.tbTenTaiKhoan.Location = new System.Drawing.Point(762, 78);
+            this.tbTenTaiKhoan.Location = new System.Drawing.Point(762, 54);
             this.tbTenTaiKhoan.Name = "tbTenTaiKhoan";
             this.tbTenTaiKhoan.Size = new System.Drawing.Size(153, 20);
             this.tbTenTaiKhoan.TabIndex = 7;
             // 
             // tbMatKhau
             // 
-            this.tbMatKhau.Location = new System.Drawing.Point(762, 112);
+            this.tbMatKhau.Location = new System.Drawing.Point(762, 88);
             this.tbMatKhau.Name = "tbMatKhau";
             this.tbMatKhau.Size = new System.Drawing.Size(153, 20);
             this.tbMatKhau.TabIndex = 8;
             // 
             // tbSDT
             // 
-            this.tbSDT.Location = new System.Drawing.Point(762, 159);
+            this.tbSDT.Location = new System.Drawing.Point(762, 137);
             this.tbSDT.Name = "tbSDT";
             this.tbSDT.Size = new System.Drawing.Size(153, 20);
             this.tbSDT.TabIndex = 9;
             // 
             // tbEmail
             // 
-            this.tbEmail.Location = new System.Drawing.Point(762, 195);
+            this.tbEmail.Location = new System.Drawing.Point(762, 171);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(153, 20);
             this.tbEmail.TabIndex = 10;
@@ -212,7 +214,7 @@
             // cbHienMatKhau
             // 
             this.cbHienMatKhau.AutoSize = true;
-            this.cbHienMatKhau.Location = new System.Drawing.Point(820, 138);
+            this.cbHienMatKhau.Location = new System.Drawing.Point(820, 114);
             this.cbHienMatKhau.Name = "cbHienMatKhau";
             this.cbHienMatKhau.Size = new System.Drawing.Size(95, 17);
             this.cbHienMatKhau.TabIndex = 16;
@@ -268,13 +270,37 @@
             this.label8.TabIndex = 21;
             this.label8.Text = "Lọc:";
             // 
-            // QuanLyForm
+            // lbQuyenHan
+            // 
+            this.lbQuyenHan.AutoSize = true;
+            this.lbQuyenHan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbQuyenHan.Location = new System.Drawing.Point(652, 204);
+            this.lbQuyenHan.Name = "lbQuyenHan";
+            this.lbQuyenHan.Size = new System.Drawing.Size(86, 17);
+            this.lbQuyenHan.TabIndex = 22;
+            this.lbQuyenHan.Text = "Quyền hạn: ";
+            // 
+            // cbQuyenHan
+            // 
+            this.cbQuyenHan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbQuyenHan.FormattingEnabled = true;
+            this.cbQuyenHan.Items.AddRange(new object[] {
+            "Nhân viên",
+            "Nhân sự"});
+            this.cbQuyenHan.Location = new System.Drawing.Point(762, 203);
+            this.cbQuyenHan.Name = "cbQuyenHan";
+            this.cbQuyenHan.Size = new System.Drawing.Size(153, 21);
+            this.cbQuyenHan.TabIndex = 23;
+            // 
+            // TaiKhoanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(938, 412);
             this.ControlBox = false;
+            this.Controls.Add(this.cbQuyenHan);
+            this.Controls.Add(this.lbQuyenHan);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.cbTimKiem);
@@ -301,7 +327,7 @@
             this.MaximumSize = new System.Drawing.Size(938, 412);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(938, 412);
-            this.Name = "QuanLyForm";
+            this.Name = "TaiKhoanForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "QuanLyForm";
@@ -337,5 +363,7 @@
         private System.Windows.Forms.ComboBox cbTimKiem;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbQuyenHan;
+        private System.Windows.Forms.ComboBox cbQuyenHan;
     }
 }

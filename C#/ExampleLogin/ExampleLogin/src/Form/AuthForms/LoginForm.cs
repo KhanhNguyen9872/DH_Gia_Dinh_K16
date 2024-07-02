@@ -27,6 +27,7 @@ namespace ExampleLogin
             // String passwd = "root";
             this.connSQL = new SQLToolBox(server, db);
             this.connSQL.Connect();
+            this.Hide();
         }
 
         private void btnQuit_Click(object sender, EventArgs e)
