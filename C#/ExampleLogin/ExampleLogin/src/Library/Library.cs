@@ -138,5 +138,20 @@ namespace ExampleLogin.src.Library
             connSQL.Close();
             return b;
         }
+
+        public static Process PriorProcess()
+        {
+            // https://stackoverflow.com/questions/184084/how-to-force-c-sharp-net-app-to-run-only-one-instance-in-windows
+            
+            Process curr = Process.GetCurrentProcess();
+            Process[] procs = Process.GetProcessesByName(curr.ProcessName);
+            foreach (Process p in procs)
+            {
+                if ((p.Id != curr.Id) &&
+                    (p.MainModule.FileName == curr.MainModule.FileName))
+                    return p;
+            }
+            return null;
+        }
     }
 }
