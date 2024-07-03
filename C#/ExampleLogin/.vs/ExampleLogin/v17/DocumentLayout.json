@@ -3,23 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\src\\form\\mainforms\\formpanel\\hanghoaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\hanghoaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\src\\library\\library.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\library\\library.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\src\\form\\mainforms\\formpanel\\hanghoaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\hanghoaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\taikhoanform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\taikhoanform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\nhanvienform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\taikhoanform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\taikhoanform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\nhanvienform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\nhanvienform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\nhanvienform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\nhanvienform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\nhanvienform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -31,24 +35,20 @@
       "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\khachhangform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\taikhoanform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\taikhoanform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\src\\form\\mainforms\\formpanel\\hanghoaform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\hanghoaform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\src\\form\\mainforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\src\\library\\library.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\library\\library.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\src\\form\\mainforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|c:\\users\\khanhnguyen9872\\documents\\github\\dh_gia_dinh_k16\\c#\\examplelogin\\examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\quanlyform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\quanlyform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\src\\initform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\initform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\src\\initform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\initform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\khachhangform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB8E5413-DDBA-4B3B-AB20-371FE185F10E}|ExampleLogin\\ExampleLogin.csproj|solutionrelative:examplelogin\\src\\form\\mainforms\\formpanel\\quanlyform\\khachhangform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,78 +58,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\Program.cs",
-              "RelativeDocumentMoniker": "ExampleLogin\\Program.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\Program.cs",
-              "RelativeToolTip": "ExampleLogin\\Program.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAwAAAA8AAAA",
+              "DocumentIndex": 8,
+              "Title": "HangHoaForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.Designer.cs",
+              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.Designer.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.Designer.cs",
+              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.Designer.cs",
+              "ViewState": "AQIAACwBAAAAAAAAAIAwwDYBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T05:14:39.633Z",
+              "WhenOpened": "2024-07-03T08:51:39.958Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "KhachHangForm.cs",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
-              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
-              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
-              "ViewState": "AQIAABUBAAAAAAAAAAAywCABAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T04:57:26.39Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "KhachHangForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
-              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs [Design]",
-              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T04:57:24.945Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NhanVienForm.cs",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
-              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
-              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
-              "ViewState": "AQIAABcBAAAAAAAAAAAkwB8BAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T04:56:52.416Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NhanVienForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
-              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs [Design]",
-              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T04:56:50.679Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "Library.cs",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Library\\Library.cs",
               "RelativeDocumentMoniker": "ExampleLogin\\src\\Library\\Library.cs",
               "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Library\\Library.cs",
               "RelativeToolTip": "ExampleLogin\\src\\Library\\Library.cs",
-              "ViewState": "AQIAAIkAAAAAAAAAAAApwI0AAAAsAAAA",
+              "ViewState": "AQIAAIcAAAAAAAAAAAAmwJYAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T04:55:48.96Z",
+              "WhenOpened": "2024-07-03T08:34:38.13Z",
               "EditorCaption": ""
             },
             {
@@ -140,67 +94,123 @@
               "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\TaiKhoanForm.cs",
               "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\TaiKhoanForm.cs",
               "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\TaiKhoanForm.cs",
-              "ViewState": "AQIAACMBAAAAAAAAAAASwCoBAAAAAAAA",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAiwHIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T04:52:10.456Z",
+              "WhenOpened": "2024-07-03T08:28:33.469Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "TaiKhoanForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\TaiKhoanForm.cs",
               "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\TaiKhoanForm.cs",
               "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\TaiKhoanForm.cs [Design]",
               "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\TaiKhoanForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T04:52:07.583Z"
+              "WhenOpened": "2024-07-03T08:28:32.484Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MainForm.cs",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\MainForm.cs",
-              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\MainForm.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\MainForm.cs",
-              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\MainForm.cs",
-              "ViewState": "AQIAAKsAAAAAAAAAAADwvxcBAAAJAAAA",
+              "DocumentIndex": 4,
+              "Title": "NhanVienForm.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
+              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
+              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAApwCIAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T04:51:53.239Z"
+              "WhenOpened": "2024-07-03T08:17:46.086Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MainForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\MainForm.cs",
-              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\MainForm.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\MainForm.cs [Design]",
-              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\MainForm.cs [Design]",
+              "DocumentIndex": 5,
+              "Title": "NhanVienForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
+              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs [Design]",
+              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\NhanVienForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T04:51:50.393Z"
+              "WhenOpened": "2024-07-03T08:17:44.543Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HangHoaForm.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.cs",
+              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.cs",
+              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.cs",
+              "ViewState": "AQIAALgAAAAAAAAAAAAgwMAAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T07:38:49.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HangHoaForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.cs",
+              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.cs [Design]",
+              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\HangHoaForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T07:38:48.395Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "InitForm.cs",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\InitForm.cs",
-              "RelativeDocumentMoniker": "ExampleLogin\\src\\InitForm.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\InitForm.cs",
-              "RelativeToolTip": "ExampleLogin\\src\\InitForm.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAIwDYAAAAfAAAA",
+              "Title": "QuanLyForm.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\QuanLyForm.cs",
+              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\QuanLyForm.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\QuanLyForm.cs",
+              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\QuanLyForm.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-02T18:23:55.156Z"
+              "WhenOpened": "2024-07-03T07:32:37.451Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "InitForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\InitForm.cs",
-              "RelativeDocumentMoniker": "ExampleLogin\\src\\InitForm.cs",
-              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\InitForm.cs [Design]",
-              "RelativeToolTip": "ExampleLogin\\src\\InitForm.cs [Design]",
+              "Title": "KhachHangForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.Designer.cs",
+              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.Designer.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.Designer.cs",
+              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.Designer.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwAYAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-02T18:23:53.016Z"
+              "WhenOpened": "2024-07-03T07:32:03.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "KhachHangForm.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
+              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
+              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
+              "ViewState": "AQIAAIYAAAAAAAAAAAAgwIsAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T07:31:48.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "KhachHangForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
+              "RelativeDocumentMoniker": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\Documents\\GitHub\\DH_Gia_Dinh_K16\\C#\\ExampleLogin\\ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs [Design]",
+              "RelativeToolTip": "ExampleLogin\\src\\Form\\MainForms\\FormPanel\\QuanLyForm\\KhachHangForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-03T07:31:45.7Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

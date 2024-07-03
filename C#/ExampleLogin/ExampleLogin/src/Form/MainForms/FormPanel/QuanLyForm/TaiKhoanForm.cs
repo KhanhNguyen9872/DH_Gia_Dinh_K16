@@ -113,157 +113,129 @@ namespace ExampleLogin
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            try
+            this.connSQL.Connect();
+            string username = tbTenTaiKhoan.Text;
+            string password = tbMatKhau.Text;
+            string numberPhone = tbSDT.Text;
+            string email = tbEmail.Text;
+            string quyenhan = cbQuyenHan.SelectedIndex.ToString();
+            string trangthaiStr = cbTrangThaiTaiKhoan.Text;
+            int trangthai = 0;
+            foreach (string s in new List<string>() { username, password, numberPhone, email, quyenhan, trangthaiStr })
             {
-                this.connSQL.Connect();
-                string username = tbTenTaiKhoan.Text;
-                string password = tbMatKhau.Text;
-                string numberPhone = tbSDT.Text;
-                string email = tbEmail.Text;
-                string quyenhan = cbQuyenHan.SelectedIndex.ToString();
-                string trangthaiStr = cbTrangThaiTaiKhoan.Text;
-                int trangthai = 0;
-                foreach (string s in new List<string>() { username, password, numberPhone, email, quyenhan, trangthaiStr })
+                if (string.IsNullOrEmpty(s))
                 {
-                    if (string.IsNullOrEmpty(s))
-                    {
-                        MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                }
-
-                if (trangthaiStr.Equals("Mở khóa"))
-                {
-                    trangthai = 0;
-                } else if (trangthaiStr.Equals("Bị khóa"))
-                {
-                    trangthai = 1;
-                }
-
-                SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (username, password, sdt, email, type, lock) VALUES (@username, @password, @sdt, @email, @type, @lock);");
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@sdt", numberPhone);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@type", quyenhan);
-                cmd.Parameters.AddWithValue("@lock", trangthai.ToString());
-
-                if (this.connSQL.Execute(cmd))
-                {
-                    this.QuanLyForm_Load(sender, e);
-                    MessageBox.Show("Thêm tài khoản thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Thêm tài khoản thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
-            catch (Exception ex)
+
+            if (trangthaiStr.Equals("Mở khóa"))
             {
-                MessageBox.Show(ex.ToString());
-            } finally
+                trangthai = 0;
+            } else if (trangthaiStr.Equals("Bị khóa"))
             {
-                this.connSQL.Close();
+                trangthai = 1;
             }
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (username, password, sdt, email, type, lock) VALUES (@username, @password, @sdt, @email, @type, @lock);");
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+            cmd.Parameters.AddWithValue("@sdt", numberPhone);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@type", quyenhan);
+            cmd.Parameters.AddWithValue("@lock", trangthai.ToString());
+
+            if (this.connSQL.Execute(cmd))
+            {
+                this.QuanLyForm_Load(sender, e);
+                MessageBox.Show("Thêm tài khoản thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Thêm tài khoản thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            this.connSQL.Close();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            try
+            if (this.dataGridView1.Rows.Count == 2)
             {
-                if (this.dataGridView1.Rows.Count == 2)
-                {
-                    MessageBox.Show("Chỉ có một tài khoản!\nKhông thể xóa tài khoản này!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                string username = tbTenTaiKhoan.Text;
-                if (MessageBox.Show("Bạn có muốn xóa tài khoản [" + username + "] không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                {
-                    return;
-                }
-
-                this.connSQL.Connect();
-
-                SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (username = @username);");
-                cmd.Parameters.AddWithValue("@username", username);
-
-                if (this.connSQL.Execute(cmd))
-                {
-                    MessageBox.Show("Xóa tài khoản thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Xóa tài khoản thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                this.QuanLyForm_Load(sender, e);
+                MessageBox.Show("Chỉ có một tài khoản!\nKhông thể xóa tài khoản này!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            catch (Exception ex)
+
+            string username = tbTenTaiKhoan.Text;
+            if (MessageBox.Show("Bạn có muốn xóa tài khoản [" + username + "] không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
             {
-                MessageBox.Show(ex.ToString());
+                return;
             }
-            finally
+
+            this.connSQL.Connect();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (username = @username);");
+            cmd.Parameters.AddWithValue("@username", username);
+
+            if (this.connSQL.Execute(cmd))
             {
-                this.connSQL.Close();
+                MessageBox.Show("Xóa tài khoản thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else
+            {
+                MessageBox.Show("Xóa tài khoản thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            this.QuanLyForm_Load(sender, e);
+            
+            this.connSQL.Close();
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            try
+            this.connSQL.Connect();
+            string username = tbTenTaiKhoan.Text;
+            string password = tbMatKhau.Text;
+            string numberPhone = tbSDT.Text;
+            string email = tbEmail.Text;
+            string quyenhan = cbQuyenHan.SelectedIndex.ToString();
+            string trangthaiStr = cbTrangThaiTaiKhoan.Text;
+            int trangthai = 0;
+            foreach (string s in new List<string>(){ username, password, numberPhone, email, trangthaiStr })
             {
-                this.connSQL.Connect();
-                string username = tbTenTaiKhoan.Text;
-                string password = tbMatKhau.Text;
-                string numberPhone = tbSDT.Text;
-                string email = tbEmail.Text;
-                string quyenhan = cbQuyenHan.SelectedIndex.ToString();
-                string trangthaiStr = cbTrangThaiTaiKhoan.Text;
-                int trangthai = 0;
-                foreach (string s in new List<string>(){ username, password, numberPhone, email, trangthaiStr })
+                if (string.IsNullOrEmpty(s))
                 {
-                    if (string.IsNullOrEmpty(s))
-                    {
-                        MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                if (trangthaiStr.Equals("Mở khóa"))
-                {
-                    trangthai = 0;
-                }
-                else if (trangthaiStr.Equals("Bị khóa"))
-                {
-                    trangthai = 1;
-                }
+            }
+            if (trangthaiStr.Equals("Mở khóa"))
+            {
+                trangthai = 0;
+            }
+            else if (trangthaiStr.Equals("Bị khóa"))
+            {
+                trangthai = 1;
+            }
 
-                SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set password = @password, sdt = @sdt, email = @email, type = @type, lock = @lock WHERE (username = @username);");
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@sdt", numberPhone);
-                cmd.Parameters.AddWithValue("@email", email);
-                cmd.Parameters.AddWithValue("@type", quyenhan);
-                cmd.Parameters.AddWithValue("@lock", trangthai.ToString());
+            SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set password = @password, sdt = @sdt, email = @email, type = @type, lock = @lock WHERE (username = @username);");
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+            cmd.Parameters.AddWithValue("@sdt", numberPhone);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@type", quyenhan);
+            cmd.Parameters.AddWithValue("@lock", trangthai.ToString());
 
-                if (this.connSQL.Execute(cmd))
-                {
-                    this.QuanLyForm_Load(sender, e);
-                    MessageBox.Show("Sửa tài khoản thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Sửa tài khoản thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
+            if (this.connSQL.Execute(cmd))
             {
-                MessageBox.Show(ex.ToString());
+                this.QuanLyForm_Load(sender, e);
+                MessageBox.Show("Sửa tài khoản thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            finally
+            else
             {
-                this.connSQL.Close();
+                MessageBox.Show("Sửa tài khoản thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            this.connSQL.Close();
         }
 
         private void cbHienMatKhau_CheckedChanged(object sender, EventArgs e)
