@@ -299,7 +299,12 @@ namespace ExampleLogin
 
         private void search()
         {
-            this.dtOld = Library.searchGridData(dataGridView1, this.dtOld, tbTimKiem, cbTimKiem);
+            this.search(false);
+        }
+
+        private void search(bool noWait)
+        {
+            this.dtOld = Library.searchGridData(dataGridView1, this.dtOld, tbTimKiem, cbTimKiem, noWait);
         }
 
         private void cbTimKiem_SelectedIndexChanged(object sender, EventArgs e)
@@ -308,7 +313,9 @@ namespace ExampleLogin
             {
                 return;
             }
-            this.tbTimKiem_TextChanged(sender, e);
+
+            this.search(true);
+            // this.tbTimKiem_TextChanged(sender, e);
         }
     }
 }

@@ -278,10 +278,5 @@ namespace ExampleLogin
                 Thread.Sleep(1000);
             }
         }
-
-        private void btnOptionNhanvien_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

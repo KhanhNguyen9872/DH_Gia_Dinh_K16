@@ -31,13 +31,21 @@ namespace ExampleLogin.src.Library
 
         public static DataTable searchGridData(DataGridView dataGridView1, DataTable dtOld, TextBox tbTimKiem, ComboBox cbTimKiem)
         {
+            return Library.searchGridData(dataGridView1, dtOld, tbTimKiem, cbTimKiem, false);
+        }
+
+        public static DataTable searchGridData(DataGridView dataGridView1, DataTable dtOld, TextBox tbTimKiem, ComboBox cbTimKiem, bool noWait)
+        {
             if (tbTimKiem.Text.Length == 0)
             {
                 dataGridView1.DataSource = dtOld;
                 return null;
             }
 
-            Thread.Sleep(1000);
+            if (!noWait)
+            {
+                Thread.Sleep(1200);
+            }
 
             PleaseWaitForm pleaseWaitForm = new PleaseWaitForm("Đang tìm kiếm...");
             DataTable newDt = new DataTable();
