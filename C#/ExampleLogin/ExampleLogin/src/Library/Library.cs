@@ -139,17 +139,6 @@ namespace ExampleLogin.src.Library
             return b;
         }
 
-        /*
-        public static string getFullNameUser(SQLToolBox connSQL, string user)
-        {
-            string fullName = null;
-            connSQL.Connect();
-            SqlCommand cmd = new SqlCommand("select ");
-            SQLTable table = connSQL.Select(cmd);
-            return fullName;
-        }
-        */
-
         public static Process PriorProcess()
         {
             // https://stackoverflow.com/questions/184084/how-to-force-c-sharp-net-app-to-run-only-one-instance-in-windows

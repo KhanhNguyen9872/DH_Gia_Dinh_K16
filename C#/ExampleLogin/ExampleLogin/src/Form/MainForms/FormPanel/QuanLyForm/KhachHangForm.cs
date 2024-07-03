@@ -87,7 +87,6 @@ namespace ExampleLogin
                         }
                         maKhachHang = maKhachHang + num.ToString();
                         tbMaKhachHang.Text = maKhachHang;
-                        tbMaKhachHang.ReadOnly = true;
                     }
                     catch (Exception ex)
                     {
@@ -105,7 +104,6 @@ namespace ExampleLogin
             else
             {
                 tbMaKhachHang.Text = "KH000";
-                tbMaKhachHang.ReadOnly = true;
             }
         }
 
@@ -143,65 +141,84 @@ namespace ExampleLogin
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            this.connSQL.Connect();
-            string maKhachHang = tbMaKhachHang.Text;
-            string tenKhachHang = tbTenKhachHang.Text;
-            string diaChi = tbDiaChi.Text;
-            string sdt = tbSDT.Text;
-            string email = tbEmail.Text;
-                
-            foreach (string s in new List<string>() { maKhachHang, tenKhachHang, diaChi, sdt, email })
+            try
             {
-                if (string.IsNullOrEmpty(s))
+                this.connSQL.Connect();
+                string maKhachHang = tbMaKhachHang.Text;
+                string tenKhachHang = tbTenKhachHang.Text;
+                string diaChi = tbDiaChi.Text;
+                string sdt = tbSDT.Text;
+                string email = tbEmail.Text;
+                
+                foreach (string s in new List<string>() { maKhachHang, tenKhachHang, diaChi, sdt, email })
                 {
-                    MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaKH, TenKH, DiaChi, SDT, Email) VALUES (@MaKH, @TenKH, @DiaChi, @SDT, @Email);");
+                cmd.Parameters.AddWithValue("@MaKH", maKhachHang);
+                cmd.Parameters.AddWithValue("@TenKH", tenKhachHang);
+                cmd.Parameters.AddWithValue("@DiaChi", diaChi);
+                cmd.Parameters.AddWithValue("@SDT", sdt);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                if (this.connSQL.Execute(cmd))
+                {
+                    this.QuanLyForm_Load(sender, e);
+                    MessageBox.Show("Thêm khách hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Thêm khách hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-            SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaKH, TenKH, DiaChi, SDT, Email) VALUES (@MaKH, @TenKH, @DiaChi, @SDT, @Email);");
-            cmd.Parameters.AddWithValue("@MaKH", maKhachHang);
-            cmd.Parameters.AddWithValue("@TenKH", tenKhachHang);
-            cmd.Parameters.AddWithValue("@DiaChi", diaChi);
-            cmd.Parameters.AddWithValue("@SDT", sdt);
-            cmd.Parameters.AddWithValue("@Email", email);
-
-            if (this.connSQL.Execute(cmd))
+            catch (Exception ex)
             {
-                this.QuanLyForm_Load(sender, e);
-                MessageBox.Show("Thêm khách hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
+                MessageBox.Show(ex.ToString());
+            } finally
             {
-                MessageBox.Show("Thêm khách hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.connSQL.Close();
             }
-            this.connSQL.Close();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string maKH = tbMaKhachHang.Text;
-            if (MessageBox.Show("Bạn có muốn xóa khách hàng [" + maKH + "] không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            try
             {
-                return;
-            }
+                string maKH = tbMaKhachHang.Text;
+                if (MessageBox.Show("Bạn có muốn xóa khách hàng [" + maKH + "] không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                {
+                    return;
+                }
 
-            this.connSQL.Connect();
+                this.connSQL.Connect();
                 
-            SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (MaKH = @MaKH);");
-            cmd.Parameters.AddWithValue("@MaKH", maKH);
+                SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (MaKH = @MaKH);");
+                cmd.Parameters.AddWithValue("@MaKH", maKH);
 
-            if (this.connSQL.Execute(cmd))
-            {
-                MessageBox.Show("Xóa khách hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Xóa khách hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                if (this.connSQL.Execute(cmd))
+                {
+                    MessageBox.Show("Xóa khách hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Xóa khách hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-            this.QuanLyForm_Load(sender, e);
-            this.connSQL.Close();
+                this.QuanLyForm_Load(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                this.connSQL.Close();
+            }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
