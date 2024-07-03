@@ -260,10 +260,7 @@ namespace ExampleLogin
 
         private void tbTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (this.threadSearch != null)
-            {
-                this.threadSearch.Abort();
-            }
+            this.threadSearch = Library.abortThread(this.threadSearch);
 
             this.threadSearch = new Thread(new ThreadStart(search));
             this.threadSearch.Start();
@@ -277,7 +274,7 @@ namespace ExampleLogin
 
         private void search(bool noWait)
         {
-            this.dtOld = Library.searchGridData(dataGridView1, this.dtOld, tbTimKiem, cbTimKiem, noWait);
+            this.dtOld = Library.searchGridData(dataGridView1, this.dtOld, tbTimKiem, cbTimKiem, noWait, cbUpLowCase.Checked);
         }
 
         private void cbTimKiem_SelectedIndexChanged(object sender, EventArgs e)
@@ -286,9 +283,28 @@ namespace ExampleLogin
             {
                 return;
             }
+            this.threadSearch = Library.abortThread(this.threadSearch);
             this.search(true);
 
             // this.tbTimKiem_TextChanged(sender, e);
+        }
+
+        private void tbTimKiem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                if (tbTimKiem.Text.Length == 0)
+                {
+                    return;
+                }
+                this.threadSearch = Library.abortThread(this.threadSearch);
+                this.search(true);
+            }
+        }
+
+        private void cbUpLowCase_CheckedChanged(object sender, EventArgs e)
+        {
+            this.cbTimKiem_SelectedIndexChanged(sender, e);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
@@ -15,7 +16,8 @@ namespace ExampleLogin
 {
     public partial class HangHoaForm : Form
     {
-
+        private Thread threadSearch = null;
+        private DataTable dtOld = null;
         private SQLToolBox connSQL;
         private string tableName = "MatHang";
 
@@ -260,6 +262,53 @@ namespace ExampleLogin
                 btnXoa.Enabled = true;
                 btnSua.Enabled = true;
             }
+        }
+
+        
+
+        private void search()
+        {
+            this.search(false);
+        }
+
+        private void search(bool noWait)
+        {
+            this.dtOld = Library.searchGridData(dataGridView1, this.dtOld, tbTimKiem, cbLoc, noWait, cbUpLowCase.Checked);
+        }
+
+        private void tbTimKiem_TextChanged_1(object sender, EventArgs e)
+        {
+            this.threadSearch = Library.abortThread(this.threadSearch);
+
+            this.threadSearch = new Thread(new ThreadStart(search));
+            this.threadSearch.Start();
+            GC.Collect(0);
+        }
+
+        private void cbLoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tbTimKiem.Text.Length == 0)
+            {
+                return;
+            }
+            this.threadSearch = Library.abortThread(this.threadSearch);
+            this.search(true);
+
+            // this.tbTimKiem_TextChanged(sender, e);
+        }
+
+        private void tbTimKiem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                this.threadSearch = Library.abortThread(this.threadSearch);
+                this.search(true);
+            }
+        }
+
+        private void cbUpLowCase_CheckedChanged(object sender, EventArgs e)
+        {
+            this.cbLoc_SelectedIndexChanged(sender, e);
         }
     }
 }

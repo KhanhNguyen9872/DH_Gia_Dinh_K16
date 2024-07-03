@@ -13,6 +13,7 @@ namespace ExampleLogin
 
         private void load()
         {
+            this.TopMost = true;
             set("Preparing....");
             update(10);
 

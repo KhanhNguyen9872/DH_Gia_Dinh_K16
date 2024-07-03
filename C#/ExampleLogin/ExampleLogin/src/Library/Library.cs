@@ -31,10 +31,15 @@ namespace ExampleLogin.src.Library
 
         public static DataTable searchGridData(DataGridView dataGridView1, DataTable dtOld, TextBox tbTimKiem, ComboBox cbTimKiem)
         {
-            return Library.searchGridData(dataGridView1, dtOld, tbTimKiem, cbTimKiem, false);
+            return Library.searchGridData(dataGridView1, dtOld, tbTimKiem, cbTimKiem, false, false);
         }
 
         public static DataTable searchGridData(DataGridView dataGridView1, DataTable dtOld, TextBox tbTimKiem, ComboBox cbTimKiem, bool noWait)
+        {
+            return Library.searchGridData(dataGridView1, dtOld, tbTimKiem, cbTimKiem, noWait, false);
+        }
+
+        public static DataTable searchGridData(DataGridView dataGridView1, DataTable dtOld, TextBox tbTimKiem, ComboBox cbTimKiem, bool noWait, bool upLowCase)
         {
             if (tbTimKiem.Text.Length == 0)
             {
@@ -95,7 +100,12 @@ namespace ExampleLogin.src.Library
                 foreach (string s in listColumns)
                 {
                     data = dataGridView1.Rows[i].Cells[s].Value.ToString();
-                    if (data.ToLower().Contains(userInput.ToLower()))
+                    if (!upLowCase)
+                    {
+                        data = data.ToLower();
+                        userInput = userInput.ToLower();
+                    }
+                    if (data.Contains(userInput))
                     {
                         DataRow row = newDt.NewRow();
                         DataGridViewRow r = dataGridView1.Rows[i];
@@ -149,6 +159,15 @@ namespace ExampleLogin.src.Library
             return fullName;
         }
         */
+
+        public static Thread abortThread(Thread thread)
+        {
+            if (thread != null)
+            {
+                thread.Abort();
+            }
+            return null;
+        }
 
         public static Process PriorProcess()
         {
