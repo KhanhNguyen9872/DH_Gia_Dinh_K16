@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ExampleLogin.src.Library
@@ -33,25 +31,41 @@ namespace ExampleLogin.src.Library
             // this.password = passwd;
         }
 
+        public bool State()
+        {
+            if (this.conn != null && this.conn.State == ConnectionState.Open)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void Connect()
         {
-            try
+            this.conn = new SqlConnection(this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
+            if (this.conn.State == ConnectionState.Closed)
             {
-                // this.fm.Show();
-                Application.DoEvents();
-                this.conn = new SqlConnection(this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
-                this.conn.Open();
-                // this.fm.Hide();
-            } catch (Exception ex)
-            {
-                MessageBox.Show("Server đang bảo trì, vui lòng thử lại sau!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Library.killPid(Library.getPid());
+                try
+                {
+                    // this.fm.Show();
+                    Application.DoEvents();
+                    
+                    this.conn.Open();
+                    // this.fm.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Server đang bảo trì, vui lòng thử lại sau!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Library.killPid(Library.getPid());
+                }
             }
         }
 
         public void Close()
         {
-            this.conn.Close();
+            if (this.conn != null && this.conn.State == ConnectionState.Open) {
+                this.conn.Close();
+            }
         }
 
         public bool Execute(String query)

@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Form\MainForms\FormPanel\LoaiHangHoaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Form\MainForms\FormPanel\LoaiHangHoaForm.Designer.cs">
+      <DependentUpon>LoaiHangHoaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Form\MainForms\FormPanel\DisabledForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     <Compile Include="src\Form\MainForms\FormPanel\ThongKeForm.Designer.cs">
       <DependentUpon>ThongKeForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\LoaiHangHoaForm.resx">
+      <DependentUpon>LoaiHangHoaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\Form\MainForms\FormPanel\DisabledForm.resx">
       <DependentUpon>DisabledForm.cs</DependentUpon>
     </EmbeddedResource>

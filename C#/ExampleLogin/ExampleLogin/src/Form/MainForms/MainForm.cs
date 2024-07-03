@@ -1,13 +1,8 @@
 ﻿using ExampleLogin.src.Library;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
 using System.Threading;
@@ -18,6 +13,7 @@ namespace ExampleLogin
     {
         private Thread threadUpdateObj = null;
         private Dictionary<Button, Form> listForm = null;
+        private Dictionary<Button, Form> bakForm = null;
         private SQLToolBox connSQL = null;
         private LoginForm loginForm = null;
         private bool noAskExit = false;
@@ -33,6 +29,7 @@ namespace ExampleLogin
         {
             InitializeComponent();
             this.listForm = new Dictionary<Button, Form>();
+            this.bakForm = new Dictionary<Button, Form>();
             this.loginForm = fm;
             this.connSQL = connSQL;
             this.username = username;
@@ -104,6 +101,83 @@ namespace ExampleLogin
             this.titlePanel.Text = buttonText;
         }
 
+        public void backToOldForm(Form newForm)
+        {
+            if (newForm != null)
+            {
+                Button btn = null;
+                foreach (var f in this.listForm)
+                {
+                    if (f.Value == newForm)
+                    {
+                        btn = f.Key;
+                        break;
+                    }
+                }
+
+                if (btn == null && this.bakForm[btn] != null)
+                {
+                    // newForm not in bakForm
+                    return;
+                }
+
+                this.listForm[btn] = this.bakForm[btn];
+                this.bakForm[btn] = null;
+                this.panelForm.Controls.Remove(newForm);
+
+                foreach (Form f in this.panelForm.Controls)
+                {
+                    if (this.listForm[btn] == f)
+                    {
+                        f.Show();
+                    }
+                    else
+                    {
+                        f.Hide();
+                    }
+                }
+            }
+        }
+
+        public void switchForm(Form oldForm, Form newForm)
+        {
+            if (oldForm != null && newForm != null)
+            {
+                // check what button in listForm
+                Button btn = null;
+                foreach (var f in this.listForm)
+                {
+                    if (f.Value == oldForm)
+                    {
+                        btn = f.Key;
+                        break;
+                    }
+                }
+
+                if (btn == null)
+                {
+                    // oldForm not in listForm
+                    return;
+                }
+
+                this.bakForm[btn] = this.listForm[btn];
+                this.listForm[btn] = newForm;
+                this.panelForm.Controls.Add(newForm);
+
+                foreach (Form f in this.panelForm.Controls)
+                {
+                    if (newForm == f)
+                    {
+                        f.Show();
+                    }
+                    else
+                    {
+                        f.Hide();
+                    }
+                }
+            }
+        }
+
         private void btnOptionBanHang_Click(object sender, EventArgs e)
         {   
             try 
@@ -154,7 +228,7 @@ namespace ExampleLogin
             {
                 if (this.listForm[this.btnOptionHanghoa] == null)
                 {
-                    HangHoaForm fm = new HangHoaForm(this.connSQL);
+                    HangHoaForm fm = new HangHoaForm(this.connSQL, this);
                     fm.TopLevel = false;
                     fm.Size = new Size(this.panelForm.Width, this.panelForm.Height);
                     this.panelForm.Controls.Add(fm);

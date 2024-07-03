@@ -1,29 +1,25 @@
 ﻿using ExampleLogin.src.Library;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace ExampleLogin
 {
     public partial class HangHoaForm : Form
     {
+        private MainForm mainForm = null;
         private Thread threadSearch = null;
         private DataTable dtOld = null;
         private SQLToolBox connSQL;
         private string tableName = "MatHang";
 
-        public HangHoaForm(SQLToolBox connSQL)
+        public HangHoaForm(SQLToolBox connSQL, MainForm mainForm)
         {
             InitializeComponent();
+            this.mainForm = mainForm;
             this.connSQL = connSQL;
             this.connSQL.Connect();
         }
@@ -37,7 +33,11 @@ namespace ExampleLogin
 
         private void loadData()
         {
-            
+            if (!this.connSQL.State())
+            {
+                this.connSQL.Connect();
+            }
+
             // load Nhom mat hang
             SQLTable table = this.connSQL.Select("select MaLoaiMH, TenLoaiMH from LoaiMatHang;");
 
@@ -79,6 +79,10 @@ namespace ExampleLogin
 
         private void cbNhomLinhKien_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!this.connSQL.State())
+            {
+                this.connSQL.Connect();
+            }
             tbMaLinhKien.Text = this.connSQL.Select("select MaLoaiMH from LoaiMatHang;").Row(cbNhomLinhKien.SelectedIndex).Column(0);
         }
 
@@ -145,6 +149,11 @@ namespace ExampleLogin
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            if (!this.connSQL.State())
+            {
+                this.connSQL.Connect();
+            }
+
             string maMH = tbMaMatHang.Text;
             if (MessageBox.Show("Bạn có muốn xóa mặt hàng [" + maMH + "] không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
             {
@@ -156,25 +165,80 @@ namespace ExampleLogin
 
             if (this.connSQL.Execute(cmd))
             {
+                this.HangHoaForm_Load(sender, e);
                 MessageBox.Show("Xóa mặt hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 MessageBox.Show("Xóa mặt hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            this.HangHoaForm_Load(sender, e);
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            if (!this.connSQL.State())
+            {
+                this.connSQL.Connect();
+            }
 
+            string maMH = tbMaMatHang.Text;
+            string maNhaCungCap = cbNhaCungCap.Text;
+            string maLoaiMH = cbNhomLinhKien.Text;
+            string tenMatHang = tbTenMatHang.Text;
+            string gia = tbGia.Text;
+            int baoHanh = Convert.ToInt32(numBaoHanh.Value.ToString());
+            int khuyenMai = Convert.ToInt32(numKhuyenMai.Value.ToString());
+            string moTa = tbMoTa.Text;
 
-            this.HangHoaForm_Load(sender, e);
+            // maNhaCungCap
+            SqlCommand cmd = new SqlCommand("select MaNhaCungCap from NhaCungCap where (TenNhaCungCap = @TenNhaCungCap);");
+            cmd.Parameters.AddWithValue("@TenNhaCungCap", maNhaCungCap);
+
+            maNhaCungCap = this.connSQL.Select(cmd).Row(0).Column(0);
+
+            // maLoaiMH
+            cmd = new SqlCommand("select MaLoaiMH from LoaiMatHang where (TenLoaiMH = @TenLoaiMH);");
+            cmd.Parameters.AddWithValue("@TenLoaiMH", maLoaiMH);
+
+            maLoaiMH = this.connSQL.Select(cmd).Row(0).Column(0);
+
+            foreach (string s in new List<string>() { maMH, maNhaCungCap, maLoaiMH, tenMatHang, gia })
+            {
+                if (string.IsNullOrEmpty(s))
+                {
+                    MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            cmd = new SqlCommand("UPDATE " + this.tableName + " SET MaNhaCungCap = @MaNhaCungCap, MaLoaiMH = @MaLoaiMH, TenMH = @TenMH, Gia = @Gia, BaoHanh = @BaoHanh, KhuyenMai = @KhuyenMai, MoTa = @MoTa WHERE (MaMH = @MaMH);");
+            cmd.Parameters.AddWithValue("@MaMH", maMH);
+            cmd.Parameters.AddWithValue("@MaNhaCungCap", maNhaCungCap);
+            cmd.Parameters.AddWithValue("@MaLoaiMH", maLoaiMH);
+            cmd.Parameters.AddWithValue("@TenMH", tenMatHang);
+            cmd.Parameters.AddWithValue("@Gia", gia);
+            cmd.Parameters.AddWithValue("@BaoHanh", baoHanh);
+            cmd.Parameters.AddWithValue("@KhuyenMai", khuyenMai);
+            cmd.Parameters.AddWithValue("@MoTa", moTa);
+
+            if (this.connSQL.Execute(cmd))
+            {
+                this.HangHoaForm_Load(sender, e);
+                MessageBox.Show("Sửa mặt hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Sửa mặt hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (!this.connSQL.State())
+            {
+                this.connSQL.Connect();
+            }
+
             string maMH = tbMaMatHang.Text;
             string maNhaCungCap = cbNhaCungCap.Text;
             string maLoaiMH = cbNhomLinhKien.Text;
@@ -224,8 +288,6 @@ namespace ExampleLogin
             {
                 MessageBox.Show("Thêm mặt hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            this.HangHoaForm_Load(sender, e);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -233,14 +295,15 @@ namespace ExampleLogin
             int index = dataGridView1.CurrentRow.Index;
             if ((dataGridView1.Rows.Count - 1) == index)
             {
-                btnThem.Enabled = true;
-                btnXoa.Enabled = false;
-                btnSua.Enabled = false;
                 this.wipeButton();
                 this.generateMaMatHang();
             }
             else
             {
+                if (!this.connSQL.State())
+                {
+                    this.connSQL.Connect();
+                }
                 SqlCommand cmd = null;
                 tbMaMatHang.Text = dataGridView1.Rows[index].Cells[0].Value.ToString();
 
@@ -310,5 +373,13 @@ namespace ExampleLogin
         {
             this.cbLoc_SelectedIndexChanged(sender, e);
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Form fm = new LoaiHangHoaForm(this.connSQL, mainForm);
+            fm.TopLevel = false;
+            mainForm.switchForm(this, fm);
+        }
+
     }
 }
