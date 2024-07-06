@@ -27,16 +27,20 @@ namespace ExampleLogin
         private void HangHoaForm_Load(object sender, EventArgs e)
         {
             this.loadData();
-            this.wipeButton();
-            this.generateMaMatHang();
+            this.wipeInput();
+            this.generateMaLinhKien();
         }
 
         private void loadData()
         {
-            if (!this.connSQL.State())
+            if (!this.connSQL.State()) this.connSQL.Connect();
+
+            tbTimKiem.Text = "";
+            if (cbLoc.Items.Count > 0)
             {
-                this.connSQL.Connect();
+                cbLoc.SelectedIndex = 0;
             }
+            cbUpLowCase.Checked = false;
 
             // load Nhom mat hang
             SQLTable table = this.connSQL.Select("select MaLoaiLK, TenLoaiLK from LoaiLinhKien;");
@@ -79,14 +83,11 @@ namespace ExampleLogin
 
         private void cbNhomLinhKien_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!this.connSQL.State())
-            {
-                this.connSQL.Connect();
-            }
+            if (!this.connSQL.State()) this.connSQL.Connect();
             tbMaLinhKien.Text = this.connSQL.Select("select MaLoaiLK from LoaiLinhKien;").Row(cbNhomLinhKien.SelectedIndex).Column(0);
         }
 
-        private void generateMaMatHang()
+        private void generateMaLinhKien()
         {
             if (dataGridView1.Rows.Count > 0)
             {
@@ -129,7 +130,7 @@ namespace ExampleLogin
             }
         }
 
-        private void wipeButton()
+        private void wipeInput()
         {
             tbTenMatHang.Text = "";
             tbGia.Text = "0";
@@ -140,6 +141,7 @@ namespace ExampleLogin
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
+
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
@@ -149,10 +151,7 @@ namespace ExampleLogin
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (!this.connSQL.State())
-            {
-                this.connSQL.Connect();
-            }
+            if (!this.connSQL.State())this.connSQL.Connect();
 
             string maLK = tbMaMatHang.Text;
             if (MessageBox.Show("Bạn có muốn xóa linh kiện [" + maLK + "] không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
@@ -176,10 +175,7 @@ namespace ExampleLogin
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (!this.connSQL.State())
-            {
-                this.connSQL.Connect();
-            }
+            if (!this.connSQL.State()) this.connSQL.Connect();
 
             string maLK = tbMaMatHang.Text;
             string maNhaCungCap = cbNhaCungCap.Text;
@@ -234,10 +230,7 @@ namespace ExampleLogin
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (!this.connSQL.State())
-            {
-                this.connSQL.Connect();
-            }
+            if (!this.connSQL.State()) this.connSQL.Connect();
 
             string maLK = tbMaMatHang.Text;
             string maNhaCungCap = cbNhaCungCap.Text;
@@ -295,8 +288,8 @@ namespace ExampleLogin
             int index = dataGridView1.CurrentRow.Index;
             if ((dataGridView1.Rows.Count - 1) == index)
             {
-                this.wipeButton();
-                this.generateMaMatHang();
+                this.wipeInput();
+                this.generateMaLinhKien();
             }
             else
             {
@@ -326,8 +319,6 @@ namespace ExampleLogin
                 btnSua.Enabled = true;
             }
         }
-
-        
 
         private void search()
         {

@@ -156,6 +156,8 @@
             this.MaximumSize = new System.Drawing.Size(334, 238);
             this.MinimumSize = new System.Drawing.Size(334, 238);
             this.Name = "LoginForm";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập | Quản lý linh kiện";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
             this.Load += new System.EventHandler(this.LoginForm_Load);

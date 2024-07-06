@@ -183,6 +183,8 @@
             this.MaximumSize = new System.Drawing.Size(343, 315);
             this.MinimumSize = new System.Drawing.Size(343, 315);
             this.Name = "ForgotPassForm";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quên mật khẩu | Quản lý linh kiện";
             this.ResumeLayout(false);
             this.PerformLayout();

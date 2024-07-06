@@ -206,7 +206,7 @@ namespace ExampleLogin
             {
                 if (this.listForm[this.btnOptionHoadon] == null)
                 {
-                    HoaDonForm fm = new HoaDonForm(this.connSQL);
+                    DonHangForm fm = new DonHangForm(this.connSQL);
                     fm.TopLevel = false;
                     fm.Size = new Size(this.panelForm.Width, this.panelForm.Height);
                     this.panelForm.Controls.Add(fm);

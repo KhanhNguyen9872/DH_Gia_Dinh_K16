@@ -227,6 +227,8 @@
             this.MaximumSize = new System.Drawing.Size(349, 398);
             this.MinimumSize = new System.Drawing.Size(349, 398);
             this.Name = "RegisterForm";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng ký | Quản lý linh kiện";
             this.ResumeLayout(false);
             this.PerformLayout();

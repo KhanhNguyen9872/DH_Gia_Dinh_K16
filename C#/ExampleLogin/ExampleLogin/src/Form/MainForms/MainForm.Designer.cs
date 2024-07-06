@@ -180,7 +180,7 @@
             this.btnOptionHoadon.Name = "btnOptionHoadon";
             this.btnOptionHoadon.Size = new System.Drawing.Size(96, 45);
             this.btnOptionHoadon.TabIndex = 1;
-            this.btnOptionHoadon.Text = "Hóa đơn";
+            this.btnOptionHoadon.Text = "Đơn hàng";
             this.btnOptionHoadon.UseVisualStyleBackColor = true;
             this.btnOptionHoadon.Click += new System.EventHandler(this.btnOptionHoadon_Click);
             // 
@@ -299,6 +299,7 @@
             this.MaximumSize = new System.Drawing.Size(1102, 577);
             this.MinimumSize = new System.Drawing.Size(1102, 577);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý mua bán linh kiện | Nhóm 1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.exitToolStripMenuItem_Click);
             this.Load += new System.EventHandler(this.MainForm_Load);

@@ -146,6 +146,46 @@ namespace ExampleLogin.src.Library
             return dt;
         }
 
+        public void removeColumn(string columnName)
+        {
+            int index = 0;
+            foreach (var s in this.data[0])
+            {
+                if (columnName == s.Key)
+                {
+                    break;
+                }
+                index++;
+            }
+
+            this.removeColumn(index);
+        }
+
+        public void removeColumn(int index)
+        {
+            List<Dictionary<string, string>> newData = new List<Dictionary<string, string>>();
+            Dictionary<string, string> column = null;
+            int i;
+
+            foreach (Dictionary<string, string> s in this.data)
+            {
+                column = new Dictionary<string, string>();
+                i = -1;
+                foreach (string key in s.Keys)
+                {
+                    i++;
+                    if (i == index)
+                    {
+                        continue;
+                    }
+                    column[key] = s[key];
+                }
+                newData.Add(column);
+            }
+
+            this.data = newData;
+        }
+
         public void Fill(DataTable dt)
         {
             if (this.data.Count > 0)
