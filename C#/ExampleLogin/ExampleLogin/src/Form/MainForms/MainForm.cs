@@ -228,7 +228,7 @@ namespace ExampleLogin
             {
                 if (this.listForm[this.btnOptionHanghoa] == null)
                 {
-                    HangHoaForm fm = new HangHoaForm(this.connSQL, this);
+                    LinhKienForm fm = new LinhKienForm(this.connSQL, this);
                     fm.TopLevel = false;
                     fm.Size = new Size(this.panelForm.Width, this.panelForm.Height);
                     this.panelForm.Controls.Add(fm);

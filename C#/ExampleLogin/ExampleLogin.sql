@@ -23,26 +23,32 @@ create table account (
 insert into account values 
 	('root', 'root', '0123456789', 'root@localhost.com', 0, 0)
 
-CREATE TABLE LoaiMatHang(
-	MaLoaiMH NVARCHAR(10) PRIMARY KEY,
-	TenLoaiMH NVARCHAR(10),
+
+CREATE TABLE LoaiLinhKien(
+	MaLoaiLK NVARCHAR(10) PRIMARY KEY,
+	TenLoaiLK NVARCHAR(255),
+	NgayTao DATETIME not null,
+	NgayCapNhat DATETIME not null
 );
 GO
 CREATE TABLE NhaCungCap(
 	MaNhaCungCap NVARCHAR(10) PRIMARY KEY,
-	TenNhaCungCap NVARCHAR(10)
+	TenNhaCungCap NVARCHAR(255),
+	Email VARCHAR(255)
 );
 GO
-CREATE TABLE MatHang(
-	MaMH NVARCHAR(10) PRIMARY KEY,
+CREATE TABLE LinhKien(
+	MaLK NVARCHAR(10) PRIMARY KEY,
 	MaNhaCungCap NVARCHAR(10),
-	MaLoaiMH NVARCHAR(10),
-	TenMH NVARCHAR(100),
+	MaLoaiLK NVARCHAR(10),
+	TenLK NVARCHAR(100),
 	Gia bigint,
 	BaoHanh tinyint,
 	KhuyenMai tinyint,
 	MoTa NVARCHAR(100),
-	FOREIGN KEY (MaLoaiMH) REFERENCES LoaiMatHang(MaLoaiMH)	
+	FOREIGN KEY (MaLoaiLK) REFERENCES LoaiLinhKien(MaLoaiLK),
+	FOREIGN KEY (MaNhaCungCap) REFERENCES NhaCungCap(MaNhaCungCap)
+	ON DELETE CASCADE
 );
 GO
 CREATE TABLE NhanVien(
@@ -70,98 +76,128 @@ CREATE TABLE DonDatHang(
 	NoiNhan NVARCHAR(50)
 	FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH),
 	FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV)
+	ON DELETE CASCADE
 );
 GO
 CREATE TABLE ChiTietDatHang(
 	MaDH NVARCHAR(10),
-	MaMH NVARCHAR(10),
+	MaLK NVARCHAR(10),
 	SoLuong INT
 	FOREIGN KEY (MaDH) REFERENCES DonDatHang(MaDH),
-    FOREIGN KEY (MaMH) REFERENCES MatHang(MaMH)
+    FOREIGN KEY (MaLK) REFERENCES LinhKien(MaLK)
+	ON DELETE CASCADE
 );
 --Nhà cung cấp
 GO
-INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap) VALUES (N'NCC001', N'Intel');
-GO
-INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap) VALUES (N'NCC002', N'AMD');
-GO
-INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap) VALUES (N'NCC003', N'KINGSTON');
-GO
-INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap) VALUES (N'NCC004', N'CORSAIR');
-GO
-INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap) VALUES (N'NCC005', N'ASUS');
-GO
-INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap) VALUES (N'NCC006', N'GIGABYTE');
+INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap, Email) VALUES 
+('NCC001', 'INTEL', 'Intel@gmail.com'),
+('NCC002', 'AMD', 'AMD@gmail.com'),
+('NCC003', 'Western Digital', 'WD@gmail.com'),
+('NCC004', 'CORSAIR', 'Corsair@gmail.com'),
+('NCC005', 'ASUS', 'ASUS@gmail.com'),
+('NCC006', 'GIGABYTE', 'GIGABYTE@gmail.com'),
+('NCC007', 'Seagate', 'Seagate@gmail.com');
+
 GO
 --Loại mặt hàng
-INSERT INTO LoaiMatHang (MaLoaiMH, TenLoaiMH) VALUES (N'LMH001', N'CPU');
-GO 
-INSERT INTO LoaiMatHang (MaLoaiMH, TenLoaiMH) VALUES (N'LMH002', N'RAM');
-GO
-INSERT INTO LoaiMatHang (MaLoaiMH, TenLoaiMH) VALUES (N'LMH003', N'MAIN');
-GO
-INSERT INTO LoaiMatHang (MaLoaiMH, TenLoaiMH) VALUES (N'LMH004', N'GPU');
-
+INSERT INTO LoaiLinhKien (MaLoaiLK, TenLoaiLK, NgayTao, NgayCapNhat) VALUES 
+	(N'CPU', N'Bộ vi xử lý','2024-06-27','2024-06-27'),
+	(N'RAM', N'Bộ nhớ trong','2024-06-27','2024-06-27'),
+	(N'VGA', N'Card màn hình','2024-06-27','2024-06-27'),
+	(N'MAIN', N'Bo mạch chủ','2024-06-27','2024-06-27'),
+	(N'PSU', N'Bộ nguồn','2024-06-27','2024-06-27'),
+	(N'SSD', N'Ổ cứng SSD','2024-06-27','2024-06-27'),
+	(N'HDD', N'Ổ cứng HDD','2024-06-27','2024-06-27');
+go
 --Mặt Hàng
---CHIP
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH001', N'NCC001', N'LMH001', N'i5-10500k', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH002', N'NCC001', N'LMH001', N'i5-12600K', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH003', N'NCC001', N'LMH001', N'i7-14700K', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH004', N'NCC001', N'LMH001', N'i5 10500k', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH005', N'NCC002',N'LMH001', N'R7 7780HS', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH006', N'NCC002',N'LMH001', N'R7 7800X3D', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH007', N'NCC002',N'LMH001', N'R5 5600X', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH008', N'NCC002',N'LMH001', N'R5 3600', 500000, 12, 0, N'..');
---Ram
-GO
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH009', N'NCC003',N'LMH002', N'Kingston Fury Beast Black 16GB 3200MHz DDR4', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH010', N'NCC003',N'LMH002', N'Kingston Fury Beast Black 8GB 3200MHz DDR4', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH011', N'NCC003',N'LMH002', N'Kingston Fury Beast RGB 16GB 3733MHz DDR4', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH012', N'NCC003',N'LMH002', N'Kingston Fury Beast RGB 16GB 5600MHz DDR5', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH013', N'NCC004',N'LMH002', N'Corsair Vengeance LPX 8GB 3200MHz DDR4', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH014', N'NCC004',N'LMH002', N'Corsair Vengeance LPX 16GB 3200MHz DDR4', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH015', N'NCC004',N'LMH002', N'Corsair Vengeance 16GB 5200MHz DDR5', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH016', N'NCC004',N'LMH002', N'Corsair Vengeance RGB RS 16GB 3200MHz DDR4', 500000, 12, 0, N'..');
---Main
-GO
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH017', N'NCC005',N'LMH003', N'ASUS PRIME B450M-A II', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH018', N'NCC005',N'LMH003', N'Asus Prime A620M-A', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH019', N'NCC005',N'LMH003', N'ASUS TUF GAMING B550M-PLUS', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH020', N'NCC005',N'LMH003', N'Asus PRIME B760M-A WIFI', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH021', N'NCC006',N'LMH003', N'Gigabyte A620M GAMING X', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH022', N'NCC006',N'LMH003', N'Gigabyte B760M GAMING WIFI PLUS DDR4', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH023', N'NCC006',N'LMH003', N'Gigabyte B550M AORUS ELITE AX', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH024', N'NCC006',N'LMH003', N'Gigabyte Z790 A ELITE AX ICE', 500000, 12, 0, N'..');
---GPU
-GO
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH025', N'NCC006',N'LMH004', N'Gigabyte GeForce RTX 3050 WINDFORCE OC 6G GDDR6', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH026', N'NCC006',N'LMH004', N'Gigabyte Radeon RX 6600 EAGLE 8G GDDR6', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH027', N'NCC006',N'LMH004', N'Gigabyte GeForce RTX 3060 GAMING OC 12G GDDR6', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH028', N'NCC006',N'LMH004', N'Gigabyte GeForce RTX 4060 WINDFORCE OC 8G GDDR6', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH029', N'NCC005',N'LMH004', N'Asus TUF Gaming Radeon RX 7900 XTX OC Edition 24GB GDDR6', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH030', N'NCC005',N'LMH004', N'Asus GeForce RTX 3050 DUAL 6GB OC GDDR6', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH031', N'NCC005',N'LMH004', N'ASUS Dual Radeon RX 7600 V2 OC Edition 8GB GDDR6', 500000, 12, 0, N'..');
-INSERT INTO MatHang (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (N'MH032', N'NCC005',N'LMH004', N'Asus Dual GeForce RTX 4060 White OC Edition 8GB GDDR6', 500000, 12, 0, N'..');
+
+INSERT INTO LinhKien (MaLK, MaNhaCungCap, MaLoaiLK, TenLK, Gia, BaoHanh, KhuyenMai, MoTa) VALUES 
+--CPU
+('MH001', 'NCC001', 'CPU', 'i5-10500k', 500000, 12, 0, '..'),
+('MH002', 'NCC001', 'CPU', 'i5-12600K', 500000, 12, 0, '..'),
+('MH003', 'NCC001', 'CPU', 'i7-14700K', 500000, 12, 0, '..'),
+('MH004', 'NCC001', 'CPU', 'i5 10500k', 500000, 12, 0, '..'),
+('MH005', 'NCC002', 'CPU', 'R7 7780HS', 500000, 12, 0, '..'),
+('MH006', 'NCC002', 'CPU', 'R7 7800X3D', 500000, 12, 0, '..'),
+('MH007', 'NCC002', 'CPU', 'R5 5600X', 500000, 12, 0, '..'),
+('MH008', 'NCC002', 'CPU', 'R5 3600', 500000, 12, 0, '..'),
+--RAM
+('MH009', 'NCC003', 'RAM', 'Kingston Fury Beast Black 16GB 3200MHz DDR4', 500000, 12, 0, '..'),
+('MH010', 'NCC003', 'RAM', 'Kingston Fury Beast Black 8GB 3200MHz DDR4', 500000, 12, 0, '..'),
+('MH011', 'NCC003', 'RAM', 'Kingston Fury Beast RGB 16GB 3733MHz DDR4', 500000, 12, 0, '..'),
+('MH012', 'NCC003', 'RAM', 'Kingston Fury Beast RGB 16GB 5600MHz DDR5', 500000, 12, 0, '..'),
+('MH013', 'NCC004', 'RAM', 'Corsair Vengeance LPX 8GB 3200MHz DDR4', 500000, 12, 0, '..'),
+('MH014', 'NCC004', 'RAM', 'Corsair Vengeance LPX 16GB 3200MHz DDR4', 500000, 12, 0, '..'),
+('MH015', 'NCC004', 'RAM', 'Corsair Vengeance 16GB 5200MHz DDR5', 500000, 12, 0, '..'),
+('MH016', 'NCC004', 'RAM', 'Corsair Vengeance RGB RS 16GB 3200MHz DDR4', 500000, 12, 0, '..'),
+--MAIN
+('MH017', 'NCC005', 'MAIN', 'ASUS PRIME B450M-A II', 500000, 12, 0, '..'),
+('MH019', 'NCC005', 'MAIN', 'ASUS TUF GAMING B550M-PLUS', 500000, 12, 0, '..'),
+('MH020', 'NCC005', 'MAIN', 'Asus PRIME B760M-A WIFI', 500000, 12, 0, '..'),
+('MH021', 'NCC006', 'MAIN', 'Gigabyte A620M GAMING X', 500000, 12, 0, '..'),
+('MH022', 'NCC006', 'MAIN', 'Gigabyte B760M GAMING WIFI PLUS DDR4', 500000, 12, 0, '..'),
+('MH023', 'NCC006', 'MAIN', 'Gigabyte B550M AORUS ELITE AX', 500000, 12, 0, '..'),
+('MH024', 'NCC006', 'MAIN', 'Gigabyte Z790 A ELITE AX ICE', 500000, 12, 0, '..'),
+--VGA
+('MH025', 'NCC006', 'VGA', 'Gigabyte GeForce RTX 3050 WINDFORCE OC 6G GDDR6', 500000, 12, 0, '..'),
+('MH026', 'NCC006', 'VGA', 'Gigabyte Radeon RX 6600 EAGLE 8G GDDR6', 500000, 12, 0, '..'),
+('MH027', 'NCC006', 'VGA', 'Gigabyte GeForce RTX 3060 GAMING OC 12G GDDR6', 500000, 12, 0, '..'),
+('MH028', 'NCC006', 'VGA', 'Gigabyte GeForce RTX 4060 WINDFORCE OC 8G GDDR6', 500000, 12, 0, '..'),
+('MH029', 'NCC005', 'VGA', 'Asus TUF Gaming Radeon RX 7900 XTX OC Edition 24GB GDDR6', 500000, 12, 0, '..'),
+('MH030', 'NCC005', 'VGA', 'Asus GeForce RTX 3050 DUAL 6GB OC GDDR6', 500000, 12, 0, '..'),
+('MH031', 'NCC005', 'VGA', 'ASUS Dual Radeon RX 7600 V2 OC Edition 8GB GDDR6', 500000, 12, 0, '..'),
+('MH032', 'NCC005', 'VGA', 'Asus Dual GeForce RTX 4060 White OC Edition 8GB GDDR6', 500000, 12, 0, '..'),
+--PSU
+('MH033', 'NCC005', 'PSU', 'ASUS THOR 1200P2 1200W Platinum Full Modula', 500000, 12, 0, '..'),
+('MH034', 'NCC005', 'PSU', 'ASUS TUF Gaming 750W (80 Plus Bronze)', 500000, 12, 0, '..'),
+('MH035', 'NCC005', 'PSU', 'ASUS TUF Gaming 1000W Gold Full Modular PCIe 5.0', 500000, 12, 0, '..'),
+('MH036', 'NCC005', 'PSU', 'ASUS TUF Gaming 650W (80 Plus Bronze)', 500000, 12, 0, '..'),
+('MH037', 'NCC006', 'PSU', 'GIGABYTE UD850GM PG5 - 80 Plus Gold - Full Modular (850W)', 500000, 12, 0, '..'),
+('MH038', 'NCC006', 'PSU', 'GIGABYTE UD850GM - 80 Plus Gold - Full Modular (850W)', 500000, 12, 0, '..'),
+('MH039', 'NCC006', 'PSU', 'GIGABYTE UD1000GM - 80 Plus Gold - Full Modular (1000W)', 500000, 12, 0, '..'),
+('MH040', 'NCC006', 'PSU', 'GIGABYTE AORUS P1200W - 80 Plus Platinum - Full Modular (1200W)', 500000, 12, 0, '..'),
+--SSD
+('MH041', 'NCC004', 'SSD', 'SSD Corsair MP600 CORE XT 1TB PCIe 4.0 Gen4', 500000, 12, 0, '..'),
+('MH042', 'NCC004', 'SSD', 'SSD Corsair MP600 PRO LPX 1TB PCIe Gen4 x4 NVMe M.2 SSD', 500000, 12, 0, '..'),
+('MH043', 'NCC004', 'SSD', 'SSD 480G Corsair Force Series MP510 M.2 NVMe PCIe Gen3 x4 3D-NAND', 500000, 12, 0, '..'),
+('MH044', 'NCC004', 'SSD', 'SSD Corsair MP700 1TB | M.2 PCIe, Gen 5x4, NVMe 2.0', 500000, 12, 0, '..'),
+('MH045', 'NCC003', 'SSD', 'SSD Kingston NV2 250GB M.2 PCIe NVMe Gen4', 500000, 12, 0, '..'),
+('MH046', 'NCC003', 'SSD', 'SSD Kingston NV2 500GB M.2 PCIe NVMe Gen4', 500000, 12, 0, '..'),
+('MH047', 'NCC003', 'SSD', 'SSD Kingston NV2 1TB M.2 PCIe NVMe Gen4', 500000, 12, 0, '..'),
+('MH048', 'NCC003', 'SSD', 'SSD Kingston KC3000 1TB M.2 PCIe gen 4 NVMe', 500000, 12, 0, '..'),
+--HDD
+('MH049', 'NCC007', 'HDD', 'HDD Seagate IronWolf 4TB', 500000, 12, 0, '..'),
+('MH050', 'NCC007', 'HDD', 'HDD SEAGATE IronWolf PRO 14TB', 500000, 12, 0, '..'),
+('MH051', 'NCC007', 'HDD', 'HDD Seagate IronWolf Pro 10TB', 500000, 12, 0, '..'),
+('MH052', 'NCC007', 'HDD', 'HDD Seagate IronWolf Pro 8TB', 500000, 12, 0, '..'),
+('MH053', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC550 18TB', 500000, 12, 0, '..'),
+('MH054', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC330 10TB', 500000, 12, 0, '..'),
+('MH055', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC320 8TB', 500000, 12, 0, '..'),
+('MH056', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC550 16TB', 500000, 12, 0, '..');
+
+
 
 --Nhân viên
-INSERT INTO NhanVien (MaNV, TenNV, DiaChi, SDT, Email) VALUES (N'NV001', N'Nguyễn Văn A', N'HCM', N'0123456789', N'a@gmail.com');
 GO
-INSERT INTO NhanVien (MaNV, TenNV, DiaChi, SDT, Email) VALUES (N'NV002', N'Nguyễn Văn B', N'Hà Nội', N'0324857691', N'b@gmail.com')
-GO
+INSERT INTO NhanVien (MaNV, TenNV, DiaChi, SDT, Email) VALUES 
+(N'NV001', N'Nguyễn Văn A', N'HCM', N'0123456789', N'a@gmail.com'),
+(N'NV002', N'Nguyễn Văn B', N'Hà Nội', N'0324857691', N'b@gmail.com');
 --Khách hàng
-INSERT INTO KhachHang (MaKH, TenKH, DiaCHi, SDT, Email) VALUES(N'KH001', N'Trần Văn E', N'HCM', N'0184758398', N'KH1@gmail.com');
 GO
-INSERT INTO KhachHang (MaKH, TenKH, DiaCHi, SDT, Email) VALUES(N'KH002', N'Trần Văn F', N'Hà Nội', N'0398575842',  N'KH2@gmail.com');
-GO 
+INSERT INTO KhachHang (MaKH, TenKH, DiaCHi, SDT, Email) VALUES
+(N'KH001', N'Trần Văn E', N'HCM', N'0184758398', N'KH1@gmail.com'),
+(N'KH002', N'Trần Văn F', N'Hà Nội', N'0398575842',  N'KH2@gmail.com');
 --Đơn đặt hàng
-INSERT INTO DonDatHang (MaDH, MaKH, MaNV, NgayDatHang, NgayGiaoHang, NoiNhan) VALUES(N'DH001', N'KH001', N'NV001', '2024-06-27', '2024-07-01', N'HCM');
 GO
-INSERT INTO DonDatHang (MaDH, MaKH, MaNV, NgayDatHang, NgayGiaoHang, NoiNhan) VALUES(N'DH002', N'KH002', N'NV002', '2024-05-27', '2024-06-01', N'Hà Nội');
-GO
+INSERT INTO DonDatHang (MaDH, MaKH, MaNV, NgayDatHang, NgayGiaoHang, NoiNhan) VALUES
+(N'DH001', N'KH001', N'NV001', '2024-06-27', '2024-07-01', N'HCM'),
+(N'DH002', N'KH002', N'NV002', '2024-05-27', '2024-06-01', N'Hà Nội');
 --Chi tiết đặt hàng
-INSERT INTO ChiTietDatHang (MaDH, MaMH, SoLuong) VALUES(N'DH001', N'MH001', 10);
 GO
-INSERT INTO ChiTietDatHang (MaDH, MaMH, SoLuong) VALUES(N'DH002', N'MH003', 10);
+INSERT INTO ChiTietDatHang (MaDH, MaLK, SoLuong) VALUES
+(N'DH001', N'MH001', 10),
+(N'DH002', N'MH003', 10);
+
 
 
 

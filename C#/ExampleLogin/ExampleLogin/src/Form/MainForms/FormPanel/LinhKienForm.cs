@@ -8,15 +8,15 @@ using System.Windows.Forms;
 
 namespace ExampleLogin
 {
-    public partial class HangHoaForm : Form
+    public partial class LinhKienForm : Form
     {
         private MainForm mainForm = null;
         private Thread threadSearch = null;
         private DataTable dtOld = null;
         private SQLToolBox connSQL;
-        private string tableName = "MatHang";
+        private string tableName = "LinhKien";
 
-        public HangHoaForm(SQLToolBox connSQL, MainForm mainForm)
+        public LinhKienForm(SQLToolBox connSQL, MainForm mainForm)
         {
             InitializeComponent();
             this.mainForm = mainForm;
@@ -39,7 +39,7 @@ namespace ExampleLogin
             }
 
             // load Nhom mat hang
-            SQLTable table = this.connSQL.Select("select MaLoaiMH, TenLoaiMH from LoaiMatHang;");
+            SQLTable table = this.connSQL.Select("select MaLoaiLK, TenLoaiLK from LoaiLinhKien;");
 
             cbNhomLinhKien.Items.Clear();
             for (int i = 0; i < table.Count; i++)
@@ -83,7 +83,7 @@ namespace ExampleLogin
             {
                 this.connSQL.Connect();
             }
-            tbMaLinhKien.Text = this.connSQL.Select("select MaLoaiMH from LoaiMatHang;").Row(cbNhomLinhKien.SelectedIndex).Column(0);
+            tbMaLinhKien.Text = this.connSQL.Select("select MaLoaiLK from LoaiLinhKien;").Row(cbNhomLinhKien.SelectedIndex).Column(0);
         }
 
         private void generateMaMatHang()
@@ -154,23 +154,23 @@ namespace ExampleLogin
                 this.connSQL.Connect();
             }
 
-            string maMH = tbMaMatHang.Text;
-            if (MessageBox.Show("Bạn có muốn xóa mặt hàng [" + maMH + "] không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            string maLK = tbMaMatHang.Text;
+            if (MessageBox.Show("Bạn có muốn xóa linh kiện [" + maLK + "] không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
             {
                 return;
             }
 
-            SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (MaMH = @MaMH);");
-            cmd.Parameters.AddWithValue("@MaMH", maMH);
+            SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (MaLK = @MaLK);");
+            cmd.Parameters.AddWithValue("@MaLK", maLK);
 
             if (this.connSQL.Execute(cmd))
             {
                 this.HangHoaForm_Load(sender, e);
-                MessageBox.Show("Xóa mặt hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Xóa linh kiện thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Xóa mặt hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Xóa linh kiện thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -181,10 +181,10 @@ namespace ExampleLogin
                 this.connSQL.Connect();
             }
 
-            string maMH = tbMaMatHang.Text;
+            string maLK = tbMaMatHang.Text;
             string maNhaCungCap = cbNhaCungCap.Text;
-            string maLoaiMH = cbNhomLinhKien.Text;
-            string tenMatHang = tbTenMatHang.Text;
+            string maLoaiLK = cbNhomLinhKien.Text;
+            string tenLinhKien = tbTenMatHang.Text;
             string gia = tbGia.Text;
             int baoHanh = Convert.ToInt32(numBaoHanh.Value.ToString());
             int khuyenMai = Convert.ToInt32(numKhuyenMai.Value.ToString());
@@ -196,13 +196,13 @@ namespace ExampleLogin
 
             maNhaCungCap = this.connSQL.Select(cmd).Row(0).Column(0);
 
-            // maLoaiMH
-            cmd = new SqlCommand("select MaLoaiMH from LoaiMatHang where (TenLoaiMH = @TenLoaiMH);");
-            cmd.Parameters.AddWithValue("@TenLoaiMH", maLoaiMH);
+            // MaLoaiLK
+            cmd = new SqlCommand("select MaLoaiLK from LoaiLinhKien where (TenLoaiLK = @TenLoaiLK);");
+            cmd.Parameters.AddWithValue("@TenLoaiLK", maLoaiLK);
 
-            maLoaiMH = this.connSQL.Select(cmd).Row(0).Column(0);
+            maLoaiLK = this.connSQL.Select(cmd).Row(0).Column(0);
 
-            foreach (string s in new List<string>() { maMH, maNhaCungCap, maLoaiMH, tenMatHang, gia })
+            foreach (string s in new List<string>() { maLK, maNhaCungCap, maLoaiLK, tenLinhKien, gia })
             {
                 if (string.IsNullOrEmpty(s))
                 {
@@ -211,11 +211,11 @@ namespace ExampleLogin
                 }
             }
 
-            cmd = new SqlCommand("UPDATE " + this.tableName + " SET MaNhaCungCap = @MaNhaCungCap, MaLoaiMH = @MaLoaiMH, TenMH = @TenMH, Gia = @Gia, BaoHanh = @BaoHanh, KhuyenMai = @KhuyenMai, MoTa = @MoTa WHERE (MaMH = @MaMH);");
-            cmd.Parameters.AddWithValue("@MaMH", maMH);
+            cmd = new SqlCommand("UPDATE " + this.tableName + " SET MaNhaCungCap = @MaNhaCungCap, MaLoaiLK = @MaLoaiLK, TenLK = @TenLK, Gia = @Gia, BaoHanh = @BaoHanh, KhuyenMai = @KhuyenMai, MoTa = @MoTa WHERE (maLK = @maLK);");
+            cmd.Parameters.AddWithValue("@maLK", maLK);
             cmd.Parameters.AddWithValue("@MaNhaCungCap", maNhaCungCap);
-            cmd.Parameters.AddWithValue("@MaLoaiMH", maLoaiMH);
-            cmd.Parameters.AddWithValue("@TenMH", tenMatHang);
+            cmd.Parameters.AddWithValue("@MaLoaiLK", maLoaiLK);
+            cmd.Parameters.AddWithValue("@TenLK", tenLinhKien);
             cmd.Parameters.AddWithValue("@Gia", gia);
             cmd.Parameters.AddWithValue("@BaoHanh", baoHanh);
             cmd.Parameters.AddWithValue("@KhuyenMai", khuyenMai);
@@ -224,11 +224,11 @@ namespace ExampleLogin
             if (this.connSQL.Execute(cmd))
             {
                 this.HangHoaForm_Load(sender, e);
-                MessageBox.Show("Sửa mặt hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Sửa linh kiện thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Sửa mặt hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sửa linh kiện thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -239,9 +239,9 @@ namespace ExampleLogin
                 this.connSQL.Connect();
             }
 
-            string maMH = tbMaMatHang.Text;
+            string maLK = tbMaMatHang.Text;
             string maNhaCungCap = cbNhaCungCap.Text;
-            string maLoaiMH = cbNhomLinhKien.Text;
+            string maLoaiLK = cbNhomLinhKien.Text;
             string tenMatHang = tbTenMatHang.Text;
             string gia = tbGia.Text;
             int baoHanh = Convert.ToInt32(numBaoHanh.Value.ToString());
@@ -255,12 +255,12 @@ namespace ExampleLogin
             maNhaCungCap = this.connSQL.Select(cmd).Row(0).Column(0);
 
             // maLoaiMH
-            cmd = new SqlCommand("select MaLoaiMH from LoaiMatHang where (TenLoaiMH = @TenLoaiMH);");
-            cmd.Parameters.AddWithValue("@TenLoaiMH", maLoaiMH);
+            cmd = new SqlCommand("select MaLoaiLK from LoaiLinhKien where (TenLoaiLK = @TenLoaiLK);");
+            cmd.Parameters.AddWithValue("@TenLoaiLK", maLoaiLK);
 
-            maLoaiMH = this.connSQL.Select(cmd).Row(0).Column(0);
+            maLoaiLK = this.connSQL.Select(cmd).Row(0).Column(0);
 
-            foreach (string s in new List<string>() { maMH, maNhaCungCap, maLoaiMH, tenMatHang, gia })
+            foreach (string s in new List<string>() { maLK, maNhaCungCap, maLoaiLK, tenMatHang, gia })
             {
                 if (string.IsNullOrEmpty(s))
                 {
@@ -269,11 +269,11 @@ namespace ExampleLogin
                 }
             }
 
-            cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaMH, MaNhaCungCap, MaLoaiMH, TenMH, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (@MaMH, @MaNhaCungCap, @MaLoaiMH, @TenMH, @Gia, @BaoHanh, @KhuyenMai, @MoTa);");
-            cmd.Parameters.AddWithValue("@MaMH", maMH);
+            cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaLK, MaNhaCungCap, MaLoaiLK, TenLK, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (@MaLK, @MaNhaCungCap, @MaLoaiLK, @TenLK, @Gia, @BaoHanh, @KhuyenMai, @MoTa);");
+            cmd.Parameters.AddWithValue("@MaLK", maLK);
             cmd.Parameters.AddWithValue("@MaNhaCungCap", maNhaCungCap);
-            cmd.Parameters.AddWithValue("@MaLoaiMH", maLoaiMH);
-            cmd.Parameters.AddWithValue("@TenMH", tenMatHang);
+            cmd.Parameters.AddWithValue("@MaLoaiLK", maLoaiLK);
+            cmd.Parameters.AddWithValue("@TenLK", tenMatHang);
             cmd.Parameters.AddWithValue("@Gia", gia);
             cmd.Parameters.AddWithValue("@BaoHanh", baoHanh);
             cmd.Parameters.AddWithValue("@KhuyenMai", khuyenMai);
@@ -282,11 +282,11 @@ namespace ExampleLogin
             if (this.connSQL.Execute(cmd))
             {
                 this.HangHoaForm_Load(sender, e);
-                MessageBox.Show("Thêm mặt hàng thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm linh kiện thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Thêm mặt hàng thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Thêm linh kiện thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -311,8 +311,8 @@ namespace ExampleLogin
                 cmd.Parameters.AddWithValue("@MNCC", dataGridView1.Rows[index].Cells[1].Value.ToString());
                 cbNhaCungCap.Text = this.connSQL.Select(cmd).Row(0).Column(0);
 
-                cmd = new SqlCommand("select TenLoaiMH from LoaiMatHang where (MaLoaiMH = @MLMH);");
-                cmd.Parameters.AddWithValue("@MLMH", dataGridView1.Rows[index].Cells[2].Value.ToString());
+                cmd = new SqlCommand("select TenLoaiLK from LoaiLinhKien where (MaLoaiLK = @MaLoaiLK);");
+                cmd.Parameters.AddWithValue("@MaLoaiLK", dataGridView1.Rows[index].Cells[2].Value.ToString());
                 cbNhomLinhKien.Text = this.connSQL.Select(cmd).Row(0).Column(0);
 
                 tbTenMatHang.Text = dataGridView1.Rows[index].Cells[3].Value.ToString();
@@ -376,7 +376,7 @@ namespace ExampleLogin
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Form fm = new LoaiHangHoaForm(this.connSQL, mainForm);
+            Form fm = new LoaiLinhKienForm(this.connSQL, mainForm);
             fm.TopLevel = false;
             mainForm.switchForm(this, fm);
         }

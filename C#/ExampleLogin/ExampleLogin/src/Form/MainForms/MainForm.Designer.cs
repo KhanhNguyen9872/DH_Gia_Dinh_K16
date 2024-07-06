@@ -111,7 +111,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.aboutToolStripMenuItem.Text = "Thông tin";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -167,7 +167,7 @@
             this.btnOptionHanghoa.Name = "btnOptionHanghoa";
             this.btnOptionHanghoa.Size = new System.Drawing.Size(96, 45);
             this.btnOptionHanghoa.TabIndex = 2;
-            this.btnOptionHanghoa.Text = "Hàng hóa";
+            this.btnOptionHanghoa.Text = "Linh kiện";
             this.btnOptionHanghoa.UseVisualStyleBackColor = true;
             this.btnOptionHanghoa.Click += new System.EventHandler(this.btnOptionHanghoa_Click);
             // 
