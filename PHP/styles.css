@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.customer {
+    margin-bottom: 20px;
+}
+
+.customer button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.customer button {
+    background-color: #0164b0;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.customer button:hover {
+    background-color: #218838;
+}
+
+.order {
+    margin-bottom: 20px;
+}
+
+.order button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.order button {
+    background-color: #00ff1a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.order button:hover {
+    background-color: #218838;
+}
+
+.phone {
+    margin-bottom: 20px;
+}
+
+.phone button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.phone button {
+    background-color: #7fb101;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.phone button:hover {
+    background-color: #218838;
+}
+
+.add-phone, .phone-list, .edit-phone {
+    margin-bottom: 20px;
+}
+
+.add-phone form, .edit-phone form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.add-phone input, .add-phone button, .edit-phone input, .edit-phone button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-phone button, .edit-phone button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.add-phone button:hover, .edit-phone button:hover {
+    background-color: #218838;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.actions a {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.actions .edit-btn {
+    background-color: #ffc107;
+}
+
+.actions .delete-btn {
+    background-color: #dc3545;
+}
+
+.actions .edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.actions .delete-btn:hover {
+    background-color: #c82333;
+}
