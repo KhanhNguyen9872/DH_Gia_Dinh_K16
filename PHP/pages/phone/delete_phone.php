@@ -1,5 +1,9 @@
 <?php
-include '../config/db.php';
+if (session_status() == PHP_SESSION_NONE) {
+    header('Location: /');
+}
+
+include '../../config/db.php';
 
 $id = $_GET['id'];
 
@@ -12,5 +16,5 @@ if (!$conn->query($sql)) {
 
 $conn->close();
 
-header('Location: /phone');
+header('Location: /?page=phone');
 ?>

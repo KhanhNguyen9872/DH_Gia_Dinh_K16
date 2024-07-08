@@ -1,5 +1,9 @@
 <?php
-include '../config/db.php';
+if (session_status() == PHP_SESSION_NONE) {
+    header('Location: /');
+}
+
+include '../../config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
@@ -16,6 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $conn->close();
 
-    header('Location: /phone');
+    header('Location: /?page=phone');
 }
 ?>
