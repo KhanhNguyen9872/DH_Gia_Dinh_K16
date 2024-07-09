@@ -50,10 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Form\MainForms\FormPanel\LoaiLinhKienForm.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\LinhKienForm\LoaiLinhKienForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\LoaiLinhKienForm.Designer.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\LinhKienForm\LoaiLinhKienForm.Designer.cs">
       <DependentUpon>LoaiLinhKienForm.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Form\MainForms\FormPanel\DisabledForm.cs">
@@ -92,22 +92,22 @@
     <Compile Include="src\Form\MainForms\PleaseWaitForm.Designer.cs">
       <DependentUpon>PleaseWaitForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\BanHangForm.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\BanHangForm\BanHangForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\BanHangForm.Designer.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\BanHangForm\BanHangForm.Designer.cs">
       <DependentUpon>BanHangForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\LinhKienForm.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\LinhKienForm\LinhKienForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\LinhKienForm.Designer.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\LinhKienForm\LinhKienForm.Designer.cs">
       <DependentUpon>LinhKienForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\DonHangForm.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\DonHangForm\DonHangForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\DonHangForm.Designer.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\DonHangForm\DonHangForm.Designer.cs">
       <DependentUpon>DonHangForm.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Form\MainForms\FormPanel\QuanLyForm\TaiKhoanForm.cs">
@@ -157,13 +157,19 @@
     <Compile Include="src\Form\MainForms\FormPanel\ThongKeForm.Designer.cs">
       <DependentUpon>ThongKeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\ThongTinDonHangForm.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\DonHangForm\ThongTinDonHangForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Form\MainForms\FormPanel\ThongTinDonHangForm.Designer.cs">
+    <Compile Include="src\Form\MainForms\FormPanel\DonHangForm\ThongTinDonHangForm.Designer.cs">
       <DependentUpon>ThongTinDonHangForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="src\Form\MainForms\FormPanel\LoaiLinhKienForm.resx">
+    <Compile Include="src\Form\MainForms\FormPanel\BanHangForm\ThemLinhKienForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Form\MainForms\FormPanel\BanHangForm\ThemLinhKienForm.Designer.cs">
+      <DependentUpon>ThemLinhKienForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\LinhKienForm\LoaiLinhKienForm.resx">
       <DependentUpon>LoaiLinhKienForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Form\MainForms\FormPanel\DisabledForm.resx">
@@ -184,13 +190,13 @@
     <EmbeddedResource Include="src\Form\MainForms\PleaseWaitForm.resx">
       <DependentUpon>PleaseWaitForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Form\MainForms\FormPanel\BanHangForm.resx">
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\BanHangForm\BanHangForm.resx">
       <DependentUpon>BanHangForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Form\MainForms\FormPanel\LinhKienForm.resx">
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\LinhKienForm\LinhKienForm.resx">
       <DependentUpon>LinhKienForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Form\MainForms\FormPanel\DonHangForm.resx">
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\DonHangForm\DonHangForm.resx">
       <DependentUpon>DonHangForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Form\MainForms\FormPanel\QuanLyForm\TaiKhoanForm.resx">
@@ -223,8 +229,11 @@
     <EmbeddedResource Include="src\Form\MainForms\FormPanel\ThongKeForm.resx">
       <DependentUpon>ThongKeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Form\MainForms\FormPanel\ThongTinDonHangForm.resx">
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\DonHangForm\ThongTinDonHangForm.resx">
       <DependentUpon>ThongTinDonHangForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Form\MainForms\FormPanel\BanHangForm\ThemLinhKienForm.resx">
+      <DependentUpon>ThemLinhKienForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
