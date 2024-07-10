@@ -173,11 +173,11 @@
         private System.Windows.Forms.Label lb;
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.TextBox tbPassword;
-        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.LinkLabel lkForgotPass;
         private System.Windows.Forms.Button btnQuit;
         private System.Windows.Forms.CheckBox cbShowHide;
+        private System.Windows.Forms.Button btnLogin;
     }
 }
 

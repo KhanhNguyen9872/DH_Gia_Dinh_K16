@@ -49,6 +49,7 @@
             this.panelForm = new System.Windows.Forms.Panel();
             this.titlePanel = new System.Windows.Forms.GroupBox();
             this.lbDateTime = new System.Windows.Forms.Label();
+            this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -88,6 +89,7 @@
             // accountToolStripMenuItem
             // 
             this.accountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.đổiMậtKhẩuToolStripMenuItem,
             this.logOutToolStripMenuItem1});
             this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
             this.accountToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
@@ -96,7 +98,7 @@
             // logOutToolStripMenuItem1
             // 
             this.logOutToolStripMenuItem1.Name = "logOutToolStripMenuItem1";
-            this.logOutToolStripMenuItem1.Size = new System.Drawing.Size(128, 22);
+            this.logOutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.logOutToolStripMenuItem1.Text = "Đăng xuất";
             this.logOutToolStripMenuItem1.Click += new System.EventHandler(this.logOutToolStripMenuItem1_Click);
             // 
@@ -283,6 +285,12 @@
             this.lbDateTime.TabIndex = 5;
             this.lbDateTime.Text = "     ";
             // 
+            // đổiMậtKhẩuToolStripMenuItem
+            // 
+            this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
+            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -337,5 +345,6 @@
         private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem1;
         private System.Windows.Forms.Label lbDateTime;
+        private System.Windows.Forms.ToolStripMenuItem đổiMậtKhẩuToolStripMenuItem;
     }
 }

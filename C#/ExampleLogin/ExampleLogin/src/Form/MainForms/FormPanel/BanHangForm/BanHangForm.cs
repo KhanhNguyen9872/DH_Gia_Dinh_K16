@@ -120,6 +120,13 @@ namespace ExampleLogin
 
         private void btnTaoMoi_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.Enabled)
+            {
+                if (MessageBox.Show("Bạn có muốn tạo đơn hàng mới không?\nĐơn hàng hiện tại sẽ bị hủy bỏ!", "TẠO ĐƠN HÀNG MỚI", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
             this.loadData();
             this.activate();
             this.wipeDataGrid();
@@ -338,6 +345,10 @@ namespace ExampleLogin
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Bạn có muốn thanh toán đơn hàng này không?", "THANH TOÁN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
             string maDH = tbMaDonHang.Text;
             string maKH = cbMaKhachHang.Text;
             string maNV = cbMaNhanVien.Text;
@@ -392,6 +403,7 @@ namespace ExampleLogin
                 if (check)
                 {
                     MessageBox.Show("Thanh toán thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataGridView1.Enabled = false;
                     this.btnTaoMoi_Click(sender, e);
                     return;
                 }
