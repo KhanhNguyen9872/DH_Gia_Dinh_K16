@@ -148,42 +148,48 @@ namespace ExampleLogin.src.Library
 
         public void removeColumn(string columnName)
         {
-            int index = 0;
-            foreach (var s in this.data[0])
+            if (this.data.Count > 0)
             {
-                if (columnName == s.Key)
+                int index = 0;
+                foreach (var s in this.data[0])
                 {
-                    break;
+                    if (columnName == s.Key)
+                    {
+                        break;
+                    }
+                    index++;
                 }
-                index++;
-            }
 
-            this.removeColumn(index);
+                this.removeColumn(index);
+            }
         }
 
         public void removeColumn(int index)
         {
-            List<Dictionary<string, string>> newData = new List<Dictionary<string, string>>();
-            Dictionary<string, string> column = null;
-            int i;
-
-            foreach (Dictionary<string, string> s in this.data)
+            if (this.data.Count > 0)
             {
-                column = new Dictionary<string, string>();
-                i = -1;
-                foreach (string key in s.Keys)
-                {
-                    i++;
-                    if (i == index)
-                    {
-                        continue;
-                    }
-                    column[key] = s[key];
-                }
-                newData.Add(column);
-            }
+                List<Dictionary<string, string>> newData = new List<Dictionary<string, string>>();
+                Dictionary<string, string> column = null;
+                int i;
 
-            this.data = newData;
+                foreach (Dictionary<string, string> s in this.data)
+                {
+                    column = new Dictionary<string, string>();
+                    i = -1;
+                    foreach (string key in s.Keys)
+                    {
+                        i++;
+                        if (i == index)
+                        {
+                            continue;
+                        }
+                        column[key] = s[key];
+                    }
+                    newData.Add(column);
+                }
+
+                this.data = newData;
+            }
         }
 
         public void Fill(DataTable dt)

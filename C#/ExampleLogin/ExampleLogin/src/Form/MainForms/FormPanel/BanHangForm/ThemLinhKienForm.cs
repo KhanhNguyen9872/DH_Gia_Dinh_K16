@@ -151,26 +151,21 @@ namespace ExampleLogin
             string name = table.Row(0).Column(0);
             tbMoTa.Text = table.Row(0).Column(1);
 
-            for (int i = 0; i < cbTenLinhKien.Items.Count; i++)
-            {
-                if ((string)cbTenLinhKien.Items[i] == name)
-                {
-                    cbTenLinhKien.SelectedIndex = i;
-                    cbTenLinhKien.Enabled = true;
-                    btnThem.Enabled = true;
-                    btnThem.Text = "Sửa";
-                    return;
-                }
-            }
+            cbTenLinhKien.DropDownStyle = ComboBoxStyle.DropDown;
+            cbTenLinhKien.Text = name;
+            btnThem.Text = "Sửa";
+            btnThem.Enabled = true;
         }
 
-        public void setLoai(string s)   // bug
+        public void setLoai(string s) 
         {
             this.tbMaLoai.Text = s;
             SqlCommand cmd = new SqlCommand("select TenLoaiLK from LoaiLinhKien where (MaLoaiLK = @MaLoaiLK);");
             cmd.Parameters.AddWithValue("@MaLoaiLK", s);
             SQLTable table = this.connSQL.Select(cmd);
             string name = table.Row(0).Column(0);
+            cbTenLoai.DropDownStyle = ComboBoxStyle.DropDown;
+            cbTenLoai.Enabled = false;
             cbTenLoai.Text = name;
         }
 

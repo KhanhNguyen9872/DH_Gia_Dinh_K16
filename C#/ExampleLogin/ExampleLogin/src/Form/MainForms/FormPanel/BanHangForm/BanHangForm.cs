@@ -67,6 +67,7 @@ namespace ExampleLogin
 
         private void deactivate()
         {
+            tbNoiNhan.Text = "";
             labelTongThanhTien.Text = "";
             labelTongLinhKien.Text = "";
             cbMaKhachHang.Enabled = false;
@@ -85,6 +86,7 @@ namespace ExampleLogin
 
         private void activate()
         {
+            tbNoiNhan.Text = "";
             labelTongThanhTien.Text = "0 VND";
             labelTongLinhKien.Text = "0 linh kiện";
             ngayDatHang.Text = DateTime.Today.ToString();
@@ -122,6 +124,7 @@ namespace ExampleLogin
             this.activate();
             this.wipeDataGrid();
             this.generateMaDonHang();
+            this.reloadTongThanhTien();
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
@@ -254,9 +257,11 @@ namespace ExampleLogin
             int count = 0;
             int total = 0;
 
+            int columnIndex = dataGridView1.ColumnCount - 1;
+
             foreach (DataGridViewRow r in dataGridView1.Rows)
             {
-                if (r.Cells[7].Value != null && int.TryParse(r.Cells[7].Value.ToString(), out int i))
+                if (r.Cells[columnIndex].Value != null && int.TryParse(r.Cells[columnIndex].Value.ToString(), out int i))
                 {
                     total = total + i;
                     count = count + 1;
@@ -304,9 +309,12 @@ namespace ExampleLogin
             {
                 return;
             }
-            this.removeRow(dataGridView1, index);
-            this.reloadTongThanhTien();
-            this.reloadButton();
+            if (MessageBox.Show("Bạn có muốn xóa linh kiện STT " + dataGridView1.Rows[index].Cells[0].Value.ToString() + " không?", "THÔNG BÁO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.removeRow(dataGridView1, index);
+                this.reloadTongThanhTien();
+                this.reloadButton();
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -326,6 +334,70 @@ namespace ExampleLogin
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
             }
+        }
+
+        private void btnThanhToan_Click(object sender, EventArgs e)
+        {
+            string maDH = tbMaDonHang.Text;
+            string maKH = cbMaKhachHang.Text;
+            string maNV = cbMaNhanVien.Text;
+            string NgayDatHang = ngayDatHang.Text;
+            string NgayGiaoHang = ngayGiaoHang.Text;
+            string noiNhan = tbNoiNhan.Text;
+
+            foreach (string s in new List<string>() { maDH, maKH, maNV, NgayDatHang, NgayGiaoHang, noiNhan })
+            {
+                if (string.IsNullOrEmpty(s))
+                {
+                    MessageBox.Show("Dữ liệu không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            SqlCommand cmd = new SqlCommand("insert into DonDatHang (MaDH, MaKH, MaNV, NgayDatHang, NgayGiaoHang, NoiNhan) values (@MaDH, @MaKH, @MaNV, @NgayDatHang, @NgayGiaoHang, @NoiNhan);");
+            cmd.Parameters.AddWithValue("@MaDH", maDH);
+            cmd.Parameters.AddWithValue("@MaKH", maKH);
+            cmd.Parameters.AddWithValue("@MaNV", maNV);
+            cmd.Parameters.AddWithValue("@NgayDatHang", NgayDatHang);
+            cmd.Parameters.AddWithValue("@NgayGiaoHang", NgayGiaoHang);
+            cmd.Parameters.AddWithValue("@NoiNhan", noiNhan);
+
+            if (this.connSQL.Execute(cmd))
+            {
+                bool check = true;
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                {
+                    DataGridViewRow row = dataGridView1.Rows[i];
+
+                    string maLK = row.Cells[1].Value.ToString();
+                    int SoLuong = Convert.ToInt32(row.Cells[5].Value.ToString());
+                    int BaoHanh = Convert.ToInt32(row.Cells[6].Value.ToString());
+                    int KhuyenMai = Convert.ToInt32(row.Cells[7].Value.ToString());
+                    string TongTien = row.Cells[8].Value.ToString();
+
+                    cmd = new SqlCommand("insert into ChiTietDatHang (MaDH, MaLK, SoLuong, BaoHanh, KhuyenMai, TongTien) values (@MaDH, @MaLK, @SoLuong, @BaoHanh, @KhuyenMai, @TongTien);");
+                    cmd.Parameters.AddWithValue("@MaDH", maDH);
+                    cmd.Parameters.AddWithValue("@MaLK", maLK);
+                    cmd.Parameters.AddWithValue("@SoLuong", SoLuong);
+                    cmd.Parameters.AddWithValue("@BaoHanh", BaoHanh);
+                    cmd.Parameters.AddWithValue("@KhuyenMai", KhuyenMai);
+                    cmd.Parameters.AddWithValue("@TongTien", TongTien);
+
+                    if (!this.connSQL.Execute(cmd)) {
+                        check = false;
+                        break;
+                    }
+                }
+
+                if (check)
+                {
+                    MessageBox.Show("Thanh toán thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.btnTaoMoi_Click(sender, e);
+                    return;
+                }
+            }
+
+            MessageBox.Show("Thanh toán thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

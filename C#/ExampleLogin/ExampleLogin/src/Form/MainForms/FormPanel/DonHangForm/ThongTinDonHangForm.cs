@@ -186,7 +186,7 @@ namespace ExampleLogin
                 return;
             }
 
-            SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (MaDH = @MaDH && maLK = @maLK);");
+            SqlCommand cmd = new SqlCommand("DELETE FROM " + this.tableName + " WHERE (MaDH = @MaDH and maLK = @maLK);");
             cmd.Parameters.AddWithValue("@MaDH", this.MaDH);
             cmd.Parameters.AddWithValue("@maLK", maLK);
 
