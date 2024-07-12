@@ -25,6 +25,7 @@ if ($type != 'logout') {
 }
 
 require_once "config/db.php";
+require_once "config/lib.php";
 
 include "pages/" . $type . ".php";
 ?>

@@ -1,57 +1,51 @@
 <?php
 include 'config/check_login.php';
-include 'config/is_admin.php';
 include 'config/db.php';
+
 ?>
 <head>
-<link rel="stylesheet" href="/pages/account/styles.css">
+<link rel="stylesheet" href="/pages/producer/styles.css">
 </head>
 <body>
     <main>
-        <section class="add-account">
-            <h2>Thêm tài khoản mới</h2>
-            <form action="/pages/account/add.php" method="post">
-                <input type="text" name="username" placeholder="Tên tài khoản" required>
-                <input type="text" name="password" placeholder="Mật khẩu" required>
+        <section class="add-producer">
+            <h2>Thêm nhà sản xuất</h2>
+            <form action="/pages/producer/add.php" method="post">
+                <input type="text" name="name" placeholder="Tên nhà sản xuất" required>
                 <input type="email" name="email" placeholder="Email" required>
-                <select name="type">
-                    <option value="0">Nhân viên</option>
-                    <option value="1">Quản trị</option>
-                </select>
                 <button type="submit">Thêm</button>
             </form>
         </section>
-        <section class="account-list">
-            <h2>Danh sách tài khoản</h2>
+        <section class="producer-list">
+            <h2>Danh sách nhà sản xuất</h2>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Tên tài khoản</th>
+                        <th>Tên nhà sản xuất</th>
                         <th>Email</th>
-                        <th>Loại tài khoản</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM account;";
+                    $sql = "SELECT * FROM producer;";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td>" . $row["id"] . "</td>
-                                <td>" . $row["username"] . "</td>
+                                <td>" . $row["name"] . "</td>
                                 <td>" . $row["email"] . "</td>
-                                <td>" . ($row["type"] == "1" ? "Quản trị" : "Nhân viên") . "</td>
                                 <td class='actions'>
-                                    <a href='/?page=editAccount&id=" . $row["id"] . "' class='edit-btn'>Sửa</a>
+                                    <a href='/?page=editProducer&id=" . $row["id"] . "' class='edit-btn'>Sửa</a>
                                     <a href='#' onclick=\"deleteSubmit('" . $row["id"] . "')\" class='delete-btn'>Xóa</a>
                                 </td>
                             </tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='4'>Không có tài khoản nào</td></tr>";
+                        echo "<tr><td colspan='4'>Không có nhà sản xuất nào</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -62,7 +56,7 @@ include 'config/db.php';
 <script>
     function deleteSubmit(id) {
         if (confirm('Bạn co muon xoa id ' + id + ' khong?')) {
-            window.location.href = '/pages/account/delete.php?id=' + id;
+            window.location.href = '/pages/producer/delete.php?id=' + id;
         }
     }
 </script>

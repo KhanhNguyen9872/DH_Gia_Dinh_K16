@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($username_err) && empty($password_err)) {
-        $sql = "SELECT username, password FROM account WHERE username = ?";
+        $sql = "SELECT username, password, type FROM account WHERE username = ?";
         
         if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -32,13 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 mysqli_stmt_store_result($stmt);
 
                 if (mysqli_stmt_num_rows($stmt) == 1) {                    
-                    mysqli_stmt_bind_result($stmt, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $username, $hashed_password, $type);
                     if (mysqli_stmt_fetch($stmt)) {
                         if (password_verify($password, $hashed_password)) {
                             session_start();
 
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["username"] = $username;                            
+                            $_SESSION["username"] = $username;
+                            $_SESSION["admin"] = ($type == "1" ? true : false);                       
 
                             header("location: /");
                         } else {

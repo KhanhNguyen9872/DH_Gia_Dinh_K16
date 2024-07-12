@@ -1,10 +1,7 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    header('Location: /');
-}
-
+include 'config/check_login.php';
 include 'config/db.php';
 ?>
 <head>
-    <link rel="stylesheet" href="/order/styles.css">
+    <link rel="stylesheet" href="/pages/order/styles.css">
 </head>

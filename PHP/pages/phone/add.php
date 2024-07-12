@@ -1,8 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    header('Location: /');
-}
-
+include '../../config/check_login.php';
 include '../../config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

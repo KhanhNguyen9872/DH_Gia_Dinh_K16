@@ -1,13 +1,10 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    header('Location: /');
-}
-
+include '../../config/check_login.php';
 include '../../config/db.php';
 
 $id = $_GET['id'];
 
-$sql = "DELETE FROM phones WHERE id=$id";
+$sql = "DELETE FROM phonetype WHERE id=$id";
 
 if (!$conn->query($sql)) {
     echo "Error deleting record: " . $conn->error;
@@ -16,5 +13,5 @@ if (!$conn->query($sql)) {
 
 $conn->close();
 
-header('Location: /?page=phone');
+header('Location: /?page=type');
 ?>

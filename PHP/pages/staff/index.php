@@ -6,5 +6,5 @@ if (session_status() == PHP_SESSION_NONE) {
 include 'config/db.php';
 ?>
 <head>
-    <link rel="stylesheet" href="/staff/styles.css">
+    <link rel="stylesheet" href="/pages/staff/styles.css">
 </head>

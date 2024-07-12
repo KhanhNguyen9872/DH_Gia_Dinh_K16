@@ -1,5 +1,7 @@
 <?php
-require 'config/check_login.php';
+require_once 'config/check_login.php';
+require_once 'config/lib.php';
+
 $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
 
 ?>
@@ -92,13 +94,45 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
         <div class="wrapper">
             <h1>Quản lý cửa hàng điện thoại</h1>
             <div class="tab">
+                <!-- <button class="tablinks <?php echo $activePage === 'sell' ? 'active' : ''; ?>" onclick="location.href='?page=sell'">Bán hàng</button> -->
                 <button class="tablinks <?php echo $activePage === 'phone' ? 'active' : ''; ?>" onclick="location.href='?page=phone'">Quản lý điện thoại</button>
-                <button class="tablinks <?php echo $activePage === 'customer' ? 'active' : ''; ?>" onclick="location.href='?page=customer'">Quản lý khách hàng</button>
-                <button class="tablinks <?php echo $activePage === 'account' ? 'active' : ''; ?>" onclick="location.href='?page=account'">Quản lý tài khoản</button>
-                <button class="tablinks <?php echo $activePage === 'order' ? 'active' : ''; ?>" onclick="location.href='?page=order'">Quản lý đơn hàng</button>
-                <button class="tablinks <?php echo $activePage === 'staff' ? 'active' : ''; ?>" onclick="location.href='?page=staff'">Quản lý nhân viên</button>
+                <button class="tablinks <?php echo $activePage === 'producer' ? 'active' : ''; ?>" onclick="location.href='?page=producer'">Quản lý nhà sản xuất</button>
+                <!-- <button class="tablinks <?php echo $activePage === 'customer' ? 'active' : ''; ?>" onclick="location.href='?page=customer'">Quản lý khách hàng</button> -->
+                <button class="tablinks <?php echo $activePage === 'type' ? 'active' : ''; ?>" onclick="location.href='?page=type'">Quản lý loại</button>
+                <?php echo $_SESSION['admin'] ? "<button class=\"tablinks " . ($activePage === 'account' ? 'active' : '') . "\" onclick=\"location.href='?page=account'\">Quản lý tài khoản</button>\n" : '' ?>
+                <!-- <button class="tablinks <?php echo $activePage === 'order' ? 'active' : ''; ?>" onclick="location.href='?page=order'">Quản lý đơn hàng</button> -->
+                <!-- <button class="tablinks <?php echo $activePage === 'staff' ? 'active' : ''; ?>" onclick="location.href='?page=staff'">Quản lý nhân viên</button> -->
             </div>
 
+            <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'editType' ? 'block' : 'none'; ?>">
+                <?php if ($activePage === 'editType') { 
+                    include 'pages/type/edit.php';
+                } ?>
+            </div>
+            <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'editProducer' ? 'block' : 'none'; ?>">
+                <?php if ($activePage === 'editProducer') { 
+                    include 'pages/producer/edit.php';
+                } ?>
+            </div>
+            <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'editAccount' ? 'block' : 'none'; ?>">
+                <?php if ($activePage === 'editAccount') { 
+                    if ($_SESSION["admin"]) {
+                        include 'pages/account/edit.php';
+                    } else {
+                        redirect("/");
+                    }
+                } ?>
+            </div>
+            <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'producer' ? 'block' : 'none'; ?>">
+                <?php if ($activePage === 'producer') { 
+                    include 'pages/producer/index.php'; 
+                } ?>
+            </div>
+            <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'sell' ? 'block' : 'none'; ?>">
+                <?php if ($activePage === 'sell') { 
+                    include 'pages/sell/index.php'; 
+                } ?>
+            </div>
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'phone' ? 'block' : 'none'; ?>">
                 <?php if ($activePage === 'phone') { 
                     include 'pages/phone/index.php'; 
@@ -109,9 +143,18 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
                     include 'pages/customer/index.php'; 
                 } ?>
             </div>
+            <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'type' ? 'block' : 'none'; ?>">
+                <?php if ($activePage === 'type') { 
+                    include 'pages/type/index.php'; 
+                } ?>
+            </div>
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'account' ? 'block' : 'none'; ?>">
                 <?php if ($activePage === 'account') { 
-                    include 'pages/account/index.php'; 
+                    if ($_SESSION["admin"]) {
+                        include 'pages/account/index.php'; 
+                    } else {
+                        redirect("/");
+                    }
                 } ?>
             </div>
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'order' ? 'block' : 'none'; ?>">
@@ -127,7 +170,7 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
 
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'editPhone' ? 'block' : 'none'; ?>">
                 <?php if ($activePage === 'editPhone') { 
-                    include 'pages/phone/edit_phone.php';
+                    include 'pages/phone/edit.php';
                 } ?>
             </div>
 
