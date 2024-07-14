@@ -1,6 +1,10 @@
 <?php
 include 'config/check_login.php';
-include 'config/is_admin.php';
+if (function_exists('redirectIfNotAdmin')) {
+    redirectIfNotAdmin();
+} else {
+    header('Location: /');
+}
 include 'config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -66,8 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div>
                 <label for="type">Loại tài khoản</label><br>
                 <select id="type" name="type">
-                    <option value="0" <?php echo ($row['type'] == "0" ? 'selected="selected"' : ""); ?>>Nhân viên</option>
-                    <option value="1" <?php echo ($row['type'] == "1" ? 'selected="selected"' : ""); ?>>Quản trị</option>
+                    <option value="0" <?php echo ($row['type'] == "0" ? 'selected="selected"' : ""); ?>>Khách</option>
+                    <option value="1" <?php echo ($row['type'] == "1" ? 'selected="selected"' : ""); ?>>Nhân viên</option>
+                    <option value="-1" <?php echo ($row['type'] == "-1" ? 'selected="selected"' : ""); ?>>Quản trị</option>
                 </select>
             </div>
             

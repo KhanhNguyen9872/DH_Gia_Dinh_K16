@@ -1,5 +1,6 @@
 <?php
 include '../../config/check_login.php';
+include '../../config/check_guest.php';
 include '../../config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -8,7 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $quantity = $_POST['quantity'];
     $price = $_POST['price'];
 
-    $sql = "INSERT INTO phones (name, model, quantity, price) VALUES ('$name', '$model', '$quantity', '$price')";
+    $producer = $_POST["producer"];
+    $phonetype = $_POST["phonetype"];
+
+    $sql = "INSERT INTO phone (name, model, producer_id, phonetype_id, quantity, price) VALUES ('$name', '$model', '$producer', '$phonetype', '$quantity', '$price')";
 
     if (!$conn->query($sql)) {
         echo "Error: " . $sql . "<br>" . $conn->error;

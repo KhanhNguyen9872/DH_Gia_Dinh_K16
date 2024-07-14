@@ -8,13 +8,17 @@ include 'config/db.php';
 </head>
 <body>
     <main>
-        <section class="add-type">
+        <?php
+        if (!is_guest()) {
+            echo '<section class="add-type">
             <h2>Thêm loại sản phẩm</h2>
             <form action="/pages/type/add.php" method="post">
                 <input type="text" name="name" placeholder="Tên loại" required>
                 <button type="submit">Thêm</button>
             </form>
-        </section>
+        </section>';
+        }
+        ?>
         <section class="type-list">
             <h2>Danh sách loại sản phẩm</h2>
             <table>
@@ -22,7 +26,11 @@ include 'config/db.php';
                     <tr>
                         <th>ID</th>
                         <th>Tên loại</th>
-                        <th>Hành động</th>
+                        <?php
+                        if (!is_guest()) {
+                            echo '<th>Hành động</th>';
+                        }
+                        ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,12 +42,14 @@ include 'config/db.php';
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>
                                 <td>" . $row["id"] . "</td>
-                                <td>" . $row["name"] . "</td>
-                                <td class='actions'>
+                                <td>" . $row["name"] . "</td>";
+                            if (!is_guest()) {
+                            echo "<td class='actions'>
                                     <a href='/?page=editType&id=" . $row["id"] . "' class='edit-btn'>Sửa</a>
                                     <a href='#' onclick=\"deleteSubmit('" . $row["id"] . "')\" class='delete-btn'>Xóa</a>
-                                </td>
-                            </tr>";
+                                </td>";
+                            }
+                            echo "</tr>";
                         }
                     } else {
                         echo "<tr><td colspan='4'>Không có loại sản phẩm nào</td></tr>";
@@ -50,11 +60,15 @@ include 'config/db.php';
         </section>
     </main>
 </body>
-<script>
-    function deleteSubmit(id) {
-        if (confirm('Bạn co muon xoa id ' + id + ' khong?')) {
-            window.location.href = '/pages/type/delete.php?id=' + id;
+<?php
+    if (!is_guest()) {
+    echo "<script>
+        function deleteSubmit(id) {
+            if (confirm('Bạn có muốn xóa id [' + id + '] không?')) {
+                window.location.href = '/pages/type/delete.php?id=' + id;
+            }
         }
+    </script>";
     }
-</script>
+?>
 </html>

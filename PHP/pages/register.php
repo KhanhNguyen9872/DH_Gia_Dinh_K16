@@ -12,9 +12,9 @@ if (isset($_POST['submit'])) {
     if (empty($username) || empty($password) || empty($email)) {
         echo "Thông tin không được để trống.";
     } elseif ($password !== $repassword) {
-        echo "Passwords do not match.";
+        echo "Mật khẩu phải trùng nhau.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email format.";
+        echo "Email không đúng định dạng.";
     } else {
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $repassword = password_hash($_POST['repassword'], PASSWORD_DEFAULT);

@@ -106,12 +106,20 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
 
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'editType' ? 'block' : 'none'; ?>">
                 <?php if ($activePage === 'editType') { 
-                    include 'pages/type/edit.php';
+                    if (!is_guest()) {
+                        include 'pages/type/edit.php';
+                    } else {
+                        redirect("/");
+                    }
                 } ?>
             </div>
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'editProducer' ? 'block' : 'none'; ?>">
                 <?php if ($activePage === 'editProducer') { 
-                    include 'pages/producer/edit.php';
+                    if (!is_guest()) {
+                        include 'pages/producer/edit.php';
+                    } else {
+                        redirect("/");
+                    }
                 } ?>
             </div>
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'editAccount' ? 'block' : 'none'; ?>">
@@ -170,14 +178,18 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
 
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'editPhone' ? 'block' : 'none'; ?>">
                 <?php if ($activePage === 'editPhone') { 
-                    include 'pages/phone/edit.php';
+                    if (!is_guest()) {
+                        include 'pages/phone/edit.php';
+                    } else {
+                        redirect("/");
+                    }
                 } ?>
             </div>
 
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'Main' ? 'block' : 'none'; ?>">
                 <?php if ($activePage === 'Main') { 
-                    echo "<p>Welcome, <b>" . htmlspecialchars($_SESSION["username"]) . "</b>!</p>";
-                    echo "<p>Have a nice day</p>";
+                    echo "<p>Xin chao, <b>" . htmlspecialchars($_SESSION["username"]) . "</b>!</p>";
+                    echo "<p>Chuc ban mot ngay tot lanh!</p>";
                 } ?>
             </div>
         </div>

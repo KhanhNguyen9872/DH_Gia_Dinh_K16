@@ -39,7 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             $_SESSION["loggedin"] = true;
                             $_SESSION["username"] = $username;
-                            $_SESSION["admin"] = ($type == "1" ? true : false);                       
+                            $_SESSION["admin"] = false;
+                            $_SESSION["guest"] = false;
+
+                            if ($type == "-1") {
+                                $_SESSION["admin"] = true;
+                            }
+                            if ($type == "0") {
+                                $_SESSION["guest"] = true;
+                            }          
 
                             header("location: /");
                         } else {

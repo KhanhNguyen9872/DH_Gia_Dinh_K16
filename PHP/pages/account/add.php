@@ -1,6 +1,10 @@
 <?php
 include '../../config/check_login.php';
-include '../../config/is_admin.php';
+if (function_exists('redirectIfNotAdmin')) {
+    redirectIfNotAdmin();
+} else {
+    header('Location: /');
+}
 include '../../config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

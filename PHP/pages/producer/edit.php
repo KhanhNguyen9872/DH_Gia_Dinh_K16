@@ -1,5 +1,6 @@
 <?php
 include 'config/check_login.php';
+include 'config/check_guest.php';
 include 'config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

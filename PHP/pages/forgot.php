@@ -63,10 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
         <h2>Quên mật khẩu</h2>
         <form action="/auth.php?type=forgot" method="post">
-            <label for="username"><b>Tên tài khoản</b></label>
+            <label for="username">Tên tài khoản</label>
             <input type="text" placeholder="Nhập tên tài khoản" name="username" required>
 
-            <label for="email"><b>Email</b></label>
+            <label for="email">Email</label>
             <input type="email" placeholder="Nhập Email của bạn" name="email" required>
 
             <input type="submit" value="Quên mật khẩu">

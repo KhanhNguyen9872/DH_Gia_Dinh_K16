@@ -1,6 +1,10 @@
 <?php
 include 'config/check_login.php';
-include 'config/is_admin.php';
+if (function_exists('redirectIfNotAdmin')) {
+    redirectIfNotAdmin();
+} else {
+    header('Location: /');
+}
 include 'config/db.php';
 ?>
 <head>
@@ -15,8 +19,9 @@ include 'config/db.php';
                 <input type="text" name="password" placeholder="Mật khẩu" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <select name="type">
-                    <option value="0">Nhân viên</option>
-                    <option value="1">Quản trị</option>
+                    <option value="0">Khách</option>
+                    <option value="1">Nhân viên</option>
+                    <option value="-1">Quản trị</option>
                 </select>
                 <button type="submit">Thêm</button>
             </form>
@@ -43,7 +48,7 @@ include 'config/db.php';
                                 <td>" . $row["id"] . "</td>
                                 <td>" . $row["username"] . "</td>
                                 <td>" . $row["email"] . "</td>
-                                <td>" . ($row["type"] == "1" ? "Quản trị" : "Nhân viên") . "</td>
+                                <td>" . ($row["type"] == "-1" ? "Quản trị" : ($row["type"] == "1" ? "Nhân viên" : "Khách")) . "</td>
                                 <td class='actions'>
                                     <a href='/?page=editAccount&id=" . $row["id"] . "' class='edit-btn'>Sửa</a>
                                     <a href='#' onclick=\"deleteSubmit('" . $row["id"] . "')\" class='delete-btn'>Xóa</a>
@@ -61,7 +66,7 @@ include 'config/db.php';
 </body>
 <script>
     function deleteSubmit(id) {
-        if (confirm('Bạn co muon xoa id ' + id + ' khong?')) {
+        if (confirm('Bạn có muốn xóa id [' + id + '] không?')) {
             window.location.href = '/pages/account/delete.php?id=' + id;
         }
     }

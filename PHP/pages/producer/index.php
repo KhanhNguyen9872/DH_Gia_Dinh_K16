@@ -8,14 +8,18 @@ include 'config/db.php';
 </head>
 <body>
     <main>
-        <section class="add-producer">
+        <?php
+        if (!is_guest()) {
+            echo '<section class="add-producer">
             <h2>Thêm nhà sản xuất</h2>
             <form action="/pages/producer/add.php" method="post">
                 <input type="text" name="name" placeholder="Tên nhà sản xuất" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <button type="submit">Thêm</button>
             </form>
-        </section>
+        </section>';
+        }
+        ?>
         <section class="producer-list">
             <h2>Danh sách nhà sản xuất</h2>
             <table>
@@ -24,7 +28,11 @@ include 'config/db.php';
                         <th>ID</th>
                         <th>Tên nhà sản xuất</th>
                         <th>Email</th>
-                        <th>Hành động</th>
+                        <?php 
+                            if (is_staff()) {
+                                echo '<th>Hành động</th>';
+                            }
+                        ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,12 +45,14 @@ include 'config/db.php';
                             echo "<tr>
                                 <td>" . $row["id"] . "</td>
                                 <td>" . $row["name"] . "</td>
-                                <td>" . $row["email"] . "</td>
-                                <td class='actions'>
+                                <td>" . $row["email"] . "</td>";
+                            if (!is_guest()) {
+                                echo "<td class='actions'>
                                     <a href='/?page=editProducer&id=" . $row["id"] . "' class='edit-btn'>Sửa</a>
                                     <a href='#' onclick=\"deleteSubmit('" . $row["id"] . "')\" class='delete-btn'>Xóa</a>
-                                </td>
-                            </tr>";
+                                </td>";
+                            }
+                            echo "</tr>";
                         }
                     } else {
                         echo "<tr><td colspan='4'>Không có nhà sản xuất nào</td></tr>";
@@ -53,11 +63,15 @@ include 'config/db.php';
         </section>
     </main>
 </body>
-<script>
-    function deleteSubmit(id) {
-        if (confirm('Bạn co muon xoa id ' + id + ' khong?')) {
-            window.location.href = '/pages/producer/delete.php?id=' + id;
+<?php
+    if (!is_guest()) {
+    echo "<script>
+        function deleteSubmit(id) {
+            if (confirm('Bạn có muốn xóa id [' + id + '] không?')) {
+                window.location.href = '/pages/producer/delete.php?id=' + id;
+            }
         }
+    </script>";
     }
-</script>
+?>
 </html>

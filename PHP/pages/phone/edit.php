@@ -1,5 +1,6 @@
 <?php
 include 'config/check_login.php';
+include 'config/check_guest.php';
 include 'config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -11,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $quantity = $_POST['quantity'];
     $price = $_POST['price'];
 
-    $sql = "UPDATE phones SET name='$name', model='$model', producer_id='$producer', phonetype_id='$phonetype', quantity = '$quantity', price='$price' WHERE id=$id";
+    $sql = "UPDATE phone SET name='$name', model='$model', producer_id='$producer', phonetype_id='$phonetype', quantity = '$quantity', price='$price' WHERE id=$id";
 
     if (!$conn->query($sql)) {
         echo "Error updating record: " . $conn->error;
@@ -24,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit();
 } else {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM phones WHERE id=$id";
+    $sql = "SELECT * FROM phone WHERE id = '$id'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -90,11 +91,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div>
                 <label for="quantity">Số lượng</label><br>
-                <input type="number" id="quantity" name="quantity" placeholder="Số lượng" value="<?php echo $row['quantity']; ?>" size="1" required>
+                <input type="number" id="quantity" name="quantity" placeholder="Số luong" value="<?php echo $row['quantity']; ?>" size="1" required>
             </div>
             <div>
-                <label for="price">Giá</label><br>
-                <input type="number" id="price" name="price" placeholder="Giá" value="<?php echo round($row['price'], 0); ?>" size="5" required>
+                <label for="price">Đơn giá</label><br>
+                <input type="number" id="price" name="price" placeholder="Giá (VND)" value="<?php echo round($row['price'], 0); ?>" size="5" required>
             </div>
             <button type="submit">Sửa</button>
         </form>
