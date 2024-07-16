@@ -32,6 +32,7 @@
             this.hệThốngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.giớiThiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +50,6 @@
             this.panelForm = new System.Windows.Forms.Panel();
             this.titlePanel = new System.Windows.Forms.GroupBox();
             this.lbDateTime = new System.Windows.Forms.Label();
-            this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBoxOptions.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -95,10 +95,17 @@
             this.accountToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.accountToolStripMenuItem.Text = "Tài khoản";
             // 
+            // đổiMậtKhẩuToolStripMenuItem
+            // 
+            this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
+            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
+            this.đổiMậtKhẩuToolStripMenuItem.Click += new System.EventHandler(this.đổiMậtKhẩuToolStripMenuItem_Click);
+            // 
             // logOutToolStripMenuItem1
             // 
             this.logOutToolStripMenuItem1.Name = "logOutToolStripMenuItem1";
-            this.logOutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.logOutToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
             this.logOutToolStripMenuItem1.Text = "Đăng xuất";
             this.logOutToolStripMenuItem1.Click += new System.EventHandler(this.logOutToolStripMenuItem1_Click);
             // 
@@ -137,7 +144,7 @@
             // btnOptionQuanly
             // 
             this.btnOptionQuanly.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionQuanly.Location = new System.Drawing.Point(6, 223);
+            this.btnOptionQuanly.Location = new System.Drawing.Point(6, 230);
             this.btnOptionQuanly.MaximumSize = new System.Drawing.Size(96, 45);
             this.btnOptionQuanly.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionQuanly.Name = "btnOptionQuanly";
@@ -150,7 +157,7 @@
             // btnOptionThongke
             // 
             this.btnOptionThongke.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionThongke.Location = new System.Drawing.Point(6, 172);
+            this.btnOptionThongke.Location = new System.Drawing.Point(6, 179);
             this.btnOptionThongke.MaximumSize = new System.Drawing.Size(96, 45);
             this.btnOptionThongke.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionThongke.Name = "btnOptionThongke";
@@ -163,7 +170,7 @@
             // btnOptionHanghoa
             // 
             this.btnOptionHanghoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionHanghoa.Location = new System.Drawing.Point(6, 121);
+            this.btnOptionHanghoa.Location = new System.Drawing.Point(6, 128);
             this.btnOptionHanghoa.MaximumSize = new System.Drawing.Size(96, 45);
             this.btnOptionHanghoa.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionHanghoa.Name = "btnOptionHanghoa";
@@ -176,7 +183,7 @@
             // btnOptionHoadon
             // 
             this.btnOptionHoadon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionHoadon.Location = new System.Drawing.Point(6, 70);
+            this.btnOptionHoadon.Location = new System.Drawing.Point(6, 77);
             this.btnOptionHoadon.MaximumSize = new System.Drawing.Size(96, 45);
             this.btnOptionHoadon.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionHoadon.Name = "btnOptionHoadon";
@@ -189,7 +196,7 @@
             // btnOptionBanHang
             // 
             this.btnOptionBanHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionBanHang.Location = new System.Drawing.Point(6, 19);
+            this.btnOptionBanHang.Location = new System.Drawing.Point(6, 26);
             this.btnOptionBanHang.MaximumSize = new System.Drawing.Size(96, 45);
             this.btnOptionBanHang.MinimumSize = new System.Drawing.Size(96, 45);
             this.btnOptionBanHang.Name = "btnOptionBanHang";
@@ -284,12 +291,6 @@
             this.lbDateTime.Size = new System.Drawing.Size(29, 20);
             this.lbDateTime.TabIndex = 5;
             this.lbDateTime.Text = "     ";
-            // 
-            // đổiMậtKhẩuToolStripMenuItem
-            // 
-            this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
             // 
             // MainForm
             // 

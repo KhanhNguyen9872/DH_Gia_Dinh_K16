@@ -106,6 +106,7 @@ namespace ExampleLogin
             foreach(TextBox s in new List<TextBox>() { tbMaNhanVien, tbTenNhanVien, tbDiaChi, tbSDT, tbEmail }) {
                 s.Text = "";
             }
+            cbLaNhanSu.Checked = false;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -127,6 +128,8 @@ namespace ExampleLogin
                     list[i].Text = dataGridView1.Rows[index].Cells[i].Value.ToString();
                 }
 
+                cbLaNhanSu.Checked = ("1".Equals(dataGridView1.Rows[index].Cells[5].Value.ToString()) ? true : false);
+
                 btnThem.Enabled = false;
                 btnXoa.Enabled = true;
                 btnSua.Enabled = true;
@@ -141,6 +144,7 @@ namespace ExampleLogin
             string diaChi = tbDiaChi.Text;
             string sdt = tbSDT.Text;
             string email = tbEmail.Text;
+            int laNhanSu = (cbLaNhanSu.Checked ? 1 : 0);
                 
             foreach (string s in new List<string>() { maNhanVien, tenNhanVien, diaChi, sdt, email })
             {
@@ -151,12 +155,13 @@ namespace ExampleLogin
                 }
             }
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaNV, TenNV, DiaChi, SDT, Email) VALUES (@MaNV, @TenNV, @DiaChi, @SDT, @Email);");
+            SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaNV, TenNV, DiaChi, SDT, Email, LaNhanSu) VALUES (@MaNV, @TenNV, @DiaChi, @SDT, @Email, @LaNhanSu);");
             cmd.Parameters.AddWithValue("@MaNV", maNhanVien);
             cmd.Parameters.AddWithValue("@TenNV", tenNhanVien);
             cmd.Parameters.AddWithValue("@DiaChi", diaChi);
             cmd.Parameters.AddWithValue("@SDT", sdt);
             cmd.Parameters.AddWithValue("@Email", email);
+            cmd.Parameters.AddWithValue("@LaNhanSu", laNhanSu);
 
             if (this.connSQL.Execute(cmd))
             {
@@ -204,6 +209,7 @@ namespace ExampleLogin
             string diaChi = tbDiaChi.Text;
             string sdt = tbSDT.Text;
             string email = tbEmail.Text;
+            int laNhanSu = (cbLaNhanSu.Checked ? 1 : 0);
 
             foreach (string s in new List<string>() { maNhanVien, tenNhanVien, diaChi, sdt, email })
             {
@@ -214,13 +220,13 @@ namespace ExampleLogin
                 }
             }
 
-
-            SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set TenNV = @TenNV, DiaChi = @DiaChi, SDT = @SDT, Email = @Email WHERE (MaNV = @MaNV);");
+            SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set TenNV = @TenNV, DiaChi = @DiaChi, SDT = @SDT, Email = @Email, LaNhanSu = @LaNhanSu WHERE (MaNV = @MaNV);");
             cmd.Parameters.AddWithValue("@MaNV", maNhanVien);
             cmd.Parameters.AddWithValue("@TenNV", tenNhanVien);
             cmd.Parameters.AddWithValue("@DiaChi", diaChi);
             cmd.Parameters.AddWithValue("@SDT", sdt);
             cmd.Parameters.AddWithValue("@Email", email);
+            cmd.Parameters.AddWithValue("@LaNhanSu", laNhanSu);
 
             if (this.connSQL.Execute(cmd))
             {

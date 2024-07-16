@@ -51,6 +51,7 @@ namespace ExampleLogin.src.Library
                     Application.DoEvents();
                     
                     this.conn.Open();
+                    GC.Collect(0);
                     // this.fm.Hide();
                 }
                 catch (Exception ex)
@@ -146,6 +147,44 @@ namespace ExampleLogin.src.Library
             return dt;
         }
 
+        public void renameColumn(string oldColumnName, string newColumnName)
+        {
+            if (this.data.Count > 0)
+            {
+                List<Dictionary<string, string>> newData = new List<Dictionary<string, string>>();
+                Dictionary<string, string> row = null;
+                string key;
+
+                for (int i = 0; i < this.data.Count; i++)
+                {
+                    row = new Dictionary<string, string>();
+                    foreach(var s in this.data[i])
+                    {
+                        key = s.Key;
+                        if (key.Equals(oldColumnName))
+                        {
+                            key = newColumnName;
+                        }
+                        row.Add(key, s.Value);
+                    }
+                    newData.Add(row);
+                }
+
+                this.data = newData;
+            }
+        }
+
+        public void addColumn(string columnName, string defaultValue)
+        {
+            if (this.data.Count > 0)
+            {
+                foreach(var s in this.data)
+                {
+                    s.Add(columnName, defaultValue);
+                }
+            }
+        }
+
         public void removeColumn(string columnName)
         {
             if (this.data.Count > 0)
@@ -216,7 +255,11 @@ namespace ExampleLogin.src.Library
 
         public SQLRow Row(int index)
         {
-            return new SQLRow(this.data[index]);
+            if (this.data.Count > 0)
+            {
+                return new SQLRow(this.data[index]);
+            }
+            return null;
         }
 
         public SQLColumn Column(string key)

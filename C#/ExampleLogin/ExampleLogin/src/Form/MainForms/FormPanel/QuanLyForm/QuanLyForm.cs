@@ -9,7 +9,7 @@ namespace ExampleLogin
         public QuanLyForm(SQLToolBox connSQL, string accountName)
         {
             InitializeComponent();
-            bool b = Library.checkAccount(connSQL, accountName);
+            bool b = Library.isAdmin(connSQL, accountName);
 
             KhachHangForm khachHangForm = new KhachHangForm(connSQL);
             khachHangForm.TopLevel = false;

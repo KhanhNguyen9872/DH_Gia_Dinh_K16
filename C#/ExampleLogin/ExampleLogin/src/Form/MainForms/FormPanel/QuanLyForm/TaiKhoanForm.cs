@@ -24,11 +24,12 @@ namespace ExampleLogin
 
         private void loadData()
         {
-            this.connSQL.Connect();
-            SQLTable s = this.connSQL.Select("Select * from account;");
-            this.connSQL.Close();
+            if (!this.connSQL.State()) this.connSQL.Connect();
 
-            Library.setDataSource(dataGridView1, s.getDataTable());            
+            SQLTable s = this.connSQL.Select("Select * from account;");
+
+            Library.setDataSource(dataGridView1, s.getDataTable());   
+            
             cbTimKiem.Items.Clear();
             cbTimKiem.Items.Add("");
 
@@ -42,6 +43,21 @@ namespace ExampleLogin
             }
 
             cbTimKiem.SelectedIndex = 0;
+
+            SQLTable table;
+            SqlCommand cmd;
+
+            cmd = new SqlCommand("select MaNV, TenNV, LaNhanSu from NhanVien;");
+            table = this.connSQL.Select(cmd);
+
+            cbMaNhanVien.Items.Clear();
+            cbTenNhanVien.Items.Clear();
+            for(int i = 0; i < table.Count; i++)
+            {
+                cbMaNhanVien.Items.Add(table.Row(i).Column(0));
+                cbTenNhanVien.Items.Add(table.Row(i).Column(1));
+            }
+
             GC.Collect(0);
         }
 
@@ -62,8 +78,10 @@ namespace ExampleLogin
                 s.Text = "";
             }
 
-            this.cbQuyenHan.SelectedIndex = 0;
-            this.cbTrangThaiTaiKhoan.SelectedIndex = 0;
+            cbMaNhanVien.SelectedIndex = -1;
+            cbTenNhanVien.SelectedIndex = -1;
+            cbQuyenHan.SelectedIndex = -1;
+            cbTrangThaiTaiKhoan.SelectedIndex = 0;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -85,17 +103,8 @@ namespace ExampleLogin
                     list[i].Text = dataGridView1.Rows[index].Cells[i].Value.ToString();
                 }
 
-                int type = Convert.ToInt32(dataGridView1.Rows[index].Cells[4].Value);
-                if (type == 0)
-                {
-                    cbQuyenHan.SelectedIndex = 0;
-                } else if (type == 1)
-                {
-                    cbQuyenHan.SelectedIndex = 1;
-                } else if (type == -1)
-                {
-                    cbQuyenHan.Text = "Quản trị";
-                }
+                string MaNV = dataGridView1.Rows[index].Cells[4].Value.ToString();
+                Library.setComboBox(cbMaNhanVien, MaNV);
 
                 if (dataGridView1.Rows[index].Cells[5].Value.ToString().Equals("True"))
                 {
@@ -118,10 +127,10 @@ namespace ExampleLogin
             string password = tbMatKhau.Text;
             string numberPhone = tbSDT.Text;
             string email = tbEmail.Text;
-            string quyenhan = cbQuyenHan.SelectedIndex.ToString();
+            string MaNV = cbMaNhanVien.Text;
             string trangthaiStr = cbTrangThaiTaiKhoan.Text;
             int trangthai = 0;
-            foreach (string s in new List<string>() { username, password, numberPhone, email, quyenhan, trangthaiStr })
+            foreach (string s in new List<string>() { username, password, numberPhone, email, MaNV, trangthaiStr })
             {
                 if (string.IsNullOrEmpty(s))
                 {
@@ -138,12 +147,12 @@ namespace ExampleLogin
                 trangthai = 1;
             }
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (username, password, sdt, email, type, lock) VALUES (@username, @password, @sdt, @email, @type, @lock);");
+            SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (username, password, sdt, email, MaNV, lock) VALUES (@username, @password, @sdt, @email, @MaNV, @lock);");
             cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@password", password);
             cmd.Parameters.AddWithValue("@sdt", numberPhone);
             cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@type", quyenhan);
+            cmd.Parameters.AddWithValue("@MaNV", MaNV);
             cmd.Parameters.AddWithValue("@lock", trangthai.ToString());
 
             if (this.connSQL.Execute(cmd))
@@ -198,10 +207,10 @@ namespace ExampleLogin
             string password = tbMatKhau.Text;
             string numberPhone = tbSDT.Text;
             string email = tbEmail.Text;
-            string quyenhan = cbQuyenHan.SelectedIndex.ToString();
+            string MaNV = cbMaNhanVien.Text;
             string trangthaiStr = cbTrangThaiTaiKhoan.Text;
             int trangthai = 0;
-            foreach (string s in new List<string>(){ username, password, numberPhone, email, trangthaiStr })
+            foreach (string s in new List<string>(){ username, password, numberPhone, email, MaNV, trangthaiStr })
             {
                 if (string.IsNullOrEmpty(s))
                 {
@@ -218,12 +227,12 @@ namespace ExampleLogin
                 trangthai = 1;
             }
 
-            SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set password = @password, sdt = @sdt, email = @email, type = @type, lock = @lock WHERE (username = @username);");
+            SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set password = @password, sdt = @sdt, email = @email, MaNV = @MaNV, lock = @lock WHERE (username = @username);");
             cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@password", password);
             cmd.Parameters.AddWithValue("@sdt", numberPhone);
             cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@type", quyenhan);
+            cmd.Parameters.AddWithValue("@MaNV", MaNV);
             cmd.Parameters.AddWithValue("@lock", trangthai.ToString());
 
             if (this.connSQL.Execute(cmd))
@@ -238,6 +247,7 @@ namespace ExampleLogin
             this.connSQL.Close();
         }
 
+        /*
         private void cbHienMatKhau_CheckedChanged(object sender, EventArgs e)
         {
             if (cbHienMatKhau.Checked)
@@ -249,6 +259,7 @@ namespace ExampleLogin
                 tbMatKhau.PasswordChar = '*';
             }
         }
+        */
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
@@ -303,6 +314,45 @@ namespace ExampleLogin
         private void cbUpLowCase_CheckedChanged(object sender, EventArgs e)
         {
             this.cbTimKiem_SelectedIndexChanged(sender, e);
+        }
+
+        private void cbMaNhanVien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbMaNhanVien.SelectedIndex == -1)
+            {
+                cbTenNhanVien.SelectedIndex = -1;
+                return;
+            }
+            if (!this.connSQL.State()) this.connSQL.Connect();
+
+            SqlCommand cmd = new SqlCommand("Select TenNV, LaNhanSu from NhanVien where (MaNV = @MaNV);");
+            cmd.Parameters.AddWithValue("@MaNV", cbMaNhanVien.Text);
+
+            SQLTable table = this.connSQL.Select(cmd);
+            Library.setComboBox(cbTenNhanVien, table.Row(0).Column(0));
+
+            if (table.Row(0).Column(1).Equals("1"))
+            {
+                cbQuyenHan.SelectedIndex = 1;
+            } else
+            {
+                cbQuyenHan.SelectedIndex = 0;
+            }
+        }
+
+        private void cbTenNhanVien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTenNhanVien.SelectedIndex == -1)
+            {
+                cbMaNhanVien.SelectedIndex = -1;
+                return;
+            }
+            if (!this.connSQL.State()) this.connSQL.Connect();
+
+            SqlCommand cmd = new SqlCommand("Select MaNV from NhanVien where (TenNV = @TenNV);");
+            cmd.Parameters.AddWithValue("@TenNV", cbTenNhanVien.Text);
+
+            Library.setComboBox(cbMaNhanVien, this.connSQL.Select(cmd).Row(0).Column(0));
         }
     }
 }

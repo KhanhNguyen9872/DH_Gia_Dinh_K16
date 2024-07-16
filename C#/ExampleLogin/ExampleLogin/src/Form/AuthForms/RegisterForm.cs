@@ -46,7 +46,7 @@ namespace ExampleLogin
             {
                 if (this.captcha.verify(Convert.ToInt32(captchaResult)))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO account (username, password, sdt, email, type, lock) VALUES (@username, @password, @sdt, @email, 0, 0)");
+                    SqlCommand cmd = new SqlCommand("INSERT INTO account (username, password, sdt, email, lock) VALUES (@username, @password, @sdt, @email, 0)");
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
                     cmd.Parameters.AddWithValue("@sdt", numberPhone);

@@ -130,16 +130,19 @@ namespace ExampleLogin.src.Library
             return dtOld;
         }
 
-        public static bool checkAccount(SQLToolBox connSQL, string accountName)
+        public static bool isAdmin(SQLToolBox connSQL, string accountName)
         {
             bool b = false;
-            connSQL.Connect();
+            if (!connSQL.State()) connSQL.Connect();
 
-            SqlCommand cmd = new SqlCommand("select type from account where (username = @username);");
+            SqlCommand cmd = new SqlCommand("select MaNV from account where (username = @username);");
             cmd.Parameters.AddWithValue("@username", accountName);
+            string MaNV = connSQL.Select(cmd).Row(0).Column(0);
 
-            SQLTable table = connSQL.Select(cmd);
-            int type = Convert.ToInt32(table.Row(0).Column(0));
+            cmd = new SqlCommand("select LaNhanSu from NhanVien where (MaNV = @MaNV);");
+            cmd.Parameters.AddWithValue("@MaNV", MaNV);
+
+            int type = Convert.ToInt32(connSQL.Select(cmd).Row(0).Column(0));
             if ((type == 1) || (type == -1))
             {
                 b = true;
@@ -159,6 +162,24 @@ namespace ExampleLogin.src.Library
             return fullName;
         }
         */
+
+        public static void setComboBox(ComboBox cb, string target)
+        {
+            try
+            {
+                for (int i = 0; i < cb.Items.Count; i++)
+                {
+                    if (cb.Items[i].ToString().Equals(target))
+                    {
+                        cb.SelectedIndex = i;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                cb.SelectedIndex = -1;
+            }
+        }
 
         public static Thread abortThread(Thread thread)
         {

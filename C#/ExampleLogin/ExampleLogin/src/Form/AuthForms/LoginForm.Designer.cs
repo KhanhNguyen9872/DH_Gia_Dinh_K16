@@ -34,10 +34,10 @@
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.btnRegister = new System.Windows.Forms.Button();
             this.lkForgotPass = new System.Windows.Forms.LinkLabel();
             this.btnQuit = new System.Windows.Forms.Button();
             this.cbShowHide = new System.Windows.Forms.CheckBox();
+            this.btnRegister = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -95,16 +95,6 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // btnRegister
-            // 
-            this.btnRegister.Location = new System.Drawing.Point(129, 152);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(75, 23);
-            this.btnRegister.TabIndex = 6;
-            this.btnRegister.Text = "Đăng ký";
-            this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            // 
             // lkForgotPass
             // 
             this.lkForgotPass.AutoSize = true;
@@ -136,6 +126,18 @@
             this.cbShowHide.Text = "Hiện";
             this.cbShowHide.UseVisualStyleBackColor = true;
             this.cbShowHide.CheckedChanged += new System.EventHandler(this.cbShowHide_CheckedChanged);
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.Enabled = false;
+            this.btnRegister.Location = new System.Drawing.Point(129, 152);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(75, 23);
+            this.btnRegister.TabIndex = 6;
+            this.btnRegister.Text = "Đăng ký";
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Visible = false;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // LoginForm
             // 
@@ -173,11 +175,11 @@
         private System.Windows.Forms.Label lb;
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.TextBox tbPassword;
-        private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.LinkLabel lkForgotPass;
         private System.Windows.Forms.Button btnQuit;
         private System.Windows.Forms.CheckBox cbShowHide;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnRegister;
     }
 }
 

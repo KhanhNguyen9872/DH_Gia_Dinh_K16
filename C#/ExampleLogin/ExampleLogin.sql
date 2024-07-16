@@ -11,33 +11,19 @@ go
 use Nhom1;
 go
 
-create table account (
-	username nvarchar(50) primary key,
-	password nvarchar(50) not null,
-	sdt nchar(10) not null,
-	email nvarchar(255) not null unique,
-	type int not null default 0,
-	lock bit not null default 0
-)
-
-insert into account values 
-	('root', 'root', '0123456789', 'root@localhost.com', 1, 0),
-	('user', 'user', '0011221100', 'user@localhost.con', 0, 0)
-
-
 CREATE TABLE LoaiLinhKien(
 	MaLoaiLK NVARCHAR(10) PRIMARY KEY,
 	TenLoaiLK NVARCHAR(255) NOT NULL,
 	NgayTao DATETIME not null,
 	NgayCapNhat DATETIME not null
 );
-GO
+
 CREATE TABLE NhaCungCap(
 	MaNhaCungCap NVARCHAR(10) PRIMARY KEY,
 	TenNhaCungCap NVARCHAR(255) NOT NULL,
 	Email VARCHAR(255) NOT NULL
 );
-GO
+
 CREATE TABLE LinhKien(
 	MaLK NVARCHAR(10) PRIMARY KEY,
 	MaNhaCungCap NVARCHAR(10),
@@ -51,23 +37,24 @@ CREATE TABLE LinhKien(
 	FOREIGN KEY (MaNhaCungCap) REFERENCES NhaCungCap(MaNhaCungCap)
 	ON DELETE CASCADE
 );
-GO
+
 CREATE TABLE NhanVien(
 	MaNV NVARCHAR(10) PRIMARY KEY,
 	TenNV NVARCHAR(30) NOT NULL,
 	DiaChi NVARCHAR(50) NOT NULL,
 	SDT NVARCHAR(10) NOT NULL,
-	Email NVARCHAR(50)
+	Email NVARCHAR(50),
+	LaNhanSu int default 0
 );
-GO
+
 CREATE TABLE KhachHang(
 	MaKH NVARCHAR(10) PRIMARY KEY,
 	TenKH NVARCHAR(30) NOT NULL,
-	DiaCHi NVARCHAR(50) NOT NULL,
+	DiaChi NVARCHAR(50) NOT NULL,
 	SDT NVARCHAR(10) NOT NULL,
 	Email NVARCHAR(50)
 );
-GO
+
 CREATE TABLE DonDatHang(
 	MaDH NVARCHAR(10) PRIMARY KEY,
 	MaKH NVARCHAR(10),
@@ -75,22 +62,45 @@ CREATE TABLE DonDatHang(
 	NgayDatHang DATE NOT NULL,
 	NgayGiaoHang DATE NOT NULL,
 	NoiNhan NVARCHAR(50) NOT NULL,
+	TongTien BIGINT NOT NULL DEFAULT 0,
 	FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH),
 	FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV)
 	ON DELETE CASCADE
 );
-GO
+
 CREATE TABLE ChiTietDatHang(
 	MaDH NVARCHAR(10),
 	MaLK NVARCHAR(10),
 	SoLuong INT NOT NULL DEFAULT 1,
 	BaoHanh tinyint NOT NULL DEFAULT 0,
 	KhuyenMai tinyint NOT NULL DEFAULT 0,
-	TongTien BIGINT NOT NULL DEFAULT 0,
+	ThanhTien BIGINT NOT NULL DEFAULT 0,
 	FOREIGN KEY (MaDH) REFERENCES DonDatHang(MaDH),
     FOREIGN KEY (MaLK) REFERENCES LinhKien(MaLK)
 	ON DELETE CASCADE
 );
+
+CREATE TABLE PhuongThucThanhToan(
+	MaPhuongThuc NVARCHAR(10) PRIMARY KEY,
+	LoaiThanhToan NVARCHAR(255) NOT NULL UNIQUE,
+	SoTaiKhoan NVARCHAR(255) DEFAULT N''
+);
+
+CREATE TABLE ThongTinThanhToan(
+	MaDH NVARCHAR(10) NOT NULL,
+	TinhTrang bit default 0,
+	MaPhuongThuc NVARCHAR(10) NOT NULL,
+	NgayThanhToan date default null,
+	FOREIGN KEY (MaDH) REFERENCES DonDatHang(MaDH),
+	FOREIGN KEY (MaPhuongThuc) REFERENCES PhuongThucThanhToan(MaPhuongThuc)
+);
+
+CREATE TABLE XuatHoaDon(
+	MaHoaDon NVARCHAR(10) PRIMARY KEY,
+	MaDH NVARCHAR(10),
+	FOREIGN KEY (MaDH) REFERENCES DonDatHang(MaDH)
+);
+
 --Nhà cung cấp
 GO
 INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap, Email) VALUES 
@@ -181,17 +191,17 @@ INSERT INTO LinhKien (MaLK, MaNhaCungCap, MaLoaiLK, TenLK, Gia, BaoHanh, KhuyenM
 
 --Nhân viên
 GO
-INSERT INTO NhanVien (MaNV, TenNV, DiaChi, SDT, Email) VALUES 
-(N'NV001', N'Nguyễn Văn Khánh', N'HCM', N'0123456789', N'a@gmail.com'),
-(N'NV002', N'Trần Thị Thu Hằng', N'Hà Nội', N'0987654321', N'b@gmail.com'),
-(N'NV003', N'Phạm Quốc Toản', N'Đà Nẵng', N'0912345678', N'c@gmail.com'),
-(N'NV004', N'Hoàng Văn Nam', N'Cần Thơ', N'0923456789', N'd@gmail.com'),
-(N'NV005', N'Lê Thị Hoa', N'Hải Phòng', N'0934567890', N'e@gmail.com'),
-(N'NV006', N'Nguyễn Thị Mai', N'Huế', N'0945678901', N'f@gmail.com'),
-(N'NV007', N'Bùi Văn Tú', N'Vũng Tàu', N'0956789012', N'g@gmail.com'),
-(N'NV008', N'Phan Thị Lan', N'Nha Trang', N'0967890123', N'h@gmail.com'),
-(N'NV009', N'Võ Văn Hùng', N'Buôn Ma Thuột', N'0978901234', N'i@gmail.com'),
-(N'NV010', N'Trần Văn Long', N'Quảng Ninh', N'0989012345', N'j@gmail.com');
+INSERT INTO NhanVien (MaNV, TenNV, DiaChi, SDT, Email, LaNhanSu) VALUES 
+(N'NV001', N'Nguyễn Văn Khánh', N'HCM', N'0123456789', N'a@gmail.com', 1),
+(N'NV002', N'Trần Thị Thu Hằng', N'Hà Nội', N'0987654321', N'b@gmail.com', 0),
+(N'NV003', N'Phạm Quốc Toản', N'Đà Nẵng', N'0912345678', N'c@gmail.com', 0),
+(N'NV004', N'Hoàng Văn Nam', N'Cần Thơ', N'0923456789', N'd@gmail.com', 0),
+(N'NV005', N'Lê Thị Hoa', N'Hải Phòng', N'0934567890', N'e@gmail.com', 0),
+(N'NV006', N'Nguyễn Thị Mai', N'Huế', N'0945678901', N'f@gmail.com', 0),
+(N'NV007', N'Bùi Văn Tú', N'Vũng Tàu', N'0956789012', N'g@gmail.com', 0),
+(N'NV008', N'Phan Thị Lan', N'Nha Trang', N'0967890123', N'h@gmail.com', 0),
+(N'NV009', N'Võ Văn Hùng', N'Buôn Ma Thuột', N'0978901234', N'i@gmail.com', 0),
+(N'NV010', N'Trần Văn Long', N'Quảng Ninh', N'0989012345', N'j@gmail.com', 0);
 
 --Khách hàng
 GO
@@ -209,21 +219,21 @@ INSERT INTO KhachHang (MaKH, TenKH, DiaChi, SDT, Email) VALUES
 
 --Đơn đặt hàng
 GO
-INSERT INTO DonDatHang (MaDH, MaKH, MaNV, NgayDatHang, NgayGiaoHang, NoiNhan) VALUES
-(N'DH001', N'KH001', N'NV001', '2024-06-27', '2024-07-01', N'HCM'),
-(N'DH002', N'KH002', N'NV002', '2024-06-28', '2024-07-02', N'Hà Nội'),
-(N'DH003', N'KH003', N'NV003', '2024-06-29', '2024-07-03', N'Đà Nẵng'),
-(N'DH004', N'KH004', N'NV004', '2024-06-30', '2024-07-04', N'Cần Thơ'),
-(N'DH005', N'KH005', N'NV005', '2024-07-01', '2024-07-05', N'Hải Phòng'),
-(N'DH006', N'KH006', N'NV006', '2024-07-02', '2024-07-06', N'Huế'),
-(N'DH007', N'KH007', N'NV007', '2024-07-03', '2024-07-07', N'Vũng Tàu'),
-(N'DH008', N'KH008', N'NV008', '2024-07-04', '2024-07-08', N'Nha Trang'),
-(N'DH009', N'KH009', N'NV009', '2024-07-05', '2024-07-09', N'Buôn Ma Thuột'),
-(N'DH010', N'KH010', N'NV010', '2024-07-06', '2024-07-10', N'Quảng Ninh');
+INSERT INTO DonDatHang (MaDH, MaKH, MaNV, NgayDatHang, NgayGiaoHang, NoiNhan, TongTien) VALUES
+(N'DH001', N'KH001', N'NV001', '2024-06-27', '2024-07-01', N'HCM', 0),
+(N'DH002', N'KH002', N'NV002', '2024-06-28', '2024-07-02', N'Hà Nội', 0),
+(N'DH003', N'KH003', N'NV003', '2024-06-29', '2024-07-03', N'Đà Nẵng', 0),
+(N'DH004', N'KH004', N'NV004', '2024-06-30', '2024-07-04', N'Cần Thơ', 0),
+(N'DH005', N'KH005', N'NV005', '2024-07-01', '2024-07-05', N'Hải Phòng', 0),
+(N'DH006', N'KH006', N'NV006', '2024-07-02', '2024-07-06', N'Huế', 0),
+(N'DH007', N'KH007', N'NV007', '2024-07-03', '2024-07-07', N'Vũng Tàu', 0),
+(N'DH008', N'KH008', N'NV008', '2024-07-04', '2024-07-08', N'Nha Trang', 0),
+(N'DH009', N'KH009', N'NV009', '2024-07-05', '2024-07-09', N'Buôn Ma Thuột', 0),
+(N'DH010', N'KH010', N'NV010', '2024-07-06', '2024-07-10', N'Quảng Ninh', 0);
 
 --Chi tiết đặt hàng
 GO
-INSERT INTO ChiTietDatHang (MaDH, MaLK, SoLuong, BaoHanh, KhuyenMai, TongTien) VALUES
+INSERT INTO ChiTietDatHang (MaDH, MaLK, SoLuong, BaoHanh, KhuyenMai, ThanhTien) VALUES
 (N'DH001', N'MH001', 10, 12, 0, 5000000),
 (N'DH002', N'MH003', 10, 12, 0, 5000000),
 (N'DH003', N'MH005', 5, 12, 0, 2500000),
@@ -234,8 +244,56 @@ INSERT INTO ChiTietDatHang (MaDH, MaLK, SoLuong, BaoHanh, KhuyenMai, TongTien) V
 (N'DH008', N'MH015', 7, 12, 0, 3500000),
 (N'DH009', N'MH017', 14, 12, 0, 7000000),
 (N'DH010', N'MH019', 6, 12, 0, 3000000);
+--Phuong thuc thanh toan
+Go
+INSERT INTO PhuongThucThanhToan (MaPhuongThuc, LoaiThanhToan, SoTaiKhoan) VALUES
+(N'PT001', N'ATM', 'ATM001002003'),
+(N'PT002', N'Visa', 'VISA001002003'),
+(N'PT003', N'Momo', 'MOMO001002003'),
+(N'PT004', N'Paypal', 'PAYPAL001002003'),
+(N'PT005', N'ZaloPay', 'ZALOPAY001002003'),
+(N'PT006', N'Viettel Money', 'VIETTEL001002003'),
+(N'PT007', N'Tiền mặt', ''),
+(N'PT008', N'Shopee Pay', 'SHOPEE001002003');
+--Thong tin thanh toan
+GO
+INSERT INTO ThongTinThanhToan (MaDH, TinhTrang, MaPhuongThuc) VALUES
+(N'DH001', 1, N'PT001'),
+(N'DH002', 0, N'PT007'),
+(N'DH003', 1, N'PT002'),
+(N'DH004', 0, N'PT003'),
+(N'DH005', 1, N'PT004'),
+(N'DH006', 0, N'PT005'),
+(N'DH007', 1, N'PT006'),
+(N'DH008', 0, N'PT001'),
+(N'DH009', 1, N'PT007'),
+(N'DH010', 0, N'PT002');
+--Xuat hoa don
+GO
+INSERT INTO XuatHoaDon (MaHoaDon, MaDH) VALUES
+(N'HD001', N'DH001'),
+(N'HD002', N'DH002'),
+(N'HD003', N'DH003'),
+(N'HD004', N'DH004'),
+(N'HD005', N'DH005'),
+(N'HD006', N'DH006'),
+(N'HD007', N'DH007'),
+(N'HD008', N'DH008'),
+(N'HD009', N'DH009'),
+(N'HD010', N'DH010');
 
 
+create table account (
+	username nvarchar(50) primary key,
+	password nvarchar(50) not null,
+	sdt nchar(10) not null,
+	email nvarchar(255) not null unique,
+	-- type int not null default 0,
+	MaNV NVARCHAR(10) NOT NULL UNIQUE,
+	lock bit not null default 0,
+	FOREIGN KEY (MANV) REFERENCES NhanVien(MaNV)
+)
 
-
-
+insert into account values 
+	('root', 'root', '0123456789', 'root@localhost.com', 'NV001', 0),
+	('user', 'user', '0011221100', 'user@localhost.con', 'NV002', 0)

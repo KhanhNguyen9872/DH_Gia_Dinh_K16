@@ -50,6 +50,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.cbUpLowCase = new System.Windows.Forms.CheckBox();
+            this.cbLaNhanSu = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -160,7 +161,7 @@
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(646, 254);
+            this.btnThem.Location = new System.Drawing.Point(646, 280);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 11;
@@ -170,7 +171,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(745, 254);
+            this.btnXoa.Location = new System.Drawing.Point(745, 280);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 23);
             this.btnXoa.TabIndex = 12;
@@ -180,7 +181,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(840, 254);
+            this.btnSua.Location = new System.Drawing.Point(840, 280);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 23);
             this.btnSua.TabIndex = 13;
@@ -229,7 +230,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(840, 294);
+            this.btnRefresh.Location = new System.Drawing.Point(840, 309);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 20;
@@ -265,6 +266,16 @@
             this.cbUpLowCase.UseVisualStyleBackColor = true;
             this.cbUpLowCase.CheckedChanged += new System.EventHandler(this.cbUpLowCase_CheckedChanged);
             // 
+            // cbLaNhanSu
+            // 
+            this.cbLaNhanSu.AutoSize = true;
+            this.cbLaNhanSu.Location = new System.Drawing.Point(836, 244);
+            this.cbLaNhanSu.Name = "cbLaNhanSu";
+            this.cbLaNhanSu.Size = new System.Drawing.Size(79, 17);
+            this.cbLaNhanSu.TabIndex = 26;
+            this.cbLaNhanSu.Text = "Là nhân sự";
+            this.cbLaNhanSu.UseVisualStyleBackColor = true;
+            // 
             // NhanVienForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +283,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(938, 412);
             this.ControlBox = false;
+            this.Controls.Add(this.cbLaNhanSu);
             this.Controls.Add(this.cbUpLowCase);
             this.Controls.Add(this.tbEmail);
             this.Controls.Add(this.label8);
@@ -334,5 +346,6 @@
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.TextBox tbTenNhanVien;
         private System.Windows.Forms.CheckBox cbUpLowCase;
+        private System.Windows.Forms.CheckBox cbLaNhanSu;
     }
 }

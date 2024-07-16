@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Management;
 using System.Threading;
+using System.Data.SqlClient;
 
 namespace ExampleLogin
 {
@@ -20,6 +21,7 @@ namespace ExampleLogin
         private string windowsVersion = null;
         private string cpuName = null;
         private string username;
+        private string fullNameNV;
 
         // info
         PerformanceCounter cpuCounter = null;
@@ -34,6 +36,11 @@ namespace ExampleLogin
             this.connSQL = connSQL;
             this.username = username;
             labelUsername.Text = this.username;
+
+            if (!this.connSQL.State()) this.connSQL.Connect();
+            SqlCommand cmd = new SqlCommand("select NhanVien.TenNV from account INNER JOIN NhanVien on account.MaNV=NhanVien.MaNV where (username = @username);");
+            cmd.Parameters.AddWithValue("@username", this.username);
+            this.fullNameNV = this.connSQL.Select(cmd).Row(0).Column(0);
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -317,7 +324,7 @@ namespace ExampleLogin
                 {
                     // PleaseWaitForm pleaseWaitForm = new PleaseWaitForm("Đang khởi tạo...");
                     // pleaseWaitForm.Show();
-                    labelUsername.Text = this.username + "   |   Đang khởi tạo....";
+                    labelUsername.Text = this.username + "   (NV: " + this.fullNameNV + ")" + "   |   Đang khởi tạo....";
                     Application.DoEvents();
                     this.cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
                     this.ramCounter = new PerformanceCounter("Memory", "Available MBytes");
@@ -348,9 +355,15 @@ namespace ExampleLogin
                 }
 
                 lbDateTime.Text = DateTime.Now.ToString();
-                labelUsername.Text = this.username + "   |   " + this.windowsVersion + "   |   Available RAM: " + this.ramCounter.NextValue() + " MB   |   " + this.cpuName + "  (Load: " + Math.Round(this.cpuCounter.NextValue(), 2).ToString() + "%)";
+                labelUsername.Text = this.username + "   (NV: " + this.fullNameNV + ")" + "   |   " + this.windowsVersion + "   |   Available RAM: " + this.ramCounter.NextValue() + " MB   |   " + this.cpuName + "  (Load: " + Math.Round(this.cpuCounter.NextValue(), 2).ToString() + "%)";
                 Thread.Sleep(1000);
             }
+        }
+
+        private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangePasswordForm fm = new ChangePasswordForm(this.connSQL, this.username);
+            fm.ShowDialog();
         }
     }
 }

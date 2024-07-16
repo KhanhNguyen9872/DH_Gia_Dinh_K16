@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace ExampleLogin
 {
@@ -28,7 +29,7 @@ namespace ExampleLogin
             SqlCommand cmd = null;
             cmd = new SqlCommand("select TenNV from NhanVien where (MaNV = @MaNV);");
             cmd.Parameters.AddWithValue("@MaNV", cbMaNhanVien.Text);
-            tbTenNhanVien.Text = this.connSQL.Select(cmd).Row(0).Column(0);
+            Library.setComboBox(cbTenNhanVien, this.connSQL.Select(cmd).Row(0).Column(0));
         }
 
         private void BanHangForm_Load(object sender, EventArgs e)
@@ -45,24 +46,27 @@ namespace ExampleLogin
             SQLTable table = null;
 
             cbMaNhanVien.Items.Clear();
-            table = this.connSQL.Select("Select MaNV from NhanVien;");
+            cbTenNhanVien.Items.Clear();
+            table = this.connSQL.Select("Select MaNV, TenNV from NhanVien;");
             for (int i = 0; i < table.Count; i++)
             {
                 cbMaNhanVien.Items.Add(table.Row(i).Column(0));
+                cbTenNhanVien.Items.Add(table.Row(i).Column(1));
             }
 
             cbMaKhachHang.Items.Clear();
-            table = this.connSQL.Select("Select MaKH from KhachHang;");
+            cbTenKhachHang.Items.Clear();
+            table = this.connSQL.Select("Select MaKH, TenKH from KhachHang;");
             for (int i = 0; i < table.Count; i++)
             {
                 cbMaKhachHang.Items.Add(table.Row(i).Column(0));
+                cbTenKhachHang.Items.Add(table.Row(i).Column(1));
             }
 
             cbMaNhanVien.SelectedIndex = -1;
             cbMaKhachHang.SelectedIndex = -1;
-            tbTenKhachHang.Text = "";
-            tbTenNhanVien.Text = "";
-
+            cbTenNhanVien.SelectedIndex = -1;
+            cbTenKhachHang.SelectedIndex = -1;
         }
 
         private void deactivate()
@@ -71,7 +75,9 @@ namespace ExampleLogin
             labelTongThanhTien.Text = "";
             labelTongLinhKien.Text = "";
             cbMaKhachHang.Enabled = false;
+            cbTenKhachHang.Enabled = false;
             cbMaNhanVien.Enabled = false;
+            cbTenNhanVien.Enabled = false;
             ngayGiaoHang.Enabled = false;
             tbNoiNhan.Enabled = false;
 
@@ -91,7 +97,9 @@ namespace ExampleLogin
             labelTongLinhKien.Text = "0 linh kiện";
             ngayDatHang.Text = DateTime.Today.ToString();
             cbMaKhachHang.Enabled = true;
+            cbTenKhachHang.Enabled = true;
             cbMaNhanVien.Enabled = true;
+            cbTenNhanVien.Enabled = true;
             ngayGiaoHang.Enabled = true;
             tbNoiNhan.Enabled = true;
 
@@ -115,7 +123,7 @@ namespace ExampleLogin
             SqlCommand cmd = null;
             cmd = new SqlCommand("select TenKH from KhachHang where (MaKH = @MaKH);");
             cmd.Parameters.AddWithValue("@MaKH", cbMaKhachHang.Text);
-            tbTenKhachHang.Text = this.connSQL.Select(cmd).Row(0).Column(0);
+            Library.setComboBox(cbTenKhachHang, this.connSQL.Select(cmd).Row(0).Column(0));
         }
 
         private void btnTaoMoi_Click(object sender, EventArgs e)
@@ -261,8 +269,15 @@ namespace ExampleLogin
 
         private void reloadTongThanhTien()
         {
+            List<long> lst = this.getTotalMoney(); 
+
+            labelTongThanhTien.Text = lst[0].ToString() + " VND";
+            labelTongLinhKien.Text = lst[1].ToString() + " linh kiện";
+        }
+
+        private List<long> getTotalMoney() {
             int count = 0;
-            int total = 0;
+            long total = 0;
 
             int columnIndex = dataGridView1.ColumnCount - 1;
 
@@ -275,8 +290,7 @@ namespace ExampleLogin
                 }
             }
 
-            labelTongThanhTien.Text = total.ToString() + " VND";
-            labelTongLinhKien.Text = count.ToString() + " linh kiện";
+            return new List<long>() { total, count };
         }
         
         private void btnSua_Click(object sender, EventArgs e)
@@ -345,10 +359,6 @@ namespace ExampleLogin
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thanh toán đơn hàng này không?", "THANH TOÁN", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-            {
-                return;
-            }
             string maDH = tbMaDonHang.Text;
             string maKH = cbMaKhachHang.Text;
             string maNV = cbMaNhanVien.Text;
@@ -365,13 +375,28 @@ namespace ExampleLogin
                 }
             }
 
-            SqlCommand cmd = new SqlCommand("insert into DonDatHang (MaDH, MaKH, MaNV, NgayDatHang, NgayGiaoHang, NoiNhan) values (@MaDH, @MaKH, @MaNV, @NgayDatHang, @NgayGiaoHang, @NoiNhan);");
+            ChoosePTThanhToanForm fm = new ChoosePTThanhToanForm(this.connSQL);
+            fm.ShowDialog();
+            string maPttt = "";
+
+            if(fm.isSuccess)
+            {
+                maPttt = fm.getPhuongThucThanhToan();
+            } else
+            {
+                return;
+            }
+
+            long tongThanhTien = this.getTotalMoney()[0];
+
+            SqlCommand cmd = new SqlCommand("insert into DonDatHang (MaDH, MaKH, MaNV, NgayDatHang, NgayGiaoHang, NoiNhan, TongTien) values (@MaDH, @MaKH, @MaNV, @NgayDatHang, @NgayGiaoHang, @NoiNhan, @TongTien);");
             cmd.Parameters.AddWithValue("@MaDH", maDH);
             cmd.Parameters.AddWithValue("@MaKH", maKH);
             cmd.Parameters.AddWithValue("@MaNV", maNV);
             cmd.Parameters.AddWithValue("@NgayDatHang", NgayDatHang);
             cmd.Parameters.AddWithValue("@NgayGiaoHang", NgayGiaoHang);
             cmd.Parameters.AddWithValue("@NoiNhan", noiNhan);
+            cmd.Parameters.AddWithValue("@TongTien", tongThanhTien);
 
             if (this.connSQL.Execute(cmd))
             {
@@ -386,13 +411,13 @@ namespace ExampleLogin
                     int KhuyenMai = Convert.ToInt32(row.Cells[7].Value.ToString());
                     string TongTien = row.Cells[8].Value.ToString();
 
-                    cmd = new SqlCommand("insert into ChiTietDatHang (MaDH, MaLK, SoLuong, BaoHanh, KhuyenMai, TongTien) values (@MaDH, @MaLK, @SoLuong, @BaoHanh, @KhuyenMai, @TongTien);");
+                    cmd = new SqlCommand("insert into ChiTietDatHang (MaDH, MaLK, SoLuong, BaoHanh, KhuyenMai, ThanhTien) values (@MaDH, @MaLK, @SoLuong, @BaoHanh, @KhuyenMai, @ThanhTien);");
                     cmd.Parameters.AddWithValue("@MaDH", maDH);
                     cmd.Parameters.AddWithValue("@MaLK", maLK);
                     cmd.Parameters.AddWithValue("@SoLuong", SoLuong);
                     cmd.Parameters.AddWithValue("@BaoHanh", BaoHanh);
                     cmd.Parameters.AddWithValue("@KhuyenMai", KhuyenMai);
-                    cmd.Parameters.AddWithValue("@TongTien", TongTien);
+                    cmd.Parameters.AddWithValue("@ThanhTien", TongTien);
 
                     if (!this.connSQL.Execute(cmd)) {
                         check = false;
@@ -402,14 +427,43 @@ namespace ExampleLogin
 
                 if (check)
                 {
-                    MessageBox.Show("Thanh toán thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    dataGridView1.Enabled = false;
-                    this.btnTaoMoi_Click(sender, e);
+                    cmd = new SqlCommand("insert into ThongTinThanhToan (MaDH, TinhTrang, MaPhuongThuc) VALUES (@MaDH, 0, @MaPhuongThuc);");
+                    cmd.Parameters.AddWithValue("@MaDH", maDH);
+                    cmd.Parameters.AddWithValue("@MaPhuongThuc", maPttt);
+
+                    if(this.connSQL.Execute(cmd))
+                    {
+                        ThanhToanDHForm fmm = new ThanhToanDHForm(this.connSQL, maDH, maPttt, tongThanhTien);
+                        fmm.ShowDialog();
+                        dataGridView1.Enabled = false;
+                        this.btnTaoMoi_Click(sender, e);
+                    } else
+                    {
+                        MessageBox.Show("Đã xảy ra lỗi khi thêm thông tin thanh toán", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     return;
                 }
             }
 
             MessageBox.Show("Thanh toán thất bại!", "THẤT BẠI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void cbTenNhanVien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!this.connSQL.State()) this.connSQL.Connect();
+            SqlCommand cmd = null;
+            cmd = new SqlCommand("select MaNV from NhanVien where (TenNV = @TenNV);");
+            cmd.Parameters.AddWithValue("@TenNV", cbTenNhanVien.Text);
+            Library.setComboBox(cbMaNhanVien, this.connSQL.Select(cmd).Row(0).Column(0));
+        }
+
+        private void cbTenKhachHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!this.connSQL.State()) this.connSQL.Connect();
+            SqlCommand cmd = null;
+            cmd = new SqlCommand("select MaKH from KhachHang where (TenKH = @TenKH);");
+            cmd.Parameters.AddWithValue("@TenKH", cbTenKhachHang.Text);
+            Library.setComboBox(cbMaKhachHang, this.connSQL.Select(cmd).Row(0).Column(0));
         }
     }
 }

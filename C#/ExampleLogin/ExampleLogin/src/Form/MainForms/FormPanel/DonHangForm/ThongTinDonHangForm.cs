@@ -39,10 +39,12 @@ namespace ExampleLogin
 
             // load maLinhKien
             cbMaLinhKien.Items.Clear();
-            table = this.connSQL.Select("select MaLK from LinhKien;");
+            cbTenLinhKien.Items.Clear();
+            table = this.connSQL.Select("select MaLK, TenLK from LinhKien;");
             for(int i = 0; i < table.Count; i++)
             {
                 cbMaLinhKien.Items.Add(table.Row(i).Column(0));
+                cbTenLinhKien.Items.Add(table.Row(i).Column(1));
             }
 
             // load dataGridView
@@ -57,7 +59,7 @@ namespace ExampleLogin
         public void wipeInput()
         {
             cbMaLinhKien.SelectedIndex = -1;
-            tbTenLinhKien.Text = "";
+            cbTenLinhKien.SelectedIndex = -1;
             numSoLuong.Value = 0;
             tbTongTien.Text = "0";
 
@@ -78,6 +80,8 @@ namespace ExampleLogin
                 if (!this.connSQL.State())this.connSQL.Connect();
                 cbMaLinhKien.Text = dataGridView1.Rows[index].Cells[0].Value.ToString();
                 numSoLuong.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[1].Value.ToString());
+                numBaoHanh.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[2].Value.ToString());
+                numKhuyenMai.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[3].Value.ToString());
 
                 btnThem.Enabled = false;
                 btnXoa.Enabled = true;
@@ -87,13 +91,14 @@ namespace ExampleLogin
 
         private void cbMaLinhKien_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(cbMaLinhKien.Text))
+            if (cbMaLinhKien.SelectedIndex == -1)
             {
+                cbTenLinhKien.SelectedIndex = -1;
                 return;
             }
             SqlCommand cmd = new SqlCommand("select TenLK from LinhKien where (MaLK = @MaLK);");
             cmd.Parameters.AddWithValue("@MaLK", cbMaLinhKien.Text);
-            tbTenLinhKien.Text = this.connSQL.Select(cmd).Row(0).Column(0);
+            Library.setComboBox(cbTenLinhKien, this.connSQL.Select(cmd).Row(0).Column(0));
         }
 
         private void numSoLuong_ValueChanged(object sender, EventArgs e)
@@ -102,11 +107,7 @@ namespace ExampleLogin
             {
                 return;
             }
-            SqlCommand cmd = null;
-            cmd = new SqlCommand("select Gia, KhuyenMai from LinhKien where (MaLK = @MaLK);");
-            cmd.Parameters.AddWithValue("@MaLK", cbMaLinhKien.Text);
-            SQLTable table = this.connSQL.Select(cmd);
-            tbTongTien.Text = (((Convert.ToInt32(table.Row(0).Column(0)) * numSoLuong.Value) / 100) * (100 - Convert.ToInt32(table.Row(0).Column(1)))).ToString();
+            this.tinhTien();
         }
 
         private void numSoLuong_TextChanged(object sender, EventArgs e)
@@ -216,13 +217,48 @@ namespace ExampleLogin
             SQLTable tmp = null;
             for(int i = 0; i < table.Count; i++)
             {
-                cmd = new SqlCommand("select Gia, KhuyenMai from LinhKien where (MaLK = @MaLK);");
+                cmd = new SqlCommand("select Gia from LinhKien where (MaLK = @MaLK);");
                 cmd.Parameters.AddWithValue("@MaLK", table.Row(i).Column("MaLK"));
                 tmp = this.connSQL.Select(cmd);
-                tongTien = tongTien + (long)((Convert.ToInt32(tmp.Row(0).Column(0)) * Convert.ToInt32(table.Row(i).Column("SoLuong"))) / 100) * (100 - Convert.ToInt32(tmp.Row(0).Column(1)));
+                tongTien = tongTien + (long)((Convert.ToInt32(tmp.Row(0).Column(0)) * Convert.ToInt32(table.Row(i).Column("SoLuong"))) / 100) * (100 - Convert.ToInt32(table.Row(i).Column("KhuyenMai")));
             }
 
             MessageBox.Show("Tổng số tiền đơn hàng (" + this.MaDH + "): " + tongTien.ToString() + " VND", "Tổng tiền đơn hàng", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void numKhuyenMai_ValueChanged(object sender, EventArgs e)
+        {
+            if (cbMaLinhKien.SelectedIndex == -1)
+            {
+                return;
+            }
+            this.tinhTien();
+        }
+
+        private void tinhTien()
+        {
+            SqlCommand cmd = null;
+            cmd = new SqlCommand("select Gia from LinhKien where (MaLK = @MaLK);");
+            cmd.Parameters.AddWithValue("@MaLK", cbMaLinhKien.Text);
+            SQLTable table = this.connSQL.Select(cmd);
+            tbTongTien.Text = (((Convert.ToInt32(table.Row(0).Column(0)) * numSoLuong.Value) / 100) * (100 - numKhuyenMai.Value)).ToString();
+        }
+
+        private void cbTenLinhKien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTenLinhKien.SelectedIndex == -1)
+            {
+                cbMaLinhKien.SelectedIndex = -1;
+                return;
+            }
+            SqlCommand cmd = new SqlCommand("select MaLK from LinhKien where (TenLK = @TenLK);");
+            cmd.Parameters.AddWithValue("@TenLK", cbTenLinhKien.Text);
+            Library.setComboBox(cbMaLinhKien, this.connSQL.Select(cmd).Row(0).Column(0));
+        }
+
+        private void btnQuit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
