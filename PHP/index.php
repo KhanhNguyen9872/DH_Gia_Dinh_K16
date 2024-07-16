@@ -95,7 +95,7 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
             <h1>Quản lý cửa hàng điện thoại</h1>
             <div class="tab">
                 <!-- <button class="tablinks <?php echo $activePage === 'sell' ? 'active' : ''; ?>" onclick="location.href='?page=sell'">Bán hàng</button> -->
-                <button class="tablinks <?php echo $activePage === 'phone' ? 'active' : ''; ?>" onclick="location.href='?page=phone'">Quản lý điện thoại</button>
+                <button class="tablinks <?php echo $activePage === 'phone' ? 'active' : ''; ?>" onclick="location.href='?page=phone&list=1'">Quản lý điện thoại</button>
                 <button class="tablinks <?php echo $activePage === 'producer' ? 'active' : ''; ?>" onclick="location.href='?page=producer'">Quản lý nhà sản xuất</button>
                 <!-- <button class="tablinks <?php echo $activePage === 'customer' ? 'active' : ''; ?>" onclick="location.href='?page=customer'">Quản lý khách hàng</button> -->
                 <button class="tablinks <?php echo $activePage === 'type' ? 'active' : ''; ?>" onclick="location.href='?page=type'">Quản lý loại</button>
@@ -188,8 +188,8 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
 
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'Main' ? 'block' : 'none'; ?>">
                 <?php if ($activePage === 'Main') { 
-                    echo "<p>Xin chao, <b>" . htmlspecialchars($_SESSION["username"]) . "</b>!</p>";
-                    echo "<p>Chuc ban mot ngay tot lanh!</p>";
+                    echo "<p>Xin chào, <b>" . htmlspecialchars($_SESSION["username"]) . "</b>!</p>";
+                    echo "<p>Chúc bạn một ngày tốt lành!</p>";
                 } ?>
             </div>
         </div>

@@ -17,7 +17,7 @@ include 'config/db.php';
                 <input type="email" name="email" placeholder="Email" required>
                 <button type="submit">Thêm</button>
             </form>
-        </section>';
+        </section><hr>';
         }
         ?>
         <section class="producer-list">
@@ -29,7 +29,7 @@ include 'config/db.php';
                         <th>Tên nhà sản xuất</th>
                         <th>Email</th>
                         <?php 
-                            if (is_staff()) {
+                            if (!is_guest()) {
                                 echo '<th>Hành động</th>';
                             }
                         ?>

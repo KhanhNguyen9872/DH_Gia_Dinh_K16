@@ -4,6 +4,16 @@ include 'config/check_guest.php';
 include 'config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $target_dir = "upload/img/phone/";
+
+    $image = $_FILES["img"]["name"];
+    $full_path = $target_dir . $image;
+    
+    if(!move_uploaded_file($_FILES["img"]["tmp_name"], $full_path)) {
+        echo("Error: Cannot upload image!");
+        die();
+    }
+
     $id = $_POST['id'];
     $name = $_POST['name'];
     $model = $_POST['model'];
@@ -12,7 +22,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $quantity = $_POST['quantity'];
     $price = $_POST['price'];
 
-    $sql = "UPDATE phone SET name='$name', model='$model', producer_id='$producer', phonetype_id='$phonetype', quantity = '$quantity', price='$price' WHERE id=$id";
+    $sql = "select img from phone where id = '$id';";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $r = $result->fetch_assoc();
+        $old_image = $r["img"];
+        $dir = $target_dir . $old_image;
+        if (!is_dir($dir)) {
+            if (file_exists($dir)) {
+                unlink($dir);
+            }
+        }
+    }
+
+    $sql = "UPDATE phone SET name='$name', model='$model', producer_id='$producer', phonetype_id='$phonetype', quantity = '$quantity', price='$price', img='$image' WHERE id=$id";
 
     if (!$conn->query($sql)) {
         echo "Error updating record: " . $conn->error;
@@ -41,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <main>
     <section class="edit-phone">
         <h2>Sửa thông tin điện thoại</h2>
-        <form action="/?page=editPhone" method="post">
+        <form action="/?page=editPhone" method="post" enctype="multipart/form-data">
             <div>
                 <label for="id">ID</label><br>
                 <input type="text" name="id" value="<?php echo $row['id']; ?>" size="1" readonly>
@@ -97,7 +121,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="price">Đơn giá</label><br>
                 <input type="number" id="price" name="price" placeholder="Giá (VND)" value="<?php echo round($row['price'], 0); ?>" size="5" required>
             </div>
-            <button type="submit">Sửa</button>
+            <div>
+                <label for="img">Ảnh</label><br>
+                <input type="file" name="img" id="img" accept="image/*">
+            </div>
+            <button type="submit" value="upload">Sửa</button>
         </form>
     </section>
 </main>

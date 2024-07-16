@@ -6,7 +6,6 @@ include 'config/db.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
     $name = $_POST['name'];
-    $email = $_POST['email'];
 
     $sql = "UPDATE phonetype SET name='$name' WHERE id=$id";
 
@@ -21,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit();
 } else {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM type WHERE id=$id";
+    $sql = "SELECT * FROM phonetype WHERE id = '$id'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -36,20 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <link rel="stylesheet" href="/pages/type/styles.css">
 <main>
     <section class="edit-type">
-        <h2>Sửa thông tin nhà sản xuất</h2>
-        <form action="/?page=edittype" method="post">
+        <h2>Sửa thông tin loại</h2>
+        <form action="/?page=editType" method="post">
             <div>
                 <label for="id">ID</label><br>
                 <input type="text" name="id" value="<?php echo $row['id']; ?>" size="1" readonly>
             </div>
             
             <div>
-            <label for="name">Tên nhà sản xuất</label><br>
-                <input type="text" id="name" name="name" placeholder="Tên nhà sản xuất" value="<?php echo $row['name']; ?>" required>
-            </div>
-            <div>
-                <label for="email">Email</label><br>
-                <input type="email" id="email" name="email" placeholder="Email" value="<?php echo $row['email']; ?>" size = "50" required>
+            <label for="name">Tên loại</label><br>
+                <input type="text" id="name" name="name" placeholder="Tên loại" value="<?php echo $row['name']; ?>" required>
             </div>
             
             <button type="submit">Sửa</button>

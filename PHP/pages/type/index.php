@@ -16,7 +16,7 @@ include 'config/db.php';
                 <input type="text" name="name" placeholder="Tên loại" required>
                 <button type="submit">Thêm</button>
             </form>
-        </section>';
+        </section><hr>';
         }
         ?>
         <section class="type-list">
@@ -35,7 +35,7 @@ include 'config/db.php';
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM phonetype;";
+                    $sql = "SELECT * FROM phonetype order by id;";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {

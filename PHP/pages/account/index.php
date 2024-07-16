@@ -26,6 +26,7 @@ include 'config/db.php';
                 <button type="submit">Thêm</button>
             </form>
         </section>
+        <hr>
         <section class="account-list">
             <h2>Danh sách tài khoản</h2>
             <table>
@@ -35,11 +36,12 @@ include 'config/db.php';
                         <th>Tên tài khoản</th>
                         <th>Email</th>
                         <th>Loại tài khoản</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM account;";
+                    $sql = "SELECT * FROM account order by id;";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
