@@ -6,12 +6,18 @@ include 'config/db.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $target_dir = "upload/img/phone/";
 
-    $image = $_FILES["img"]["name"];
-    $full_path = $target_dir . $image;
-    
-    if(!move_uploaded_file($_FILES["img"]["tmp_name"], $full_path)) {
-        echo("Error: Cannot upload image!");
-        die();
+    if (isset($_FILES["img"])) {
+        $image = $_FILES["img"]["name"];
+        $full_path = $target_dir . $image;
+        
+        if(!move_uploaded_file($_FILES["img"]["tmp_name"], $full_path)) {
+            echo("Error: Cannot upload image!");
+            die();
+        }
+
+        $_image = ", img='$image'"
+    } else {
+        $_image = "";
     }
 
     $id = $_POST['id'];
@@ -36,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    $sql = "UPDATE phone SET name='$name', model='$model', producer_id='$producer', phonetype_id='$phonetype', quantity = '$quantity', price='$price', img='$image' WHERE id=$id";
+    $sql = "UPDATE phone SET name='$name', model='$model', producer_id='$producer', phonetype_id='$phonetype', quantity = '$quantity', price='$price' $_image WHERE id = $id";
 
     if (!$conn->query($sql)) {
         echo "Error updating record: " . $conn->error;
