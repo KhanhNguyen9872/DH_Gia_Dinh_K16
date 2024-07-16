@@ -26,8 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
     } else {
-        echo "Record not found";
-        die();
+        redirect("/?page=type");
     }
 }
 ?>

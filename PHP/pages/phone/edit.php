@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             die();
         }
 
-        $_image = ", img='$image'"
+        $_image = ", img='$image'";
     } else {
         $_image = "";
     }
@@ -61,8 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
     } else {
-        echo "Record not found";
-        die();
+        redirect("/?page=phone&list=1");
     }
 }
 ?>
