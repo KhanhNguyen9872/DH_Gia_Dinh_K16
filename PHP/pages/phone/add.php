@@ -30,6 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $conn->close();
 
-    header('Location: /?page=phone');
+    header('Location: /?page=phone&list=1');
 }
 ?>

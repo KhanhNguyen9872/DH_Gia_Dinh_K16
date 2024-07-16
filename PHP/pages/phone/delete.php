@@ -14,5 +14,5 @@ if (!$conn->query($sql)) {
 
 $conn->close();
 
-header('Location: /?page=phone');
+header('Location: /?page=phone&list=1');
 ?>

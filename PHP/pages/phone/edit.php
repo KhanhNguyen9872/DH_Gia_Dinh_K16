@@ -6,7 +6,7 @@ include 'config/db.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $target_dir = "upload/img/phone/";
 
-    if (isset($_FILES["img"])) {
+    if (isset($_FILES["img"]) && $_FILES["img"]["size"] != 0) {
         $image = $_FILES["img"]["name"];
         $full_path = $target_dir . $image;
         
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $conn->close();
 
-    echo "<script>window.location.href='/?page=phone';</script>";
+    echo "<script>window.location.href='/?page=phone&list=1';</script>";
     exit();
 } else {
     $id = $_GET['id'];
