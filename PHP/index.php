@@ -89,6 +89,7 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
                 background-color: #0056b3;
             }
         </style>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
     </head>
     <body>
         <div class="wrapper">
