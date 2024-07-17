@@ -435,6 +435,7 @@ namespace ExampleLogin
                     {
                         ThanhToanDHForm fmm = new ThanhToanDHForm(this.connSQL, maDH, maPttt, tongThanhTien);
                         fmm.ShowDialog();
+                        MessageBox.Show("Đơn hàng hiện tại đã được lưu!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         dataGridView1.Enabled = false;
                         this.btnTaoMoi_Click(sender, e);
                     } else

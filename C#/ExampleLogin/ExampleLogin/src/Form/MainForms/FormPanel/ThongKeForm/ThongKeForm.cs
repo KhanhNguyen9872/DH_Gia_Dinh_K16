@@ -13,11 +13,21 @@ namespace ExampleLogin
 {
     public partial class ThongKeForm : Form
     {
-        private SQLToolBox connSQL;
         public ThongKeForm(SQLToolBox connSQL)
         {
             InitializeComponent();
-            this.connSQL = connSQL;
+
+            ThongKeDoanhThuForm fm = new ThongKeDoanhThuForm(connSQL);
+            fm.TopLevel = false;
+
+            ThongKeLuongForm fmm = new ThongKeLuongForm(connSQL);
+            fmm.TopLevel = false;
+
+            this.tabDoanhThu.Controls.Add(fm);
+            this.tabLuong.Controls.Add(fmm);
+
+            fm.Show();
+            fmm.Show();
         }
     }
 }
