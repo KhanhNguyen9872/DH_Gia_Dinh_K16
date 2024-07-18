@@ -1,0 +1,216 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.customer {
+    margin-bottom: 20px;
+}
+
+.customer button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.customer button {
+    background-color: #0164b0;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.customer button:hover {
+    background-color: #218838;
+}
+
+.order {
+    margin-bottom: 20px;
+}
+
+.order button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.order button {
+    background-color: #00ff1a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.order button:hover {
+    background-color: #218838;
+}
+
+.account {
+    margin-bottom: 20px;
+}
+
+.account button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.account button {
+    background-color: #7fb101;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.account button:hover {
+    background-color: #218838;
+}
+
+.add-account, .account-list, .edit-account {
+    margin-bottom: 20px;
+}
+
+.add-account form, .edit-account form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.add-account input, .add-account button, .edit-account input, .edit-account button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-account button, .edit-account button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.add-account button:hover, .edit-account button:hover {
+    background-color: #218838;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.actions a {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.actions .edit-btn {
+    background-color: #ffc107;
+}
+
+.actions .delete-btn {
+    background-color: #dc3545;
+}
+
+.actions .edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.actions .delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Reset some default styles */
+body, h1, p, button {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+.wrapper {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+h1 {
+    color: #023e8a;
+    margin-bottom: 10px;
+}
+/* Style for navigation tabs */
+.tab {
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 16px;
+    border-bottom: 3px solid transparent;
+}
+.tab button:hover {
+    background-color: #e9ecef;
+    color: #023e8a;
+}
+.tab button.active {
+    border-bottom: 3px solid #023e8a;
+    color: #023e8a;
+}
+/* Style for tab content */
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 0 0 10px 10px;
+}

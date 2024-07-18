@@ -13,9 +13,18 @@ include 'config/db.php';
             echo '<section class="add-producer">
             <h2>Thêm nhà sản xuất</h2>
             <form action="/pages/producer/add.php" method="post">
-                <input type="text" name="name" placeholder="Tên nhà sản xuất" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <button type="submit">Thêm</button>
+                <div>
+                    <label for="name">Tên nhà sản xuất</label><br>
+                    <input type="text" name="name" placeholder="Tên nhà sản xuất" required>
+                </div>
+                <div>
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div>
+                    <br>
+                    <button type="submit">Thêm</button>
+                </div>
             </form>
         </section><hr>';
         }

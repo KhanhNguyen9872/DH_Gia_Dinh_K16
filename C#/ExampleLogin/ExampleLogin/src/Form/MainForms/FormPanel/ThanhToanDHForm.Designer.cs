@@ -173,8 +173,7 @@
             this.tbSoTaiKhoan.ReadOnly = true;
             this.tbSoTaiKhoan.Size = new System.Drawing.Size(197, 20);
             this.tbSoTaiKhoan.TabIndex = 8;
-            this.tbSoTaiKhoan.Text = "0";
-            this.tbSoTaiKhoan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbSoTaiKhoan.Text = "null";
             // 
             // label3
             // 

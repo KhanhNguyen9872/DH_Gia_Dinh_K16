@@ -12,13 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $email = $_POST['email'];
-    $type = $_POST['type'];
+    $user_id = $_POST['user_id'];
     
     if($password != "") {
         $password = ", password = '" . password_hash($password, PASSWORD_DEFAULT) . "'";
     }
 
-    $sql = "UPDATE account SET username='$username', email = '$email', type='$type' $password WHERE id = $id";
+    $sql = "UPDATE account SET username='$username', email = '$email', user_id='$user_id' $password WHERE id = $id";
 
     if (!$conn->query($sql)) {
         echo "Error updating record: " . $conn->error;
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <link rel="stylesheet" href="/pages/account/styles.css">
 <main>
     <section class="edit-account">
-        <h2>Sửa thông tin tài khoản</h2>
+        <h2><b>Sửa thông tin tài khoản</b></h2>
         <form action="/?page=editAccount" method="post">
             <div>
                 <label for="id">ID</label><br>
@@ -67,15 +67,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <div>
-                <label for="type">Loại tài khoản</label><br>
-                <select id="type" name="type">
-                    <option value="0" <?php echo ($row['type'] == "0" ? 'selected="selected"' : ""); ?>>Khách</option>
-                    <option value="1" <?php echo ($row['type'] == "1" ? 'selected="selected"' : ""); ?>>Nhân viên</option>
-                    <option value="-1" <?php echo ($row['type'] == "-1" ? 'selected="selected"' : ""); ?>>Quản trị</option>
+                <label for="user_id">Nhân viên</label><br>
+                <select name="user_id">
+                    <?php 
+                        $sql = "select id, name from user order by id";
+                        $re = $conn->query($sql);
+                        if ($re->num_rows > 0) {
+                            while ($r = $re->fetch_assoc()) {
+                                echo '<option value="' . $r['id'] . '"' . ($row['user_id'] == $r['id'] ? 'selected="selected"' : '') . '>' . $r['name'] . '</option>' . "\n"; 
+                            }
+                        } else {
+                            echo '<option value="null">Vui lòng tạo nhăn viên trước</option>';
+                        }
+                    ?>
                 </select>
             </div>
             
-            <button type="submit">Sửa</button>
+            <div>
+                <br>
+                <button type="submit">Sửa</button>
+            </div>
         </form>
     </section>
 </main>

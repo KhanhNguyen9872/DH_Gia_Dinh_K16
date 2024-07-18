@@ -9,7 +9,7 @@ $result = $conn->query($sql);
 
 $total_id = $result->fetch_assoc()["total"];
 
-$limit = 10;
+$limit = 20;
 
 $total_page = ceil($total_id / $limit);
 
@@ -69,9 +69,17 @@ $result_table = $conn->query($sql);
             echo '<section class="add-phone">
             <h2>Thêm điện thoại mới</h2>
             <form action="/pages/phone/add.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="name" placeholder="Tên điện thoại" size="15" required>
-                <input type="text" name="model" placeholder="Mẫu" size="5" required>
-                <select name="producer">';
+                <div>
+                    <label for="name">Tên điện thoại</label><br>
+                    <input type="text" name="name" placeholder="Tên điện thoại" size="15" required>
+                </div>
+                <div>
+                    <label for="model">Mẫu</label><br>
+                    <input type="text" name="model" placeholder="Mẫu" size="5" required>
+                </div>
+                <div>
+                    <label for="producer">Nhà sản xuất</label><br>
+                    <select name="producer">';
 
                     $sql = "SELECT id, name FROM producer order by id;";
                     $result = $conn->query($sql);
@@ -85,7 +93,10 @@ $result_table = $conn->query($sql);
                     }   
             
             echo '</select>
-                <select name="phonetype">';
+                </div>
+                <div>
+                    <label for="phonetype">Loại</label><br>
+                    <select name="phonetype">';
 
                     $sql = "SELECT id, name FROM phonetype;";
                     $result = $conn->query($sql);
@@ -99,10 +110,23 @@ $result_table = $conn->query($sql);
                     }   
                     
             echo '</select>
-                <input type="number" name="quantity" placeholder="Số lượng" size="1" required>
-                <input type="number" name="price" placeholder="Giá (VND)" required>
-                <input type="file" name="img" id="img" accept="image/*">
-                <button type="submit" value="upload">Thêm</button>
+                </div>
+                <div>
+                    <label for="quantity">Số lượng</label><br>
+                    <input type="number" name="quantity" placeholder="Số lượng" size="1" required>
+                </div>
+                <div>
+                    <label for="price">Đơn giá</label><br>
+                    <input type="number" name="price" placeholder="Giá (VND)" required>
+                </div>
+                <div>
+                    <label for="img">Ảnh</label><br>
+                    <input type="file" name="img" id="img" accept="image/*">
+                </div>
+                <div>
+                    <br>
+                    <button type="submit" value="upload">Thêm</button>
+                </div>
             </form>
         </section><hr>';
         }

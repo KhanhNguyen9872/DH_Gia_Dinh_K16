@@ -3,7 +3,8 @@ require_once 'config/check_login.php';
 require_once 'config/lib.php';
 
 $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
-
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 ?>
 
 <!DOCTYPE html>
@@ -90,6 +91,7 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
             }
         </style>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
         <div class="wrapper">
@@ -100,9 +102,10 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
                 <button class="tablinks <?php echo $activePage === 'producer' ? 'active' : ''; ?>" onclick="location.href='?page=producer'">Quản lý nhà sản xuất</button>
                 <!-- <button class="tablinks <?php echo $activePage === 'customer' ? 'active' : ''; ?>" onclick="location.href='?page=customer'">Quản lý khách hàng</button> -->
                 <button class="tablinks <?php echo $activePage === 'type' ? 'active' : ''; ?>" onclick="location.href='?page=type'">Quản lý loại</button>
+                <?php echo $_SESSION['admin'] ? "<button class=\"tablinks " . ($activePage === 'staff' ? 'active' : '') . "\" onclick=\"location.href='?page=staff'\">Quản lý nhân viên</button>\n" : '' ?>
                 <?php echo $_SESSION['admin'] ? "<button class=\"tablinks " . ($activePage === 'account' ? 'active' : '') . "\" onclick=\"location.href='?page=account'\">Quản lý tài khoản</button>\n" : '' ?>
                 <!-- <button class="tablinks <?php echo $activePage === 'order' ? 'active' : ''; ?>" onclick="location.href='?page=order'">Quản lý đơn hàng</button> -->
-                <!-- <button class="tablinks <?php echo $activePage === 'staff' ? 'active' : ''; ?>" onclick="location.href='?page=staff'">Quản lý nhân viên</button> -->
+                
             </div>
 
             <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'editType' ? 'block' : 'none'; ?>">
@@ -118,6 +121,15 @@ $activePage = isset($_GET['page']) ? $_GET['page'] : 'Main';
                 <?php if ($activePage === 'editProducer') { 
                     if (!is_guest()) {
                         include 'pages/producer/edit.php';
+                    } else {
+                        redirect("/");
+                    }
+                } ?>
+            </div>
+            <div id="contentArea" class="tabcontent" style="display: <?php echo $activePage === 'editStaff' ? 'block' : 'none'; ?>">
+                <?php if ($activePage === 'editStaff') { 
+                    if ($_SESSION["admin"]) {
+                        include 'pages/staff/edit.php';
                     } else {
                         redirect("/");
                     }

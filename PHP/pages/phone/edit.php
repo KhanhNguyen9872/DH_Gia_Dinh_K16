@@ -5,9 +5,8 @@ include 'config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $target_dir = "upload/img/phone/";
-
     if (isset($_FILES["img"]) && $_FILES["img"]["size"] != 0) {
-        $image = $_FILES["img"]["name"];
+        $image = generateRandomString() . ".jpg";
         $full_path = $target_dir . $image;
         
         if(!move_uploaded_file($_FILES["img"]["tmp_name"], $full_path)) {
@@ -130,7 +129,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="img">Ảnh</label><br>
                 <input type="file" name="img" id="img" accept="image/*">
             </div>
-            <button type="submit" value="upload">Sửa</button>
+            <div>
+                <br>
+                <button type="submit" value="upload">Sửa</button>
+            </div>
         </form>
     </section>
 </main>

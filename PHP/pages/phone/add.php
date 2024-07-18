@@ -6,7 +6,7 @@ include '../../config/db.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $target_dir = "../../upload/img/phone/";
     
-    $image = $_FILES["img"]["name"];
+    $image = generateRandomString() . ".jpg";
     $full_path = $target_dir . $image;
     if (!move_uploaded_file($_FILES["img"]["tmp_name"], $full_path)) {
         echo "Error: Cannot upload image!";

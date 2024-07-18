@@ -12,6 +12,7 @@ namespace ExampleLogin.src.Library
         // private String server;
         private String db;
         private String dataSource;
+        private String datacmd;
 
         // private PleaseWaitForm fm = new PleaseWaitForm();
         // private String username;
@@ -21,15 +22,16 @@ namespace ExampleLogin.src.Library
         {
             this.dataSource = "Data Source=" + dataSource + ";";
             this.db = db;
+            this.datacmd = this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;";
         }
 
-        public SQLToolBox(String db)
+        public SQLToolBox(String dataSource, String db, String user, String password)
         {
-            this.dataSource = "";
+            this.dataSource = "Data Source=" + dataSource + ";";
             this.db = db;
-            // this.username = user;
-            // this.password = passwd;
+            this.datacmd = this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;User ID=" + user + ";Password=" + password + ";Trusted_Connection=yes;";
         }
+
 
         public bool State()
         {
@@ -42,7 +44,7 @@ namespace ExampleLogin.src.Library
 
         public void Connect()
         {
-            this.conn = new SqlConnection(this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;");
+            this.conn = new SqlConnection(this.datacmd);
             if (this.conn.State == ConnectionState.Closed)
             {
                 try

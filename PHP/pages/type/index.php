@@ -13,8 +13,14 @@ include 'config/db.php';
             echo '<section class="add-type">
             <h2>Thêm loại sản phẩm</h2>
             <form action="/pages/type/add.php" method="post">
-                <input type="text" name="name" placeholder="Tên loại" required>
-                <button type="submit">Thêm</button>
+                <div>
+                    <label for="name">Tên loại</label><br>
+                    <input type="text" name="name" placeholder="Tên loại" required>
+                </div>
+                <div>
+                    <br>
+                    <button type="submit">Thêm</button>
+                </div>
             </form>
         </section><hr>';
         }

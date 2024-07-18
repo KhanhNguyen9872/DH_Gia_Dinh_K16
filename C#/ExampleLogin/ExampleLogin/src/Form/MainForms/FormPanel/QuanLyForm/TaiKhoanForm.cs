@@ -27,6 +27,7 @@ namespace ExampleLogin
             if (!this.connSQL.State()) this.connSQL.Connect();
 
             SQLTable s = this.connSQL.Select("Select * from account;");
+            s.removeColumn("password");
 
             Library.setDataSource(dataGridView1, s.getDataTable());   
             
@@ -97,16 +98,18 @@ namespace ExampleLogin
             }
             else
             {
-                List<TextBox> list = new List<TextBox>() { tbTenTaiKhoan, tbMatKhau, tbSDT, tbEmail };
+                List<TextBox> list = new List<TextBox>() { tbTenTaiKhoan, tbSDT, tbEmail };
                 for(int i = 0; i < list.Count; i++)
                 {
                     list[i].Text = dataGridView1.Rows[index].Cells[i].Value.ToString();
                 }
 
-                string MaNV = dataGridView1.Rows[index].Cells[4].Value.ToString();
+                tbMatKhau.Text = "";
+
+                string MaNV = dataGridView1.Rows[index].Cells[3].Value.ToString();
                 Library.setComboBox(cbMaNhanVien, MaNV);
 
-                if (dataGridView1.Rows[index].Cells[5].Value.ToString().Equals("True"))
+                if (dataGridView1.Rows[index].Cells[4].Value.ToString().Equals("True"))
                 {
                     cbTrangThaiTaiKhoan.SelectedIndex = 1;
                 } else
@@ -205,12 +208,16 @@ namespace ExampleLogin
             this.connSQL.Connect();
             string username = tbTenTaiKhoan.Text;
             string password = tbMatKhau.Text;
+            if (!string.IsNullOrEmpty(password))
+            {
+                password = "password = '" + password + "',";
+            }
             string numberPhone = tbSDT.Text;
             string email = tbEmail.Text;
             string MaNV = cbMaNhanVien.Text;
             string trangthaiStr = cbTrangThaiTaiKhoan.Text;
             int trangthai = 0;
-            foreach (string s in new List<string>(){ username, password, numberPhone, email, MaNV, trangthaiStr })
+            foreach (string s in new List<string>(){ username, numberPhone, email, MaNV, trangthaiStr })
             {
                 if (string.IsNullOrEmpty(s))
                 {
@@ -227,9 +234,8 @@ namespace ExampleLogin
                 trangthai = 1;
             }
 
-            SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set password = @password, sdt = @sdt, email = @email, MaNV = @MaNV, lock = @lock WHERE (username = @username);");
+            SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " set " + password + " sdt = @sdt, email = @email, MaNV = @MaNV, lock = @lock WHERE (username = @username);");
             cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@password", password);
             cmd.Parameters.AddWithValue("@sdt", numberPhone);
             cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@MaNV", MaNV);

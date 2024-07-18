@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($username_err) && empty($password_err)) {
-        $sql = "SELECT username, password, type FROM account WHERE username = ?";
+        $sql = "SELECT username, password, user_id FROM account WHERE username = ?";
         
         if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 mysqli_stmt_store_result($stmt);
 
                 if (mysqli_stmt_num_rows($stmt) == 1) {                    
-                    mysqli_stmt_bind_result($stmt, $username, $hashed_password, $type);
+                    mysqli_stmt_bind_result($stmt, $username, $hashed_password, $user_id);
                     if (mysqli_stmt_fetch($stmt)) {
                         if (password_verify($password, $hashed_password)) {
                             session_start();
@@ -41,13 +41,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["username"] = $username;
                             $_SESSION["admin"] = false;
                             $_SESSION["guest"] = false;
-
-                            if ($type == "-1") {
-                                $_SESSION["admin"] = true;
-                            }
-                            if ($type == "0") {
+                            
+                            $sql = "select type from user where id = $user_id";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                $type = $result->fetch_assoc()["type"];
+                                
+                                if ($type == "-1") {
+                                    $_SESSION["admin"] = true;
+                                }
+                                if ($type == "0") {
+                                    $_SESSION["guest"] = true;
+                                }
+                            } else {
+                                $_SESSION["admin"] = false;
                                 $_SESSION["guest"] = true;
-                            }          
+                            }  
 
                             header("location: /");
                         } else {

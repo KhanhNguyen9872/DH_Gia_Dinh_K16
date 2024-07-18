@@ -46,7 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="text" id="name" name="name" placeholder="Tên loại" value="<?php echo $row['name']; ?>" required>
             </div>
             
-            <button type="submit">Sửa</button>
+            <div>
+                <br>
+                <button type="submit">Sửa</button>
+            </div>
         </form>
     </section>
 </main>

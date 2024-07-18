@@ -51,7 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="email" id="email" name="email" placeholder="Email" value="<?php echo $row['email']; ?>" size = "50" required>
             </div>
             
-            <button type="submit">Sửa</button>
+            <div>
+                <br>
+                <button type="submit">Sửa</button>
+            </div>
         </form>
     </section>
 </main>

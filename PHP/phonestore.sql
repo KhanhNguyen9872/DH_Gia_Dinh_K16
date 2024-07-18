@@ -2,10 +2,10 @@
 -- version 5.2.1-1.el9
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th7 16, 2024 lúc 07:22 PM
--- Phiên bản máy phục vụ: 10.5.22-MariaDB
--- Phiên bản PHP: 8.0.30
+-- Host: localhost
+-- Generation Time: Jul 18, 2024 at 03:29 PM
+-- Server version: 10.5.22-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `phoneStore`
+-- Database: `phoneStore`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `account`
+-- Table structure for table `account`
 --
 
 CREATE TABLE `account` (
@@ -32,22 +32,22 @@ CREATE TABLE `account` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `type` int(1) NOT NULL DEFAULT 0
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `account`
+-- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `username`, `password`, `email`, `type`) VALUES
-(1, 'root', '$2y$10$wfAQUzWPdsVgIp7HS9NQB.5Ujml4HUH5./4EAdiHjvg6aiRi6c8vS', 'root@localhost.com', -1),
-(2, 'user', '$2y$10$4.sYVA222k5Dge4AoyqVSO5NO5ZZ7yyqe0h/XhMxtQTaZGJU/81mW', 'user@localhost.com', 1),
-(3, 'guest', '$2y$10$GmGiLEQXwZhLV2HklEr4buIVVPQ2t8TvqR1JhXJM.d.JtrTSLXcBK', 'guest@localhost.com', 0);
+INSERT INTO `account` (`id`, `username`, `password`, `email`, `user_id`) VALUES
+(1, 'root', '$2y$10$wfAQUzWPdsVgIp7HS9NQB.5Ujml4HUH5./4EAdiHjvg6aiRi6c8vS', 'root@localhost.com', 1),
+(2, 'user', '$2y$10$4.sYVA222k5Dge4AoyqVSO5NO5ZZ7yyqe0h/XhMxtQTaZGJU/81mW', 'user@localhost.com', 2),
+(3, 'guest', '$2y$10$GmGiLEQXwZhLV2HklEr4buIVVPQ2t8TvqR1JhXJM.d.JtrTSLXcBK', 'guest@localhost.com', 3);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -61,7 +61,7 @@ CREATE TABLE `customer` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order`
+-- Table structure for table `order`
 --
 
 CREATE TABLE `order` (
@@ -72,7 +72,7 @@ CREATE TABLE `order` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phone`
+-- Table structure for table `phone`
 --
 
 CREATE TABLE `phone` (
@@ -87,13 +87,13 @@ CREATE TABLE `phone` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `phone`
+-- Dumping data for table `phone`
 --
 
 INSERT INTO `phone` (`id`, `name`, `model`, `producer_id`, `phonetype_id`, `quantity`, `price`, `img`) VALUES
-(1, 'Galaxy J5 (2016)', 'SM-J510FN', 1, 1, 13, 1250000.00, 'uploaded_4fcdf0b2be53c97debb5138777255ccc.jpg'),
-(2, 'Pixel 8A', 'akita', 6, 1, 13, 10500000.00, '(600x600)_google_pixel_8a_bay_didongmy_thumb_600x600_1.jpg'),
-(3, 'Pixel Fold', 'felix', 6, 1, 21, 23999000.00, '600_google_pixel_fold.webp'),
+(1, 'Galaxy J5 (2016)', 'SM-J510FN', 1, 1, 13, 1250000.00, '5QeY4PPByh.jpg'),
+(2, 'Pixel 8A', 'akita', 6, 1, 13, 10500000.00, 'OIP (1).jpg'),
+(3, 'Pixel Fold', 'felix', 6, 1, 21, 23999000.00, 'download.jpg'),
 (4, 'Xiaomi Pad 6', '23043RP34C', 5, 2, 4, 8500000.00, 'xiaomi-pad-6-blue-thumb-600x600.jpg'),
 (5, 'Realme C3', 'RMX2020', 4, 1, 6, 2000000.00, 'Realme-C3-64GB-3GB-Face-Unlock-6-5-Dual-SIM-GSM-Unlocked-US-4G-LTE-RMX2020_b18f926a-c353-4ebd-a0bd-282ce8b59b9a.6175e01e2c92cc792cde2ed6a712af3d.webp'),
 (6, 'Xiaomi Mi 9', 'cepheus', 5, 1, 6, 2900000.00, 'xiaomi-mi-9-1-600x600.jpg'),
@@ -123,7 +123,7 @@ INSERT INTO `phone` (`id`, `name`, `model`, `producer_id`, `phonetype_id`, `quan
 (33, 'Nokia X21 5G', 'TA-1425', 13, 1, 20, 12990000.00, '6.jpg'),
 (34, 'Samsung Galaxy A74 5G', 'SM-A747B', 1, 1, 22, 18490000.00, 'images (3).jpg'),
 (35, 'Vsmart Joy 5', 'VJS05', 12, 1, 15, 5490000.00, 'images (4).jpg'),
-(36, 'Xiaomi Poco X4 Pro 5G', 'null', 5, 1, 15, 9990000.00, 'images (5).jpg'),
+(36, 'Xiaomi Poco X4 Pro 5G', 'null', 5, 1, 15, 9990000.00, 'OIP (1).jpg'),
 (37, 'Samsung Galaxy M53 5G', 'SM-M536B', 1, 1, 15, 12990000.00, 'images (8).jpg'),
 (39, 'Realme 9 Pro+ 5G', 'Realme 9 Pro+ 5G', 4, 1, 16, 11490000.00, 'images (10).jpg'),
 (40, 'Vivo V23 5G', 'V2301', 3, 1, 22, 14990000.00, 'images (11).jpg'),
@@ -147,7 +147,7 @@ INSERT INTO `phone` (`id`, `name`, `model`, `producer_id`, `phonetype_id`, `quan
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phonetype`
+-- Table structure for table `phonetype`
 --
 
 CREATE TABLE `phonetype` (
@@ -156,7 +156,7 @@ CREATE TABLE `phonetype` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `phonetype`
+-- Dumping data for table `phonetype`
 --
 
 INSERT INTO `phonetype` (`id`, `name`) VALUES
@@ -166,7 +166,7 @@ INSERT INTO `phonetype` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `producer`
+-- Table structure for table `producer`
 --
 
 CREATE TABLE `producer` (
@@ -176,7 +176,7 @@ CREATE TABLE `producer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `producer`
+-- Dumping data for table `producer`
 --
 
 INSERT INTO `producer` (`id`, `name`, `email`) VALUES
@@ -195,12 +195,36 @@ INSERT INTO `producer` (`id`, `name`, `email`) VALUES
 (13, 'Nokia', 'nokia@localhost.com'),
 (14, 'Sony', 'sony@localhost.com');
 
+-- --------------------------------------------------------
+
 --
--- Chỉ mục cho các bảng đã đổ
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `gender` int(11) NOT NULL DEFAULT 0,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(11) NOT NULL,
+  `type` int(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `gender`, `email`, `phone`, `type`) VALUES
+(1, 'Nguyen Van Khanh', 0, 'khanh@localhost.com', '0123456788', -1),
+(2, 'Le Lam Chien Thang', 0, 'thang@localhost.com', '0120120121', 1),
+(3, 'Vu Duc Thinh', 0, 'thinh@localhost.com', '0989898989', 0);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `account`
+-- Indexes for table `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`id`),
@@ -208,33 +232,35 @@ ALTER TABLE `account`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Chỉ mục cho bảng `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `order`
+-- Indexes for table `order`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
   ADD KEY `customerID` (`customerID`);
 
 --
--- Chỉ mục cho bảng `phone`
+-- Indexes for table `phone`
 --
 ALTER TABLE `phone`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `phonetype_id` (`phonetype_id`),
+  ADD KEY `producer_id` (`producer_id`);
 
 --
--- Chỉ mục cho bảng `phonetype`
+-- Indexes for table `phonetype`
 --
 ALTER TABLE `phonetype`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Chỉ mục cho bảng `producer`
+-- Indexes for table `producer`
 --
 ALTER TABLE `producer`
   ADD PRIMARY KEY (`id`),
@@ -242,54 +268,81 @@ ALTER TABLE `producer`
   ADD UNIQUE KEY `email` (`email`) USING HASH;
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `phone` (`phone`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `account`
+-- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `customer`
+-- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `order`
+-- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `phone`
+-- AUTO_INCREMENT for table `phone`
 --
 ALTER TABLE `phone`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
--- AUTO_INCREMENT cho bảng `phonetype`
+-- AUTO_INCREMENT for table `phonetype`
 --
 ALTER TABLE `phonetype`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `producer`
+-- AUTO_INCREMENT for table `producer`
 --
 ALTER TABLE `producer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `order`
+-- Constraints for table `account`
+--
+ALTER TABLE `account`
+  ADD CONSTRAINT `account_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `order`
 --
 ALTER TABLE `order`
   ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`id`);
+
+--
+-- Constraints for table `phone`
+--
+ALTER TABLE `phone`
+  ADD CONSTRAINT `phone_ibfk_1` FOREIGN KEY (`phonetype_id`) REFERENCES `phonetype` (`id`),
+  ADD CONSTRAINT `phone_ibfk_2` FOREIGN KEY (`producer_id`) REFERENCES `producer` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
