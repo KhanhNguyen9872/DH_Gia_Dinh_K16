@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetBai1" targetNamespace="http://tempuri.org/DataSetBai1.xsd" xmlns:mstns="http://tempuri.org/DataSetBai1.xsd" xmlns="http://tempuri.org/DataSetBai1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetBai1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSetBai1" msprop:Generator_DataSetName="DataSetBai1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DSDocGia" msprop:Generator_RowEvHandlerName="DSDocGiaRowChangeEventHandler" msprop:Generator_RowDeletedName="DSDocGiaRowDeleted" msprop:Generator_RowDeletingName="DSDocGiaRowDeleting" msprop:Generator_RowEvArgName="DSDocGiaRowChangeEvent" msprop:Generator_TablePropName="DSDocGia" msprop:Generator_RowChangedName="DSDocGiaRowChanged" msprop:Generator_RowChangingName="DSDocGiaRowChanging" msprop:Generator_TableClassName="DSDocGiaDataTable" msprop:Generator_RowClassName="DSDocGiaRow" msprop:Generator_TableVarName="tableDSDocGia" msprop:Generator_UserTableName="DSDocGia">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MaDocGia" msprop:Generator_ColumnPropNameInRow="MaDocGia" msprop:Generator_ColumnPropNameInTable="MaDocGiaColumn" msprop:Generator_ColumnVarNameInTable="columnMaDocGia" msprop:Generator_UserColumnName="MaDocGia" type="xs:string" />
+              <xs:element name="HoTenDocGia" msprop:Generator_ColumnPropNameInRow="HoTenDocGia" msprop:Generator_ColumnPropNameInTable="HoTenDocGiaColumn" msprop:Generator_ColumnVarNameInTable="columnHoTenDocGia" msprop:Generator_UserColumnName="HoTenDocGia" type="xs:string" minOccurs="0" />
+              <xs:element name="NgaySinh" msprop:Generator_ColumnPropNameInRow="NgaySinh" msprop:Generator_ColumnPropNameInTable="NgaySinhColumn" msprop:Generator_ColumnVarNameInTable="columnNgaySinh" msprop:Generator_UserColumnName="NgaySinh" type="xs:string" minOccurs="0" />
+              <xs:element name="DiaChi" msprop:Generator_ColumnPropNameInRow="DiaChi" msprop:Generator_ColumnPropNameInTable="DiaChiColumn" msprop:Generator_ColumnVarNameInTable="columnDiaChi" msprop:Generator_UserColumnName="DiaChi" type="xs:string" minOccurs="0" />
+              <xs:element name="Email" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_UserColumnName="Email" type="xs:string" minOccurs="0" />
+              <xs:element name="NgayLapThe" msprop:Generator_ColumnPropNameInRow="NgayLapThe" msprop:Generator_ColumnPropNameInTable="NgayLapTheColumn" msprop:Generator_ColumnVarNameInTable="columnNgayLapThe" msprop:Generator_UserColumnName="NgayLapThe" type="xs:string" minOccurs="0" />
+              <xs:element name="NgayHetHan" msprop:Generator_ColumnPropNameInRow="NgayHetHan" msprop:Generator_ColumnPropNameInTable="NgayHetHanColumn" msprop:Generator_ColumnVarNameInTable="columnNgayHetHan" msprop:Generator_UserColumnName="NgayHetHan" type="xs:string" minOccurs="0" />
+              <xs:element name="TienNo" msprop:Generator_ColumnPropNameInRow="TienNo" msprop:Generator_ColumnPropNameInTable="TienNoColumn" msprop:Generator_ColumnVarNameInTable="columnTienNo" msprop:Generator_UserColumnName="TienNo" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DSDocGia" />
+      <xs:field xpath="mstns:MaDocGia" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

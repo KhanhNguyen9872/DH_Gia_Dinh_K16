@@ -1,0 +1,333 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\bai3form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\bai3form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\bai3form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\bai3form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\qlthuvien_buoi9\\bai1form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\bai1form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\bai1form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\bai1form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\bai1form.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\bai1form.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\lib.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\lib.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\bai3form.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\bai3form.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\bai2form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\bai2form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\crystalreport3.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\crystalreport3.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\datasetbai3.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\datasetbai3.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\bai2form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\bai2form.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\bai2form.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\bai2form.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\reportform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\reportform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\crystalreport2.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\crystalreport2.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\datasetbai1.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\datasetbai1.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\crystalreport1.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\crystalreport1.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|c:\\users\\khanhnguyen9872\\source\\repos\\qlthuvien_buoi9\\qlthuvien_buoi9\\reportform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\reportform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\qlthuvien_buoi9\\datasetbai2.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}",
+      "RelativeMoniker": "D:0:0:{A7C49ABB-84F2-4C75-ABFB-AE2FEFC961AA}|QLThuVien_Buoi9\\QLThuVien_Buoi9.csproj|solutionrelative:qlthuvien_buoi9\\datasetbai2.xsd||{07AC752B-D2B0-4DCD-AD9C-237BF561A30A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Bai3Form.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai3Form.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Bai3Form.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai3Form.cs",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Bai3Form.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAUwA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T08:32:23.937Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Lib.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Lib.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Lib.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Lib.cs",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Lib.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T09:16:37.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Init.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Init.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Init.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Init.cs [Design]",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Init.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T09:12:05.291Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CrystalReport3.rpt",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\CrystalReport3.rpt",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\CrystalReport3.rpt",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\CrystalReport3.rpt",
+              "RelativeToolTip": "QLThuVien_Buoi9\\CrystalReport3.rpt",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIdSURBVDhPpZJNaBNBFMf/M7ub2NhajSDiwS96CbY2BykojaD0oF5s0YPgQYReLHgpeNCLYv0AexNRb1VUAkJcPXgQEUG89BIaxI9gqzGxH6QmXTef3Wx2nJkmNev25g8ebx7z3n/ezBv8F4wx0lhK7j6fYo3lmowMhl35HoRA3XGk/YvYW\u002BsA2vCrUEIwu1hEJltwmeDc8V5Plx4BAaXEY4J7LxLSt4q4BBS6Eiq8oGm3nXHZ1VCkS9pgfxc62/0yT\u002BASaNRLIWE6ieHB3H1EZsMyVhUKTXU37Yo0RZFeVQiuL14D1tnooBtQcEwcSO9d7aoVdefw5yFC2GG\u002BDsa/OTj228LYwmXejYrkzxkUsqZMNG0TfZkexA99lHETUqlYJ0rV5YEPqfKOG7Glo3MGRSTkx2T4JNp2\u002BzGfmMf3JzNAHijHarJIfz\u002BN0wMh2QoduRrVL9x6NqrWzUt3hjfjYMiHV1NVWNHHCJAOoMof3OBOt10T8XD24kOiv0uynFFkp8ZTrPv8NNs3\u002BpXtifawUmWZWbU6q9l16Z\u002B\u002BTXrHOHHzDPP7ND6iNvSHAtjYrkLTNDzqfQleBIU/rDhdeI1Po4l7JpyqDSTSDoKdPmwLqqhaNdh2vbHrxXWhidcZ9mXBj3yJYr3Pwf7tBnL5HLZu2YRA4O/nERzp2yVrXQJiIhWrdsUwy92/lorZyURqLP4p/YZv/eBXLK9ktQL8AbhJ7xVosbKmAAAAAElFTkSuQmCC",
+              "WhenOpened": "2024-07-19T09:06:47.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Bai3Form.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai3Form.Designer.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Bai3Form.Designer.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai3Form.Designer.cs",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Bai3Form.Designer.cs",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAnwF8AAABFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T08:50:05.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DataSetBai3.xsd",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\DataSetBai3.xsd",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\DataSetBai3.xsd",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\DataSetBai3.xsd",
+              "RelativeToolTip": "QLThuVien_Buoi9\\DataSetBai3.xsd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
+              "WhenOpened": "2024-07-19T08:33:09.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Bai3Form.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai3Form.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Bai3Form.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai3Form.cs [Design]",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Bai3Form.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T08:31:08.868Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Bai2Form.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai2Form.Designer.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Bai2Form.Designer.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai2Form.Designer.cs",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Bai2Form.Designer.cs",
+              "ViewState": "AQIAAFEAAAAAAAAAAAApwGwAAABaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T08:29:13.411Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Bai1Form.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai1Form.Designer.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Bai1Form.Designer.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai1Form.Designer.cs",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Bai1Form.Designer.cs",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAIwGAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T08:28:12.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CrystalReport1.rpt",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\CrystalReport1.rpt",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\CrystalReport1.rpt",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\CrystalReport1.rpt",
+              "RelativeToolTip": "QLThuVien_Buoi9\\CrystalReport1.rpt",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIdSURBVDhPpZJNaBNBFMf/M7ub2NhajSDiwS96CbY2BykojaD0oF5s0YPgQYReLHgpeNCLYv0AexNRb1VUAkJcPXgQEUG89BIaxI9gqzGxH6QmXTef3Wx2nJkmNev25g8ebx7z3n/ezBv8F4wx0lhK7j6fYo3lmowMhl35HoRA3XGk/YvYW\u002BsA2vCrUEIwu1hEJltwmeDc8V5Plx4BAaXEY4J7LxLSt4q4BBS6Eiq8oGm3nXHZ1VCkS9pgfxc62/0yT\u002BASaNRLIWE6ieHB3H1EZsMyVhUKTXU37Yo0RZFeVQiuL14D1tnooBtQcEwcSO9d7aoVdefw5yFC2GG\u002BDsa/OTj228LYwmXejYrkzxkUsqZMNG0TfZkexA99lHETUqlYJ0rV5YEPqfKOG7Glo3MGRSTkx2T4JNp2\u002BzGfmMf3JzNAHijHarJIfz\u002BN0wMh2QoduRrVL9x6NqrWzUt3hjfjYMiHV1NVWNHHCJAOoMof3OBOt10T8XD24kOiv0uynFFkp8ZTrPv8NNs3\u002BpXtifawUmWZWbU6q9l16Z\u002B\u002BTXrHOHHzDPP7ND6iNvSHAtjYrkLTNDzqfQleBIU/rDhdeI1Po4l7JpyqDSTSDoKdPmwLqqhaNdh2vbHrxXWhidcZ9mXBj3yJYr3Pwf7tBnL5HLZu2YRA4O/nERzp2yVrXQJiIhWrdsUwy92/lorZyURqLP4p/YZv/eBXLK9ktQL8AbhJ7xVosbKmAAAAAElFTkSuQmCC",
+              "WhenOpened": "2024-07-19T08:14:28.048Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DataSetBai1.xsd",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\DataSetBai1.xsd",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\DataSetBai1.xsd",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\DataSetBai1.xsd",
+              "RelativeToolTip": "QLThuVien_Buoi9\\DataSetBai1.xsd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
+              "WhenOpened": "2024-07-19T08:13:09.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Bai1Form.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai1Form.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Bai1Form.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai1Form.cs",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Bai1Form.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAADwv20AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T07:57:51.724Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ReportForm.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\ReportForm.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\ReportForm.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\ReportForm.cs",
+              "RelativeToolTip": "QLThuVien_Buoi9\\ReportForm.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAowA4AAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T07:52:59.449Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ReportForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\ReportForm.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\ReportForm.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\ReportForm.cs [Design]",
+              "RelativeToolTip": "QLThuVien_Buoi9\\ReportForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T07:53:04.016Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CrystalReport2.rpt",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\CrystalReport2.rpt",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\CrystalReport2.rpt",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\CrystalReport2.rpt",
+              "RelativeToolTip": "QLThuVien_Buoi9\\CrystalReport2.rpt",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIdSURBVDhPpZJNaBNBFMf/M7ub2NhajSDiwS96CbY2BykojaD0oF5s0YPgQYReLHgpeNCLYv0AexNRb1VUAkJcPXgQEUG89BIaxI9gqzGxH6QmXTef3Wx2nJkmNev25g8ebx7z3n/ezBv8F4wx0lhK7j6fYo3lmowMhl35HoRA3XGk/YvYW\u002BsA2vCrUEIwu1hEJltwmeDc8V5Plx4BAaXEY4J7LxLSt4q4BBS6Eiq8oGm3nXHZ1VCkS9pgfxc62/0yT\u002BASaNRLIWE6ieHB3H1EZsMyVhUKTXU37Yo0RZFeVQiuL14D1tnooBtQcEwcSO9d7aoVdefw5yFC2GG\u002BDsa/OTj228LYwmXejYrkzxkUsqZMNG0TfZkexA99lHETUqlYJ0rV5YEPqfKOG7Glo3MGRSTkx2T4JNp2\u002BzGfmMf3JzNAHijHarJIfz\u002BN0wMh2QoduRrVL9x6NqrWzUt3hjfjYMiHV1NVWNHHCJAOoMof3OBOt10T8XD24kOiv0uynFFkp8ZTrPv8NNs3\u002BpXtifawUmWZWbU6q9l16Z\u002B\u002BTXrHOHHzDPP7ND6iNvSHAtjYrkLTNDzqfQleBIU/rDhdeI1Po4l7JpyqDSTSDoKdPmwLqqhaNdh2vbHrxXWhidcZ9mXBj3yJYr3Pwf7tBnL5HLZu2YRA4O/nERzp2yVrXQJiIhWrdsUwy92/lorZyURqLP4p/YZv/eBXLK9ktQL8AbhJ7xVosbKmAAAAAElFTkSuQmCC",
+              "WhenOpened": "2024-07-19T07:51:01.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Bai2Form.cs",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai2Form.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Bai2Form.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai2Form.cs",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Bai2Form.cs",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAmwIYAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T07:50:04.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Bai1Form.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai1Form.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Bai1Form.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai1Form.cs [Design]",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Bai1Form.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T07:49:20.71Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Bai2Form.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai2Form.cs",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\Bai2Form.cs",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\Bai2Form.cs [Design]",
+              "RelativeToolTip": "QLThuVien_Buoi9\\Bai2Form.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T07:49:16.671Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "DataSetBai2.xsd",
+              "DocumentMoniker": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\DataSetBai2.xsd",
+              "RelativeDocumentMoniker": "QLThuVien_Buoi9\\DataSetBai2.xsd",
+              "ToolTip": "C:\\Users\\KhanhNguyen9872\\source\\repos\\QLThuVien_Buoi9\\QLThuVien_Buoi9\\DataSetBai2.xsd",
+              "RelativeToolTip": "QLThuVien_Buoi9\\DataSetBai2.xsd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003579|",
+              "WhenOpened": "2024-07-19T07:48:22.003Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
