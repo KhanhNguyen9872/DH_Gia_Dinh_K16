@@ -22,6 +22,7 @@ namespace ExampleLogin
 
         private void loadData()
         {
+            if (!this.connSQL.State()) this.connSQL.Connect();
             SQLTable table;
 
             cbMaNV.Items.Clear();

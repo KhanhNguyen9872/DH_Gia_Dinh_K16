@@ -30,14 +30,17 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnXuatHoaDon = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbTongTien = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnThanhToan = new System.Windows.Forms.Button();
+            this.cbTenNhanVien = new System.Windows.Forms.ComboBox();
+            this.cbTenKhachHang = new System.Windows.Forms.ComboBox();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnThongTinDonHang = new System.Windows.Forms.Button();
-            this.cbUpLowCase = new System.Windows.Forms.CheckBox();
-            this.cbLoc = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tbTimKiem = new System.Windows.Forms.TextBox();
             this.tbNoiNhan = new System.Windows.Forms.TextBox();
             this.ngayGiaoHang = new System.Windows.Forms.DateTimePicker();
             this.ngayDatHang = new System.Windows.Forms.DateTimePicker();
@@ -47,21 +50,18 @@
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbUpLowCase = new System.Windows.Forms.CheckBox();
+            this.cbLoc = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbTimKiem = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbTenKhachHang = new System.Windows.Forms.ComboBox();
-            this.cbTenNhanVien = new System.Windows.Forms.ComboBox();
-            this.btnThanhToan = new System.Windows.Forms.Button();
-            this.tbTongTien = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnXuatHoaDon = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -113,6 +113,77 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin hóa đơn";
             // 
+            // btnXuatHoaDon
+            // 
+            this.btnXuatHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatHoaDon.Location = new System.Drawing.Point(9, 369);
+            this.btnXuatHoaDon.Name = "btnXuatHoaDon";
+            this.btnXuatHoaDon.Size = new System.Drawing.Size(95, 38);
+            this.btnXuatHoaDon.TabIndex = 32;
+            this.btnXuatHoaDon.Text = "Xuất hóa đơn";
+            this.btnXuatHoaDon.UseVisualStyleBackColor = true;
+            this.btnXuatHoaDon.Visible = false;
+            this.btnXuatHoaDon.Click += new System.EventHandler(this.btnXuatHoaDon_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(257, 295);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(30, 13);
+            this.label12.TabIndex = 31;
+            this.label12.Text = "VND";
+            // 
+            // tbTongTien
+            // 
+            this.tbTongTien.Location = new System.Drawing.Point(118, 292);
+            this.tbTongTien.Name = "tbTongTien";
+            this.tbTongTien.ReadOnly = true;
+            this.tbTongTien.Size = new System.Drawing.Size(133, 20);
+            this.tbTongTien.TabIndex = 30;
+            this.tbTongTien.Text = "0";
+            this.tbTongTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(15, 292);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(55, 13);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "Tổng tiền:";
+            // 
+            // btnThanhToan
+            // 
+            this.btnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThanhToan.Location = new System.Drawing.Point(9, 369);
+            this.btnThanhToan.Name = "btnThanhToan";
+            this.btnThanhToan.Size = new System.Drawing.Size(95, 38);
+            this.btnThanhToan.TabIndex = 28;
+            this.btnThanhToan.Text = "Thanh toán đơn hàng";
+            this.btnThanhToan.UseVisualStyleBackColor = true;
+            this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
+            // 
+            // cbTenNhanVien
+            // 
+            this.cbTenNhanVien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTenNhanVien.FormattingEnabled = true;
+            this.cbTenNhanVien.Location = new System.Drawing.Point(118, 154);
+            this.cbTenNhanVien.Name = "cbTenNhanVien";
+            this.cbTenNhanVien.Size = new System.Drawing.Size(174, 21);
+            this.cbTenNhanVien.TabIndex = 27;
+            this.cbTenNhanVien.SelectedIndexChanged += new System.EventHandler(this.cbTenNhanVien_SelectedIndexChanged);
+            // 
+            // cbTenKhachHang
+            // 
+            this.cbTenKhachHang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTenKhachHang.FormattingEnabled = true;
+            this.cbTenKhachHang.Location = new System.Drawing.Point(118, 92);
+            this.cbTenKhachHang.Name = "cbTenKhachHang";
+            this.cbTenKhachHang.Size = new System.Drawing.Size(174, 21);
+            this.cbTenKhachHang.TabIndex = 26;
+            this.cbTenKhachHang.SelectedIndexChanged += new System.EventHandler(this.cbTenKhachHang_SelectedIndexChanged);
+            // 
             // btnLamMoi
             // 
             this.btnLamMoi.Location = new System.Drawing.Point(219, 369);
@@ -152,45 +223,6 @@
             this.btnThongTinDonHang.UseVisualStyleBackColor = true;
             this.btnThongTinDonHang.Click += new System.EventHandler(this.btnThongTinDonHang_Click);
             // 
-            // cbUpLowCase
-            // 
-            this.cbUpLowCase.AutoSize = true;
-            this.cbUpLowCase.Location = new System.Drawing.Point(303, 394);
-            this.cbUpLowCase.Name = "cbUpLowCase";
-            this.cbUpLowCase.Size = new System.Drawing.Size(128, 17);
-            this.cbUpLowCase.TabIndex = 19;
-            this.cbUpLowCase.Text = "Phân biệt hoa thường";
-            this.cbUpLowCase.UseVisualStyleBackColor = true;
-            this.cbUpLowCase.CheckedChanged += new System.EventHandler(this.cbUpLowCase_CheckedChanged);
-            // 
-            // cbLoc
-            // 
-            this.cbLoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLoc.FormattingEnabled = true;
-            this.cbLoc.Location = new System.Drawing.Point(468, 391);
-            this.cbLoc.Name = "cbLoc";
-            this.cbLoc.Size = new System.Drawing.Size(113, 21);
-            this.cbLoc.TabIndex = 18;
-            this.cbLoc.SelectedIndexChanged += new System.EventHandler(this.cbLoc_SelectedIndexChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(437, 395);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(28, 13);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Lọc:";
-            // 
-            // tbTimKiem
-            // 
-            this.tbTimKiem.Location = new System.Drawing.Point(79, 391);
-            this.tbTimKiem.Name = "tbTimKiem";
-            this.tbTimKiem.Size = new System.Drawing.Size(218, 20);
-            this.tbTimKiem.TabIndex = 16;
-            this.tbTimKiem.TextChanged += new System.EventHandler(this.tbTimKiem_TextChanged);
-            this.tbTimKiem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTimKiem_KeyPress);
-            // 
             // tbNoiNhan
             // 
             this.tbNoiNhan.Location = new System.Drawing.Point(118, 255);
@@ -205,6 +237,7 @@
             this.ngayGiaoHang.Name = "ngayGiaoHang";
             this.ngayGiaoHang.Size = new System.Drawing.Size(174, 20);
             this.ngayGiaoHang.TabIndex = 14;
+            this.ngayGiaoHang.ValueChanged += new System.EventHandler(this.ngayGiaoHang_ValueChanged);
             // 
             // ngayDatHang
             // 
@@ -213,6 +246,7 @@
             this.ngayDatHang.Name = "ngayDatHang";
             this.ngayDatHang.Size = new System.Drawing.Size(174, 20);
             this.ngayDatHang.TabIndex = 13;
+            this.ngayDatHang.ValueChanged += new System.EventHandler(this.ngayDatHang_ValueChanged);
             // 
             // cbMaNhanVien
             // 
@@ -272,15 +306,6 @@
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 394);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Tìm kiếm:";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -335,6 +360,54 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã đơn hàng:";
             // 
+            // cbUpLowCase
+            // 
+            this.cbUpLowCase.AutoSize = true;
+            this.cbUpLowCase.Location = new System.Drawing.Point(303, 394);
+            this.cbUpLowCase.Name = "cbUpLowCase";
+            this.cbUpLowCase.Size = new System.Drawing.Size(128, 17);
+            this.cbUpLowCase.TabIndex = 19;
+            this.cbUpLowCase.Text = "Phân biệt hoa thường";
+            this.cbUpLowCase.UseVisualStyleBackColor = true;
+            this.cbUpLowCase.CheckedChanged += new System.EventHandler(this.cbUpLowCase_CheckedChanged);
+            // 
+            // cbLoc
+            // 
+            this.cbLoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLoc.FormattingEnabled = true;
+            this.cbLoc.Location = new System.Drawing.Point(468, 391);
+            this.cbLoc.Name = "cbLoc";
+            this.cbLoc.Size = new System.Drawing.Size(113, 21);
+            this.cbLoc.TabIndex = 18;
+            this.cbLoc.SelectedIndexChanged += new System.EventHandler(this.cbLoc_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(437, 395);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(28, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Lọc:";
+            // 
+            // tbTimKiem
+            // 
+            this.tbTimKiem.Location = new System.Drawing.Point(79, 391);
+            this.tbTimKiem.Name = "tbTimKiem";
+            this.tbTimKiem.Size = new System.Drawing.Size(218, 20);
+            this.tbTimKiem.TabIndex = 16;
+            this.tbTimKiem.TextChanged += new System.EventHandler(this.tbTimKiem_TextChanged);
+            this.tbTimKiem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTimKiem_KeyPress);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 394);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(52, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Tìm kiếm:";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
@@ -349,77 +422,6 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách hóa đơn";
-            // 
-            // cbTenKhachHang
-            // 
-            this.cbTenKhachHang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTenKhachHang.FormattingEnabled = true;
-            this.cbTenKhachHang.Location = new System.Drawing.Point(118, 92);
-            this.cbTenKhachHang.Name = "cbTenKhachHang";
-            this.cbTenKhachHang.Size = new System.Drawing.Size(174, 21);
-            this.cbTenKhachHang.TabIndex = 26;
-            this.cbTenKhachHang.SelectedIndexChanged += new System.EventHandler(this.cbTenKhachHang_SelectedIndexChanged);
-            // 
-            // cbTenNhanVien
-            // 
-            this.cbTenNhanVien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTenNhanVien.FormattingEnabled = true;
-            this.cbTenNhanVien.Location = new System.Drawing.Point(118, 154);
-            this.cbTenNhanVien.Name = "cbTenNhanVien";
-            this.cbTenNhanVien.Size = new System.Drawing.Size(174, 21);
-            this.cbTenNhanVien.TabIndex = 27;
-            this.cbTenNhanVien.SelectedIndexChanged += new System.EventHandler(this.cbTenNhanVien_SelectedIndexChanged);
-            // 
-            // btnThanhToan
-            // 
-            this.btnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThanhToan.Location = new System.Drawing.Point(9, 369);
-            this.btnThanhToan.Name = "btnThanhToan";
-            this.btnThanhToan.Size = new System.Drawing.Size(95, 38);
-            this.btnThanhToan.TabIndex = 28;
-            this.btnThanhToan.Text = "Thanh toán đơn hàng";
-            this.btnThanhToan.UseVisualStyleBackColor = true;
-            this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
-            // 
-            // tbTongTien
-            // 
-            this.tbTongTien.Location = new System.Drawing.Point(118, 292);
-            this.tbTongTien.Name = "tbTongTien";
-            this.tbTongTien.ReadOnly = true;
-            this.tbTongTien.Size = new System.Drawing.Size(133, 20);
-            this.tbTongTien.TabIndex = 30;
-            this.tbTongTien.Text = "0";
-            this.tbTongTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(15, 292);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(55, 13);
-            this.label11.TabIndex = 29;
-            this.label11.Text = "Tổng tiền:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(257, 295);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(30, 13);
-            this.label12.TabIndex = 31;
-            this.label12.Text = "VND";
-            // 
-            // btnXuatHoaDon
-            // 
-            this.btnXuatHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXuatHoaDon.Location = new System.Drawing.Point(9, 369);
-            this.btnXuatHoaDon.Name = "btnXuatHoaDon";
-            this.btnXuatHoaDon.Size = new System.Drawing.Size(95, 38);
-            this.btnXuatHoaDon.TabIndex = 32;
-            this.btnXuatHoaDon.Text = "Xuất hóa đơn";
-            this.btnXuatHoaDon.UseVisualStyleBackColor = true;
-            this.btnXuatHoaDon.Visible = false;
-            this.btnXuatHoaDon.Click += new System.EventHandler(this.btnXuatHoaDon_Click);
             // 
             // DonHangForm
             // 

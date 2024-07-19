@@ -125,6 +125,7 @@
             this.ngayGiaoHang.Name = "ngayGiaoHang";
             this.ngayGiaoHang.Size = new System.Drawing.Size(100, 20);
             this.ngayGiaoHang.TabIndex = 17;
+            this.ngayGiaoHang.ValueChanged += new System.EventHandler(this.ngayGiaoHang_ValueChanged);
             // 
             // ngayDatHang
             // 

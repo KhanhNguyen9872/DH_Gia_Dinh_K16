@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExampleLogin.src.Library;
+using System;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -19,7 +20,13 @@ namespace ExampleLogin
 
             update(25);
             set("Connecting to server....");
-            LoginForm main = new LoginForm();
+            String server = "DESKTOP-UI9AO8H";
+            String db = "Nhom1";
+            // String user = "root";
+            // String passwd = "root";
+            SQLToolBox connSQL = new SQLToolBox(server, db);
+            connSQL.Connect();
+            LoginForm main = new LoginForm(connSQL);
             update(45);
 
             set("Loading form....");

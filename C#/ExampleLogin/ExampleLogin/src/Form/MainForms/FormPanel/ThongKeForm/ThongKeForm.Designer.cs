@@ -30,14 +30,12 @@
         {
             this.ControlTab = new System.Windows.Forms.TabControl();
             this.tabDoanhThu = new System.Windows.Forms.TabPage();
-            this.tabLuong = new System.Windows.Forms.TabPage();
             this.ControlTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // ControlTab
             // 
             this.ControlTab.Controls.Add(this.tabDoanhThu);
-            this.ControlTab.Controls.Add(this.tabLuong);
             this.ControlTab.Location = new System.Drawing.Point(2, 1);
             this.ControlTab.MaximumSize = new System.Drawing.Size(938, 446);
             this.ControlTab.MinimumSize = new System.Drawing.Size(938, 446);
@@ -55,16 +53,6 @@
             this.tabDoanhThu.TabIndex = 0;
             this.tabDoanhThu.Text = "Doanh thu";
             this.tabDoanhThu.UseVisualStyleBackColor = true;
-            // 
-            // tabLuong
-            // 
-            this.tabLuong.Location = new System.Drawing.Point(4, 22);
-            this.tabLuong.Name = "tabLuong";
-            this.tabLuong.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLuong.Size = new System.Drawing.Size(906, 395);
-            this.tabLuong.TabIndex = 1;
-            this.tabLuong.Text = "Lương";
-            this.tabLuong.UseVisualStyleBackColor = true;
             // 
             // ThongKeForm
             // 
@@ -91,6 +79,5 @@
 
         private System.Windows.Forms.TabControl ControlTab;
         private System.Windows.Forms.TabPage tabDoanhThu;
-        private System.Windows.Forms.TabPage tabLuong;
     }
 }

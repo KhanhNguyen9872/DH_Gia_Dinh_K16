@@ -11,6 +11,7 @@ namespace ExampleLogin
         private SQLToolBox connSQL;
         private string tableName = "ChiTietDatHang";
         private string MaDH;
+        private long tongTien = 0;
 
         public ThongTinDonHangForm(SQLToolBox connSQL, string MaDH)
         {
@@ -131,13 +132,21 @@ namespace ExampleLogin
                 }
             }
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaDH, MaLK, SoLuong) VALUES (@MaDH, @MaLK, @SoLuong);");
+            SqlCommand cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaDH, MaLK, SoLuong, BaoHanh, KhuyenMai, ThanhTien) VALUES (@MaDH, @MaLK, @SoLuong, @BaoHanh, @KhuyenMai, @ThanhTien);");
             cmd.Parameters.AddWithValue("@MaDH", this.MaDH);
             cmd.Parameters.AddWithValue("@MaLK", maLK);
             cmd.Parameters.AddWithValue("@SoLuong", soLuong);
-
+            cmd.Parameters.AddWithValue("@BaoHanh", numBaoHanh.Value);
+            cmd.Parameters.AddWithValue("@KhuyenMai", numKhuyenMai.Value);
+            cmd.Parameters.AddWithValue("@ThanhTien", tbTongTien.Text);
+            
             if (this.connSQL.Execute(cmd))
             {
+                this.tinhTongTien();
+                cmd = new SqlCommand("UPDATE DonDatHang SET TongTien = @TongTien WHERE (MaDH = @MaDH);");
+                cmd.Parameters.AddWithValue("@MaDH", this.MaDH);
+                cmd.Parameters.AddWithValue("@TongTien", this.tongTien);
+                this.connSQL.Execute(cmd);
                 this.ThongTinDonHangForm_Load(sender, e);
             }
             else
@@ -162,13 +171,21 @@ namespace ExampleLogin
                 }
             }
 
-            SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " SET MaLK = @MaLK, SoLuong = @SoLuong WHERE (MaDH = @MaDH);");
+            SqlCommand cmd = new SqlCommand("UPDATE " + this.tableName + " SET MaLK = @MaLK, SoLuong = @SoLuong, BaoHanh = @BaoHanh, KhuyenMai = @KhuyenMai, ThanhTien = @ThanhTien WHERE (MaDH = @MaDH);");
             cmd.Parameters.AddWithValue("@MaDH", this.MaDH);
             cmd.Parameters.AddWithValue("@MaLK", maLK);
             cmd.Parameters.AddWithValue("@SoLuong", soLuong);
+            cmd.Parameters.AddWithValue("@BaoHanh", numBaoHanh.Value);
+            cmd.Parameters.AddWithValue("@KhuyenMai", numKhuyenMai.Value);
+            cmd.Parameters.AddWithValue("@ThanhTien", tbTongTien.Text);
 
             if (this.connSQL.Execute(cmd))
             {
+                this.tinhTongTien();
+                cmd = new SqlCommand("UPDATE DonDatHang SET TongTien = @TongTien WHERE (MaDH = @MaDH);");
+                cmd.Parameters.AddWithValue("@MaDH", this.MaDH);
+                cmd.Parameters.AddWithValue("@TongTien", this.tongTien);
+                this.connSQL.Execute(cmd);
                 this.ThongTinDonHangForm_Load(sender, e);
             }
             else
@@ -193,6 +210,11 @@ namespace ExampleLogin
 
             if (this.connSQL.Execute(cmd))
             {
+                this.tinhTongTien();
+                cmd = new SqlCommand("UPDATE DonDatHang SET TongTien = @TongTien WHERE (MaDH = @MaDH);");
+                cmd.Parameters.AddWithValue("@MaDH", this.MaDH);
+                cmd.Parameters.AddWithValue("@TongTien", this.tongTien);
+                this.connSQL.Execute(cmd);
                 this.ThongTinDonHangForm_Load(sender, e);
             }
             else
@@ -208,22 +230,26 @@ namespace ExampleLogin
 
         private void btnTinhTongTien_Click(object sender, EventArgs e)
         {
-            long tongTien = 0;
+            this.tinhTongTien();
+            MessageBox.Show("Tổng số tiền đơn hàng (" + this.MaDH + "): " + this.tongTien.ToString() + " VND", "Tổng tiền đơn hàng", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void tinhTongTien()
+        {
+            this.tongTien = 0;
             SqlCommand cmd = new SqlCommand("select * from " + this.tableName + " where (MaDH = @MaDH);");
             cmd.Parameters.AddWithValue("@MaDH", this.MaDH);
             SQLTable table = this.connSQL.Select(cmd);
             table.removeColumn("MaDH");
 
             SQLTable tmp = null;
-            for(int i = 0; i < table.Count; i++)
+            for (int i = 0; i < table.Count; i++)
             {
                 cmd = new SqlCommand("select Gia from LinhKien where (MaLK = @MaLK);");
                 cmd.Parameters.AddWithValue("@MaLK", table.Row(i).Column("MaLK"));
                 tmp = this.connSQL.Select(cmd);
-                tongTien = tongTien + (long)((Convert.ToInt32(tmp.Row(0).Column(0)) * Convert.ToInt32(table.Row(i).Column("SoLuong"))) / 100) * (100 - Convert.ToInt32(table.Row(i).Column("KhuyenMai")));
+                this.tongTien = this.tongTien + (long)((Convert.ToInt32(tmp.Row(0).Column(0)) * Convert.ToInt32(table.Row(i).Column("SoLuong"))) / 100) * (100 - Convert.ToInt32(table.Row(i).Column("KhuyenMai")));
             }
-
-            MessageBox.Show("Tổng số tiền đơn hàng (" + this.MaDH + "): " + tongTien.ToString() + " VND", "Tổng tiền đơn hàng", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void numKhuyenMai_ValueChanged(object sender, EventArgs e)

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Windows.Forms;
+using ExampleLogin.src.CrystalReport;
 
 namespace ExampleLogin
 {
@@ -27,6 +28,7 @@ namespace ExampleLogin
             this.loadData();
             this.wipeInput();
             this.generateMaDonHang();
+            this.isSelected = false;
         }
 
         private void generateMaDonHang()
@@ -278,6 +280,7 @@ namespace ExampleLogin
 
             ThongTinDonHangForm fm = new ThongTinDonHangForm(this.connSQL, tbMaDonHang.Text);
             fm.ShowDialog();
+            this.loadData();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -457,8 +460,30 @@ namespace ExampleLogin
                 return;
             }
 
-            XuatHoaDonForm fm = new XuatHoaDonForm(this.connSQL, tbMaDonHang.Text);
+            SqlCommand cmd = new SqlCommand("select KhachHang.MaKH, KhachHang.TenKH, ChiTietDatHang.*  from DonDatHang  join ChiTietDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH  join KhachHang on KhachHang.MaKH = DonDatHang.MaKH  where DonDatHang.MaDH = @MaDH");
+            cmd.Parameters.AddWithValue("@MaDH", tbMaDonHang.Text);
+
+            XuatHoaDonCrystalReport xuatHoaDonCrystalReport = new XuatHoaDonCrystalReport();
+            XuatHoaDonForm fm = new XuatHoaDonForm();
+            xuatHoaDonCrystalReport.SetDataSource(this.connSQL.Select(cmd).getDataTable());
+            fm.crystalReportViewer1.ReportSource = xuatHoaDonCrystalReport;
             fm.ShowDialog();
+        }
+
+        private void ngayDatHang_ValueChanged(object sender, EventArgs e)
+        {
+            if (ngayDatHang.Value > ngayGiaoHang.Value)
+            {
+                ngayGiaoHang.Value = ngayDatHang.Value;
+            }
+        }
+
+        private void ngayGiaoHang_ValueChanged(object sender, EventArgs e)
+        {
+            if (ngayDatHang.Value > ngayGiaoHang.Value)
+            {
+                ngayDatHang.Value = ngayGiaoHang.Value;
+            }
         }
     }
 }

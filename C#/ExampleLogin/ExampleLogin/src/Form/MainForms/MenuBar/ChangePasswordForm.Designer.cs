@@ -216,7 +216,9 @@
             this.Controls.Add(this.tbUsername);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(314, 300);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(314, 300);
             this.Name = "ChangePasswordForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

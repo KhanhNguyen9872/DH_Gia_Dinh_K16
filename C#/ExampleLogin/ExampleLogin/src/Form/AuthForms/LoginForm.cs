@@ -8,18 +8,14 @@ namespace ExampleLogin
 {
     public partial class LoginForm : Form
     {
-        private SQLToolBox connSQL = null;
+        private SQLToolBox connSQL;
         private bool noAskExit = false;
-        public LoginForm()
+
+        public LoginForm(SQLToolBox connSQL)
         {
             InitializeComponent();
-            String server = "DESKTOP-UI9AO8H";
-            String db = "Nhom1";
-            // String user = "root";
-            // String passwd = "root";
-            this.connSQL = new SQLToolBox(server, db);
-            this.connSQL.Connect();
             this.Hide();
+            this.connSQL = connSQL;
         }
 
         private void btnQuit_Click(object sender, EventArgs e)

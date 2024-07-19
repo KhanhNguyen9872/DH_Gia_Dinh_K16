@@ -30,7 +30,7 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbTongDoanhThu = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
@@ -55,9 +55,12 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(6, 21);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(484, 337);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -71,16 +74,16 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "TỔNG DOANH THU:";
             // 
-            // textBox1
+            // tbTongDoanhThu
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(235, 364);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(147, 23);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "0";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbTongDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTongDoanhThu.Location = new System.Drawing.Point(235, 364);
+            this.tbTongDoanhThu.Name = "tbTongDoanhThu";
+            this.tbTongDoanhThu.ReadOnly = true;
+            this.tbTongDoanhThu.Size = new System.Drawing.Size(147, 23);
+            this.tbTongDoanhThu.TabIndex = 2;
+            this.tbTongDoanhThu.Text = "0";
+            this.tbTongDoanhThu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label2
             // 
@@ -127,7 +130,7 @@
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.tbTongDoanhThu);
             this.groupBox1.Location = new System.Drawing.Point(422, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(496, 396);
@@ -205,6 +208,7 @@
             this.dateTimeDen.Name = "dateTimeDen";
             this.dateTimeDen.Size = new System.Drawing.Size(101, 20);
             this.dateTimeDen.TabIndex = 13;
+            this.dateTimeDen.ValueChanged += new System.EventHandler(this.dateTimeDen_ValueChanged);
             // 
             // label6
             // 
@@ -223,6 +227,7 @@
             this.dateTimeTu.Name = "dateTimeTu";
             this.dateTimeTu.Size = new System.Drawing.Size(101, 20);
             this.dateTimeTu.TabIndex = 11;
+            this.dateTimeTu.ValueChanged += new System.EventHandler(this.dateTimeTu_ValueChanged);
             // 
             // label5
             // 
@@ -291,7 +296,7 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbTongDoanhThu;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnRefresh;

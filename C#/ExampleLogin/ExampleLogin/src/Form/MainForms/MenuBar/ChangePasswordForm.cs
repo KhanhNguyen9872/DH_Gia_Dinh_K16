@@ -30,7 +30,6 @@ namespace ExampleLogin
 
         private void btnQuit_Click(object sender, EventArgs e)
         {
-            this.Close();
             this.Dispose();
         }
 
@@ -84,6 +83,7 @@ namespace ExampleLogin
                 if (string.IsNullOrEmpty(s))
                 {
                     MessageBox.Show("Thông tin không được để trống!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.captcha.renew();
                     return;
                 }
             }

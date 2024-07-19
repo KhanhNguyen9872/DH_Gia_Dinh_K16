@@ -466,5 +466,13 @@ namespace ExampleLogin
             cmd.Parameters.AddWithValue("@TenKH", cbTenKhachHang.Text);
             Library.setComboBox(cbMaKhachHang, this.connSQL.Select(cmd).Row(0).Column(0));
         }
+
+        private void ngayGiaoHang_ValueChanged(object sender, EventArgs e)
+        {
+            if (ngayDatHang.Value > ngayGiaoHang.Value)
+            {
+                ngayGiaoHang.Value = ngayDatHang.Value;
+            }
+        }
     }
 }
