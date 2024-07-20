@@ -82,8 +82,16 @@ namespace QLThuVien_Buoi9
                 }
                 str = str + "NhaXuatBan = N'" + nhaXuatBan + "'";
             }
+            SQLTable table = this.connSQL.Select(str);
+            if (table.Count > 0)
+            {
+                btnSubmit.Enabled = true;
+            } else
+            {
+                btnSubmit.Enabled = false;
+            }
 
-            dataGridView1.DataSource = this.connSQL.Select(str).getDataTable();
+            dataGridView1.DataSource = table.getDataTable();
         }
 
         private bool inComboBox(ComboBox cb, string v)

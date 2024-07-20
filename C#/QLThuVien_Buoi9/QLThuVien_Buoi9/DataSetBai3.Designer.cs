@@ -291,6 +291,10 @@ namespace QLThuVien_Buoi9 {
             
             private global::System.Data.DataColumn columnTriGia;
             
+            private global::System.Data.DataColumn columnHoTenDocGia;
+            
+            private global::System.Data.DataColumn columnMaDocGia;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public DSSachDataTable() {
@@ -374,6 +378,22 @@ namespace QLThuVien_Buoi9 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn HoTenDocGiaColumn {
+                get {
+                    return this.columnHoTenDocGia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaDocGiaColumn {
+                get {
+                    return this.columnMaDocGia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -409,7 +429,7 @@ namespace QLThuVien_Buoi9 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DSSachRow AddDSSachRow(string MaSach, string TenSach, string TacGia, string NhaXuatBan, string NamXuatBan, string TriGia) {
+            public DSSachRow AddDSSachRow(string MaSach, string TenSach, string TacGia, string NhaXuatBan, string NamXuatBan, string TriGia, string HoTenDocGia, string MaDocGia) {
                 DSSachRow rowDSSachRow = ((DSSachRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaSach,
@@ -417,7 +437,9 @@ namespace QLThuVien_Buoi9 {
                         TacGia,
                         NhaXuatBan,
                         NamXuatBan,
-                        TriGia};
+                        TriGia,
+                        HoTenDocGia,
+                        MaDocGia};
                 rowDSSachRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDSSachRow);
                 return rowDSSachRow;
@@ -446,6 +468,8 @@ namespace QLThuVien_Buoi9 {
                 this.columnNhaXuatBan = base.Columns["NhaXuatBan"];
                 this.columnNamXuatBan = base.Columns["NamXuatBan"];
                 this.columnTriGia = base.Columns["TriGia"];
+                this.columnHoTenDocGia = base.Columns["HoTenDocGia"];
+                this.columnMaDocGia = base.Columns["MaDocGia"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -463,6 +487,10 @@ namespace QLThuVien_Buoi9 {
                 base.Columns.Add(this.columnNamXuatBan);
                 this.columnTriGia = new global::System.Data.DataColumn("TriGia", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTriGia);
+                this.columnHoTenDocGia = new global::System.Data.DataColumn("HoTenDocGia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHoTenDocGia);
+                this.columnMaDocGia = new global::System.Data.DataColumn("MaDocGia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaDocGia);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -701,6 +729,38 @@ namespace QLThuVien_Buoi9 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string HoTenDocGia {
+                get {
+                    try {
+                        return ((string)(this[this.tableDSSach.HoTenDocGiaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HoTenDocGia\' in table \'DSSach\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDSSach.HoTenDocGiaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string MaDocGia {
+                get {
+                    try {
+                        return ((string)(this[this.tableDSSach.MaDocGiaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaDocGia\' in table \'DSSach\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDSSach.MaDocGiaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsMaSachNull() {
                 return this.IsNull(this.tableDSSach.MaSachColumn);
             }
@@ -769,6 +829,30 @@ namespace QLThuVien_Buoi9 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTriGiaNull() {
                 this[this.tableDSSach.TriGiaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsHoTenDocGiaNull() {
+                return this.IsNull(this.tableDSSach.HoTenDocGiaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetHoTenDocGiaNull() {
+                this[this.tableDSSach.HoTenDocGiaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaDocGiaNull() {
+                return this.IsNull(this.tableDSSach.MaDocGiaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaDocGiaNull() {
+                this[this.tableDSSach.MaDocGiaColumn] = global::System.Convert.DBNull;
             }
         }
         

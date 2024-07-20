@@ -33,7 +33,17 @@ namespace QLThuVien_Buoi9
                 str = str + " where MaDocGia = '" + maDocGia + "'";
             }
 
-            dataGridView1.DataSource = this.connSQL.Select(str).getDataTable();
+            SQLTable table = this.connSQL.Select(str);
+            if (table.Count > 0)
+            {
+                btnSubmit.Enabled = true;
+            }
+            else
+            {
+                btnSubmit.Enabled = false;
+            }
+
+            dataGridView1.DataSource = table.getDataTable();
         }
 
         private void Bai1Form_Load(object sender, EventArgs e)

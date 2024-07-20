@@ -23,7 +23,7 @@ namespace QLThuVien_Buoi9
 
         private void reloadData()
         {
-            string str = "select distinct SACH.* from CHITIETPHIEUMUON  left join SACH on SACH.MaSach = CHITIETPHIEUMUON.MaSach  left join PHIEUMUONSACH on PHIEUMUONSACH.MaPhieuMuon = CHITIETPHIEUMUON.MaPhieuMuon  left join DOCGIA on DOCGIA.MaDocGia = PHIEUMUONSACH.MaDocGia ";
+            string str = "select distinct SACH.*,DOCGIA.MaDocGia, DOCGIA.HoTenDocGia from CHITIETPHIEUMUON  left join SACH on SACH.MaSach = CHITIETPHIEUMUON.MaSach  left join PHIEUMUONSACH on PHIEUMUONSACH.MaPhieuMuon = CHITIETPHIEUMUON.MaPhieuMuon  left join DOCGIA on DOCGIA.MaDocGia = PHIEUMUONSACH.MaDocGia ";
             string maDocGia = cbMaDocGia.Text;
             string tenDocGia = cbTenDocGia.Text;
 
@@ -42,7 +42,14 @@ namespace QLThuVien_Buoi9
             }
 
             SQLTable table = this.connSQL.Select(str);
-            table.removeColumn("NgayNhap");
+            if (table.Count > 0)
+            {
+                table.removeColumn("NgayNhap");
+            }
+            else
+            {
+                btnSubmit.Enabled = false;
+            }
             dataGridView1.DataSource = table.getDataTable();
         }
 
