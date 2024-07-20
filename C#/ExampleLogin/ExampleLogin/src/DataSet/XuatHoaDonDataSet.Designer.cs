@@ -297,6 +297,8 @@ namespace ExampleLogin.src.DataSet {
             
             private global::System.Data.DataColumn columnThanhTien;
             
+            private global::System.Data.DataColumn columnNgayDatHang;
+            
             private global::System.Data.DataColumn columnTongTien;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -406,6 +408,14 @@ namespace ExampleLogin.src.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NgayDatHangColumn {
+                get {
+                    return this.columnNgayDatHang;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn TongTienColumn {
                 get {
                     return this.columnTongTien;
@@ -449,7 +459,7 @@ namespace ExampleLogin.src.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public HoaDonRow AddHoaDonRow(string MaDH, string MaKH, string TenKH, string MaLK, string TenLK, string SoLuong, string BaoHanh, string KhuyenMai, string ThanhTien, string TongTien) {
+            public HoaDonRow AddHoaDonRow(string MaDH, string MaKH, string TenKH, string MaLK, string TenLK, string SoLuong, string BaoHanh, string KhuyenMai, string ThanhTien, string NgayDatHang, string TongTien) {
                 HoaDonRow rowHoaDonRow = ((HoaDonRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaDH,
@@ -461,6 +471,7 @@ namespace ExampleLogin.src.DataSet {
                         BaoHanh,
                         KhuyenMai,
                         ThanhTien,
+                        NgayDatHang,
                         TongTien};
                 rowHoaDonRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowHoaDonRow);
@@ -493,6 +504,7 @@ namespace ExampleLogin.src.DataSet {
                 this.columnBaoHanh = base.Columns["BaoHanh"];
                 this.columnKhuyenMai = base.Columns["KhuyenMai"];
                 this.columnThanhTien = base.Columns["ThanhTien"];
+                this.columnNgayDatHang = base.Columns["NgayDatHang"];
                 this.columnTongTien = base.Columns["TongTien"];
             }
             
@@ -517,6 +529,8 @@ namespace ExampleLogin.src.DataSet {
                 base.Columns.Add(this.columnKhuyenMai);
                 this.columnThanhTien = new global::System.Data.DataColumn("ThanhTien", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnThanhTien);
+                this.columnNgayDatHang = new global::System.Data.DataColumn("NgayDatHang", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNgayDatHang);
                 this.columnTongTien = new global::System.Data.DataColumn("TongTien", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTongTien);
             }
@@ -805,6 +819,22 @@ namespace ExampleLogin.src.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string NgayDatHang {
+                get {
+                    try {
+                        return ((string)(this[this.tableHoaDon.NgayDatHangColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NgayDatHang\' in table \'HoaDon\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHoaDon.NgayDatHangColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string TongTien {
                 get {
                     try {
@@ -925,6 +955,18 @@ namespace ExampleLogin.src.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetThanhTienNull() {
                 this[this.tableHoaDon.ThanhTienColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsNgayDatHangNull() {
+                return this.IsNull(this.tableHoaDon.NgayDatHangColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetNgayDatHangNull() {
+                this[this.tableHoaDon.NgayDatHangColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

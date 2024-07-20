@@ -85,7 +85,7 @@ namespace ExampleLogin
                 this.isSuccess = true;
                 if (MessageBox.Show("Thanh toán thành công\nBạn có muốn xuất hóa đơn không?", "THÀNH CÔNG", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    cmd = new SqlCommand("select KhachHang.MaKH, KhachHang.TenKH, ChiTietDatHang.*, LinhKien.TenLK   from DonDatHang  join ChiTietDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH  join LinhKien on LinhKien.MaLK = ChiTietDatHang.MaLK  join KhachHang on KhachHang.MaKH = DonDatHang.MaKH  where DonDatHang.MaDH = @MaDH");
+                    cmd = new SqlCommand("select KhachHang.MaKH, KhachHang.TenKH, ChiTietDatHang.*, LinhKien.TenLK, DonDatHang.NgayDatHang   from DonDatHang  join ChiTietDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH  join LinhKien on LinhKien.MaLK = ChiTietDatHang.MaLK  join KhachHang on KhachHang.MaKH = DonDatHang.MaKH  where DonDatHang.MaDH = @MaDH");
                     cmd.Parameters.AddWithValue("@MaDH", this.MaDH);
 
                     XuatHoaDonCrystalReport xuatHoaDonCrystalReport = new XuatHoaDonCrystalReport();
@@ -101,6 +101,8 @@ namespace ExampleLogin
                     fm.crystalReportViewer1.ReportSource = xuatHoaDonCrystalReport;
                     this.Hide();
                     fm.ShowDialog();
+                    xuatHoaDonCrystalReport.Dispose();
+                    fm.Dispose();
                 }
                 
                 this.Close();

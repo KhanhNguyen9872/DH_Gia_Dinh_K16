@@ -490,7 +490,7 @@ namespace ExampleLogin
                 return;
             }
 
-            SqlCommand cmd = new SqlCommand("select KhachHang.MaKH, KhachHang.TenKH, ChiTietDatHang.*, LinhKien.TenLK   from DonDatHang  join ChiTietDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH  join LinhKien on LinhKien.MaLK = ChiTietDatHang.MaLK  join KhachHang on KhachHang.MaKH = DonDatHang.MaKH  where DonDatHang.MaDH = @MaDH");
+            SqlCommand cmd = new SqlCommand("select KhachHang.MaKH, KhachHang.TenKH, ChiTietDatHang.*, LinhKien.TenLK, DonDatHang.NgayDatHang   from DonDatHang  join ChiTietDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH  join LinhKien on LinhKien.MaLK = ChiTietDatHang.MaLK  join KhachHang on KhachHang.MaKH = DonDatHang.MaKH  where DonDatHang.MaDH = @MaDH");
             cmd.Parameters.AddWithValue("@MaDH", tbMaDonHang.Text);
 
             XuatHoaDonCrystalReport xuatHoaDonCrystalReport = new XuatHoaDonCrystalReport();
@@ -505,6 +505,8 @@ namespace ExampleLogin
             xuatHoaDonCrystalReport.SetDataSource(table.getDataTable());
             fm.crystalReportViewer1.ReportSource = xuatHoaDonCrystalReport;
             fm.ShowDialog();
+            xuatHoaDonCrystalReport.Dispose();
+            fm.Dispose();
         }
 
         private void ngayDatHang_ValueChanged(object sender, EventArgs e)
