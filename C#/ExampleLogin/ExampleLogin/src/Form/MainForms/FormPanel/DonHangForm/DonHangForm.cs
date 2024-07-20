@@ -16,11 +16,13 @@ namespace ExampleLogin
         private SQLToolBox connSQL;
         private string tableName = "DonDatHang";
         private bool isSelected = false;
+        private string accountName;
 
-        public DonHangForm(SQLToolBox connSQL)
+        public DonHangForm(SQLToolBox connSQL, string accountName)
         {
             InitializeComponent();
             this.connSQL = connSQL;
+            this.accountName = accountName;
         }
 
         private void HoaDonForm_Load(object sender, EventArgs e)
@@ -29,6 +31,19 @@ namespace ExampleLogin
             this.wipeInput();
             this.generateMaDonHang();
             this.isSelected = false;
+
+            if (!Library.isAdmin(this.connSQL, this.accountName)) {
+                cbMaNhanVien.Enabled = false;
+                cbTenNhanVien.Enabled = false;
+            }
+        }
+
+        private string getMaNV(string accountName)
+        {
+            if (!this.connSQL.State()) this.connSQL.Connect();
+            SqlCommand cmd = new SqlCommand("select MaNV from account where (username = @username)");
+            cmd.Parameters.AddWithValue("@username", accountName);
+            return this.connSQL.Select(cmd).Row(0).Column(0);
         }
 
         private void generateMaDonHang()
@@ -86,6 +101,8 @@ namespace ExampleLogin
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
+
+            Library.setComboBox(cbMaNhanVien, getMaNV(this.accountName));
         }
 
         private void loadData()
@@ -130,7 +147,20 @@ namespace ExampleLogin
             }
 
             // load datagridview
-            table = this.connSQL.Select("select " + this.tableName +".*, ThongTinThanhToan.TinhTrang as DaThanhToan from " + this.tableName + " left join ThongTinThanhToan on ThongTinThanhToan.MaDH=" + this.tableName +".MaDH;");
+            string sql = "select " + this.tableName + ".*, ThongTinThanhToan.TinhTrang as DaThanhToan from " + this.tableName + " left join ThongTinThanhToan on ThongTinThanhToan.MaDH=" + this.tableName + ".MaDH ";
+            bool isAdmin = Library.isAdmin(this.connSQL, this.accountName);
+            if (!isAdmin)
+            {
+                sql = sql + " where (MaNV = @MaNV)";
+            }
+            SqlCommand cmd = new SqlCommand(sql);
+            if (!isAdmin)
+            {
+                cmd.Parameters.AddWithValue("@MaNV", getMaNV(this.accountName));
+            }
+
+            if (!this.connSQL.State()) this.connSQL.Connect();
+            table = this.connSQL.Select(cmd);
             Library.setDataSource(dataGridView1, table.getDataTable());
 
             // search

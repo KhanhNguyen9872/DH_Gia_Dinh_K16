@@ -1,26 +1,21 @@
 ﻿using ExampleLogin.src.Library;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace ExampleLogin
 {
     public partial class BanHangForm : Form
     {
         private SQLToolBox connSQL;
+        private string accountName;
 
-        public BanHangForm(SQLToolBox connSQL)
+        public BanHangForm(SQLToolBox connSQL, string accountName)
         {
             InitializeComponent();
             this.connSQL = connSQL;
+            this.accountName = accountName;
         }
 
         private void cbMaNhanVien_SelectedIndexChanged(object sender, EventArgs e)
@@ -98,8 +93,18 @@ namespace ExampleLogin
             ngayDatHang.Text = DateTime.Today.ToString();
             cbMaKhachHang.Enabled = true;
             cbTenKhachHang.Enabled = true;
-            cbMaNhanVien.Enabled = true;
-            cbTenNhanVien.Enabled = true;
+
+            if (Library.isAdmin(this.connSQL, this.accountName))
+            {
+                cbMaNhanVien.Enabled = true;
+                cbTenNhanVien.Enabled = true;
+            }
+
+            if (!this.connSQL.State()) this.connSQL.Connect();
+            SqlCommand cmd = new SqlCommand("select MaNV from account where (username = @username)");
+            cmd.Parameters.AddWithValue("@username", this.accountName);
+            Library.setComboBox(cbMaNhanVien, this.connSQL.Select(cmd).Row(0).Column(0));
+
             ngayGiaoHang.Enabled = true;
             tbNoiNhan.Enabled = true;
 

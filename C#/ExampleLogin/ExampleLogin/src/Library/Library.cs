@@ -134,15 +134,24 @@ namespace ExampleLogin.src.Library
         {
             bool b = false;
             if (!connSQL.State()) connSQL.Connect();
-
+            SQLTable table;
             SqlCommand cmd = new SqlCommand("select MaNV from account where (username = @username);");
             cmd.Parameters.AddWithValue("@username", accountName);
-            string MaNV = connSQL.Select(cmd).Row(0).Column(0);
+            table = connSQL.Select(cmd);
+            if (table.Count != 1)
+            {
+                return false;
+            }
+            string MaNV = table.Row(0).Column(0);
 
             cmd = new SqlCommand("select LaNhanSu from NhanVien where (MaNV = @MaNV);");
             cmd.Parameters.AddWithValue("@MaNV", MaNV);
-
-            int type = Convert.ToInt32(connSQL.Select(cmd).Row(0).Column(0));
+            table = connSQL.Select(cmd);
+            if (table.Count != 1)
+            {
+                return false;
+            }
+            int type = Convert.ToInt32(table.Row(0).Column(0));
             if ((type == 1) || (type == -1))
             {
                 b = true;

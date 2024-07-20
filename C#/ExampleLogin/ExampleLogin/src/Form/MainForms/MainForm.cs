@@ -191,7 +191,7 @@ namespace ExampleLogin
             {
                 if (this.listForm[this.btnOptionBanHang] == null)
                 {
-                    BanHangForm fm = new BanHangForm(this.connSQL);
+                    BanHangForm fm = new BanHangForm(this.connSQL, this.username);
                     fm.TopLevel = false;
                     fm.Size = new Size(this.panelForm.Width, this.panelForm.Height);
                     this.panelForm.Controls.Add(fm);
@@ -213,7 +213,7 @@ namespace ExampleLogin
             {
                 if (this.listForm[this.btnOptionHoadon] == null)
                 {
-                    DonHangForm fm = new DonHangForm(this.connSQL);
+                    DonHangForm fm = new DonHangForm(this.connSQL, this.username);
                     fm.TopLevel = false;
                     fm.Size = new Size(this.panelForm.Width, this.panelForm.Height);
                     this.panelForm.Controls.Add(fm);
