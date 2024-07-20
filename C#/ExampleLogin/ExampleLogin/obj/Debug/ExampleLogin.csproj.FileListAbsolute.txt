@@ -45,7 +45,6 @@ C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\Exampl
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.ChoosePTThanhToanForm.resources
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.ThanhToanDHForm.resources
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.XuatHoaDonForm.resources
-C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.ThongKeLuongForm.resources
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.ThongKeDoanhThuForm.resources
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
 C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\bin\Debug\CrystalDecisions.ReportSource.dll

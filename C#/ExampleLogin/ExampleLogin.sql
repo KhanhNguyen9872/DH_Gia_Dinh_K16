@@ -95,12 +95,6 @@ CREATE TABLE ThongTinThanhToan(
 	FOREIGN KEY (MaPhuongThuc) REFERENCES PhuongThucThanhToan(MaPhuongThuc)
 );
 
-CREATE TABLE XuatHoaDon(
-	MaHoaDon NVARCHAR(10) PRIMARY KEY,
-	MaDH NVARCHAR(10),
-	FOREIGN KEY (MaDH) REFERENCES DonDatHang(MaDH)
-);
-
 --Nhà cung cấp
 GO
 INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap, Email) VALUES 
@@ -270,18 +264,6 @@ INSERT INTO ThongTinThanhToan (MaDH, TinhTrang, MaPhuongThuc) VALUES
 (N'DH010', 0, N'PT002');
 --Xuat hoa don
 GO
-INSERT INTO XuatHoaDon (MaHoaDon, MaDH) VALUES
-(N'HD001', N'DH001'),
-(N'HD002', N'DH002'),
-(N'HD003', N'DH003'),
-(N'HD004', N'DH004'),
-(N'HD005', N'DH005'),
-(N'HD006', N'DH006'),
-(N'HD007', N'DH007'),
-(N'HD008', N'DH008'),
-(N'HD009', N'DH009'),
-(N'HD010', N'DH010');
-
 
 create table account (
 	username nvarchar(50) primary key,

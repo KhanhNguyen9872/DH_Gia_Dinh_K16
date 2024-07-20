@@ -10,11 +10,11 @@ namespace ExampleLogin
         private SQLToolBox connSQL;
         public Boolean Success = false;
 
-        public ThemLinhKienForm(SQLToolBox connSQL)
+        public ThemLinhKienForm(SQLToolBox connSQL, string MaDH)
         {
             InitializeComponent();
             this.connSQL = connSQL;
-
+            this.Text = "Thêm linh kiện | Mã đơn hàng " + MaDH;
             soLuong.TextChanged += new EventHandler(soLuong_ValueChanged);
             khuyenMai.TextChanged += new EventHandler(soLuong_ValueChanged);
         }

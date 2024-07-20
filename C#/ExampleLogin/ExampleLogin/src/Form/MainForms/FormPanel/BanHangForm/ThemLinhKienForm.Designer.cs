@@ -331,7 +331,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Thêm linh kiện mới";
+            this.Text = "Thêm linh kiện";
             this.Load += new System.EventHandler(this.ThemLinhKienForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

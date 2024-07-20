@@ -201,7 +201,7 @@ namespace ExampleLogin
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            ThemLinhKienForm fm = new ThemLinhKienForm(this.connSQL);
+            ThemLinhKienForm fm = new ThemLinhKienForm(this.connSQL, tbMaDonHang.Text);
             fm.ShowDialog();
             if (fm.Success)
             {
@@ -306,7 +306,7 @@ namespace ExampleLogin
                 return;
             }
 
-            ThemLinhKienForm fm = new ThemLinhKienForm(this.connSQL);
+            ThemLinhKienForm fm = new ThemLinhKienForm(this.connSQL, tbMaDonHang.Text);
             fm.Show();
             fm.Hide();
 
