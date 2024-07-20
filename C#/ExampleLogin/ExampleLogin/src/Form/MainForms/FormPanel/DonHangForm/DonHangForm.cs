@@ -490,12 +490,19 @@ namespace ExampleLogin
                 return;
             }
 
-            SqlCommand cmd = new SqlCommand("select KhachHang.MaKH, KhachHang.TenKH, ChiTietDatHang.*  from DonDatHang  join ChiTietDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH  join KhachHang on KhachHang.MaKH = DonDatHang.MaKH  where DonDatHang.MaDH = @MaDH");
+            SqlCommand cmd = new SqlCommand("select KhachHang.MaKH, KhachHang.TenKH, ChiTietDatHang.*, LinhKien.TenLK   from DonDatHang  join ChiTietDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH  join LinhKien on LinhKien.MaLK = ChiTietDatHang.MaLK  join KhachHang on KhachHang.MaKH = DonDatHang.MaKH  where DonDatHang.MaDH = @MaDH");
             cmd.Parameters.AddWithValue("@MaDH", tbMaDonHang.Text);
 
             XuatHoaDonCrystalReport xuatHoaDonCrystalReport = new XuatHoaDonCrystalReport();
             XuatHoaDonForm fm = new XuatHoaDonForm();
-            xuatHoaDonCrystalReport.SetDataSource(this.connSQL.Select(cmd).getDataTable());
+            SQLTable table = this.connSQL.Select(cmd);
+            long tongTien = 0;
+            for(int i = 0; i < table.Count; i++)
+            {
+                tongTien = tongTien + Convert.ToInt32(table.Row(i).Column("ThanhTien"));
+            }
+            table.addColumn("TongTien", tongTien.ToString());
+            xuatHoaDonCrystalReport.SetDataSource(table.getDataTable());
             fm.crystalReportViewer1.ReportSource = xuatHoaDonCrystalReport;
             fm.ShowDialog();
         }

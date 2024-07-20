@@ -380,6 +380,12 @@ namespace ExampleLogin
                 }
             }
 
+            if (dataGridView1.Rows.Count == 1)
+            {
+                MessageBox.Show("Chưa có linh kiện nào được mua!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             ChoosePTThanhToanForm fm = new ChoosePTThanhToanForm(this.connSQL);
             fm.ShowDialog();
             string maPttt = "";

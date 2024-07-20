@@ -1,4 +1,5 @@
-﻿using ExampleLogin.src.Library;
+﻿using ExampleLogin.src.CrystalReport;
+using ExampleLogin.src.Library;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -81,8 +82,27 @@ namespace ExampleLogin
             cmd.Parameters.AddWithValue("@MaDH", this.MaDH);
             if (this.connSQL.Execute(cmd))
             {
-                MessageBox.Show("Thanh toán thành công", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.isSuccess = true;
+                if (MessageBox.Show("Thanh toán thành công\nBạn có muốn xuất hóa đơn không?", "THÀNH CÔNG", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    cmd = new SqlCommand("select KhachHang.MaKH, KhachHang.TenKH, ChiTietDatHang.*, LinhKien.TenLK   from DonDatHang  join ChiTietDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH  join LinhKien on LinhKien.MaLK = ChiTietDatHang.MaLK  join KhachHang on KhachHang.MaKH = DonDatHang.MaKH  where DonDatHang.MaDH = @MaDH");
+                    cmd.Parameters.AddWithValue("@MaDH", this.MaDH);
+
+                    XuatHoaDonCrystalReport xuatHoaDonCrystalReport = new XuatHoaDonCrystalReport();
+                    XuatHoaDonForm fm = new XuatHoaDonForm();
+                    SQLTable table = this.connSQL.Select(cmd);
+                    long tongTien = 0;
+                    for (int i = 0; i < table.Count; i++)
+                    {
+                        tongTien = tongTien + Convert.ToInt32(table.Row(i).Column("ThanhTien"));
+                    }
+                    table.addColumn("TongTien", tongTien.ToString());
+                    xuatHoaDonCrystalReport.SetDataSource(table.getDataTable());
+                    fm.crystalReportViewer1.ReportSource = xuatHoaDonCrystalReport;
+                    this.Hide();
+                    fm.ShowDialog();
+                }
+                
                 this.Close();
             } else
             {

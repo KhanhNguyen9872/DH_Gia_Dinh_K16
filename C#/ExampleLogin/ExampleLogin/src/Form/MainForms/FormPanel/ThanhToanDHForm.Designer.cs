@@ -66,11 +66,11 @@
             // btnSubmit
             // 
             this.btnSubmit.ForeColor = System.Drawing.Color.Green;
-            this.btnSubmit.Location = new System.Drawing.Point(448, 250);
+            this.btnSubmit.Location = new System.Drawing.Point(402, 250);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(81, 23);
+            this.btnSubmit.Size = new System.Drawing.Size(127, 23);
             this.btnSubmit.TabIndex = 2;
-            this.btnSubmit.Text = "Thanh toán";
+            this.btnSubmit.Text = "Kiểm tra thanh toán";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 

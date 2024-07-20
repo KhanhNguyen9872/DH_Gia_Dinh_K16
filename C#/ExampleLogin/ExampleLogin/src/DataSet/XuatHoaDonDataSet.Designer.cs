@@ -287,6 +287,8 @@ namespace ExampleLogin.src.DataSet {
             
             private global::System.Data.DataColumn columnMaLK;
             
+            private global::System.Data.DataColumn columnTenLK;
+            
             private global::System.Data.DataColumn columnSoLuong;
             
             private global::System.Data.DataColumn columnBaoHanh;
@@ -294,6 +296,8 @@ namespace ExampleLogin.src.DataSet {
             private global::System.Data.DataColumn columnKhuyenMai;
             
             private global::System.Data.DataColumn columnThanhTien;
+            
+            private global::System.Data.DataColumn columnTongTien;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -362,6 +366,14 @@ namespace ExampleLogin.src.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TenLKColumn {
+                get {
+                    return this.columnTenLK;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn SoLuongColumn {
                 get {
                     return this.columnSoLuong;
@@ -389,6 +401,14 @@ namespace ExampleLogin.src.DataSet {
             public global::System.Data.DataColumn ThanhTienColumn {
                 get {
                     return this.columnThanhTien;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TongTienColumn {
+                get {
+                    return this.columnTongTien;
                 }
             }
             
@@ -429,17 +449,19 @@ namespace ExampleLogin.src.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public HoaDonRow AddHoaDonRow(string MaDH, string MaKH, string TenKH, string MaLK, string SoLuong, string BaoHanh, string KhuyenMai, string ThanhTien) {
+            public HoaDonRow AddHoaDonRow(string MaDH, string MaKH, string TenKH, string MaLK, string TenLK, string SoLuong, string BaoHanh, string KhuyenMai, string ThanhTien, string TongTien) {
                 HoaDonRow rowHoaDonRow = ((HoaDonRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MaDH,
                         MaKH,
                         TenKH,
                         MaLK,
+                        TenLK,
                         SoLuong,
                         BaoHanh,
                         KhuyenMai,
-                        ThanhTien};
+                        ThanhTien,
+                        TongTien};
                 rowHoaDonRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowHoaDonRow);
                 return rowHoaDonRow;
@@ -466,10 +488,12 @@ namespace ExampleLogin.src.DataSet {
                 this.columnMaKH = base.Columns["MaKH"];
                 this.columnTenKH = base.Columns["TenKH"];
                 this.columnMaLK = base.Columns["MaLK"];
+                this.columnTenLK = base.Columns["TenLK"];
                 this.columnSoLuong = base.Columns["SoLuong"];
                 this.columnBaoHanh = base.Columns["BaoHanh"];
                 this.columnKhuyenMai = base.Columns["KhuyenMai"];
                 this.columnThanhTien = base.Columns["ThanhTien"];
+                this.columnTongTien = base.Columns["TongTien"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -483,6 +507,8 @@ namespace ExampleLogin.src.DataSet {
                 base.Columns.Add(this.columnTenKH);
                 this.columnMaLK = new global::System.Data.DataColumn("MaLK", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMaLK);
+                this.columnTenLK = new global::System.Data.DataColumn("TenLK", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTenLK);
                 this.columnSoLuong = new global::System.Data.DataColumn("SoLuong", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSoLuong);
                 this.columnBaoHanh = new global::System.Data.DataColumn("BaoHanh", typeof(string), null, global::System.Data.MappingType.Element);
@@ -491,6 +517,8 @@ namespace ExampleLogin.src.DataSet {
                 base.Columns.Add(this.columnKhuyenMai);
                 this.columnThanhTien = new global::System.Data.DataColumn("ThanhTien", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnThanhTien);
+                this.columnTongTien = new global::System.Data.DataColumn("TongTien", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTongTien);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -697,6 +725,22 @@ namespace ExampleLogin.src.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string TenLK {
+                get {
+                    try {
+                        return ((string)(this[this.tableHoaDon.TenLKColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TenLK\' in table \'HoaDon\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHoaDon.TenLKColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string SoLuong {
                 get {
                     try {
@@ -761,6 +805,22 @@ namespace ExampleLogin.src.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string TongTien {
+                get {
+                    try {
+                        return ((string)(this[this.tableHoaDon.TongTienColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TongTien\' in table \'HoaDon\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableHoaDon.TongTienColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsMaDHNull() {
                 return this.IsNull(this.tableHoaDon.MaDHColumn);
             }
@@ -809,6 +869,18 @@ namespace ExampleLogin.src.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTenLKNull() {
+                return this.IsNull(this.tableHoaDon.TenLKColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetTenLKNull() {
+                this[this.tableHoaDon.TenLKColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsSoLuongNull() {
                 return this.IsNull(this.tableHoaDon.SoLuongColumn);
             }
@@ -853,6 +925,18 @@ namespace ExampleLogin.src.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetThanhTienNull() {
                 this[this.tableHoaDon.ThanhTienColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTongTienNull() {
+                return this.IsNull(this.tableHoaDon.TongTienColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetTongTienNull() {
+                this[this.tableHoaDon.TongTienColumn] = global::System.Convert.DBNull;
             }
         }
         
