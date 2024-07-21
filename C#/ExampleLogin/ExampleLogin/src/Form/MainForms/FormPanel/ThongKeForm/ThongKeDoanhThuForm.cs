@@ -63,7 +63,7 @@ namespace ExampleLogin
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             long tongDoanhThu = 0;
-            string sql = "select DonDatHang.MaDH, ChiTietDatHang.MaLK, ChiTietDatHang.SoLuong, ChiTietDatHang.ThanhTien, DonDatHang.NgayDatHang from ChiTietDatHang join DonDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH join LinhKien on LinhKien.MaLK = ChiTietDatHang.MaLK where (DonDatHang.NgayDatHang BETWEEN @Tu and @Den) ";
+            string sql = "select DonDatHang.MaDH, ChiTietDatHang.MaLK, ChiTietDatHang.SoLuong, ChiTietDatHang.ThanhTien, DonDatHang.NgayDatHang from ChiTietDatHang join DonDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH join LinhKien on LinhKien.MaLK = ChiTietDatHang.MaLK  join ThongTinThanhToan on ThongTinThanhToan.MaDH = DonDatHang.MaDH where ((ThongTinThanhToan.TinhTrang = 1) AND (DonDatHang.NgayDatHang BETWEEN @Tu and @Den)) ";
             
             if (cbMaLoai.SelectedIndex > 0)
             {
@@ -95,8 +95,9 @@ namespace ExampleLogin
             for(int i = 0; i < table.Count; i++)
             {
                 tongDoanhThu = tongDoanhThu + Convert.ToInt32(table.Row(i).Column("ThanhTien"));
+                table.Row(i).setValueColumn("ThanhTien", Library.formatVND(table.Row(i).Column("ThanhTien")));
             }
-            tbTongDoanhThu.Text = tongDoanhThu.ToString();
+            tbTongDoanhThu.Text = Library.formatVND(tongDoanhThu.ToString());
             dataGridView1.DataSource = table.getDataTable();
         }
 

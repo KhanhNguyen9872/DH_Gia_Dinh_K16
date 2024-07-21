@@ -26,6 +26,10 @@ namespace ExampleLogin.src.Library
 
         public static string formatVND(string money)
         {
+            if(money.Equals("0"))
+            {
+                return "0";
+            }
             return double.Parse(money).ToString("#,###", CultureInfo.GetCultureInfo("vi-VN").NumberFormat);
         }
 

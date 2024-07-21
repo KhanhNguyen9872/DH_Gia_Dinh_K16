@@ -27,7 +27,7 @@ namespace ExampleLogin
         {
             this.Text = "Thanh toán | Mã: " + this.MaDH;
             this.tbMaDH.Text = this.MaDH;
-            this.tbTongTien.Text = this.tongTien.ToString();
+            this.tbTongTien.Text = Library.formatVND(this.tongTien.ToString());
 
             this.loadData();
             if (this.maPttt != null)

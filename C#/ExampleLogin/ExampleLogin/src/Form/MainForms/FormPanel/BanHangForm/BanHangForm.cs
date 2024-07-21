@@ -276,7 +276,7 @@ namespace ExampleLogin
         {
             List<long> lst = this.getTotalMoney(); 
 
-            labelTongThanhTien.Text = lst[0].ToString() + " VND";
+            labelTongThanhTien.Text = Library.formatVND(lst[0].ToString()) + " VND";
             labelTongLinhKien.Text = lst[1].ToString() + " linh kiện";
         }
 
