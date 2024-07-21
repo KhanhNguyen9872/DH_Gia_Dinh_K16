@@ -310,7 +310,7 @@ namespace ExampleLogin
 
             ThongTinDonHangForm fm = new ThongTinDonHangForm(this.connSQL, tbMaDonHang.Text);
             fm.ShowDialog();
-            this.loadData();
+            this.HoaDonForm_Load(sender, e);
         }
 
         private void btnThem_Click(object sender, EventArgs e)
