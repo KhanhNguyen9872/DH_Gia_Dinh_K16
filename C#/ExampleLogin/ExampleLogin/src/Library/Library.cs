@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -21,6 +22,11 @@ namespace ExampleLogin.src.Library
         public static int getPid()
         {
             return Process.GetCurrentProcess().Id;
+        }
+
+        public static string formatVND(string money)
+        {
+            return double.Parse(money).ToString("#,###", CultureInfo.GetCultureInfo("vi-VN").NumberFormat);
         }
 
         public static void setDataSource(DataGridView dataGridView, DataTable dataTable)

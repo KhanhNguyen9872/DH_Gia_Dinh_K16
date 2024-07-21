@@ -14,8 +14,8 @@ go
 CREATE TABLE LoaiLinhKien(
 	MaLoaiLK NVARCHAR(10) PRIMARY KEY,
 	TenLoaiLK NVARCHAR(255) NOT NULL,
-	NgayTao DATETIME not null,
-	NgayCapNhat DATETIME not null
+	NgayTao DATE not null,
+	NgayCapNhat DATE not null
 );
 
 CREATE TABLE NhaCungCap(
@@ -95,6 +95,7 @@ CREATE TABLE ThongTinThanhToan(
 	FOREIGN KEY (MaPhuongThuc) REFERENCES PhuongThucThanhToan(MaPhuongThuc)
 );
 
+
 --Nhà cung cấp
 GO
 INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap, Email) VALUES 
@@ -121,67 +122,67 @@ go
 
 INSERT INTO LinhKien (MaLK, MaNhaCungCap, MaLoaiLK, TenLK, Gia, BaoHanh, KhuyenMai, MoTa) VALUES 
 --CPU
-('MH001', 'NCC001', 'CPU', 'i5-10500k', 500000, 12, 0, N'Intel Core i5 thế hệ 10, hiệu năng cao, phù hợp cho các tác vụ văn phòng và giải trí.'),
-('MH002', 'NCC001', 'CPU', 'i5-12600K', 500000, 12, 0, N'Intel Core i5 thế hệ 12, cải tiến hiệu năng và tiết kiệm năng lượng.'),
-('MH003', 'NCC001', 'CPU', 'i7-14700K', 500000, 12, 0, N'Intel Core i7 thế hệ 14, mạnh mẽ cho các tác vụ đồ họa và gaming.'),
-('MH004', 'NCC001', 'CPU', 'i5 10500k', 500000, 12, 0, N'Intel Core i5 thế hệ 10, hiệu năng ổn định, phù hợp cho công việc và giải trí.'),
-('MH005', 'NCC002', 'CPU', 'R7 7780HS', 500000, 12, 0, N'AMD Ryzen 7 7780HS, mạnh mẽ và tiết kiệm năng lượng, phù hợp cho các hệ thống laptop hiệu năng cao.'),
-('MH006', 'NCC002', 'CPU', 'R7 7800X3D', 500000, 12, 0, N'AMD Ryzen 7 7800X3D, hiệu năng cao với công nghệ 3D V-Cache.'),
-('MH007', 'NCC002', 'CPU', 'R5 5600X', 500000, 12, 0, N'AMD Ryzen 5 5600X, hiệu năng cao với giá thành hợp lý.'),
-('MH008', 'NCC002', 'CPU', 'R5 3600', 500000, 12, 0, N'AMD Ryzen 5 3600, hiệu năng tốt cho các tác vụ đa nhiệm và gaming.'),
+('MH001', 'NCC001', 'CPU', 'i5-10500k', 3000000, 12, 0, N'Intel Core i5 thế hệ 10, hiệu năng cao, phù hợp cho các tác vụ văn phòng và giải trí.'),
+('MH002', 'NCC001', 'CPU', 'i5-12600K', 6000000, 12, 0, N'Intel Core i5 thế hệ 12, cải tiến hiệu năng và tiết kiệm năng lượng.'),
+('MH003', 'NCC001', 'CPU', 'i7-14700K', 10000000, 12, 0, N'Intel Core i7 thế hệ 14, mạnh mẽ cho các tác vụ đồ họa và gaming.'),
+('MH004', 'NCC001', 'CPU', 'i5 10500k', 3000000, 12, 0, N'Intel Core i5 thế hệ 10, hiệu năng ổn định, phù hợp cho công việc và giải trí.'),
+('MH005', 'NCC002', 'CPU', 'R7 7780HS', 8000000, 12, 0, N'AMD Ryzen 7 7780HS, mạnh mẽ và tiết kiệm năng lượng, phù hợp cho các hệ thống laptop hiệu năng cao.'),
+('MH006', 'NCC002', 'CPU', 'R7 7800X3D', 9000000, 12, 0, N'AMD Ryzen 7 7800X3D, hiệu năng cao với công nghệ 3D V-Cache.'),
+('MH007', 'NCC002', 'CPU', 'R5 5600X', 4000000, 12, 0, N'AMD Ryzen 5 5600X, hiệu năng cao với giá thành hợp lý.'),
+('MH008', 'NCC002', 'CPU', 'R5 3600', 3000000, 12, 0, N'AMD Ryzen 5 3600, hiệu năng tốt cho các tác vụ đa nhiệm và gaming.'),
 --RAM
-('MH009', 'NCC003', 'RAM', 'Kingston Fury Beast Black 16GB 3200MHz DDR4', 500000, 12, 0, N'RAM Kingston Fury Beast, dung lượng 16GB, tốc độ 3200MHz, DDR4.'),
-('MH010', 'NCC003', 'RAM', 'Kingston Fury Beast Black 8GB 3200MHz DDR4', 500000, 12, 0, N'RAM Kingston Fury Beast, dung lượng 8GB, tốc độ 3200MHz, DDR4.'),
-('MH011', 'NCC003', 'RAM', 'Kingston Fury Beast RGB 16GB 3733MHz DDR4', 500000, 12, 0, N'RAM Kingston Fury Beast RGB, dung lượng 16GB, tốc độ 3733MHz, DDR4, có đèn RGB.'),
-('MH012', 'NCC003', 'RAM', 'Kingston Fury Beast RGB 16GB 5600MHz DDR5', 500000, 12, 0, N'RAM Kingston Fury Beast RGB, dung lượng 16GB, tốc độ 5600MHz, DDR5, có đèn RGB.'),
-('MH013', 'NCC004', 'RAM', 'Corsair Vengeance LPX 8GB 3200MHz DDR4', 500000, 12, 0, N'RAM Corsair Vengeance LPX, dung lượng 8GB, tốc độ 3200MHz, DDR4.'),
-('MH014', 'NCC004', 'RAM', 'Corsair Vengeance LPX 16GB 3200MHz DDR4', 500000, 12, 0, N'RAM Corsair Vengeance LPX, dung lượng 16GB, tốc độ 3200MHz, DDR4.'),
-('MH015', 'NCC004', 'RAM', 'Corsair Vengeance 16GB 5200MHz DDR5', 500000, 12, 0, N'RAM Corsair Vengeance, dung lượng 16GB, tốc độ 5200MHz, DDR5.'),
-('MH016', 'NCC004', 'RAM', 'Corsair Vengeance RGB RS 16GB 3200MHz DDR4', 500000, 12, 0, N'RAM Corsair Vengeance RGB RS, dung lượng 16GB, tốc độ 3200MHz, DDR4, có đèn RGB.'),
+('MH009', 'NCC003', 'RAM', 'Kingston Fury Beast Black 16GB 3200MHz DDR4', 1500000, 12, 0, N'RAM Kingston Fury Beast, dung lượng 16GB, tốc độ 3200MHz, DDR4.'),
+('MH010', 'NCC003', 'RAM', 'Kingston Fury Beast Black 8GB 3200MHz DDR4', 800000, 12, 0, N'RAM Kingston Fury Beast, dung lượng 8GB, tốc độ 3200MHz, DDR4.'),
+('MH011', 'NCC003', 'RAM', 'Kingston Fury Beast RGB 16GB 3733MHz DDR4', 1700000, 12, 0, N'RAM Kingston Fury Beast RGB, dung lượng 16GB, tốc độ 3733MHz, DDR4, có đèn RGB.'),
+('MH012', 'NCC003', 'RAM', 'Kingston Fury Beast RGB 16GB 5600MHz DDR5', 2500000, 12, 0, N'RAM Kingston Fury Beast RGB, dung lượng 16GB, tốc độ 5600MHz, DDR5, có đèn RGB.'),
+('MH013', 'NCC004', 'RAM', 'Corsair Vengeance LPX 8GB 3200MHz DDR4', 800000, 12, 0, N'RAM Corsair Vengeance LPX, dung lượng 8GB, tốc độ 3200MHz, DDR4.'),
+('MH014', 'NCC004', 'RAM', 'Corsair Vengeance LPX 16GB 3200MHz DDR4', 1600000, 12, 0, N'RAM Corsair Vengeance LPX, dung lượng 16GB, tốc độ 3200MHz, DDR4.'),
+('MH015', 'NCC004', 'RAM', 'Corsair Vengeance 16GB 5200MHz DDR5', 2400000, 12, 0, N'RAM Corsair Vengeance, dung lượng 16GB, tốc độ 5200MHz, DDR5.'),
+('MH016', 'NCC004', 'RAM', 'Corsair Vengeance RGB RS 16GB 3200MHz DDR4', 1800000, 12, 0, N'RAM Corsair Vengeance RGB RS, dung lượng 16GB, tốc độ 3200MHz, DDR4, có đèn RGB.'),
 --MAIN
-('MH017', 'NCC005', 'MAIN', 'ASUS PRIME B450M-A II', 500000, 12, 0, N'Mainboard ASUS PRIME B450M-A II, hỗ trợ CPU AMD, kích thước Micro ATX.'),
-('MH019', 'NCC005', 'MAIN', 'ASUS TUF GAMING B550M-PLUS', 500000, 12, 0, N'Mainboard ASUS TUF GAMING B550M-PLUS, hỗ trợ CPU AMD, thiết kế gaming.'),
-('MH020', 'NCC005', 'MAIN', 'Asus PRIME B760M-A WIFI', 500000, 12, 0, N'Mainboard Asus PRIME B760M-A WIFI, hỗ trợ CPU Intel, tích hợp WiFi.'),
-('MH021', 'NCC006', 'MAIN', 'Gigabyte A620M GAMING X', 500000, 12, 0, N'Mainboard Gigabyte A620M GAMING X, hỗ trợ CPU AMD, thiết kế gaming.'),
-('MH022', 'NCC006', 'MAIN', 'Gigabyte B760M GAMING WIFI PLUS DDR4', 500000, 12, 0, N'Mainboard Gigabyte B760M GAMING WIFI PLUS, hỗ trợ CPU Intel, tích hợp WiFi, DDR4.'),
-('MH023', 'NCC006', 'MAIN', 'Gigabyte B550M AORUS ELITE AX', 500000, 12, 0, N'Mainboard Gigabyte B550M AORUS ELITE AX, hỗ trợ CPU AMD, thiết kế gaming.'),
-('MH024', 'NCC006', 'MAIN', 'Gigabyte Z790 A ELITE AX ICE', 500000, 12, 0, N'Mainboard Gigabyte Z790 A ELITE AX ICE, hỗ trợ CPU Intel, thiết kế cao cấp.'),
+('MH017', 'NCC005', 'MAIN', 'ASUS PRIME B450M-A II', 2200000, 12, 0, N'Mainboard ASUS PRIME B450M-A II, hỗ trợ CPU AMD, kích thước Micro ATX.'),
+('MH019', 'NCC005', 'MAIN', 'ASUS TUF GAMING B550M-PLUS', 3300000, 12, 0, N'Mainboard ASUS TUF GAMING B550M-PLUS, hỗ trợ CPU AMD, thiết kế gaming.'),
+('MH020', 'NCC005', 'MAIN', 'Asus PRIME B760M-A WIFI', 4000000, 12, 0, N'Mainboard Asus PRIME B760M-A WIFI, hỗ trợ CPU Intel, tích hợp WiFi.'),
+('MH021', 'NCC006', 'MAIN', 'Gigabyte A620M GAMING X', 3000000, 12, 0, N'Mainboard Gigabyte A620M GAMING X, hỗ trợ CPU AMD, thiết kế gaming.'),
+('MH022', 'NCC006', 'MAIN', 'Gigabyte B760M GAMING WIFI PLUS DDR4', 4200000, 12, 0, N'Mainboard Gigabyte B760M GAMING WIFI PLUS, hỗ trợ CPU Intel, tích hợp WiFi, DDR4.'),
+('MH023', 'NCC006', 'MAIN', 'Gigabyte B550M AORUS ELITE AX', 3800000, 12, 0, N'Mainboard Gigabyte B550M AORUS ELITE AX, hỗ trợ CPU AMD, thiết kế gaming.'),
+('MH024', 'NCC006', 'MAIN', 'Gigabyte Z790 A ELITE AX ICE', 6000000, 12, 0, N'Mainboard Gigabyte Z790 A ELITE AX ICE, hỗ trợ CPU Intel, thiết kế cao cấp.'),
 --VGA
-('MH025', 'NCC006', 'VGA', 'Gigabyte GeForce RTX 3050 WINDFORCE OC 6G GDDR6', 500000, 12, 0, N'Card đồ họa Gigabyte GeForce RTX 3050, 6GB GDDR6, thiết kế WINDFORCE OC.'),
-('MH026', 'NCC006', 'VGA', 'Gigabyte Radeon RX 6600 EAGLE 8G GDDR6', 500000, 12, 0, N'Card đồ họa Gigabyte Radeon RX 6600, 8GB GDDR6, thiết kế EAGLE.'),
-('MH027', 'NCC006', 'VGA', 'Gigabyte GeForce RTX 3060 GAMING OC 12G GDDR6', 500000, 12, 0, N'Card đồ họa Gigabyte GeForce RTX 3060, 12GB GDDR6, thiết kế GAMING OC.'),
-('MH028', 'NCC006', 'VGA', 'Gigabyte GeForce RTX 4060 WINDFORCE OC 8G GDDR6', 500000, 12, 0, N'Card đồ họa Gigabyte GeForce RTX 4060, 8GB GDDR6, thiết kế WINDFORCE OC.'),
-('MH029', 'NCC005', 'VGA', 'Asus TUF Gaming Radeon RX 7900 XTX OC Edition 24GB GDDR6', 500000, 12, 0, N'Card đồ họa Asus TUF Gaming Radeon RX 7900 XTX, 24GB GDDR6, thiết kế OC Edition.'),
-('MH030', 'NCC005', 'VGA', 'Asus GeForce RTX 3050 DUAL 6GB OC GDDR6', 500000, 12, 0, N'Card đồ họa Asus GeForce RTX 3050, 6GB GDDR6, thiết kế DUAL OC.'),
-('MH031', 'NCC005', 'VGA', 'ASUS Dual Radeon RX 7600 V2 OC Edition 8GB GDDR6', 500000, 12, 0, N'Card đồ họa ASUS Dual Radeon RX 7600 V2, 8GB GDDR6, thiết kế OC Edition.'),
-('MH032', 'NCC005', 'VGA', 'Asus Dual GeForce RTX 4060 White OC Edition 8GB GDDR6', 500000, 12, 0, N'Card đồ họa Asus Dual GeForce RTX 4060, 8GB GDDR6, thiết kế White OC Edition.'),
+('MH025', 'NCC006', 'VGA', 'Gigabyte GeForce RTX 3050 WINDFORCE OC 6G GDDR6', 8000000, 12, 0, N'Card đồ họa Gigabyte GeForce RTX 3050, 6GB GDDR6, thiết kế WINDFORCE OC.'),
+('MH026', 'NCC006', 'VGA', 'Gigabyte Radeon RX 6600 EAGLE 8G GDDR6', 7000000, 12, 0, N'Card đồ họa Gigabyte Radeon RX 6600, 8GB GDDR6, thiết kế EAGLE.'),
+('MH027', 'NCC006', 'VGA', 'Gigabyte GeForce RTX 3060 GAMING OC 12G GDDR6', 10000000, 12, 0, N'Card đồ họa Gigabyte GeForce RTX 3060, 12GB GDDR6, thiết kế GAMING OC.'),
+('MH028', 'NCC006', 'VGA', 'Gigabyte GeForce RTX 4060 WINDFORCE OC 8G GDDR6', 12000000, 12, 0, N'Card đồ họa Gigabyte GeForce RTX 4060, 8GB GDDR6, thiết kế WINDFORCE OC.'),
+('MH029', 'NCC005', 'VGA', 'Asus TUF Gaming Radeon RX 7900 XTX OC Edition 24GB GDDR6', 20000000, 12, 0, N'Card đồ họa Asus TUF Gaming Radeon RX 7900 XTX, 24GB GDDR6, thiết kế OC Edition.'),
+('MH030', 'NCC005', 'VGA', 'Asus GeForce RTX 3050 DUAL 6GB OC GDDR6', 8000000, 12, 0, N'Card đồ họa Asus GeForce RTX 3050, 6GB GDDR6, thiết kế DUAL OC.'),
+('MH031', 'NCC005', 'VGA', 'ASUS Dual Radeon RX 7600 V2 OC Edition 8GB GDDR6', 10000000, 12, 0, N'Card đồ họa ASUS Dual Radeon RX 7600 V2, 8GB GDDR6, thiết kế OC Edition.'),
+('MH032', 'NCC005', 'VGA', 'Asus Dual GeForce RTX 4060 White OC Edition 8GB GDDR6', 13000000, 12, 0, N'Card đồ họa Asus Dual GeForce RTX 4060, 8GB GDDR6, thiết kế White OC Edition.'),
 --PSU
-('MH033', 'NCC005', 'PSU', 'ASUS THOR 1200P2 1200W Platinum Full Modula', 500000, 12, 0, N'Nguồn ASUS THOR 1200P2, công suất 1200W, chuẩn Platinum, Full Modular.'),
-('MH034', 'NCC005', 'PSU', 'ASUS TUF Gaming 750W (80 Plus Bronze)', 500000, 12, 0, N'Nguồn ASUS TUF Gaming, công suất 750W, chuẩn 80 Plus Bronze.'),
-('MH035', 'NCC005', 'PSU', 'ASUS TUF Gaming 1000W Gold Full Modular PCIe 5.0', 500000, 12, 0, N'Nguồn ASUS TUF Gaming, công suất 1000W, chuẩn Gold, Full Modular, PCIe 5.0.'),
-('MH036', 'NCC005', 'PSU', 'ASUS TUF Gaming 650W (80 Plus Bronze)', 500000, 12, 0, N'Nguồn ASUS TUF Gaming, công suất 650W, chuẩn 80 Plus Bronze.'),
-('MH037', 'NCC006', 'PSU', 'GIGABYTE UD850GM PG5 - 80 Plus Gold - Full Modular (850W)', 500000, 12, 0, N'Nguồn GIGABYTE UD850GM PG5, công suất 850W, chuẩn 80 Plus Gold, Full Modular.'),
-('MH038', 'NCC006', 'PSU', 'GIGABYTE UD850GM - 80 Plus Gold - Full Modular (850W)', 500000, 12, 0, N'Nguồn GIGABYTE UD850GM, công suất 850W, chuẩn 80 Plus Gold, Full Modular.'),
-('MH039', 'NCC006', 'PSU', 'GIGABYTE UD1000GM - 80 Plus Gold - Full Modular (1000W)', 500000, 12, 0, N'Nguồn GIGABYTE UD1000GM, công suất 1000W, chuẩn 80 Plus Gold, Full Modular.'),
-('MH040', 'NCC006', 'PSU', 'GIGABYTE AORUS P1200W - 80 Plus Platinum - Full Modular (1200W)', 500000, 12, 0, N'Nguồn GIGABYTE AORUS P1200W, công suất 1200W, chuẩn 80 Plus Platinum, Full Modular.'),
+('MH033', 'NCC005', 'PSU', 'ASUS THOR 1200P2 1200W Platinum Full Modula', 5000000, 12, 0, N'Nguồn ASUS THOR 1200P2, công suất 1200W, chuẩn Platinum, Full Modular.'),
+('MH034', 'NCC005', 'PSU', 'ASUS TUF Gaming 750W (80 Plus Bronze)', 3000000, 12, 0, N'Nguồn ASUS TUF Gaming, công suất 750W, chuẩn 80 Plus Bronze.'),
+('MH035', 'NCC005', 'PSU', 'ASUS TUF Gaming 1000W Gold Full Modular PCIe 5.0', 7000000, 12, 0, N'Nguồn ASUS TUF Gaming, công suất 1000W, chuẩn Gold, Full Modular, PCIe 5.0.'),
+('MH036', 'NCC005', 'PSU', 'ASUS TUF Gaming 650W (80 Plus Bronze)', 2500000, 12, 0, N'Nguồn ASUS TUF Gaming, công suất 650W, chuẩn 80 Plus Bronze.'),
+('MH037', 'NCC006', 'PSU', 'GIGABYTE UD850GM PG5 - 80 Plus Gold - Full Modular (850W)', 5500000, 12, 0, N'Nguồn GIGABYTE UD850GM PG5, công suất 850W, chuẩn 80 Plus Gold, Full Modular.'),
+('MH038', 'NCC006', 'PSU', 'GIGABYTE UD850GM - 80 Plus Gold - Full Modular (850W)', 5300000, 12, 0, N'Nguồn GIGABYTE UD850GM, công suất 850W, chuẩn 80 Plus Gold, Full Modular.'),
+('MH039', 'NCC006', 'PSU', 'GIGABYTE UD1000GM - 80 Plus Gold - Full Modular (1000W)', 6500000, 12, 0, N'Nguồn GIGABYTE UD1000GM, công suất 1000W, chuẩn 80 Plus Gold, Full Modular.'),
+('MH040', 'NCC006', 'PSU', 'GIGABYTE AORUS P1200W - 80 Plus Platinum - Full Modular (1200W)', 8000000, 12, 0, N'Nguồn GIGABYTE AORUS P1200W, công suất 1200W, chuẩn 80 Plus Platinum, Full Modular.'),
 --SSD
-('MH041', 'NCC004', 'SSD', 'SSD Corsair MP600 CORE XT 1TB PCIe 4.0 Gen4', 500000, 12, 0, N'SSD Corsair MP600 CORE XT, dung lượng 1TB, giao tiếp PCIe 4.0 Gen4.'),
-('MH042', 'NCC004', 'SSD', 'SSD Corsair MP600 PRO LPX 1TB PCIe Gen4 x4 NVMe M.2 SSD', 500000, 12, 0, N'SSD Corsair MP600 PRO LPX, dung lượng 1TB, giao tiếp PCIe Gen4 x4 NVMe M.2.'),
-('MH043', 'NCC004', 'SSD', 'SSD 480G Corsair Force Series MP510 M.2 NVMe PCIe Gen3 x4 3D-NAND', 500000, 12, 0, N'SSD Corsair Force Series MP510, dung lượng 480GB, giao tiếp M.2 NVMe PCIe Gen3 x4.'),
-('MH044', 'NCC004', 'SSD', 'SSD Corsair MP700 1TB | M.2 PCIe, Gen 5x4, NVMe 2.0', 500000, 12, 0, N'SSD Corsair MP700, dung lượng 1TB, giao tiếp M.2 PCIe Gen 5x4, NVMe 2.0.'),
-('MH045', 'NCC003', 'SSD', 'SSD Kingston NV2 250GB M.2 PCIe NVMe Gen4', 500000, 12, 0, N'SSD Kingston NV2, dung lượng 250GB, giao tiếp M.2 PCIe NVMe Gen4.'),
-('MH046', 'NCC003', 'SSD', 'SSD Kingston NV2 500GB M.2 PCIe NVMe Gen4', 500000, 12, 0, N'SSD Kingston NV2, dung lượng 500GB, giao tiếp M.2 PCIe NVMe Gen4.'),
-('MH047', 'NCC003', 'SSD', 'SSD Kingston NV2 1TB M.2 PCIe NVMe Gen4', 500000, 12, 0, N'SSD Kingston NV2, dung lượng 1TB, giao tiếp M.2 PCIe NVMe Gen4.'),
-('MH048', 'NCC003', 'SSD', 'SSD Kingston KC3000 1TB M.2 PCIe gen 4 NVMe', 500000, 12, 0, N'SSD Kingston KC3000, dung lượng 1TB, giao tiếp M.2 PCIe gen 4 NVMe.'),
+('MH041', 'NCC004', 'SSD', 'SSD Corsair MP600 CORE XT 1TB PCIe 4.0 Gen4', 3000000, 12, 0, N'SSD Corsair MP600 CORE XT, dung lượng 1TB, giao tiếp PCIe 4.0 Gen4.'),
+('MH042', 'NCC004', 'SSD', 'SSD Corsair MP600 PRO LPX 1TB PCIe Gen4 x4 NVMe M.2 SSD', 3500000, 12, 0, N'SSD Corsair MP600 PRO LPX, dung lượng 1TB, giao tiếp PCIe Gen4 x4 NVMe M.2.'),
+('MH043', 'NCC004', 'SSD', 'SSD 480G Corsair Force Series MP510 M.2 NVMe PCIe Gen3 x4 3D-NAND', 2500000, 12, 0, N'SSD Corsair Force Series MP510, dung lượng 480GB, giao tiếp M.2 NVMe PCIe Gen3 x4.'),
+('MH044', 'NCC004', 'SSD', 'SSD Corsair MP700 1TB | M.2 PCIe, Gen 5x4, NVMe 2.0', 4000000, 12, 0, N'SSD Corsair MP700, dung lượng 1TB, giao tiếp M.2 PCIe Gen 5x4, NVMe 2.0.'),
+('MH045', 'NCC003', 'SSD', 'SSD Kingston NV2 250GB M.2 PCIe NVMe Gen4', 1500000, 12, 0, N'SSD Kingston NV2, dung lượng 250GB, giao tiếp M.2 PCIe NVMe Gen4.'),
+('MH046', 'NCC003', 'SSD', 'SSD Kingston NV2 500GB M.2 PCIe NVMe Gen4', 2000000, 12, 0, N'SSD Kingston NV2, dung lượng 500GB, giao tiếp M.2 PCIe NVMe Gen4.'),
+('MH047', 'NCC003', 'SSD', 'SSD Kingston NV2 1TB M.2 PCIe NVMe Gen4', 3500000, 12, 0, N'SSD Kingston NV2, dung lượng 1TB, giao tiếp M.2 PCIe NVMe Gen4.'),
+('MH048', 'NCC003', 'SSD', 'SSD Kingston KC3000 1TB M.2 PCIe gen 4 NVMe', 4000000, 12, 0, N'SSD Kingston KC3000, dung lượng 1TB, giao tiếp M.2 PCIe gen 4 NVMe.'),
 --HDD
-('MH049', 'NCC007', 'HDD', 'HDD Seagate IronWolf 4TB', 500000, 12, 0, N'HDD Seagate IronWolf, dung lượng 4TB, phù hợp cho NAS và các hệ thống lưu trữ mạng.'),
-('MH050', 'NCC007', 'HDD', 'HDD SEAGATE IronWolf PRO 14TB', 500000, 12, 0, N'HDD SEAGATE IronWolf PRO, dung lượng 14TB, hiệu suất cao, phù hợp cho doanh nghiệp.'),
-('MH051', 'NCC007', 'HDD', 'HDD Seagate IronWolf Pro 10TB', 500000, 12, 0, N'HDD Seagate IronWolf Pro, dung lượng 10TB, thiết kế bền bỉ cho các hệ thống NAS.'),
-('MH052', 'NCC007', 'HDD', 'HDD Seagate IronWolf Pro 8TB', 500000, 12, 0, N'HDD Seagate IronWolf Pro, dung lượng 8TB, hiệu suất cao và độ tin cậy.'),
-('MH053', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC550 18TB', 500000, 12, 0, N'HDD Enterprise Western Digital Ultrastar DC HC550, dung lượng 18TB, hiệu suất cao.'),
-('MH054', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC330 10TB', 500000, 12, 0, N'HDD Enterprise Western Digital Ultrastar DC HC330, dung lượng 10TB, phù hợp cho doanh nghiệp.'),
-('MH055', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC320 8TB', 500000, 12, 0, N'HDD Enterprise Western Digital Ultrastar DC HC320, dung lượng 8TB, hiệu suất cao.'),
-('MH056', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC550 16TB', 500000, 12, 0, N'HDD Enterprise Western Digital Ultrastar DC HC550, dung lượng 16TB, thiết kế bền bỉ và hiệu suất cao.');
+('MH049', 'NCC007', 'HDD', 'HDD Seagate IronWolf 4TB', 4500000, 12, 0, N'HDD Seagate IronWolf, dung lượng 4TB, phù hợp cho NAS và các hệ thống lưu trữ mạng.'),
+('MH050', 'NCC007', 'HDD', 'HDD SEAGATE IronWolf PRO 14TB', 10000000, 12, 0, N'HDD SEAGATE IronWolf PRO, dung lượng 14TB, hiệu suất cao, phù hợp cho doanh nghiệp.'),
+('MH051', 'NCC007', 'HDD', 'HDD Seagate IronWolf Pro 10TB', 8000000, 12, 0, N'HDD Seagate IronWolf Pro, dung lượng 10TB, thiết kế bền bỉ cho các hệ thống NAS.'),
+('MH052', 'NCC007', 'HDD', 'HDD Seagate IronWolf Pro 8TB', 6000000, 12, 0, N'HDD Seagate IronWolf Pro, dung lượng 8TB, hiệu suất cao và độ tin cậy.'),
+('MH053', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC550 18TB', 12000000, 12, 0, N'HDD Enterprise Western Digital Ultrastar DC HC550, dung lượng 18TB, hiệu suất cao.'),
+('MH054', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC330 10TB', 9000000, 12, 0, N'HDD Enterprise Western Digital Ultrastar DC HC330, dung lượng 10TB, phù hợp cho doanh nghiệp.'),
+('MH055', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC320 8TB', 7000000, 12, 0, N'HDD Enterprise Western Digital Ultrastar DC HC320, dung lượng 8TB, hiệu suất cao.'),
+('MH056', 'NCC003', 'HDD', 'HDD Enterprise Western Digital Ultrastar DC HC550 16TB', 11000000, 12, 0, N'HDD Enterprise Western Digital Ultrastar DC HC550, dung lượng 16TB, thiết kế bền bỉ và hiệu suất cao.');
 
 --Nhân viên
 GO
@@ -214,30 +215,38 @@ INSERT INTO KhachHang (MaKH, TenKH, DiaChi, SDT, Email) VALUES
 --Đơn đặt hàng
 GO
 INSERT INTO DonDatHang (MaDH, MaKH, MaNV, NgayDatHang, NgayGiaoHang, NoiNhan, TongTien) VALUES
-(N'DH001', N'KH001', N'NV001', '2024-06-27', '2024-07-01', N'HCM', 0),
-(N'DH002', N'KH002', N'NV002', '2024-06-28', '2024-07-02', N'Hà Nội', 0),
-(N'DH003', N'KH003', N'NV003', '2024-06-29', '2024-07-03', N'Đà Nẵng', 0),
-(N'DH004', N'KH004', N'NV004', '2024-06-30', '2024-07-04', N'Cần Thơ', 0),
-(N'DH005', N'KH005', N'NV005', '2024-07-01', '2024-07-05', N'Hải Phòng', 0),
-(N'DH006', N'KH006', N'NV006', '2024-07-02', '2024-07-06', N'Huế', 0),
-(N'DH007', N'KH007', N'NV007', '2024-07-03', '2024-07-07', N'Vũng Tàu', 0),
-(N'DH008', N'KH008', N'NV008', '2024-07-04', '2024-07-08', N'Nha Trang', 0),
-(N'DH009', N'KH009', N'NV009', '2024-07-05', '2024-07-09', N'Buôn Ma Thuột', 0),
-(N'DH010', N'KH010', N'NV010', '2024-07-06', '2024-07-10', N'Quảng Ninh', 0);
+(N'DH001', N'KH001', N'NV001', '2024-06-27', '2024-07-01', N'HCM', 25000000),
+(N'DH002', N'KH002', N'NV002', '2024-06-28', '2024-07-02', N'Hà Nội', 20000000),
+(N'DH003', N'KH003', N'NV003', '2024-06-29', '2024-07-03', N'Đà Nẵng', 68400000),
+(N'DH004', N'KH004', N'NV004', '2024-06-30', '2024-07-04', N'Cần Thơ', 2400000),
+(N'DH005', N'KH005', N'NV005', '2024-07-01', '2024-07-05', N'Hải Phòng', 10300000),
+(N'DH006', N'KH006', N'NV006', '2024-07-02', '2024-07-06', N'Huế', 1700000),
+(N'DH007', N'KH007', N'NV007', '2024-07-03', '2024-07-07', N'Vũng Tàu', 6400000),
+(N'DH008', N'KH008', N'NV008', '2024-07-04', '2024-07-08', N'Nha Trang', 16800000),
+(N'DH009', N'KH009', N'NV009', '2024-07-05', '2024-07-09', N'Buôn Ma Thuột', 8800000),
+(N'DH010', N'KH010', N'NV010', '2024-07-06', '2024-07-10', N'Quảng Ninh', 19800000);
 
 --Chi tiết đặt hàng
 GO
 INSERT INTO ChiTietDatHang (MaDH, MaLK, SoLuong, BaoHanh, KhuyenMai, ThanhTien) VALUES
-(N'DH001', N'MH001', 10, 12, 0, 5000000),
-(N'DH002', N'MH003', 10, 12, 0, 5000000),
-(N'DH003', N'MH005', 5, 12, 0, 2500000),
-(N'DH004', N'MH007', 15, 12, 0, 7500000),
-(N'DH005', N'MH009', 20, 12, 0, 10000000),
-(N'DH006', N'MH011', 12, 12, 0, 6000000),
-(N'DH007', N'MH013', 8, 12, 0, 4000000),
-(N'DH008', N'MH015', 7, 12, 0, 3500000),
-(N'DH009', N'MH017', 14, 12, 0, 7000000),
-(N'DH010', N'MH019', 6, 12, 0, 3000000);
+(N'DH001', N'MH001', 2, 12, 0, 6000000),
+(N'DH001', N'MH032', 1, 12, 0, 13000000),
+(N'DH001', N'MH021', 2, 12, 0, 6000000),
+(N'DH002', N'MH003', 1, 12, 0, 10000000),
+(N'DH002', N'MH050', 1, 12, 0, 10000000),
+(N'DH003', N'MH015', 3, 12, 0, 2400000),
+(N'DH003', N'MH025', 3, 12, 0, 24000000),
+(N'DH003', N'MH052', 3, 12, 0, 18000000),
+(N'DH003', N'MH040', 3, 12, 0, 24000000),
+(N'DH004', N'MH007', 5, 12, 0, 2000000),
+(N'DH005', N'MH009', 1, 12, 0, 1500000),
+(N'DH005', N'MH019', 1, 12, 0, 3300000),
+(N'DH005', N'MH037', 1, 12, 0, 5500000),
+(N'DH006', N'MH011', 1, 12, 0, 1700000),
+(N'DH007', N'MH013', 8, 12, 0, 6400000),
+(N'DH008', N'MH015', 7, 12, 0, 16800000),
+(N'DH009', N'MH017', 4, 12, 0, 8800000),
+(N'DH010', N'MH019', 6, 12, 0, 19800000);
 --Phuong thuc thanh toan
 Go
 INSERT INTO PhuongThucThanhToan (MaPhuongThuc, LoaiThanhToan, SoTaiKhoan) VALUES

@@ -26,10 +26,10 @@ namespace ExampleLogin
             // String passwd = "root";
             SQLToolBox connSQL = new SQLToolBox(server, db);
             connSQL.Connect();
-            LoginForm main = new LoginForm(connSQL);
             update(45);
 
             set("Loading form....");
+            LoginForm main = new LoginForm(connSQL);
             update(65);
             update(85);
 

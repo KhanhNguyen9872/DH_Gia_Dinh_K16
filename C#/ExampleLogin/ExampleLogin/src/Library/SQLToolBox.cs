@@ -344,6 +344,11 @@ namespace ExampleLogin.src.Library
             return this.data[key];
         }
 
+        public void setValueColumn(string key, string value)
+        {
+            this.data[key] = value;
+        }
+
         public string Column(int index)
         {
             int count = 0;
@@ -351,7 +356,7 @@ namespace ExampleLogin.src.Library
             {
                 if (count == index)
                 {
-                    return s.Value;
+                    return this.Column(s.Key);
                 }
                 count++;
             }

@@ -310,7 +310,7 @@ namespace ExampleLogin
 
             ThongTinDonHangForm fm = new ThongTinDonHangForm(this.connSQL, tbMaDonHang.Text);
             fm.ShowDialog();
-            this.HoaDonForm_Load(sender, e);
+            this.loadData();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -489,21 +489,28 @@ namespace ExampleLogin
                 MessageBox.Show("Bạn chưa chọn đơn hàng nào!", "LỖI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            PleaseWaitForm plzForm = new PleaseWaitForm();
+            plzForm.Show();
+            Application.DoEvents();
 
             SqlCommand cmd = new SqlCommand("select KhachHang.MaKH, KhachHang.TenKH, ChiTietDatHang.*, LinhKien.TenLK, DonDatHang.NgayDatHang   from DonDatHang  join ChiTietDatHang on DonDatHang.MaDH = ChiTietDatHang.MaDH  join LinhKien on LinhKien.MaLK = ChiTietDatHang.MaLK  join KhachHang on KhachHang.MaKH = DonDatHang.MaKH  where DonDatHang.MaDH = @MaDH");
             cmd.Parameters.AddWithValue("@MaDH", tbMaDonHang.Text);
 
             XuatHoaDonCrystalReport xuatHoaDonCrystalReport = new XuatHoaDonCrystalReport();
             XuatHoaDonForm fm = new XuatHoaDonForm();
+            fm.Text = "Xuất hóa đơn | Đơn hàng: " + tbMaDonHang.Text;
             SQLTable table = this.connSQL.Select(cmd);
             long tongTien = 0;
             for(int i = 0; i < table.Count; i++)
             {
                 tongTien = tongTien + Convert.ToInt32(table.Row(i).Column("ThanhTien"));
+                table.Row(i).setValueColumn("ThanhTien", Library.formatVND(table.Row(i).Column("ThanhTien")) + " VND");
+                table.Row(i).setValueColumn("NgayDatHang", table.Row(i).Column("NgayDatHang").Split(' ')[0]);
             }
-            table.addColumn("TongTien", tongTien.ToString());
+            table.addColumn("TongTien", Library.formatVND(tongTien.ToString()) + " VND");
             xuatHoaDonCrystalReport.SetDataSource(table.getDataTable());
             fm.crystalReportViewer1.ReportSource = xuatHoaDonCrystalReport;
+            plzForm.Dispose();
             fm.ShowDialog();
             xuatHoaDonCrystalReport.Dispose();
             fm.Dispose();
