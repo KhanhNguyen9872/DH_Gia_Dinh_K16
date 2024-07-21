@@ -16,7 +16,7 @@ import domain.model.Land;
 public class LandUI extends JFrame {
     private LandService landService = null;
 
-    private UIController uiController = null;
+    private LandUIController uiController = null;
     private JMenuBar jMenuBar = null;
     private DefaultTableModel tableModel = null;
     private JTable landTable = null;
@@ -26,7 +26,7 @@ public class LandUI extends JFrame {
 
     public LandUI(LandService landService) {
         this.landService = landService;
-        this.uiController = new UIController();
+        this.uiController = new LandUIController();
 
         this.buildMenuBar();
         this.buildPanel();
@@ -214,8 +214,8 @@ public class LandUI extends JFrame {
         dispose();
     }
 
-    class UIController implements ActionListener {
-        public UIController() {
+    class LandUIController implements ActionListener {
+        public LandUIController() {
 
         }
 

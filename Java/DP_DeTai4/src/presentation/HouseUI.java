@@ -17,7 +17,7 @@ import domain.HouseService;
 public class HouseUI extends JFrame {
     private HouseService houseService = null;
 
-    private UIController uiController = null;
+    private HouseUIController uiController = null;
     private JMenuBar jMenuBar = null;
     private DefaultTableModel tableModel = null;
     private JTable houseTable = null;
@@ -27,7 +27,7 @@ public class HouseUI extends JFrame {
 
     public HouseUI(HouseService houseService) {
         this.houseService = houseService;
-        this.uiController = new UIController();
+        this.uiController = new HouseUIController();
         this.buildMenuBar();
         this.buildPanel();
 
@@ -209,20 +209,12 @@ public class HouseUI extends JFrame {
 
     }
 
-    public void Show() {
-        setVisible(true);
-    }
-
-    public void Hide() {
-        setVisible(false);
-    }
-
     public void Close() {
         dispose();
     }
 
-    class UIController implements ActionListener {
-        public UIController() {
+    class HouseUIController implements ActionListener {
+        public HouseUIController() {
 
         }
 

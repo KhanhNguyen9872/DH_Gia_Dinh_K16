@@ -16,12 +16,12 @@ public class MainUI extends JFrame {
     private HouseUI houseUI = null;
     private LandUI landUI = null;
 
-    private UIController uiController = null;
+    private MainUIController uiController = null;
     private JPanel jPanel = null;
     private JMenuBar jMenuBar = null;
 
     public MainUI(HouseUI houseUI, LandUI landUI) {
-        uiController = new UIController();
+        uiController = new MainUIController();
         this.houseUI = houseUI;
         this.landUI = landUI;
 
@@ -32,6 +32,7 @@ public class MainUI extends JFrame {
         setJMenuBar(this.jMenuBar);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setVisible(true);
     }
 
     public void buildPanel() {
@@ -41,7 +42,7 @@ public class MainUI extends JFrame {
         this.jPanel.add(new JLabel(" "));
         this.jPanel.add(new JLabel("- Đề tài: Quản lý danh sách các giao dịch nhà đất"));
         this.jPanel.add(new JLabel(" "));
-        this.jPanel.add(new JLabel("- Nhóm 0: "));
+        this.jPanel.add(new JLabel("- Nhóm 5: "));
         this.jPanel.add(new JLabel("    1. Nguyễn Văn Khánh (NT)"));
         this.jPanel.add(new JLabel("    2. Lê Lâm Chiến Thắng"));
         this.jPanel.add(new JLabel("    3. Vũ Đức Thịnh"));
@@ -62,17 +63,9 @@ public class MainUI extends JFrame {
         this.jMenuBar.add(jMenu);
     }
 
-    public void Show() {
-        setVisible(true);
-    }
+    class MainUIController implements ActionListener {
 
-    public void Hide() {
-        setVisible(false);
-    }
-
-    class UIController implements ActionListener {
-
-        public UIController() {
+        public MainUIController() {
 
         }
 
@@ -81,7 +74,7 @@ public class MainUI extends JFrame {
             String cmd = e.getActionCommand();
             if (cmd.equals("Nhà")) {
                 if (!houseUI.isVisible()) {
-                    houseUI.Show();
+                    houseUI.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(new JFrame(),
                         "Quản lý nhà đã xuất hiện từ trước",
@@ -91,7 +84,7 @@ public class MainUI extends JFrame {
                 }
             } else if (cmd.equals("Đất")) {
                 if (!landUI.isVisible()) {
-                    landUI.Show();
+                    landUI.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(new JFrame(),
                         "Quản lý đất đã xuất hiện từ trước",
