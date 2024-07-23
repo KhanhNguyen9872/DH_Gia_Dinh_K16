@@ -6,28 +6,38 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import domain.model.House;
+import observer.Subscriber;
+import presentation.commandprocessor.*;
 import domain.HouseService;
 
-public class HouseUI extends JFrame {
+public class HouseUI extends JFrame implements Subscriber, ActionListener, ListSelectionListener {
     private HouseService houseService = null;
 
-    private HouseUIController uiController = null;
     private JMenuBar jMenuBar = null;
     private DefaultTableModel tableModel = null;
     private JTable houseTable = null;
-    private JButton addButton, updateButton, deleteButton, findButton, searchButton;
-    private JLabel labelMaGiaoDich, labelNgayGiaoDich, labelDonGia, labelLoaiNha, labelDiaChi, labelDienTich, labelSearch;
-    private JTextField textMaGiaoDich, textNgayGiaoDich, textDonGia, textLoaiNha, textDiaChi, textDienTich, textSearch;
+    private JButton addButton, updateButton, deleteButton, findIDButton, searchButton, sumButton;
+    private JLabel labelMaGiaoDich, labelNgayGiaoDich, labelDonGia, labelLoaiNha, labelDiaChi, labelDienTich, labelTimKiem;
+    private JTextField textMaGiaoDich, textDonGia, textLoaiNha, textDiaChi, textDienTich, textTimKiem;
+    private JXDatePicker JngayGiaoDich;
+    private CommandProcessor commandProcessor;
 
-    public HouseUI(HouseService houseService) {
+    public HouseUI(HouseService houseService, CommandProcessor commandProcessor) {
+        houseService.addSub(this);
         this.houseService = houseService;
-        this.uiController = new HouseUIController();
+        this.commandProcessor = commandProcessor;
         this.buildMenuBar();
         this.buildPanel();
 
@@ -36,6 +46,7 @@ public class HouseUI extends JFrame {
         setJMenuBar(this.jMenuBar);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         reloadTable();
+        clearInput();
     }
 
     public void buildMenuBar() {
@@ -43,7 +54,7 @@ public class HouseUI extends JFrame {
         JMenu jMenu = new JMenu("Hệ thống");
         JMenuItem jMenuItemClose = new JMenuItem("Đóng");
 
-        jMenuItemClose.addActionListener(this.uiController);
+        jMenuItemClose.addActionListener(this);
 
         jMenu.add(jMenuItemClose);
         this.jMenuBar.add(jMenu);
@@ -57,32 +68,39 @@ public class HouseUI extends JFrame {
         this.labelLoaiNha = new JLabel("Loại nhà: ");
         this.labelDiaChi = new JLabel("Địa chỉ: ");
         this.labelDienTich = new JLabel("Diện tích: ");
-        this.labelSearch = new JLabel("Tìm kiếm: ");
+        this.labelTimKiem = new JLabel("Tìm kiếm: ");
+
+        this.JngayGiaoDich = new JXDatePicker();
+        this.JngayGiaoDich.setDate(Calendar.getInstance().getTime());
+        this.JngayGiaoDich.setFormats(new SimpleDateFormat("yyyy/MM/dd"));
 
         this.textMaGiaoDich = new JTextField(10);
-        this.textNgayGiaoDich = new JTextField(15);
         this.textDonGia = new JTextField(10);
         this.textLoaiNha = new JTextField(10);
         this.textDiaChi = new JTextField(20);
         this.textDienTich = new JTextField(10);
-        this.textSearch = new JTextField(20);
+        this.textTimKiem = new JTextField(20);
 
         this.addButton = new JButton("Thêm");
         this.updateButton = new JButton("Sửa");
         this.deleteButton = new JButton("Xóa");
-        this.findButton = new JButton("Tìm theo ID");
         this.searchButton = new JButton("Tìm");
+        this.findIDButton = new JButton("Tìm theo ID");
+        this.sumButton = new JButton("Tính thành tiền");
 
         // Initialize table
         String[] columnNames = { "MaGiaoDich", "NgayGiaoDich", "DonGia", "LoaiNha", "DiaChi", "DienTich" };
         tableModel = new DefaultTableModel(columnNames, 0);
         houseTable = new JTable(tableModel);
+        houseTable.getSelectionModel().addListSelectionListener(this);
 
         // add ActionListener
-        this.addButton.addActionListener(this.uiController);
-        this.updateButton.addActionListener(this.uiController);
-        this.deleteButton.addActionListener(this.uiController);
-        this.searchButton.addActionListener(this.uiController);
+        this.addButton.addActionListener(this);
+        this.updateButton.addActionListener(this);
+        this.deleteButton.addActionListener(this);
+        this.findIDButton.addActionListener(this);
+        this.searchButton.addActionListener(this);
+        this.sumButton.addActionListener(this);
 
         //
         JPanel inputPanel = new JPanel(new GridBagLayout());
@@ -98,7 +116,7 @@ public class HouseUI extends JFrame {
         gbc.gridx = 0;
         inputPanel.add(this.labelNgayGiaoDich, gbc);
         gbc.gridx++;
-        inputPanel.add(this.textNgayGiaoDich, gbc);
+        inputPanel.add(this.JngayGiaoDich, gbc);
         gbc.gridy++;
         gbc.gridx = 0;
         inputPanel.add(this.labelDonGia, gbc);
@@ -122,9 +140,9 @@ public class HouseUI extends JFrame {
 
         gbc.gridy++;
         gbc.gridx = 0;
-        inputPanel.add(this.labelSearch, gbc);
+        inputPanel.add(this.labelTimKiem, gbc);
         gbc.gridx++;
-        inputPanel.add(this.textSearch, gbc);
+        inputPanel.add(this.textTimKiem, gbc);
 
         // find
 
@@ -134,9 +152,9 @@ public class HouseUI extends JFrame {
         buttonPanel.add(this.addButton);
         buttonPanel.add(this.updateButton);
         buttonPanel.add(this.deleteButton);
-        buttonPanel.add(this.findButton);
+        buttonPanel.add(this.findIDButton);
         buttonPanel.add(this.searchButton);
-        
+        buttonPanel.add(this.sumButton);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(new JScrollPane(this.houseTable), BorderLayout.CENTER);
@@ -147,9 +165,13 @@ public class HouseUI extends JFrame {
     }
 
     public void reloadTable() {
+        List<House> houses = this.houseService.getData();
+        reloadTable(houses);
+    }
+
+    public void reloadTable(List<House> houses) {
         tableModel.setRowCount(0); // clear table
 
-        List<House> houses = this.houseService.getAllHouses();
         for(House house : houses) {
             Object[] row = { house.getMaGiaoDich(), house.getNgayGiaoDich(), house.getDonGia(), house.getLoaiNha(), house.getDiaChi(), house.getDienTich() };
             tableModel.addRow(row);
@@ -158,29 +180,42 @@ public class HouseUI extends JFrame {
 
     public void clearInput() {
         this.textMaGiaoDich.setText("");
-        this.textNgayGiaoDich.setText("");
+        this.JngayGiaoDich.setDate(new Date("01/07/2024"));
         this.textDonGia.setText("");
         this.textLoaiNha.setText("");
         this.textDiaChi.setText("");
         this.textDienTich.setText("");
     }
 
+    public House getCurrentHouse() {
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
+        // Get data from input
+        int maGiaoDich = Integer.parseInt(this.textMaGiaoDich.getText());
+        String ngayGiaoDich = formater.format(this.JngayGiaoDich.getDate());
+        System.out.println(ngayGiaoDich);
+        int donGia = Integer.parseInt(this.textDonGia.getText());
+        String loaiNha = this.textLoaiNha.getText();
+        String diaChi = this.textDiaChi.getText();
+        double dienTich = Double.parseDouble(this.textDienTich.getText());
+        return new House(maGiaoDich, ngayGiaoDich, donGia, loaiNha, diaChi, dienTich);
+    }
+
     public void addHouse() {
         try {
-            // Get data from input
-            int maGiaoDich = Integer.parseInt(this.textMaGiaoDich.getText());
-            String ngayGiaoDich = this.textNgayGiaoDich.getText();
-            int donGia = Integer.parseInt(this.textDonGia.getText());
-            String loaiNha = this.textLoaiNha.getText();
-            String diaChi = this.textDiaChi.getText();
-            double dienTich = Double.parseDouble(this.textDienTich.getText());
+            House house = this.getCurrentHouse();
+
+            // check house is exist or not
+            if (this.houseService.findGetHouse(house.getMaGiaoDich()) != null) {
+                // exist
+                JOptionPane.showMessageDialog(this, "Mã giao dịch này đã tồn tại");
+                return;
+            };
 
             // add new house
-            this.houseService.addHouse(new House(maGiaoDich, ngayGiaoDich, donGia, loaiNha, diaChi, dienTich));
+            this.houseService.addHouse(house);
 
             // Clear input
             this.clearInput();
-            
             reloadTable();
         } catch (NumberFormatException ex) {
             // can't parse to int
@@ -188,52 +223,168 @@ public class HouseUI extends JFrame {
         }
     }
 
-    public void updateHouse() {
-
+    public Command calcMoney() {
+        return null;
     }
 
-    public void deleteHouse() {
+    public Command addHouse(House house) {
+        if (this.houseService.findGetHouse(house.getMaGiaoDich()) != null) {
+            JOptionPane.showMessageDialog(this, "Mã giao dịch này đã tồn tại");
+            return null;
+        };
+        return new AddCommand(houseService, house);
+    }
+
+    public Command updateHouse(House house) {
+        if (this.houseService.findGetHouse(house.getMaGiaoDich()) == null) {
+            JOptionPane.showMessageDialog(this, "Mã giao dịch này không tồn tại");
+            return null;
+        };
+        return new UpdateCommand(houseService, house);
+    }
+
+    public Command deleteHouse() {
         int index = this.houseTable.getSelectedRow();
 
         if (index == -1) {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng dữ liệu nào!");
-        } else {
-            int maGiaoDich = (int)(this.houseTable.getValueAt(index, 0));
-            this.houseService.deleteHouse(maGiaoDich);
-            this.reloadTable();
-            this.clearInput();
+            return null;
         }
+        int maGiaoDich = Integer.parseInt(this.houseTable.getValueAt(index, 0).toString());
+        return new DeleteCommand(houseService, maGiaoDich);
     }
 
-    public void searchHouse() {
+    public Command findByID() {
+        String text = textTimKiem.getText();
+        if (text == null || text.isEmpty()) {
+            return null;
+        }
+        int maGiaoDich = Integer.parseInt(text);
+        return new FindByIDCommand(houseService, maGiaoDich);
+    }
 
+    public Command searchHouse() {
+        String text = JOptionPane.showInputDialog(this, "Nhập mã giao dịch:");
+        if (text == null || text.isEmpty()) {
+            return null;
+        }
+
+        try {
+            int maGiaoDich = Integer.parseInt(text);
+
+            if (this.houseService.findGetHouse(maGiaoDich) == null) {
+                JOptionPane.showMessageDialog(this, "Mã giao dịch này không tồn tại");
+                return null;
+            };
+
+            return new FindByIDCommand(houseService, maGiaoDich);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập số");
+        }
+        return null;
+    }
+
+    public void setHouse(House house) {
+        String maGiaoDich = String.valueOf(house.getMaGiaoDich());
+        String ngayGiaoDich = house.getNgayGiaoDich();
+        String donGia = String.valueOf(house.getDonGia());
+        String loaiNha = house.getLoaiNha();
+        String diaChi = house.getDiaChi();
+        String dienTich = String.valueOf(house.getDienTich());
+
+        this.textMaGiaoDich.setText(maGiaoDich);
+        this.JngayGiaoDich.setDate(new Date(ngayGiaoDich.replace('-', '/')));
+        this.textDonGia.setText(donGia);
+        this.textLoaiNha.setText(loaiNha);
+        this.textDiaChi.setText(diaChi);
+        this.textDienTich.setText(dienTich);
     }
 
     public void Close() {
-        dispose();
+        this.dispose();
     }
 
-    class HouseUIController implements ActionListener {
-        public HouseUIController() {
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        int row = this.houseTable.getSelectedRow();
 
+        if (row == -1) {
+            return;
         }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        String maGiaoDich = this.houseTable.getModel().getValueAt(row, 0).toString();
+        String ngayGiaoDich = this.houseTable.getModel().getValueAt(row, 1).toString();
+        String donGia = this.houseTable.getModel().getValueAt(row, 2).toString();
+        String loaiNha = this.houseTable.getModel().getValueAt(row, 3).toString();
+        String diaChi = this.houseTable.getModel().getValueAt(row, 4).toString();
+        String dienTich = this.houseTable.getModel().getValueAt(row, 5).toString();
+
+        this.textMaGiaoDich.setText(maGiaoDich);
+        this.JngayGiaoDich.setDate(new Date(ngayGiaoDich.replace('-', '/')));
+        this.textDonGia.setText(donGia);
+        this.textLoaiNha.setText(loaiNha);
+        this.textDiaChi.setText(diaChi);
+        this.textDienTich.setText(dienTich);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
             String cmd = e.getActionCommand();
+            House house;
+
+            try {
+                house = this.getCurrentHouse();
+            } catch (Exception ex) {
+                house = null;
+            }
+            Command command = null;
+
             if (cmd.equals("Thêm")) {
-                addHouse();
+                command = addHouse(house);
+
             } else if (cmd.equals("Sửa")) {
-                updateHouse();
+                command = updateHouse(house);
+
             } else if (cmd.equals("Xóa")) {
-                deleteHouse();
-            } else if (cmd.equals("Tìm theo Mã")) {
+                command = deleteHouse();
+
+            } else if (cmd.equals("Tìm theo ID")) {
+                command = findByID();
 
             } else if (cmd.equals("Tìm")) {
-                searchHouse();
+                command = searchHouse();
+
+            } else if (cmd.equals("Tính thành tiền")) {
+                command = calcMoney();
+
             } else if (cmd.equals("Đóng")) {
                 Close();
+
             }
+
+            if (command == null) {
+                return;
+            }
+
+            commandProcessor.execute(command);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update() {
+        House house = this.houseService.getHouse();
+        List<House> houses = this.houseService.getHouses();
+
+        if (house != null) {
+            setHouse(house);
+        } else if (houses != null) {
+            reloadTable(houses);
+        } else {
+            clearInput();
+            reloadTable();
         }
     }
 }
