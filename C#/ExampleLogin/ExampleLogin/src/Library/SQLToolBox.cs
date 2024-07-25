@@ -18,18 +18,23 @@ namespace ExampleLogin.src.Library
         // private String username;
         // private String password;
 
-        public SQLToolBox(String dataSource, String db)
+        public SQLToolBox(String connectionString)
         {
-            this.dataSource = "Data Source=" + dataSource + ";";
-            this.db = db;
-            this.datacmd = this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;";
+            this.datacmd = connectionString;
         }
 
-        public SQLToolBox(String dataSource, String db, String user, String password)
+        public SQLToolBox(String dataSource, String db, string encrypt)
         {
             this.dataSource = "Data Source=" + dataSource + ";";
             this.db = db;
-            this.datacmd = this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;User ID=" + user + ";Password=" + password + ";Trusted_Connection=yes;";
+            this.datacmd = this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=" + encrypt + ";TrustServerCertificate=true;MultipleActiveResultSets=true;Trusted_Connection=yes;";
+        }
+
+        public SQLToolBox(String dataSource, String db, String user, String password, string encrypt)
+        {
+            this.dataSource = "Data Source=" + dataSource + ";";
+            this.db = db;
+            this.datacmd = this.dataSource + "Initial Catalog=" + this.db + ";Encrypt=" + encrypt + ";TrustServerCertificate=true;MultipleActiveResultSets=true;User ID=" + user + ";Password=" + password + ";Trusted_Connection=yes;";
         }
 
 

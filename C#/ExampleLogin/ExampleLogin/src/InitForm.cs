@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace ExampleLogin
 {
@@ -17,17 +18,36 @@ namespace ExampleLogin
             this.TopMost = true;
             set("Preparing....");
             update(10);
-
+            
             update(25);
             set("Connecting to server....");
-            String server = "DESKTOP-UI9AO8H";
-            String db = "Nhom1";
-            // String user = "root";
-            // String passwd = "root";
-            SQLToolBox connSQL = new SQLToolBox(server, db);
+
+            String connect = ConfigurationManager.ConnectionStrings["connect"].ConnectionString;
+            String server = ConfigurationManager.ConnectionStrings["server"].ConnectionString;
+            String db = ConfigurationManager.ConnectionStrings["database"].ConnectionString;
+            String user = ConfigurationManager.ConnectionStrings["user"].ConnectionString;
+            String passwd = ConfigurationManager.ConnectionStrings["passwd"].ConnectionString;
+            String encrypt = ConfigurationManager.ConnectionStrings["encrypt"].ConnectionString;
+
+            SQLToolBox connSQL;
+            if (string.IsNullOrEmpty(connect))
+            {
+                if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(passwd))
+                {
+                    connSQL = new SQLToolBox(server, db, encrypt);
+                }
+                else
+                {
+                    connSQL = new SQLToolBox(server, db, user, passwd, encrypt);
+                }
+            } else
+            {
+                connSQL = new SQLToolBox(connect);
+            }
+            
             connSQL.Connect();
             update(45);
-
+            
             set("Loading form....");
             LoginForm main = new LoginForm(connSQL);
             update(65);

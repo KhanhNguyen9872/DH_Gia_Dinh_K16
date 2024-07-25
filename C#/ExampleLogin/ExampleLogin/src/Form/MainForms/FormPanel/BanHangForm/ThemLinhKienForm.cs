@@ -103,7 +103,13 @@ namespace ExampleLogin
                 i.Dispose();                // and dispose of it
             }
 
-            pictureBox1.Image = new Bitmap(path);
+            try
+            {
+                pictureBox1.Image = new Bitmap(path);
+            } catch (Exception ex)
+            {
+
+            }
             pictureBox1.Refresh();
         }
 

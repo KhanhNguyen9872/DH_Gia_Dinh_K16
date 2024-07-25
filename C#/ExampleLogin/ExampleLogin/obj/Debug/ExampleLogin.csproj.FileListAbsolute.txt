@@ -169,3 +169,7 @@ C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\ExampleLogin\ExampleLogin
 C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\ExampleLogin\ExampleLogin\obj\Debug\ExampleL.CDE6ADE8.Up2Date
 C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.exe
 C:\Users\KhanhNguyen9872\Documents\Zalo Received Files\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.pdb
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\bin\Debug\ExampleLogin.exe.manifest
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\bin\Debug\ExampleLogin.application
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.exe.manifest
+C:\Users\KhanhNguyen9872\Documents\GitHub\DH_Gia_Dinh_K16\C#\ExampleLogin\ExampleLogin\obj\Debug\ExampleLogin.application
