@@ -31,6 +31,8 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.anhSanPham = new System.Windows.Forms.PictureBox();
             this.groupBoxMoTa = new System.Windows.Forms.GroupBox();
             this.tbMoTa = new System.Windows.Forms.TextBox();
             this.khuyenMai = new System.Windows.Forms.NumericUpDown();
@@ -54,6 +56,8 @@
             this.tbThanhTien = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anhSanPham)).BeginInit();
             this.groupBoxMoTa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.khuyenMai)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.baoHanh)).BeginInit();
@@ -63,7 +67,7 @@
             // btnThem
             // 
             this.btnThem.Enabled = false;
-            this.btnThem.Location = new System.Drawing.Point(588, 211);
+            this.btnThem.Location = new System.Drawing.Point(771, 211);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 23);
             this.btnThem.TabIndex = 0;
@@ -73,7 +77,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(678, 211);
+            this.btnThoat.Location = new System.Drawing.Point(852, 211);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(75, 23);
             this.btnThoat.TabIndex = 1;
@@ -83,6 +87,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.groupBoxMoTa);
             this.groupBox1.Controls.Add(this.khuyenMai);
             this.groupBox1.Controls.Add(this.label9);
@@ -103,17 +108,37 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(740, 192);
+            this.groupBox1.Size = new System.Drawing.Size(914, 192);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin linh kiện";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.anhSanPham);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(718, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(190, 167);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Hình ảnh";
+            // 
+            // anhSanPham
+            // 
+            this.anhSanPham.Location = new System.Drawing.Point(6, 16);
+            this.anhSanPham.Name = "anhSanPham";
+            this.anhSanPham.Size = new System.Drawing.Size(178, 145);
+            this.anhSanPham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.anhSanPham.TabIndex = 0;
+            this.anhSanPham.TabStop = false;
             // 
             // groupBoxMoTa
             // 
             this.groupBoxMoTa.Controls.Add(this.tbMoTa);
             this.groupBoxMoTa.Location = new System.Drawing.Point(498, 19);
             this.groupBoxMoTa.Name = "groupBoxMoTa";
-            this.groupBoxMoTa.Size = new System.Drawing.Size(236, 167);
+            this.groupBoxMoTa.Size = new System.Drawing.Size(213, 167);
             this.groupBoxMoTa.TabIndex = 18;
             this.groupBoxMoTa.TabStop = false;
             this.groupBoxMoTa.Text = "Mô tả";
@@ -125,7 +150,7 @@
             this.tbMoTa.Multiline = true;
             this.tbMoTa.Name = "tbMoTa";
             this.tbMoTa.ReadOnly = true;
-            this.tbMoTa.Size = new System.Drawing.Size(224, 145);
+            this.tbMoTa.Size = new System.Drawing.Size(199, 145);
             this.tbMoTa.TabIndex = 0;
             // 
             // khuyenMai
@@ -315,7 +340,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 246);
+            this.ClientSize = new System.Drawing.Size(939, 246);
             this.ControlBox = false;
             this.Controls.Add(this.label11);
             this.Controls.Add(this.tbThanhTien);
@@ -324,9 +349,9 @@
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnThem);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(781, 285);
+            this.MaximumSize = new System.Drawing.Size(955, 285);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(781, 285);
+            this.MinimumSize = new System.Drawing.Size(955, 285);
             this.Name = "ThemLinhKienForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -335,6 +360,8 @@
             this.Load += new System.EventHandler(this.ThemLinhKienForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.anhSanPham)).EndInit();
             this.groupBoxMoTa.ResumeLayout(false);
             this.groupBoxMoTa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.khuyenMai)).EndInit();
@@ -372,5 +399,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBoxMoTa;
         private System.Windows.Forms.TextBox tbMoTa;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.PictureBox anhSanPham;
     }
 }

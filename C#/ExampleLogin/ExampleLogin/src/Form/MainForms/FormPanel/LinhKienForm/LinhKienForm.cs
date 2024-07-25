@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -137,6 +139,7 @@ namespace ExampleLogin
             tbMoTa.Text = "";
             numBaoHanh.Value = 12;
             numKhuyenMai.Value = 0;
+            tbPathImage.Text = "";
 
             btnThem.Enabled = true;
             btnSua.Enabled = false;
@@ -185,6 +188,7 @@ namespace ExampleLogin
             int baoHanh = Convert.ToInt32(numBaoHanh.Value.ToString());
             int khuyenMai = Convert.ToInt32(numKhuyenMai.Value.ToString());
             string moTa = tbMoTa.Text;
+            string fullPathImg = tbPathImage.Text;
 
             // maNhaCungCap
             SqlCommand cmd = new SqlCommand("select MaNhaCungCap from NhaCungCap where (TenNhaCungCap = @TenNhaCungCap);");
@@ -198,7 +202,7 @@ namespace ExampleLogin
 
             maLoaiLK = this.connSQL.Select(cmd).Row(0).Column(0);
 
-            foreach (string s in new List<string>() { maLK, maNhaCungCap, maLoaiLK, tenLinhKien, gia })
+            foreach (string s in new List<string>() { maLK, maNhaCungCap, maLoaiLK, tenLinhKien, gia, fullPathImg })
             {
                 if (string.IsNullOrEmpty(s))
                 {
@@ -207,7 +211,10 @@ namespace ExampleLogin
                 }
             }
 
-            cmd = new SqlCommand("UPDATE " + this.tableName + " SET MaNhaCungCap = @MaNhaCungCap, MaLoaiLK = @MaLoaiLK, TenLK = @TenLK, Gia = @Gia, BaoHanh = @BaoHanh, KhuyenMai = @KhuyenMai, MoTa = @MoTa WHERE (maLK = @maLK);");
+            string[] lst = fullPathImg.Split('\\');
+            string nameImg = lst[lst.Length - 1];
+
+            cmd = new SqlCommand("UPDATE " + this.tableName + " SET MaNhaCungCap = @MaNhaCungCap, MaLoaiLK = @MaLoaiLK, TenLK = @TenLK, Gia = @Gia, BaoHanh = @BaoHanh, KhuyenMai = @KhuyenMai, MoTa = @MoTa, HinhAnh = @HinhAnh WHERE (maLK = @maLK);");
             cmd.Parameters.AddWithValue("@maLK", maLK);
             cmd.Parameters.AddWithValue("@MaNhaCungCap", maNhaCungCap);
             cmd.Parameters.AddWithValue("@MaLoaiLK", maLoaiLK);
@@ -216,9 +223,11 @@ namespace ExampleLogin
             cmd.Parameters.AddWithValue("@BaoHanh", baoHanh);
             cmd.Parameters.AddWithValue("@KhuyenMai", khuyenMai);
             cmd.Parameters.AddWithValue("@MoTa", moTa);
+            cmd.Parameters.AddWithValue("@HinhAnh", nameImg);
 
             if (this.connSQL.Execute(cmd))
             {
+                File.Copy(fullPathImg, System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\assets\\" + nameImg, true);
                 this.HangHoaForm_Load(sender, e);
                 MessageBox.Show("Sửa linh kiện thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -240,6 +249,7 @@ namespace ExampleLogin
             int baoHanh = Convert.ToInt32(numBaoHanh.Value.ToString());
             int khuyenMai = Convert.ToInt32(numKhuyenMai.Value.ToString());
             string moTa = tbMoTa.Text;
+            string fullPathImg = tbPathImage.Text;
 
             // maNhaCungCap
             SqlCommand cmd = new SqlCommand("select MaNhaCungCap from NhaCungCap where (TenNhaCungCap = @TenNhaCungCap);");
@@ -253,7 +263,7 @@ namespace ExampleLogin
 
             maLoaiLK = this.connSQL.Select(cmd).Row(0).Column(0);
 
-            foreach (string s in new List<string>() { maLK, maNhaCungCap, maLoaiLK, tenMatHang, gia })
+            foreach (string s in new List<string>() { maLK, maNhaCungCap, maLoaiLK, tenMatHang, gia, fullPathImg })
             {
                 if (string.IsNullOrEmpty(s))
                 {
@@ -262,7 +272,10 @@ namespace ExampleLogin
                 }
             }
 
-            cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaLK, MaNhaCungCap, MaLoaiLK, TenLK, Gia, BaoHanh, KhuyenMai, MoTa) VALUES (@MaLK, @MaNhaCungCap, @MaLoaiLK, @TenLK, @Gia, @BaoHanh, @KhuyenMai, @MoTa);");
+            string[] lst = fullPathImg.Split('\\');
+            string nameImg = lst[lst.Length - 1];
+
+            cmd = new SqlCommand("INSERT INTO " + this.tableName + " (MaLK, MaNhaCungCap, MaLoaiLK, TenLK, Gia, BaoHanh, KhuyenMai, MoTa, HinhAnh) VALUES (@MaLK, @MaNhaCungCap, @MaLoaiLK, @TenLK, @Gia, @BaoHanh, @KhuyenMai, @MoTa, @HinhAnh);");
             cmd.Parameters.AddWithValue("@MaLK", maLK);
             cmd.Parameters.AddWithValue("@MaNhaCungCap", maNhaCungCap);
             cmd.Parameters.AddWithValue("@MaLoaiLK", maLoaiLK);
@@ -271,9 +284,11 @@ namespace ExampleLogin
             cmd.Parameters.AddWithValue("@BaoHanh", baoHanh);
             cmd.Parameters.AddWithValue("@KhuyenMai", khuyenMai);
             cmd.Parameters.AddWithValue("@MoTa", moTa);
+            cmd.Parameters.AddWithValue("@HinhAnh", nameImg);
 
             if (this.connSQL.Execute(cmd))
             {
+                File.Copy(fullPathImg, System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\assets\\" + nameImg, true);
                 this.HangHoaForm_Load(sender, e);
                 MessageBox.Show("Thêm linh kiện thành công!", "THÀNH CÔNG", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -313,6 +328,7 @@ namespace ExampleLogin
                 numBaoHanh.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[5].Value.ToString());
                 numKhuyenMai.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[6].Value.ToString());
                 tbMoTa.Text = dataGridView1.Rows[index].Cells[7].Value.ToString();
+                tbPathImage.Text = dataGridView1.Rows[index].Cells[8].Value.ToString();
 
                 btnThem.Enabled = false;
                 btnXoa.Enabled = true;
@@ -372,5 +388,17 @@ namespace ExampleLogin
             mainForm.switchForm(this, fm);
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                tbPathImage.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

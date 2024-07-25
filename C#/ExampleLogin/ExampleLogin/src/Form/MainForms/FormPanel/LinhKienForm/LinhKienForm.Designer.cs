@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LinhKienForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbPathImage = new System.Windows.Forms.TextBox();
+            this.btnChooseImage = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
@@ -54,23 +57,27 @@
             this.cbNhomLinhKien = new System.Windows.Forms.ComboBox();
             this.lbNhomLinhKien = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pictureBoxLoaiLinhKien = new System.Windows.Forms.PictureBox();
             this.cbUpLowCase = new System.Windows.Forms.CheckBox();
             this.cbLoc = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tbTimKiem = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.pictureBoxLoaiLinhKien = new System.Windows.Forms.PictureBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numKhuyenMai)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBaoHanh)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoaiLinhKien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.tbPathImage);
+            this.groupBox1.Controls.Add(this.btnChooseImage);
             this.groupBox1.Controls.Add(this.btnLamMoi);
             this.groupBox1.Controls.Add(this.btnXoa);
             this.groupBox1.Controls.Add(this.btnSua);
@@ -100,6 +107,34 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin linh kiện";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(92, 346);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(31, 15);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "Ảnh:";
+            // 
+            // tbPathImage
+            // 
+            this.tbPathImage.Location = new System.Drawing.Point(129, 345);
+            this.tbPathImage.Name = "tbPathImage";
+            this.tbPathImage.ReadOnly = true;
+            this.tbPathImage.Size = new System.Drawing.Size(120, 20);
+            this.tbPathImage.TabIndex = 27;
+            // 
+            // btnChooseImage
+            // 
+            this.btnChooseImage.Location = new System.Drawing.Point(253, 343);
+            this.btnChooseImage.Name = "btnChooseImage";
+            this.btnChooseImage.Size = new System.Drawing.Size(42, 23);
+            this.btnChooseImage.TabIndex = 26;
+            this.btnChooseImage.Text = "Chọn";
+            this.btnChooseImage.UseVisualStyleBackColor = true;
+            this.btnChooseImage.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnLamMoi
             // 
@@ -146,7 +181,7 @@
             this.tbMoTa.Location = new System.Drawing.Point(92, 264);
             this.tbMoTa.Multiline = true;
             this.tbMoTa.Name = "tbMoTa";
-            this.tbMoTa.Size = new System.Drawing.Size(203, 103);
+            this.tbMoTa.Size = new System.Drawing.Size(203, 69);
             this.tbMoTa.TabIndex = 21;
             // 
             // numKhuyenMai
@@ -329,6 +364,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách linh kiện";
             // 
+            // pictureBoxLoaiLinhKien
+            // 
+            this.pictureBoxLoaiLinhKien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxLoaiLinhKien.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLoaiLinhKien.Image")));
+            this.pictureBoxLoaiLinhKien.Location = new System.Drawing.Point(348, 358);
+            this.pictureBoxLoaiLinhKien.Name = "pictureBoxLoaiLinhKien";
+            this.pictureBoxLoaiLinhKien.Size = new System.Drawing.Size(220, 52);
+            this.pictureBoxLoaiLinhKien.TabIndex = 6;
+            this.pictureBoxLoaiLinhKien.TabStop = false;
+            this.pictureBoxLoaiLinhKien.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // cbUpLowCase
             // 
             this.cbUpLowCase.AutoSize = true;
@@ -390,18 +436,13 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // pictureBoxLoaiLinhKien
+            // openFileDialog1
             // 
-            this.pictureBoxLoaiLinhKien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxLoaiLinhKien.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLoaiLinhKien.Image")));
-            this.pictureBoxLoaiLinhKien.Location = new System.Drawing.Point(348, 358);
-            this.pictureBoxLoaiLinhKien.Name = "pictureBoxLoaiLinhKien";
-            this.pictureBoxLoaiLinhKien.Size = new System.Drawing.Size(220, 52);
-            this.pictureBoxLoaiLinhKien.TabIndex = 6;
-            this.pictureBoxLoaiLinhKien.TabStop = false;
-            this.pictureBoxLoaiLinhKien.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png";
+            this.openFileDialog1.ShowHelp = true;
+            this.openFileDialog1.Title = "Chọn ảnh linh kiện";
             // 
-            // HangHoaForm
+            // LinhKienForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -412,7 +453,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(938, 445);
             this.MinimumSize = new System.Drawing.Size(938, 445);
-            this.Name = "HangHoaForm";
+            this.Name = "LinhKienForm";
             this.Text = "HangHoaForm";
             this.Load += new System.EventHandler(this.HangHoaForm_Load);
             this.groupBox1.ResumeLayout(false);
@@ -421,8 +462,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numBaoHanh)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoaiLinhKien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -461,5 +502,9 @@
         private System.Windows.Forms.TextBox tbMaLinhKien;
         private System.Windows.Forms.CheckBox cbUpLowCase;
         private System.Windows.Forms.PictureBox pictureBoxLoaiLinhKien;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnChooseImage;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbPathImage;
     }
 }

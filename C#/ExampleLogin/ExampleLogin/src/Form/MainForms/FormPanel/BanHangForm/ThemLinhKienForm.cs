@@ -1,6 +1,7 @@
 ﻿using ExampleLogin.src.Library;
 using System;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ExampleLogin
@@ -77,7 +78,7 @@ namespace ExampleLogin
 
         private void cbTenLinhKien_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("select MaLK, Gia, BaoHanh, KhuyenMai, MoTa from LinhKien where (TenLK = @TenLK);");
+            SqlCommand cmd = new SqlCommand("select MaLK, Gia, BaoHanh, KhuyenMai, MoTa, HinhAnh from LinhKien where (TenLK = @TenLK);");
             cmd.Parameters.AddWithValue("@TenLK", cbTenLinhKien.Text);
             SQLTable table = this.connSQL.Select(cmd);
             tbMaLinhKien.Text = table.Row(0).Column("MaLK");
@@ -88,8 +89,22 @@ namespace ExampleLogin
                 baoHanh.Value = Convert.ToInt32(table.Row(0).Column("BaoHanh"));
                 khuyenMai.Value = Convert.ToInt32(table.Row(0).Column("KhuyenMai"));
                 tbMoTa.Text = table.Row(0).Column("MoTa");
+                this.change_img(anhSanPham, "assets\\" + table.Row(0).Column("HinhAnh"));
                 btnThem.Enabled = true;
             }
+        }
+
+        private void change_img(PictureBox pictureBox1, String path)
+        {
+            if (pictureBox1.Image != null)
+            {
+                var i = pictureBox1.Image;  // cache it to dispose
+                pictureBox1.Image = null;     // don't dispose an used object
+                i.Dispose();                // and dispose of it
+            }
+
+            pictureBox1.Image = new Bitmap(path);
+            pictureBox1.Refresh();
         }
 
         private void soLuong_ValueChanged(object sender, EventArgs e)

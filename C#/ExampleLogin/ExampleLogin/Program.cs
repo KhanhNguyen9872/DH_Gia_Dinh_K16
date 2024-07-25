@@ -21,7 +21,7 @@ namespace ExampleLogin
                 // MessageBox.Show("Another instance of the app is already running!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 Library.killPid(Library.getPid());
             }
-
+            Control.CheckForIllegalCrossThreadCalls = false;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new InitForm());

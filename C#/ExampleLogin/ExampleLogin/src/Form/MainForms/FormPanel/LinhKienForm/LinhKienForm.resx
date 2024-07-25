@@ -121,7 +121,7 @@
   <data name="pictureBoxLoaiLinhKien.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAANwAAAAyCAYAAAA3FLVzAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAB3JJREFUeF7tnTtMFU8UxvGBaGJAIwUQaLSxIyHGTjtDZwkdIXRaYkdCbey0M1pa
+        wAAADsABataJCQAAB3JJREFUeF7tnTtMFU8UxvGBaGJAIwUQaLSxIyHGTjtDZwkdIXRaYkdCbey0M1pa
         WFnS2hhDZWJiQWIgVhYaQgKJiTx0zMd/D/k4/5nZYe/eu497fskJsI+z58ycb3d2d7h3wBlGC9nc3HRL
         S0tucnLSDQ4OuvHxcbewsOA2NjayLarBBGe0jvX1dTc8POwGBgb+Z1euXHGvXr3Ktuw9JjijVfz9+9fN
         zMx4xca2uLjofv36le3VO0xwRqvY3993Q0NDXpFpm56edl+/fs327A0mOKNVpF7hxEZGRty7d++yvbuP
@@ -156,4 +156,7 @@
         IJ75GwG5mLEAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
