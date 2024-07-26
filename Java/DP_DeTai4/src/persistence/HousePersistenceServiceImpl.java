@@ -10,6 +10,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import com.mysql.cj.protocol.Message;
+
 import domain.model.House;
 
 public class HousePersistenceServiceImpl implements HousePersistenceService {

@@ -1,6 +1,7 @@
-package presentation.commandprocessor;
+package presentation.commandprocessor.houseui;
 
 import domain.HouseService;
+import presentation.commandprocessor.Command;
 
 public class DeleteCommand extends Command {
     public DeleteCommand(HouseService houseService, int id) {

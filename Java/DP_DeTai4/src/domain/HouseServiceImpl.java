@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import observer.Publisher;
 import observer.Subscriber;
@@ -12,6 +11,9 @@ public class HouseServiceImpl extends Publisher implements HouseService {
     private HousePersistenceService persistenceService = null;
     private House house = null;
     private List<House> houses = null;
+    private double thanhTien = -1;
+    private int soLuong = -1;
+    private double avgMoney = -1;
 
     public HouseServiceImpl(HousePersistenceService persistenceService) {
         this.persistenceService = persistenceService;
@@ -80,5 +82,75 @@ public class HouseServiceImpl extends Publisher implements HouseService {
     public void getAllHouses() {
         this.houses = this.persistenceService.getAllHouses();
         changeState();
+    }
+
+    @Override
+    public void calcMoney(House house) {
+        this.thanhTien = this.tinhThanhTien(house);
+        changeState();
+    }
+
+    public double tinhThanhTien(House house) {
+        double thanhTien = 0;
+
+        Double dienTich = house.getDienTich();
+        int donGia = house.getDonGia();
+        String loaiNha = house.getLoaiNha();
+        thanhTien = dienTich * donGia;
+
+        if (!loaiNha.toLowerCase().equals("nhà cao cấp")) {
+            thanhTien = thanhTien * 0.9;
+        }
+        return thanhTien;
+    }
+
+    @Override
+    public double getThanhTien() {
+        double p = this.thanhTien;
+        this.thanhTien = -1;
+        return p;
+    }
+
+    @Override
+    public void sumCountHouse(String loaiNha) {
+        int tong = 0;
+        List<House> listHouses = this.persistenceService.getAllHouses();
+
+        for (House house : listHouses) {
+            if (loaiNha.toLowerCase().equals(house.getLoaiNha().toLowerCase())) {
+                tong = tong + 1;
+            }   
+        }
+
+        this.soLuong = tong;
+        changeState();
+    }
+
+    @Override
+    public int getSoLuong() {
+        int p = this.soLuong;
+        this.soLuong = -1;
+        return p;
+    }
+
+    @Override
+    public void avgMoney() {
+        double money = 0;
+        int count = 0;
+        List<House> listHouses = this.persistenceService.getAllHouses();
+        for (House house : listHouses) {
+            money = money + this.tinhThanhTien(house);
+            count = count + 1;
+        }
+
+        this.avgMoney = (double)(money / count);
+        changeState();
+    }
+
+    @Override
+    public double getAvgMoney() {
+        double p = this.avgMoney;
+        this.avgMoney = -1;
+        return p;
     }
 }

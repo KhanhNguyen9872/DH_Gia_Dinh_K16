@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import domain.model.House;
 import observer.Subscriber;
 import presentation.commandprocessor.*;
+import presentation.commandprocessor.houseui.*;
 import domain.HouseService;
 
 public class HouseUI extends JFrame implements Subscriber, ActionListener, ListSelectionListener {
@@ -28,9 +29,10 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
     private JMenuBar jMenuBar = null;
     private DefaultTableModel tableModel = null;
     private JTable houseTable = null;
-    private JButton addButton, updateButton, deleteButton, findIDButton, searchButton, sumButton;
+    private JButton addButton, updateButton, deleteButton, findIDButton, sumButton, sumCountButton, avgButton;
     private JLabel labelMaGiaoDich, labelNgayGiaoDich, labelDonGia, labelLoaiNha, labelDiaChi, labelDienTich, labelTimKiem;
-    private JTextField textMaGiaoDich, textDonGia, textLoaiNha, textDiaChi, textDienTich, textTimKiem;
+    private JTextField textMaGiaoDich, textDonGia, textDiaChi, textDienTich, textTimKiem;
+    private JComboBox comboBoxLoaiNha;
     private JXDatePicker JngayGiaoDich;
     private CommandProcessor commandProcessor;
 
@@ -41,7 +43,7 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         this.buildMenuBar();
         this.buildPanel();
 
-        setSize(640, 480);
+        setSize(800, 480);
         setTitle("Quản lý nhà");
         setJMenuBar(this.jMenuBar);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -76,17 +78,19 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
 
         this.textMaGiaoDich = new JTextField(10);
         this.textDonGia = new JTextField(10);
-        this.textLoaiNha = new JTextField(10);
         this.textDiaChi = new JTextField(20);
         this.textDienTich = new JTextField(10);
         this.textTimKiem = new JTextField(20);
+        String[] lst = {"Nhà thường", "Nhà cao cấp"};
+        this.comboBoxLoaiNha = new JComboBox<>(lst);
 
         this.addButton = new JButton("Thêm");
         this.updateButton = new JButton("Sửa");
         this.deleteButton = new JButton("Xóa");
-        this.searchButton = new JButton("Tìm");
         this.findIDButton = new JButton("Tìm theo ID");
         this.sumButton = new JButton("Tính thành tiền");
+        this.sumCountButton = new JButton("Tính tổng số lượng");
+        this.avgButton = new JButton("Tính trung bình thành tiền");
 
         // Initialize table
         String[] columnNames = { "MaGiaoDich", "NgayGiaoDich", "DonGia", "LoaiNha", "DiaChi", "DienTich" };
@@ -99,8 +103,9 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         this.updateButton.addActionListener(this);
         this.deleteButton.addActionListener(this);
         this.findIDButton.addActionListener(this);
-        this.searchButton.addActionListener(this);
         this.sumButton.addActionListener(this);
+        this.sumCountButton.addActionListener(this);
+        this.avgButton.addActionListener(this);
 
         //
         JPanel inputPanel = new JPanel(new GridBagLayout());
@@ -126,7 +131,7 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         gbc.gridx = 0;
         inputPanel.add(this.labelLoaiNha, gbc);
         gbc.gridx++;
-        inputPanel.add(this.textLoaiNha, gbc);
+        inputPanel.add(this.comboBoxLoaiNha, gbc);
         gbc.gridy++;
         gbc.gridx = 0;
         inputPanel.add(this.labelDiaChi, gbc);
@@ -153,8 +158,9 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         buttonPanel.add(this.updateButton);
         buttonPanel.add(this.deleteButton);
         buttonPanel.add(this.findIDButton);
-        buttonPanel.add(this.searchButton);
         buttonPanel.add(this.sumButton);
+        buttonPanel.add(this.sumCountButton);
+        buttonPanel.add(this.avgButton);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(new JScrollPane(this.houseTable), BorderLayout.CENTER);
@@ -182,7 +188,7 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         this.textMaGiaoDich.setText("");
         this.JngayGiaoDich.setDate(new Date("01/07/2024"));
         this.textDonGia.setText("");
-        this.textLoaiNha.setText("");
+        this.comboBoxLoaiNha.setSelectedIndex(0);;
         this.textDiaChi.setText("");
         this.textDienTich.setText("");
     }
@@ -194,7 +200,7 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         String ngayGiaoDich = formater.format(this.JngayGiaoDich.getDate());
         System.out.println(ngayGiaoDich);
         int donGia = Integer.parseInt(this.textDonGia.getText());
-        String loaiNha = this.textLoaiNha.getText();
+        String loaiNha = this.comboBoxLoaiNha.getSelectedItem().toString();
         String diaChi = this.textDiaChi.getText();
         double dienTich = Double.parseDouble(this.textDienTich.getText());
         return new House(maGiaoDich, ngayGiaoDich, donGia, loaiNha, diaChi, dienTich);
@@ -223,8 +229,12 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         }
     }
 
-    public Command calcMoney() {
-        return null;
+    public Command calcMoney(House house) {
+        if (this.houseService.findGetHouse(house.getMaGiaoDich()) == null) {
+            JOptionPane.showMessageDialog(this, "Mã giao dịch này không tồn tại");
+            return null;
+        };
+        return new CalcCommand(houseService, house);
     }
 
     public Command addHouse(House house) {
@@ -254,6 +264,14 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         return new DeleteCommand(houseService, maGiaoDich);
     }
 
+    public Command sumCountHouse() {
+        return new SumCountHouseCommand(this.houseService, this.comboBoxLoaiNha.getSelectedItem().toString());
+    }
+
+    public Command avgMoney() {
+        return new AvgCommand(this.houseService);
+    }
+
     public Command findByID() {
         String text = textTimKiem.getText();
         if (text == null || text.isEmpty()) {
@@ -263,26 +281,26 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         return new FindByIDCommand(houseService, maGiaoDich);
     }
 
-    public Command searchHouse() {
-        String text = JOptionPane.showInputDialog(this, "Nhập mã giao dịch:");
-        if (text == null || text.isEmpty()) {
-            return null;
-        }
+    // public Command searchHouse() {
+    //     String text = JOptionPane.showInputDialog(this, "Nhập mã giao dịch:");
+    //     if (text == null || text.isEmpty()) {
+    //         return null;
+    //     }
 
-        try {
-            int maGiaoDich = Integer.parseInt(text);
+    //     try {
+    //         int maGiaoDich = Integer.parseInt(text);
 
-            if (this.houseService.findGetHouse(maGiaoDich) == null) {
-                JOptionPane.showMessageDialog(this, "Mã giao dịch này không tồn tại");
-                return null;
-            };
+    //         if (this.houseService.findGetHouse(maGiaoDich) == null) {
+    //             JOptionPane.showMessageDialog(this, "Mã giao dịch này không tồn tại");
+    //             return null;
+    //         };
 
-            return new FindByIDCommand(houseService, maGiaoDich);
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập số");
-        }
-        return null;
-    }
+    //         return new FindByIDCommand(houseService, maGiaoDich);
+    //     } catch (NumberFormatException ex) {
+    //         JOptionPane.showMessageDialog(this, "Vui lòng nhập số");
+    //     }
+    //     return null;
+    // }
 
     public void setHouse(House house) {
         String maGiaoDich = String.valueOf(house.getMaGiaoDich());
@@ -295,7 +313,12 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         this.textMaGiaoDich.setText(maGiaoDich);
         this.JngayGiaoDich.setDate(new Date(ngayGiaoDich.replace('-', '/')));
         this.textDonGia.setText(donGia);
-        this.textLoaiNha.setText(loaiNha);
+        if (loaiNha.toLowerCase().equals("nhà cao cấp")) {
+            this.comboBoxLoaiNha.setSelectedIndex(1);
+        } else {
+            this.comboBoxLoaiNha.setSelectedIndex(0);
+        }
+        
         this.textDiaChi.setText(diaChi);
         this.textDienTich.setText(dienTich);
     }
@@ -322,7 +345,11 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
         this.textMaGiaoDich.setText(maGiaoDich);
         this.JngayGiaoDich.setDate(new Date(ngayGiaoDich.replace('-', '/')));
         this.textDonGia.setText(donGia);
-        this.textLoaiNha.setText(loaiNha);
+        if (loaiNha.toLowerCase().equals("nhà cao cấp")) {
+            this.comboBoxLoaiNha.setSelectedIndex(1);
+        } else {
+            this.comboBoxLoaiNha.setSelectedIndex(0);
+        }
         this.textDiaChi.setText(diaChi);
         this.textDienTich.setText(dienTich);
     }
@@ -353,10 +380,16 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
                 command = findByID();
 
             } else if (cmd.equals("Tìm")) {
-                command = searchHouse();
+                // command = searchHouse();
 
             } else if (cmd.equals("Tính thành tiền")) {
-                command = calcMoney();
+                command = calcMoney(house);
+            
+            } else if (cmd.equals("Tính tổng số lượng")) {
+                command = sumCountHouse();
+            
+            } else if (cmd.equals("Tính trung bình thành tiền")) {
+                command = avgMoney();
 
             } else if (cmd.equals("Đóng")) {
                 Close();
@@ -377,11 +410,20 @@ public class HouseUI extends JFrame implements Subscriber, ActionListener, ListS
     public void update() {
         House house = this.houseService.getHouse();
         List<House> houses = this.houseService.getHouses();
+        double thanhTien = this.houseService.getThanhTien();
+        int soLuong = this.houseService.getSoLuong();
+        double avgMoney = this.houseService.getAvgMoney();
 
         if (house != null) {
             setHouse(house);
         } else if (houses != null) {
             reloadTable(houses);
+        } else if (thanhTien > -1) {
+            JOptionPane.showMessageDialog(this, "Thành tiền: " + thanhTien);
+        } else if (soLuong > -1) {
+            JOptionPane.showMessageDialog(this, "Số lượng: " + soLuong);
+        } else if (avgMoney > -1) {
+            JOptionPane.showMessageDialog(this, "Trung bình thành tiền: " + avgMoney);
         } else {
             clearInput();
             reloadTable();

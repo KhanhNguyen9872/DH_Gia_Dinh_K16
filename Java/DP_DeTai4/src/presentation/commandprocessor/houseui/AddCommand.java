@@ -1,7 +1,8 @@
-package presentation.commandprocessor;
+package presentation.commandprocessor.houseui;
 
 import domain.HouseService;
 import domain.model.House;
+import presentation.commandprocessor.Command;
 
 public class AddCommand extends Command {
     public AddCommand(HouseService houseService, House house) {

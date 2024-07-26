@@ -20,4 +20,16 @@ public interface HouseService {
 
     public House getHouse();
     public List<House> getHouses();
+
+    // thanhTien
+    public void calcMoney(House house);
+    public double getThanhTien();
+
+    // tinhTongSoLuong
+    public void sumCountHouse(String loaiNha);
+    public int getSoLuong();
+
+    // tinhTrungBinhThanhTien
+    public void avgMoney();
+    public double getAvgMoney();
 }
