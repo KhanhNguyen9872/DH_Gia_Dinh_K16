@@ -1,41 +1,54 @@
 package presentation;
 
-import java.awt.event.ActionListener;
-import java.util.List;
 import java.awt.Insets;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import domain.LandService;
 import domain.model.Land;
+import observer.Subscriber;
+import presentation.commandprocessor.*;
+import presentation.commandprocessor.landui.*;
+import domain.LandService;
 
-public class LandUI extends JFrame {
+public class LandUI extends JFrame implements Subscriber, ActionListener, ListSelectionListener {
     private LandService landService = null;
 
-    private LandUIController uiController = null;
     private JMenuBar jMenuBar = null;
     private DefaultTableModel tableModel = null;
     private JTable landTable = null;
-    private JButton addButton, updateButton, deleteButton, findButton, searchButton;
-    private JLabel labelMaGiaoDich, labelNgayGiaoDich, labelDonGia, labelLoaiDat, labelDienTich, labelSearch;
-    private JTextField textMaGiaoDich, textNgayGiaoDich, textDonGia, textLoaiDat, textDienTich, textSearch;
+    private JButton addButton, updateButton, deleteButton, findIDButton, sumButton, sumCountButton, avgButton, exportButton;
+    private JLabel labelMaGiaoDich, labelNgayGiaoDich, labelDonGia, labelLoaiDat, labelDienTich, labelTimKiem, labelMonth;
+    private JTextField textMaGiaoDich, textDonGia, textDienTich, textTimKiem;
+    private JComboBox comboBoxLoaiDat, comboBoxMonth;
+    private JXDatePicker JngayGiaoDich;
+    private CommandProcessor commandProcessor;
 
-    public LandUI(LandService landService) {
+    public LandUI(LandService landService, CommandProcessor commandProcessor) {
+        landService.addSub(this);
         this.landService = landService;
-        this.uiController = new LandUIController();
-
+        this.commandProcessor = commandProcessor;
         this.buildMenuBar();
         this.buildPanel();
 
-        setSize(640, 480);
+        setSize(900, 480);
         setTitle("Quản lý đất");
         setJMenuBar(this.jMenuBar);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         reloadTable();
+        clearInput();
     }
 
     public void buildMenuBar() {
@@ -43,7 +56,7 @@ public class LandUI extends JFrame {
         JMenu jMenu = new JMenu("Hệ thống");
         JMenuItem jMenuItemClose = new JMenuItem("Đóng");
 
-        jMenuItemClose.addActionListener(this.uiController);
+        jMenuItemClose.addActionListener(this);
 
         jMenu.add(jMenuItemClose);
         this.jMenuBar.add(jMenu);
@@ -56,31 +69,48 @@ public class LandUI extends JFrame {
         this.labelDonGia = new JLabel("Đơn giá: ");
         this.labelLoaiDat = new JLabel("Loại đất: ");
         this.labelDienTich = new JLabel("Diện tích: ");
-        this.labelSearch = new JLabel("Tìm kiếm: ");
+        this.labelTimKiem = new JLabel("Tìm kiếm: ");
+        this.labelMonth = new JLabel("Tháng: ");
+
+        this.JngayGiaoDich = new JXDatePicker();
+        this.JngayGiaoDich.setDate(Calendar.getInstance().getTime());
+        this.JngayGiaoDich.setFormats(new SimpleDateFormat("yyyy/MM/dd"));
 
         this.textMaGiaoDich = new JTextField(10);
-        this.textNgayGiaoDich = new JTextField(15);
         this.textDonGia = new JTextField(10);
-        this.textLoaiDat = new JTextField(10);
         this.textDienTich = new JTextField(10);
-        this.textSearch = new JTextField(20);
+        this.textTimKiem = new JTextField(20);
+
+        String[] lst = {"A", "B", "C"};
+        this.comboBoxLoaiDat = new JComboBox<>(lst);
+
+        String[] lstMonth = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
+        this.comboBoxMonth = new JComboBox<>(lstMonth);
 
         this.addButton = new JButton("Thêm");
         this.updateButton = new JButton("Sửa");
         this.deleteButton = new JButton("Xóa");
-        this.findButton = new JButton("Tìm theo ID");
-        this.searchButton = new JButton("Tìm");
+        this.findIDButton = new JButton("Tìm theo ID");
+        this.sumButton = new JButton("Tính thành tiền");
+        this.sumCountButton = new JButton("Tính tổng số lượng");
+        this.avgButton = new JButton("Tính trung bình thành tiền");
+        this.exportButton = new JButton("Xuất giao dịch");
 
         // Initialize table
         String[] columnNames = { "MaGiaoDich", "NgayGiaoDich", "DonGia", "LoaiDat", "DienTich" };
         tableModel = new DefaultTableModel(columnNames, 0);
         landTable = new JTable(tableModel);
+        landTable.getSelectionModel().addListSelectionListener(this);
 
         // add ActionListener
-        this.addButton.addActionListener(this.uiController);
-        this.updateButton.addActionListener(this.uiController);
-        this.deleteButton.addActionListener(this.uiController);
-        this.searchButton.addActionListener(this.uiController);
+        this.addButton.addActionListener(this);
+        this.updateButton.addActionListener(this);
+        this.deleteButton.addActionListener(this);
+        this.findIDButton.addActionListener(this);
+        this.sumButton.addActionListener(this);
+        this.sumCountButton.addActionListener(this);
+        this.avgButton.addActionListener(this);
+        this.exportButton.addActionListener(this);
 
         //
         JPanel inputPanel = new JPanel(new GridBagLayout());
@@ -96,7 +126,7 @@ public class LandUI extends JFrame {
         gbc.gridx = 0;
         inputPanel.add(this.labelNgayGiaoDich, gbc);
         gbc.gridx++;
-        inputPanel.add(this.textNgayGiaoDich, gbc);
+        inputPanel.add(this.JngayGiaoDich, gbc);
         gbc.gridy++;
         gbc.gridx = 0;
         inputPanel.add(this.labelDonGia, gbc);
@@ -106,7 +136,7 @@ public class LandUI extends JFrame {
         gbc.gridx = 0;
         inputPanel.add(this.labelLoaiDat, gbc);
         gbc.gridx++;
-        inputPanel.add(this.textLoaiDat, gbc);
+        inputPanel.add(this.comboBoxLoaiDat, gbc);
         gbc.gridy++;
         gbc.gridx = 0;
         inputPanel.add(this.labelDienTich, gbc);
@@ -115,9 +145,14 @@ public class LandUI extends JFrame {
 
         gbc.gridy++;
         gbc.gridx = 0;
-        inputPanel.add(this.labelSearch, gbc);
+        inputPanel.add(this.labelTimKiem, gbc);
         gbc.gridx++;
-        inputPanel.add(this.textSearch, gbc);
+        inputPanel.add(this.textTimKiem, gbc);
+        gbc.gridy++;
+        gbc.gridx = 0;
+        inputPanel.add(this.labelMonth, gbc);
+        gbc.gridx++;
+        inputPanel.add(this.comboBoxMonth, gbc);
 
         // find
 
@@ -127,24 +162,28 @@ public class LandUI extends JFrame {
         buttonPanel.add(this.addButton);
         buttonPanel.add(this.updateButton);
         buttonPanel.add(this.deleteButton);
-        buttonPanel.add(this.findButton);
-        buttonPanel.add(this.searchButton);
-        
+        buttonPanel.add(this.findIDButton);
+        buttonPanel.add(this.sumButton);
+        buttonPanel.add(this.sumCountButton);
+        buttonPanel.add(this.avgButton);
+        buttonPanel.add(this.exportButton);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(new JScrollPane(this.landTable), BorderLayout.CENTER);
         mainPanel.add(inputPanel, BorderLayout.NORTH);
-        //search
-       // mainPanel.add(searchPanel);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
         
         this.add(mainPanel);
     }
 
     public void reloadTable() {
+        List<Land> lands = this.landService.getData();
+        reloadTable(lands);
+    }
+
+    public void reloadTable(List<Land> lands) {
         tableModel.setRowCount(0); // clear table
 
-        List<Land> lands = this.landService.getAllLands();
         for(Land land : lands) {
             Object[] row = { land.getMaGiaoDich(), land.getNgayGiaoDich(), land.getDonGia(), land.getLoaiDat(), land.getDienTich() };
             tableModel.addRow(row);
@@ -153,27 +192,39 @@ public class LandUI extends JFrame {
 
     public void clearInput() {
         this.textMaGiaoDich.setText("");
-        this.textNgayGiaoDich.setText("");
+        this.JngayGiaoDich.setDate(new Date("01/07/2024"));
         this.textDonGia.setText("");
-        this.textLoaiDat.setText("");
+        this.comboBoxLoaiDat.setSelectedIndex(0);;
         this.textDienTich.setText("");
+    }
+
+    public Land getCurrentLand() {
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
+        // Get data from input
+        int maGiaoDich = Integer.parseInt(this.textMaGiaoDich.getText());
+        String ngayGiaoDich = formater.format(this.JngayGiaoDich.getDate());
+        int donGia = Integer.parseInt(this.textDonGia.getText());
+        String loaiDat = this.comboBoxLoaiDat.getSelectedItem().toString();
+        double dienTich = Double.parseDouble(this.textDienTich.getText());
+        return new Land(maGiaoDich, ngayGiaoDich, donGia, loaiDat, dienTich);
     }
 
     public void addLand() {
         try {
-            // Get data from input
-            int maGiaoDich = Integer.parseInt(this.textMaGiaoDich.getText());
-            String ngayGiaoDich = this.textNgayGiaoDich.getText();
-            int donGia = Integer.parseInt(this.textDonGia.getText());
-            String loaiDat = this.textLoaiDat.getText();
-            double dienTich = Double.parseDouble(this.textDienTich.getText());
+            Land land = this.getCurrentLand();
 
-            // add new house
-            this.landService.addLand(new Land(maGiaoDich, ngayGiaoDich, donGia, loaiDat, dienTich));
+            // check land is exist or not
+            if (this.landService.findGetLand(land.getMaGiaoDich()) != null) {
+                // exist
+                JOptionPane.showMessageDialog(this, "Mã giao dịch này đã tồn tại");
+                return;
+            };
+
+            // add new land
+            this.landService.addLand(land);
 
             // Clear input
             this.clearInput();
-            
             reloadTable();
         } catch (NumberFormatException ex) {
             // can't parse to int
@@ -181,60 +232,211 @@ public class LandUI extends JFrame {
         }
     }
 
-    public void updateLand() {
-
+    public Command calcMoney(Land land) {
+        if (this.landService.findGetLand(land.getMaGiaoDich()) == null) {
+            JOptionPane.showMessageDialog(this, "Mã giao dịch này không tồn tại");
+            return null;
+        };
+        return new CalcCommand(landService, land);
     }
 
-    public void deleteLand() {
+    public Command addLand(Land land) {
+        if (this.landService.findGetLand(land.getMaGiaoDich()) != null) {
+            JOptionPane.showMessageDialog(this, "Mã giao dịch này đã tồn tại");
+            return null;
+        };
+        return new AddCommand(landService, land);
+    }
+
+    public Command updateLand(Land land) {
+        if (this.landService.findGetLand(land.getMaGiaoDich()) == null) {
+            JOptionPane.showMessageDialog(this, "Mã giao dịch này không tồn tại");
+            return null;
+        };
+        return new UpdateCommand(landService, land);
+    }
+
+    public Command deleteLand() {
         int index = this.landTable.getSelectedRow();
 
         if (index == -1) {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng dữ liệu nào!");
-        } else {
-            int maGiaoDich = (int)(this.landTable.getValueAt(index, 0));
-            this.landService.deleteLand(maGiaoDich);
-            this.reloadTable();
-            this.clearInput();
+            return null;
         }
+        int maGiaoDich = Integer.parseInt(this.landTable.getValueAt(index, 0).toString());
+        return new DeleteCommand(landService, maGiaoDich);
     }
 
-    public void searchLand() {
-
+    public Command sumCountLand() {
+        return new SumCountLandCommand(this.landService, this.comboBoxLoaiDat.getSelectedItem().toString());
     }
 
-    public void Show() {
-        setVisible(true);
+    public Command avgMoney() {
+        return new AvgCommand(this.landService);
     }
 
-    public void Hide() {
-        setVisible(false);
+    public Command exportData() {
+        return new ExportCommand(this.landService, Integer.parseInt(this.comboBoxMonth.getSelectedItem().toString()));
+    }
+
+    public Command findByID() {
+        String text = textTimKiem.getText();
+        if (text == null || text.isEmpty()) {
+            return null;
+        }
+        int maGiaoDich = Integer.parseInt(text);
+        return new FindByIDCommand(landService, maGiaoDich);
+    }
+
+    // public Command searchLand() {
+    //     String text = JOptionPane.showInputDialog(this, "Nhập mã giao dịch:");
+    //     if (text == null || text.isEmpty()) {
+    //         return null;
+    //     }
+
+    //     try {
+    //         int maGiaoDich = Integer.parseInt(text);
+
+    //         if (this.landService.findGetLand(maGiaoDich) == null) {
+    //             JOptionPane.showMessageDialog(this, "Mã giao dịch này không tồn tại");
+    //             return null;
+    //         };
+
+    //         return new FindByIDCommand(landService, maGiaoDich);
+    //     } catch (NumberFormatException ex) {
+    //         JOptionPane.showMessageDialog(this, "Vui lòng nhập số");
+    //     }
+    //     return null;
+    // }
+
+    public void setLand(Land land) {
+        String maGiaoDich = String.valueOf(land.getMaGiaoDich());
+        String ngayGiaoDich = land.getNgayGiaoDich();
+        String donGia = String.valueOf(land.getDonGia());
+        String loaiDat = land.getLoaiDat();
+        String dienTich = String.valueOf(land.getDienTich());
+
+        this.textMaGiaoDich.setText(maGiaoDich);
+        this.JngayGiaoDich.setDate(new Date(ngayGiaoDich.replace('-', '/')));
+        this.textDonGia.setText(donGia);
+        if (loaiDat.toLowerCase().equals("a")) {
+            this.comboBoxLoaiDat.setSelectedIndex(0);
+        } else if (loaiDat.toLowerCase().equals("b")) {
+            this.comboBoxLoaiDat.setSelectedIndex(1);
+        } else if (loaiDat.toLowerCase().equals("c")) {
+            this.comboBoxLoaiDat.setSelectedIndex(2);
+        }
+        
+        this.textDienTich.setText(dienTich);
     }
 
     public void Close() {
-        dispose();
+        this.dispose();
     }
 
-    class LandUIController implements ActionListener {
-        public LandUIController() {
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        int row = this.landTable.getSelectedRow();
 
+        if (row == -1) {
+            return;
         }
 
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent e) {
+        String maGiaoDich = this.landTable.getModel().getValueAt(row, 0).toString();
+        String ngayGiaoDich = this.landTable.getModel().getValueAt(row, 1).toString();
+        String donGia = this.landTable.getModel().getValueAt(row, 2).toString();
+        String loaiDat = this.landTable.getModel().getValueAt(row, 3).toString();
+        String dienTich = this.landTable.getModel().getValueAt(row, 4).toString();
+
+        this.textMaGiaoDich.setText(maGiaoDich);
+        this.JngayGiaoDich.setDate(new Date(ngayGiaoDich.replace('-', '/')));
+        this.textDonGia.setText(donGia);
+        if (loaiDat.toLowerCase().equals("a")) {
+            this.comboBoxLoaiDat.setSelectedIndex(0);
+        } else if (loaiDat.toLowerCase().equals("b")) {
+            this.comboBoxLoaiDat.setSelectedIndex(1);
+        } else if (loaiDat.toLowerCase().equals("c")) {
+            this.comboBoxLoaiDat.setSelectedIndex(2);
+        }
+        this.textDienTich.setText(dienTich);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        try {
             String cmd = e.getActionCommand();
+            Land land;
+
+            try {
+                land = this.getCurrentLand();
+            } catch (Exception ex) {
+                land = null;
+            }
+            Command command = null;
+
             if (cmd.equals("Thêm")) {
-                addLand();
+                command = addLand(land);
+
             } else if (cmd.equals("Sửa")) {
-                updateLand();
+                command = updateLand(land);
+
             } else if (cmd.equals("Xóa")) {
-                deleteLand();
-            } else if (cmd.equals("Tìm theo Mã")) {
-                
+                command = deleteLand();
+
+            } else if (cmd.equals("Tìm theo ID")) {
+                command = findByID();
+
             } else if (cmd.equals("Tìm")) {
-                searchLand();
+                // command = searchLand();
+
+            } else if (cmd.equals("Tính thành tiền")) {
+                command = calcMoney(land);
+            
+            } else if (cmd.equals("Tính tổng số lượng")) {
+                command = sumCountLand();
+            
+            } else if (cmd.equals("Tính trung bình thành tiền")) {
+                command = avgMoney();
+            
+            } else if (cmd.equals("Xuất giao dịch")) {
+                command = exportData();
+
             } else if (cmd.equals("Đóng")) {
                 Close();
+
             }
+
+            if (command == null) {
+                return;
+            }
+
+            commandProcessor.execute(command);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void update() {
+        Land land = this.landService.getLand();
+        List<Land> lands = this.landService.getLands();
+        double thanhTien = this.landService.getThanhTien();
+        int soLuong = this.landService.getSoLuong();
+        double avgMoney = this.landService.getAvgMoney();
+
+        if (land != null) {
+            setLand(land);
+        } else if (lands != null) {
+            reloadTable(lands);
+        } else if (thanhTien > -1) {
+            JOptionPane.showMessageDialog(this, "Thành tiền: " + thanhTien);
+        } else if (soLuong > -1) {
+            JOptionPane.showMessageDialog(this, "Số lượng: " + soLuong);
+        } else if (avgMoney > -1) {
+            JOptionPane.showMessageDialog(this, "Trung bình thành tiền: " + avgMoney);
+        } else {
+            clearInput();
+            reloadTable();
         }
     }
 }

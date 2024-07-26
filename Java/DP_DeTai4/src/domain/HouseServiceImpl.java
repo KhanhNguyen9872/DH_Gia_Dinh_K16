@@ -1,5 +1,8 @@
 package domain;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import observer.Publisher;
 import observer.Subscriber;
@@ -152,5 +155,30 @@ public class HouseServiceImpl extends Publisher implements HouseService {
         double p = this.avgMoney;
         this.avgMoney = -1;
         return p;
+    }
+
+    @Override
+    public void exportData(int month) {
+        if (month == 0) {
+            this.getAllHouses();
+            return;
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date;
+
+        List<House> tmp = this.persistenceService.getAllHouses();
+        List<House> result = new ArrayList<House>();
+
+        for (House house : tmp) {
+            date = LocalDate.parse(house.getNgayGiaoDich(), formatter);
+            int m = date.getMonthValue();
+            if (m == month) {
+                result.add(house);
+            }
+        }
+
+        this.houses = result;
+        changeState();
     }
 }

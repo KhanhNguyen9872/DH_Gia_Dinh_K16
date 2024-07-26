@@ -32,4 +32,7 @@ public interface HouseService {
     // tinhTrungBinhThanhTien
     public void avgMoney();
     public double getAvgMoney();
+
+    // export
+    public void exportData(int month);
 }

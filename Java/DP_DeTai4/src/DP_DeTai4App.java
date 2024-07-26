@@ -11,11 +11,14 @@ public class DP_DeTai4App {
         CommandProcessor commandProcessor = CommandProcessor.makeCommandProcessor();
 
         HousePersistenceService housePersistenceService = new HousePersistenceServiceImpl("localhost", "3306", "dbdetai4", "root", "12345678");
+        LandPersistenceService landPersistenceService = new LandPersistenceServiceImpl("localhost", "3306", "dbdetai4", "root", "12345678");
 
         HouseService houseServiceImpl = new HouseServiceImpl(housePersistenceService);
+        LandService landServiceImpl = new LandServiceImpl(landPersistenceService);
 
         HouseUI houseUI = new HouseUI(houseServiceImpl, commandProcessor);
+        LandUI landUI = new LandUI(landServiceImpl, commandProcessor);
 
-        MainUI ui = new MainUI(houseUI, null);
+        MainUI ui = new MainUI(houseUI, landUI);
     }
 }

@@ -131,7 +131,14 @@ public class HousePersistenceServiceImpl implements HousePersistenceService {
             House house;
 
             while(resultSet.next()) {
-                house = new House(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4), resultSet.getString(5), resultSet.getDouble(6));
+                house = new House(
+                    resultSet.getInt(1), 
+                    resultSet.getString(2), 
+                    resultSet.getInt(3), 
+                    resultSet.getString(4), 
+                    resultSet.getString(5), 
+                    resultSet.getDouble(6)
+                );
                 houses.add(house);
             }
         } catch (Exception ex) {
