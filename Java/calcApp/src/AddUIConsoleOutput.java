@@ -33,5 +33,6 @@ public class AddUIConsoleOutput {
             this.stdOut.println(line);
         }
         this.stdOut.flush();
+        stdInFile.close();
     }
 }
