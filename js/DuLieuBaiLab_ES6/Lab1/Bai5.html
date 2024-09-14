@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Sách</title>
+    <link rel="stylesheet" href="Bai5.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quản lý Sách</h1>
+        <form id="book-form">
+            <input type="text" id="title" placeholder="Tên sách" required>
+            <input type="text" id="author" placeholder="Tác giả" required>
+            <input type="number" id="pages" placeholder="Số trang" required>
+            <button type="submit">Thêm sách</button>
+        </form>
+        <h2>Danh sách Sách</h2>
+        <ul id="book-list"></ul>
+        <div id="total-pages">Tổng số trang: 0</div>
+    </div>
+    <script src="Bai5.js"></script>
+</body>
+</html>

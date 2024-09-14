@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sinh Viên</title>
+    <link rel="stylesheet" href="Bai1.css">
+</head>
+<body>
+    <h1>Quản Lý Sinh Viên</h1>
+    <div class="student-form">
+        <input type="number" id="studentId" placeholder="Mã sinh viên">
+        <input type="text" id="studentName" placeholder="Họ tên">
+        <input type="number" step="0.1" id="studentLT" placeholder="Điểm lý thuyết">
+        <input type="number" step="0.1" id="studentTH" placeholder="Điểm thực hành">
+        <button onclick="addStudent()">Thêm Sinh Viên</button>
+    </div>
+
+    <div class="student-info" id="studentInfo"></div>
+
+    <script src="Bai1.js"></script>
+</body>
+</html>

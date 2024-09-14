@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý người dùng</title>
+    <link rel="stylesheet" href="Bai2.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quản lý người dùng</h1>
+        <form id="userForm">
+            <div class="form-group">
+                <label for="name">Tên:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <button type="submit">Thêm người dùng</button>
+        </form>
+        <div id="message"></div>
+        <ul id="userList"></ul>
+    </div>
+    <script src="Bai2.js"></script>
+</body>
+</html>

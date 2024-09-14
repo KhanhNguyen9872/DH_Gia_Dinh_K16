@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.student-form {
+    margin-bottom: 20px;
+}
+
+.student-form input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 300px;
+}
+
+.student-form button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.student-form button:hover {
+    background-color: #45a049;
+}
+
+.student-info {
+    margin-top: 20px;
+}
+
+.student-info p {
+    margin: 5px 0;
+    font-size: 18px;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sách</title>
+    <link rel="stylesheet" href="Bai3.css">
+</head>
+<body>
+    <h1>Quản Lý Sách</h1>
+    <div class="book-form">
+        <input type="text" id="title" placeholder="Tiêu Đề">
+        <input type="text" id="author" placeholder="Tác Giả">
+        <button onclick="addBook()">Thêm Sách</button>
+    </div>
+
+    <div class="actions">
+        <button onclick="showBooks()">Hiển Thị Tất Cả Sách</button>
+        <button onclick="sortBooks()">Sắp Xếp Sách Theo Tiêu Đề</button>
+        <input type="text" id="searchTitle" placeholder="Tìm kiếm theo tiêu đề">
+        <button onclick="searchBook()">Tìm Kiếm</button>
+        <input type="text" id="updateTitle" placeholder="Tiêu Đề cần cập nhật">
+        <input type="text" id="newAuthor" placeholder="Tên tác giả mới">
+        <button onclick="updateBook()">Cập Nhật Tác Giả</button>
+        <input type="number" id="deleteIndex" placeholder="Vị trí cần xóa">
+        <button onclick="deleteBook()">Xóa Sách</button>
+    </div>
+
+    <div class="book-list">
+        <ul id="bookList"></ul>
+    </div>
+
+    <script src="Bai3.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Color Picker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+</head>
+<body>
+    <div class="product-container">
+        <div class="product-image-wrapper">
+            <img id="product-image" src="images/red-shirt.jpg" alt="Product Image">
+        </div>
+        <div class="product-details">
+            <h2 id="product-name">Stylish Shirt</h2>
+            <p id="product-price">$20.00</p>
+            <label for="color-selector">Choose color:</label>
+            <select id="color-selector">
+                <option value="red" data-price="20.00" data-img="images/red-shirt.jpg" data-stock="4">Red</option>
+                <option value="blue" data-price="22.00" data-img="images/blue-shirt.jpg" data-stock="8">Blue</option>
+                <option value="green" data-price="18.00" data-img="images/green-shirt.jpg" data-stock="0">Green</option>
+            </select>
+
+            <div class="promo-option">
+                <input type="checkbox" id="promo" name="promo">
+                <label for="promo">Apply 10% Discount</label>
+            </div>
+
+            <button id="add-to-cart">Add to Cart</button>
+            <p id="stock-info">Stock available: 4 items</p> <!-- Thông tin số lượng tồn kho -->
+        </div>
+    </div>
+
+    <div class="cart-container">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-list">
+            <!-- Món hàng sẽ được thêm vào đây -->
+        </ul>
+        <p id="total-price">Total Price: $0.00</p>
+    </div>
+
+    <script type="module" src="script/main.js"></script>
+</body>
+</html>

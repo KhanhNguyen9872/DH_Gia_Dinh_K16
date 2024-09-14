@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.book-form input, .book-form button {
+    display: block;
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 300px;
+}
+
+.book-list {
+    margin-top: 20px;
+}
+
+.book-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.book-list li {
+    margin: 5px 0;
+    padding: 8px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.actions {
+    margin-top: 20px;
+}
+
+.actions button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.actions button:hover {
+    background-color: #45a049;
+}

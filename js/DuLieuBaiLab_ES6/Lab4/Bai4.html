@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý CD</title>
+    <link rel="stylesheet" href="Bai4.css">
+</head>
+<body>
+    <h1>Quản Lý CD</h1>
+    <div class="cd-form">
+        <input type="number" id="cdId" placeholder="Mã CD">
+        <input type="text" id="title" placeholder="Tựa CD">
+        <input type="text" id="artist" placeholder="Ca Sỹ">
+        <input type="number" id="songCount" placeholder="Số Bài Hát">
+        <input type="number" step="0.01" id="price" placeholder="Giá Thành">
+        <button onclick="addCD()">Thêm CD</button>
+    </div>
+
+    <div class="actions">
+        <button onclick="showCDs()">Hiển Thị Toàn Bộ CD</button>
+        <button onclick="countCDs()">Tính Số Lượng CD</button>
+        <button onclick="calculateTotalPrice()">Tính Tổng Giá Thành</button>
+    </div>
+
+    <div class="cd-list">
+        <ul id="cdList"></ul>
+    </div>
+
+    <div id="result"></div>
+
+    <script src="Bai4.js"></script>
+</body>
+</html>
