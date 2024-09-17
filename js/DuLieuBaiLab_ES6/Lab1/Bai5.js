@@ -45,7 +45,10 @@ function renderBook() {
         });
 
         // add to li
-        li.appendChild(document.createTextNode(title));
+        let titleBold = document.createElement('strong');
+        titleBold.appendChild(document.createTextNode(title));
+        
+        li.appendChild(titleBold);
         li.appendChild(document.createTextNode(author));
         li.appendChild(document.createTextNode(pages));
         li.appendChild(btnEdit);
