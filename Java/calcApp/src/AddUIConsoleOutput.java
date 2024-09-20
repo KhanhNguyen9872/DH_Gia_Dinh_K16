@@ -15,24 +15,19 @@ public class AddUIConsoleOutput {
         String mulResult = responseData.getMulResult();
         String divResult = responseData.getDivResult();
 
-        // write data to file
-        File file = new File(this.fileName);
-        PrintWriter stdOutFile = new PrintWriter(file);
+        //
+        EditFile f = new EditFile(this.fileName);
 
-        stdOutFile.println("- Add Result: " + addResult);
-        stdOutFile.println("- Sub Result: " + subResult);
-        stdOutFile.println("- Mul Result: " + mulResult);
-        stdOutFile.println("- Div Result: " + divResult);
-        stdOutFile.close();
+        // write data
+        f.write(
+            "- Add Result: " + addResult + "\n" + 
+            "- Sub Result: " + subResult + "\n" + 
+            "- Mul Result: " + mulResult + "\n" + 
+            "- Div Result: " + divResult + "\n"
+        );
 
-        // read file and print to console
-        String line;
-        FileReader fileReader = new FileReader(this.fileName);
-        BufferedReader stdInFile = new BufferedReader(fileReader);
-        while ((line = stdInFile.readLine()) != null) {
-            this.stdOut.println(line);
-        }
+        // read data and print to console
+        this.stdOut.println(f.read());
         this.stdOut.flush();
-        stdInFile.close();
     }
 }

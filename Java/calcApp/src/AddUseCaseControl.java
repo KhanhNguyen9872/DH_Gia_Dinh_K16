@@ -16,13 +16,13 @@ public class AddUseCaseControl {
     }
 
     public void execute(RequestData requestData) throws Exception {
-        int number1 = 0;
-        int number2 = 0;
+        double number1 = 0;
+        double number2 = 0;
 
         // check number
         try {
-            number1 = Integer.parseInt(requestData.getNumber1());
-            number2 = Integer.parseInt(requestData.getNumber2());
+            number1 = Double.parseDouble(requestData.getNumber1());
+            number2 = Double.parseDouble(requestData.getNumber2());
         } catch (Exception ex) {
             throw new Exception("Error! Please input again!");
         }

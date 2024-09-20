@@ -1,7 +1,4 @@
-import Entity.AddEntity;
-import Entity.DivEntity;
-import Entity.MulEntity;
-import Entity.SubEntity;
+import Entity.*;
 
 public class CalcApp {
     public static void main(String[] args) throws Exception {

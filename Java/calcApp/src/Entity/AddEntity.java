@@ -1,21 +1,22 @@
 package Entity;
+
 public class AddEntity {
-    private int number1;
-    private int number2;
+    private double number1;
+    private double number2;
 
     public AddEntity() {
 
     }
 
-    public int add() {
+    public double add() {
         return this.number1 + this.number2;
     }
 
-    public void setNumber1(int number1) {
+    public void setNumber1(double number1) {
         this.number1 = number1;
     }
 
-    public void setNumber2(int number2) {
+    public void setNumber2(double number2) {
         this.number2 = number2;
     }
 }
