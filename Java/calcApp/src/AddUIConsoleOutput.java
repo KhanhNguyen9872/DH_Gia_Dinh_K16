@@ -27,7 +27,7 @@ public class AddUIConsoleOutput {
         );
 
         // read data and print to console
-        this.stdOut.println(f.read());
+        this.stdOut.print(f.read());
         this.stdOut.flush();
     }
 }
