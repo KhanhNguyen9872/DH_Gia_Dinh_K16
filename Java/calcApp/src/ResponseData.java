@@ -1,4 +1,5 @@
 public class ResponseData {
+    private String msg = null;
     private String addResult;
     private String subResult;
     private String mulResult;
@@ -38,5 +39,13 @@ public class ResponseData {
 
     public void setDivResult(String divResult) {
         this.divResult = divResult;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

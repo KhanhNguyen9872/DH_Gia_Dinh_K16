@@ -16,6 +16,8 @@ public class AddUseCaseControl {
     }
 
     public void execute(RequestData requestData) throws Exception {
+        ResponseData responseData = new ResponseData();
+
         double number1 = 0;
         double number2 = 0;
 
@@ -24,7 +26,9 @@ public class AddUseCaseControl {
             number1 = Double.parseDouble(requestData.getNumber1());
             number2 = Double.parseDouble(requestData.getNumber2());
         } catch (Exception ex) {
-            throw new Exception("Error! Please input again!");
+            responseData.setMsg("Vui long nhap lai!");
+            this.addOut.output(responseData);
+            return;
         }
 
         // set
@@ -47,7 +51,6 @@ public class AddUseCaseControl {
         String divResult = String.valueOf(this.divEntity.div());
 
         // response
-        ResponseData responseData = new ResponseData();
         responseData.setAddResult(addResult);
         responseData.setSubResult(subResult);
         responseData.setMulResult(mulResult);

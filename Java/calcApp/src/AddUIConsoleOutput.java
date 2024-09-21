@@ -10,24 +10,29 @@ public class AddUIConsoleOutput {
 
     public void output(ResponseData responseData) throws IOException, FileNotFoundException {
         // get data from response
-        String addResult = responseData.getAddResult();
-        String subResult = responseData.getSubResult();
-        String mulResult = responseData.getMulResult();
-        String divResult = responseData.getDivResult();
+        String msg = responseData.getMsg();
+        if (msg == null) {
+            String addResult = responseData.getAddResult();
+            String subResult = responseData.getSubResult();
+            String mulResult = responseData.getMulResult();
+            String divResult = responseData.getDivResult();
 
-        //
-        EditFile f = new EditFile(this.fileName);
+            //
+            EditFile f = new EditFile(this.fileName);
 
-        // write data
-        f.write(
-            "- Add Result: " + addResult + "\n" + 
-            "- Sub Result: " + subResult + "\n" + 
-            "- Mul Result: " + mulResult + "\n" + 
-            "- Div Result: " + divResult + "\n"
-        );
+            // write data
+            f.write(
+                "- Add Result: " + addResult + "\n" + 
+                "- Sub Result: " + subResult + "\n" + 
+                "- Mul Result: " + mulResult + "\n" + 
+                "- Div Result: " + divResult + "\n"
+            );
 
-        // read data and print to console
-        this.stdOut.print(f.read());
+            // read data and print to console
+            this.stdOut.print(f.read());
+        } else {
+            this.stdOut.println(msg);
+        }
         this.stdOut.flush();
     }
 }
