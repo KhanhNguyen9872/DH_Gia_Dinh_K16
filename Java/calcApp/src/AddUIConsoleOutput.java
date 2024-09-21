@@ -1,6 +1,7 @@
 import java.io.*;
 
 public class AddUIConsoleOutput {
+    private AddUIConsoleInput addInput;
     private PrintWriter stdOut;
     private String fileName = "result.txt";
 
@@ -8,7 +9,11 @@ public class AddUIConsoleOutput {
         this.stdOut = new PrintWriter(System.out);
     }
 
-    public void output(ResponseData responseData) throws IOException, FileNotFoundException {
+    public void setAddInput(AddUIConsoleInput addInput) {
+        this.addInput = addInput;
+    }
+
+    public void output(ResponseData responseData) throws Exception {
         // get data from response
         String msg = responseData.getMsg();
         if (msg == null) {
@@ -30,9 +35,11 @@ public class AddUIConsoleOutput {
 
             // read data and print to console
             this.stdOut.print(f.read());
+            this.stdOut.flush();
         } else {
             this.stdOut.println(msg);
+            this.stdOut.flush();
+            addInput.input();
         }
-        this.stdOut.flush();
     }
 }

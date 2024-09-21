@@ -11,6 +11,7 @@ public class CalcApp {
         AddUseCaseControl addControl = new AddUseCaseControl(addEntity, subEntity, mulEntity, divEntity, addOutput);
         AddUIConsoleInput addInput = new AddUIConsoleInput(addControl);
         
+        addOutput.setAddInput(addInput);
         addInput.input();
     }
 }

@@ -5,10 +5,10 @@ public class AddUIConsoleInput {
     private PrintWriter stdOut;
     private BufferedReader stdIn;
 
-    public AddUIConsoleInput(AddUseCaseControl addcontrol) {
+    public AddUIConsoleInput(AddUseCaseControl addControl) {
         this.stdOut = new PrintWriter(System.out);
         this.stdIn = new BufferedReader(new InputStreamReader(System.in));
-        this.addControl = addcontrol;
+        this.addControl = addControl;
     }
 
     public void input() throws Exception {
