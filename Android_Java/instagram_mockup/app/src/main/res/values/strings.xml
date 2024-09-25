@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">instagram_mockup</string>
+    <string name="username">Username</string>
+    <string name="instagramDescription">calligraphy of the word: Instagram</string>
+    <string name="login">Log in</string>
+    <string name="password">Password</string>
+</resources>

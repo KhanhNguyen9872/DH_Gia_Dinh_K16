@@ -26,9 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
             delBtn.appendChild(document.createTextNode("Xóa"));
             delBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                carts = carts.filter((_, i) => {
-                    return i !== index;
-                })
+                let { quantity } = carts[index];
+                if (quantity > 1) {
+                    carts[index].quantity--;
+                } else {
+                    carts = carts.filter((_, i) => {
+                        return i !== index;
+                    })
+                }
                 renderCart();
             });
 

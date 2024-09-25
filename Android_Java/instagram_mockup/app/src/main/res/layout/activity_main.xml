@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageView
+            android:layout_width="220dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="120dp"
+            android:contentDescription="@string/instagramDescription"
+            android:scaleType="fitCenter"
+            android:src="@drawable/instagramicon" />
+
+        <EditText
+            android:id="@+id/emailEt"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:autofillHints="email/phone"
+            android:background="#30FFFFFF"
+            android:hint="Email or number phone"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp"
+            android:textColorHint="#D3D3D3" />
+
+        <EditText
+            android:id="@+id/passwordEt"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:autofillHints="password"
+            android:background="#30FFFFFF"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp"
+            android:textColorHint="#D3D3D3" />
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button_background"
+            android:hint="Log in"
+            android:textColorHint="#D39999AF"
+            android:textSize="19dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/forgit_Login"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:text="Forgot your login details?"
+                android:textColor="#A9A9A9"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvHelpSignin"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:text=" Get help signing in."
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginHorizontal="50dp"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/imageTextLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/fbimage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="image next to text"
+                android:src="@drawable/img" />
+
+            <TextView
+                android:id="@+id/signupwithfp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Log in with Facebook"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/signUpBtn"
+        android:layout_gravity="end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sign_up_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="Doesn't have an account? Sign Up. "
+        android:textColorHint="#D3D3D3"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
