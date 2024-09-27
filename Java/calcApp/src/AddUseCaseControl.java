@@ -1,13 +1,13 @@
 import Entity.*;
 
 public class AddUseCaseControl {
-    private AddEntity addEntity;
-    private SubEntity subEntity;
-    private MulEntity mulEntity;
-    private DivEntity divEntity;
+    private CalcEntity addEntity;
+    private CalcEntity subEntity;
+    private CalcEntity mulEntity;
+    private CalcEntity divEntity;
     private AddUIConsoleOutput addOut;
 
-    public AddUseCaseControl(AddEntity addEntity, SubEntity subEntity, MulEntity mulEntity, DivEntity divEntity, AddUIConsoleOutput addOut) {
+    public AddUseCaseControl(CalcEntity addEntity, CalcEntity subEntity, CalcEntity mulEntity, CalcEntity divEntity, AddUIConsoleOutput addOut) {
         this.addEntity = addEntity;
         this.subEntity = subEntity;
         this.mulEntity = mulEntity;
@@ -45,10 +45,10 @@ public class AddUseCaseControl {
         this.divEntity.setNumber2(number2);
         
         // execute
-        String addResult = String.valueOf(this.addEntity.add());
-        String subResult = String.valueOf(this.subEntity.sub());
-        String mulResult = String.valueOf(this.mulEntity.mul());
-        String divResult = String.valueOf(this.divEntity.div());
+        String addResult = String.valueOf(this.addEntity.calc());
+        String subResult = String.valueOf(this.subEntity.calc());
+        String mulResult = String.valueOf(this.mulEntity.calc());
+        String divResult = String.valueOf(this.divEntity.calc());
 
         // response
         responseData.setAddResult(addResult);

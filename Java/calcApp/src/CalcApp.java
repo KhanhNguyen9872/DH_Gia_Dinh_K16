@@ -2,10 +2,10 @@ import Entity.*;
 
 public class CalcApp {
     public static void main(String[] args) throws Exception {
-        AddEntity addEntity = new AddEntity();
-        SubEntity subEntity = new SubEntity();
-        MulEntity mulEntity = new MulEntity();
-        DivEntity divEntity = new DivEntity();
+        CalcEntity addEntity = new AddEntity();
+        CalcEntity subEntity = new SubEntity();
+        CalcEntity mulEntity = new MulEntity();
+        CalcEntity divEntity = new DivEntity();
 
         AddUIConsoleOutput addOutput = new AddUIConsoleOutput();
         AddUseCaseControl addControl = new AddUseCaseControl(addEntity, subEntity, mulEntity, divEntity, addOutput);
