@@ -16,7 +16,7 @@ public class AddUIConsoleOutput {
     public void output(ResponseData responseData) throws Exception {
         // get data from response
         String msg = responseData.getMsg();
-        if (msg == null) {
+        if (msg.equals("success")) {
             String addResult = responseData.getAddResult();
             String subResult = responseData.getSubResult();
             String mulResult = responseData.getMulResult();

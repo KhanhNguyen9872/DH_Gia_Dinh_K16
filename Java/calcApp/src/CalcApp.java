@@ -1,14 +1,9 @@
-import Entity.*;
-
 public class CalcApp {
     public static void main(String[] args) throws Exception {
-        CalcEntity addEntity = new AddEntity();
-        CalcEntity subEntity = new SubEntity();
-        CalcEntity mulEntity = new MulEntity();
-        CalcEntity divEntity = new DivEntity();
+        CalcEntity calcEntity = new CalcEntity();
 
         AddUIConsoleOutput addOutput = new AddUIConsoleOutput();
-        AddUseCaseControl addControl = new AddUseCaseControl(addEntity, subEntity, mulEntity, divEntity, addOutput);
+        AddUseCaseControl addControl = new AddUseCaseControl(calcEntity, addOutput);
         AddUIConsoleInput addInput = new AddUIConsoleInput(addControl);
         
         addOutput.setAddInput(addInput);
