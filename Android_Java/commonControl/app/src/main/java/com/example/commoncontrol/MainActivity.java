@@ -79,10 +79,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         resultBtn.setOnClickListener(v -> {
-            if (!intCb.isChecked() && !doubleCb.isChecked() && stringCb.isChecked() && !allCb.isChecked()) {
-                showToast("Đúng rồi");
+            if (!intCb.isChecked() && !doubleCb.isChecked() && !stringCb.isChecked()) {
+                showToast("Chưa chọn!");
             } else {
-                showToast("Sai rồi");
+                if (!intCb.isChecked() && !doubleCb.isChecked() && stringCb.isChecked()) {
+                    showToast("Đúng rồi!");
+                } else {
+                    showToast("Sai rồi!");
+                }
             }
         });
 

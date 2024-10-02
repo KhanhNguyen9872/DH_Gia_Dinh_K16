@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/titleCacLoaiKem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cho các loại kem sau:"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <CheckBox
+            android:id="@+id/kemBo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kem bơ"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/titleCacLoaiKem"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/kemSauRieng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kem sầu riêng"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/kemBo"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/kemDau"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kem dâu"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/kemSauRieng"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </CheckBox>
+
+        <TextView
+            android:id="@+id/titleCacLoaiSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Chọn size: "
+            android:textStyle="bold"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/kemDau"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/chonSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/titleCacLoaiSize"
+            app:layout_constraintStart_toStartOf="parent">
+            <RadioButton
+                android:id="@+id/sizeS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S"
+                android:textSize="16sp"
+                >
+
+            </RadioButton>
+            <RadioButton
+                android:id="@+id/sizeM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="M"
+                android:textSize="16sp"
+                >
+
+            </RadioButton>
+            <RadioButton
+                android:id="@+id/sizeL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L"
+                android:textSize="16sp"
+                >
+
+            </RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/banDaChonKem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Bạn đã chọn kem"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/chonSize"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/daChonKem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Chưa chọn kem"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/banDaChonKem"
+            app:layout_constraintStart_toStartOf="parent">
+            >
+
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/banDaChonKichCo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Kích cỡ"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/daChonKem"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/daChonKichCo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Chưa chọn kích cỡ"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/banDaChonKichCo"
+            app:layout_constraintStart_toStartOf="parent">
+            >
+
+        </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
