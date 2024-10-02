@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     let products = [
-        { name: "Nước Ép Cam", price: 30000 },
-        { name: "Trà Sữa", price: 40000 },
-        { name: "Cà Phê Đen", price: 20000 },
-        { name: "Sinh Tố Bơ", price: 50000 }
+        { id: 1, name: "Nước Ép Cam", price: 30000 },
+        { id: 2, name: "Trà Sữa", price: 40000 },
+        { id: 3, name: "Cà Phê Đen", price: 20000 },
+        { id: 4, name: "Sinh Tố Bơ", price: 50000 }
     ];
     let carts = [];
 
@@ -11,29 +11,32 @@ document.addEventListener('DOMContentLoaded', () => {
     let cartList = document.getElementById('cart-list');
     let totalPrice = document.getElementById('total-price');
 
+    const removeCart = (id) => {
+        let c = carts.find((p) => p.id === id);
+        let { quantity } = c;
+        if (quantity > 1) {
+            c.quantity--;
+        } else {
+            carts = carts.filter((_, i) => i !== index);
+        };
+    }
+
     const renderCart = () => {
         cartList.innerHTML = '';
         carts.forEach((cart, index) => {
             let { name, price, quantity } = cart;
-            let li = document.createElement('li');
+            let div = document.createElement('div');
             let nameElement = document.createElement('span');
             let priceElement = document.createElement('span');
             let quantityElement = document.createElement('span');
             let delBtn = document.createElement('button');
 
-            li.setAttribute('class', 'cart-item');
+            div.setAttribute('class', 'cart-item');
             delBtn.setAttribute('class', 'remove-btn');
             delBtn.appendChild(document.createTextNode("Xóa"));
             delBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                let { quantity } = carts[index];
-                if (quantity > 1) {
-                    carts[index].quantity--;
-                } else {
-                    carts = carts.filter((_, i) => {
-                        return i !== index;
-                    })
-                }
+                removeCart();
                 renderCart();
             });
 
@@ -41,12 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
             priceElement.appendChild(document.createTextNode(price + " VND"));
             quantityElement.appendChild(document.createTextNode("Số lượng: " + quantity));
 
-            li.appendChild(nameElement);
-            li.appendChild(priceElement);
-            li.appendChild(quantityElement);
-            li.appendChild(delBtn);
+            div.appendChild(nameElement);
+            div.appendChild(priceElement);
+            div.appendChild(quantityElement);
+            div.appendChild(delBtn);
 
-            cartList.appendChild(li);
+            cartList.appendChild(div);
         });
 
         totalPrice.textContent = carts.reduce((total, cart) => total + (+cart.price * +cart.quantity), 0);
@@ -55,14 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderProduct = () => {
         productList.innerHTML = '';
         products.forEach((product, index) => {
-            let {name, price} = product;
+            let {id, name, price} = product;
 
-            let li = document.createElement('li');
+            let div = document.createElement('div');
             let nameElement = document.createElement('span');
             let priceElement = document.createElement('span');
             let addBtn = document.createElement('button');
             
-            li.setAttribute('class', 'product');
+            div.setAttribute('class', 'product');
             
             nameElement.appendChild(document.createTextNode(name));
             priceElement.appendChild(document.createTextNode(price + " VND"));
@@ -71,24 +74,24 @@ document.addEventListener('DOMContentLoaded', () => {
             addBtn.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                let { name, price } = products[index];
+                let p = products[index];
                 
-                let cartIndex = carts.findIndex(cart => cart.name === name);
+                let cart = carts.find(cart => cart.id === id);
 
-                if (cartIndex == -1) {
-                    carts = [...carts, { name, price, quantity: 1 }];
+                if (cart) {
+                    cart.quantity++;
                 } else {
-                    carts[cartIndex].quantity++;
+                    carts = [...carts, { ...p, quantity: 1 }];
                 }
                 
                 renderCart();
             });
 
-            li.appendChild(nameElement);
-            li.appendChild(priceElement);
-            li.appendChild(addBtn);
+            div.appendChild(nameElement);
+            div.appendChild(priceElement);
+            div.appendChild(addBtn);
 
-            productList.appendChild(li);
+            productList.appendChild(div);
         });
     }
 

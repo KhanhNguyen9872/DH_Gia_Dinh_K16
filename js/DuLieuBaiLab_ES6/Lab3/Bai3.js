@@ -56,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ul.innerHTML = '';
         tasks.forEach((task, index) => {
             let li = document.createElement('li');
-            li.setAttribute('class', 'todo-item');
+            li.classList.add('todo-item');
+            let div = document.createElement('div');
             
             let {name, complete} = task;
 
@@ -64,7 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
             taskNameElement.appendChild(document.createTextNode(name));
 
             if (complete) {
-                taskNameElement.setAttribute('class', 'todo-item completed');
+                taskNameElement.classList.add('todo-item');
+                taskNameElement.classList.add('completed');
             }
 
             let completeBtn = document.createElement('button');
@@ -95,9 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
+            div.appendChild(completeBtn);
+            div.appendChild(delBtn);
+
             li.appendChild(taskNameElement);
-            li.appendChild(completeBtn);
-            li.appendChild(delBtn);
+            li.appendChild(div);
 
             ul.appendChild(li);
         });

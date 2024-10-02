@@ -7,23 +7,35 @@ public class AddUseCaseControl {
         this.addOut = addOut;
     }
 
+    private boolean isNumber(String number) {
+        try {
+            Double.parseDouble(number);
+        } catch (Exception ex) {
+            return false;
+        };
+        return true;
+    }
+
     public void execute(RequestData requestData) throws Exception {
         ResponseData responseData = new ResponseData();
+
+        String number1Str = requestData.getNumber1();
+        String number2Str = requestData.getNumber2();
 
         double number1 = 0;
         double number2 = 0;
 
         // check number
-        try {
-            number1 = Double.parseDouble(requestData.getNumber1());
-            number2 = Double.parseDouble(requestData.getNumber2());
-        } catch (Exception ex) {
+        if (isNumber(number1Str) && isNumber(number2Str)) {
+            number1 = Double.parseDouble(number1Str);
+            number2 = Double.parseDouble(number2Str);
+        } else {
             responseData.setMsg("Vui long nhap lai!");
             this.addOut.output(responseData);
             return;
         }
 
-        // set
+        // setter
         this.calcEntity.setNumber1(number1);
         this.calcEntity.setNumber2(number2);
         

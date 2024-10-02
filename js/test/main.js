@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let newMenu = document.createElement('ul');
     let menu = document.getElementById('menu-khoa-hoc-khac-sam-dev');
 
-    let size = 4;
+    let size = 5;
     let num = 0;
     for(let i = 0; i < size; i++) {
         let links = ulToArray(menu, 'li');
@@ -38,13 +38,32 @@ document.addEventListener('DOMContentLoaded', function() {
         li.className = "menu-item-new";
 
         let url_li = getPathFromURL(li.querySelector('a').href);
-        console.log(url_li);
 
         menu.removeChild(li);
         if (url_li === window.location.pathname) {
             size++;
         } else {
-            newMenu.appendChild(li);
+            let li2 = document.createElement('li');
+            li2.className = "menu-item-new";
+            let button = document.createElement('button');
+
+            var leftDiv = document.createElement('div');
+            leftDiv.className = 'left';
+            var rightDiv = document.createElement('div');
+            rightDiv.className = 'right';
+
+            button.appendChild(leftDiv);
+            let a = li.getElementsByTagName('a')[0];
+            button.appendChild(document.createTextNode(a.innerText));
+            button.appendChild(rightDiv);
+
+            button.setAttribute('style', "--content: '" + a.innerText +"';");
+            button.addEventListener('click', function(e) {
+                window.location.href = a.href;
+            });
+            
+            li2.appendChild(button);
+            newMenu.appendChild(li2);
         };
     };
 

@@ -40,20 +40,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const addUser = (name) => {
-        users = [...users, { name }];
-        return `Thêm người dùng "${name}" thành công!`;
+    const addUserPromise = (name) => {
+        return new Promise((resolve, rejected) => {
+            setTimeout(() => {
+                users = [...users, { name }];
+                resolve(`Thêm người dùng "${name}" thành công!`);
+            }, 2000);
+        });
     };
 
-    const delUser = (index) => {
-        let {name} = users[index];
-        users = users.filter((_, i) => i !== index);
-        return `Xóa người dùng "${name}" thành công!`;
+    const delUserPromise = (index) => {
+        return new Promise((resolve, rejected) => {
+            setTimeout(() => {
+                let {name} = users[index];
+                users = users.filter((_, i) => i !== index);
+                resolve(`Xóa người dùng "${name}" thành công!`);
+            }, 2000);
+        });
     };
 
     const addUserAsync = async(name) => {
         try {
-            const add = await addUser(name);
+            const add = await addUserPromise(name);
             setMessage(add, 1);
             renderUsers();
         } catch (error) {
@@ -63,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const delUserAsync = async(index) => {
         try {
-            const result = await delUser(index);
+            const result = await delUserPromise(index);
             setMessage(result, 1);
             renderUsers();
         } catch (error) {

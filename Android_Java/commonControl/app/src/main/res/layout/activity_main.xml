@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <Button
+        android:id="@+id/resultBtn"
+        android:background="@drawable/button_shape"
+        android:layout_marginTop="15dp"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:text="KẾT QUẢ"
+        app:layout_constraintTop_toBottomOf="@id/allCb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+
+    <Button
+        android:id="@+id/hintBtn"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_shape"
+        android:text="GỢI Ý"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resultBtn" />
+
+    <CheckBox
+        android:layout_marginTop="10dp"
+        android:text="int"
+        android:id="@+id/intCb"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="133dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/question"/>
+    <CheckBox
+        android:text="double"
+        android:id="@+id/doubleCb"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/intCb"/>
+    <CheckBox
+        android:text="string"
+        android:id="@+id/stringCb"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="133dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/doubleCb"/>
+    <CheckBox
+        android:text="Tất cả các phương án"
+        android:id="@+id/allCb"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stringCb"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/question"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="90dp"
+        android:textSize="17dp"
+        android:text="loại biến nào có thể dùng cho tên một thành phố?"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+
+    <TextView
+        android:id="@+id/title"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:textSize="46sp"
+        android:textColor="@color/white"
+        android:background="#263AA4"
+        android:text="CompoundButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

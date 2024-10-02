@@ -8,5 +8,5 @@ public class CalcApp {
         
         addOutput.setAddInput(addInput);
         addInput.input();
-    }
-}
+    };
+};
