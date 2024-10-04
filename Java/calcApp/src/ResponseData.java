@@ -1,4 +1,5 @@
 public class ResponseData {
+    private String status = null;
     private String msg = null;
     private String addResult;
     private String subResult;
@@ -47,5 +48,13 @@ public class ResponseData {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

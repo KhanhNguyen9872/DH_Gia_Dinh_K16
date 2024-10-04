@@ -31,6 +31,7 @@ public class AddUseCaseControl implements InBoundary {
             number1 = Double.parseDouble(number1Str);
             number2 = Double.parseDouble(number2Str);
         } else {
+            responseData.setStatus("error");
             responseData.setMsg("Vui long nhap lai!");
             this.outBoundary.output(responseData);
             return;
@@ -51,7 +52,7 @@ public class AddUseCaseControl implements InBoundary {
         responseData.setSubResult(subResult);
         responseData.setMulResult(mulResult);
         responseData.setDivResult(divResult);
-        responseData.setMsg("success");
+        responseData.setStatus("success");
 
         this.outBoundary.output(responseData);
     }

@@ -51,8 +51,8 @@ public class AddUIConsoleOutput implements OutBoundary {
     @Override
     public void output(ResponseData responseData) throws Exception {
         // get data from response
-        String msg = responseData.getMsg();
-        if (msg.equals("success")) {
+        String status = responseData.getStatus();
+        if (status.equals("success")) {
             result(responseData);
         } else {
             error(responseData);

@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-10-04T14:03:57.757Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="qEoCq23ixnA6VXob61Ro" version="21.7.5" type="device" pages="4">
+<mxfile host="Electron" modified="2024-10-04T14:12:31.809Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="FJnpWz-Y6ygGr-DUa64I" version="21.7.5" type="device" pages="4">
   <diagram name="Add-21-09" id="cWxafMyqLENsq5G1XPmc">
     <mxGraphModel dx="1120" dy="-558" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -2543,7 +2543,7 @@
             <mxPoint x="4040" y="2197.6600000000003" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qlcvBvJaVuBgwBG6WTiL-108" value="5.1. output(ResponseData {msg: &#39;error&#39;})" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="qlcvBvJaVuBgwBG6WTiL-107" vertex="1" connectable="0">
+        <mxCell id="qlcvBvJaVuBgwBG6WTiL-108" value="5.1. output(ResponseData {status: &#39;error&#39;})" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="qlcvBvJaVuBgwBG6WTiL-107" vertex="1" connectable="0">
           <mxGeometry x="-0.0583" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
@@ -2554,9 +2554,9 @@
             <mxPoint x="4039.7200000000003" y="2295.67083" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qlcvBvJaVuBgwBG6WTiL-110" value="9. output(ResponseData {msg: &#39;success&#39;})" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="qlcvBvJaVuBgwBG6WTiL-109" vertex="1" connectable="0">
+        <mxCell id="qlcvBvJaVuBgwBG6WTiL-110" value="9. output(ResponseData {status: &#39;success&#39;})" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="qlcvBvJaVuBgwBG6WTiL-109" vertex="1" connectable="0">
           <mxGeometry x="0.0457" y="-1" relative="1" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint x="10" y="1" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="qlcvBvJaVuBgwBG6WTiL-111" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" parent="1" edge="1">
@@ -2699,9 +2699,9 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="1FbaGY_z9fFNdMytCrwF-3" value="5.4. Nhập lại 2 số" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1FbaGY_z9fFNdMytCrwF-2">
+        <mxCell id="1FbaGY_z9fFNdMytCrwF-3" value="5.4. Nhập lại 2 số&lt;br&gt;[input()]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1FbaGY_z9fFNdMytCrwF-2">
           <mxGeometry x="-0.0222" relative="1" as="geometry">
-            <mxPoint y="-16" as="offset" />
+            <mxPoint y="-26" as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
