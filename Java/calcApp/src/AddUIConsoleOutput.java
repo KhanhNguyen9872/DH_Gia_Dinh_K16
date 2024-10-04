@@ -48,6 +48,7 @@ public class AddUIConsoleOutput implements OutBoundary {
         this.stdOut.flush();
     }
 
+    @Override
     public void output(ResponseData responseData) throws Exception {
         // get data from response
         String msg = responseData.getMsg();
