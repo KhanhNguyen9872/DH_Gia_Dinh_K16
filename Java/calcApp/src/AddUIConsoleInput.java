@@ -1,14 +1,14 @@
 import java.io.*;
 
 public class AddUIConsoleInput {
-    private AddUseCaseControl addControl;
+    private InBoundary inBoundary;
     private PrintWriter stdOut;
     private BufferedReader stdIn;
 
-    public AddUIConsoleInput(AddUseCaseControl addControl) {
+    public AddUIConsoleInput(InBoundary inBoundary) {
         this.stdOut = new PrintWriter(System.out);
         this.stdIn = new BufferedReader(new InputStreamReader(System.in));
-        this.addControl = addControl;
+        this.inBoundary = inBoundary;
     }
 
     public void input() throws Exception {
@@ -21,6 +21,6 @@ public class AddUIConsoleInput {
         number2 = this.stdIn.readLine();
         
         RequestData requestData = new RequestData(number1, number2);
-        this.addControl.execute(requestData);
+        this.inBoundary.execute(requestData);
     }
 }

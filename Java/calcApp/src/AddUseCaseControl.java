@@ -1,10 +1,10 @@
-public class AddUseCaseControl {
+public class AddUseCaseControl implements InBoundary {
     private CalcEntity calcEntity;
-    private AddUIConsoleOutput addOut;
+    private OutBoundary outBoundary;
 
-    public AddUseCaseControl(CalcEntity calcEntity, AddUIConsoleOutput addOut) {
+    public AddUseCaseControl(CalcEntity calcEntity, OutBoundary outBoundary) {
         this.calcEntity = calcEntity;
-        this.addOut = addOut;
+        this.outBoundary = outBoundary;
     }
 
     private boolean isNumber(String number) {
@@ -16,6 +16,7 @@ public class AddUseCaseControl {
         return true;
     }
 
+    @Override
     public void execute(RequestData requestData) throws Exception {
         ResponseData responseData = new ResponseData();
 
@@ -31,7 +32,7 @@ public class AddUseCaseControl {
             number2 = Double.parseDouble(number2Str);
         } else {
             responseData.setMsg("Vui long nhap lai!");
-            this.addOut.output(responseData);
+            this.outBoundary.output(responseData);
             return;
         }
 
@@ -52,6 +53,6 @@ public class AddUseCaseControl {
         responseData.setDivResult(divResult);
         responseData.setMsg("success");
 
-        this.addOut.output(responseData);
+        this.outBoundary.output(responseData);
     }
 }

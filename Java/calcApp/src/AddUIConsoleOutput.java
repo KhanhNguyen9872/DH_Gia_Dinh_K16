@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class AddUIConsoleOutput {
+public class AddUIConsoleOutput implements OutBoundary {
     private AddUIConsoleInput addInput;
     private PrintWriter stdOut;
     // private String fileName = "result.txt";
