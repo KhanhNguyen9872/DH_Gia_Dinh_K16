@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bán hàng</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+        input[type="number"] {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>BÁN HÀNG</h1>
+    <label for="priceFilter">Mức giá:</label>
+    <select id="priceFilter">
+        <option value="all">Tất cả</option>
+        <option value="under200">Dưới 200</option>
+        <option value="200to500">Từ 200 đến 500</option>
+        <option value="above500">Trên 500</option>
+    </select>
+
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Hàng hóa</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody id="productTable">
+            <!-- Rows will be inserted dynamically -->
+        </tbody>
+    </table>
+    <h3>TỔNG: <span id="total">0</span></h3>
+
+    <script src="Bai6.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@
 }
 
 .menu-item-new {
-  margin: 6px; 
+  margin: 5px; 
 }
 
 :root {
@@ -23,7 +23,7 @@
 
 .menu-item-new button {
   position:relative;
-  padding: 10px 15px;  
+  padding: 10px 20px;  
   border: none;
   background: none;
   cursor: pointer;
@@ -55,7 +55,6 @@
 }
 
 .menu-item-new button::after{
-  padding: 10px 15px;  
   font-family: 'Times New Roman', Times, serif; 
   font-weight: 500;
   top: -30px;
