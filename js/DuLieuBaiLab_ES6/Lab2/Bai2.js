@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderProduct = (pList = productList) => {
         ul.innerHTML = '';
-        pList.forEach((product, index) => {
+        pList.forEach((product) => {
             let li = document.createElement('li');
 
             let {name: name, price: price} = product;

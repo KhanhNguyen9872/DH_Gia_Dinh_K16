@@ -29,7 +29,7 @@ public class TestAppSum {
 
         CalcEntity calcEntity = new CalcEntity();
         OutBoundary outBoundary = new AddUIConsoleOutput();
-
+ 
         InBoundary inBoundary = new AddUseCaseControl(calcEntity, outBoundary);
 
         inBoundary.execute(requestData);
