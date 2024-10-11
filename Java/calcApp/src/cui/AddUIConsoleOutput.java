@@ -1,4 +1,7 @@
+package cui;
+
 import java.io.*;
+import businessRules.*;
 
 public class AddUIConsoleOutput implements OutBoundary {
     private AddUIConsoleInput addInput;
@@ -21,9 +24,9 @@ public class AddUIConsoleOutput implements OutBoundary {
 
     private void result(ResponseData responseData) {
         String addResult = responseData.getAddResult();
-        String subResult = responseData.getSubResult();
-        String mulResult = responseData.getMulResult();
-        String divResult = responseData.getDivResult();
+        // String subResult = responseData.getSubResult();
+        // String mulResult = responseData.getMulResult();
+        // String divResult = responseData.getDivResult();
 
         //
         // EditFile f = new EditFile(this.fileName);
@@ -40,16 +43,16 @@ public class AddUIConsoleOutput implements OutBoundary {
         // this.stdOut.print(f.read());
 
         this.stdOut.print(
-            "- Add Result: " + addResult + "\n" + 
-            "- Sub Result: " + subResult + "\n" + 
-            "- Mul Result: " + mulResult + "\n" + 
-            "- Div Result: " + divResult + "\n"
+            "- Add Result: " + addResult + "\n" 
+            // "- Sub Result: " + subResult + "\n" + 
+            // "- Mul Result: " + mulResult + "\n" + 
+            // "- Div Result: " + divResult + "\n"
         );
         this.stdOut.flush();
     }
 
     @Override
-    public void output(ResponseData responseData) throws Exception {
+    public void output(ResponseData responseData) {
         // get data from response
         String status = responseData.getStatus();
         if (status.equals("success")) {

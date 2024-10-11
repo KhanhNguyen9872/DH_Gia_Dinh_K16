@@ -1,9 +1,11 @@
+package businessRules;
+
 public class AddUseCaseControl implements InBoundary {
-    private CalcEntity calcEntity;
+    private AddEntity addEntity;
     private OutBoundary outBoundary;
 
-    public AddUseCaseControl(CalcEntity calcEntity, OutBoundary outBoundary) {
-        this.calcEntity = calcEntity;
+    public AddUseCaseControl(AddEntity addEntity, OutBoundary outBoundary) {
+        this.addEntity = addEntity;
         this.outBoundary = outBoundary;
     }
 
@@ -17,7 +19,7 @@ public class AddUseCaseControl implements InBoundary {
     }
 
     @Override
-    public void execute(RequestData requestData) throws Exception {
+    public void execute(RequestData requestData) {
         ResponseData responseData = new ResponseData();
 
         String number1Str = requestData.getNumber1();
@@ -38,20 +40,20 @@ public class AddUseCaseControl implements InBoundary {
         }
 
         // setter
-        this.calcEntity.setNumber1(number1);
-        this.calcEntity.setNumber2(number2);
+        this.addEntity.setNumber1(number1);
+        this.addEntity.setNumber2(number2);
         
         // execute
-        String addResult = String.valueOf(this.calcEntity.add());
-        String subResult = String.valueOf(this.calcEntity.sub());
-        String mulResult = String.valueOf(this.calcEntity.mul());
-        String divResult = String.valueOf(this.calcEntity.div());
+        String addResult = String.valueOf(this.addEntity.add());
+        // String subResult = String.valueOf(this.addEntity.sub());
+        // String mulResult = String.valueOf(this.addEntity.mul());
+        // String divResult = String.valueOf(this.addEntity.div());
 
         // response
         responseData.setAddResult(addResult);
-        responseData.setSubResult(subResult);
-        responseData.setMulResult(mulResult);
-        responseData.setDivResult(divResult);
+        // responseData.setSubResult(subResult);
+        // responseData.setMulResult(mulResult);
+        // responseData.setDivResult(divResult);
         responseData.setStatus("success");
 
         this.outBoundary.output(responseData);

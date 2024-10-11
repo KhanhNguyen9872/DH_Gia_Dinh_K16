@@ -1,3 +1,5 @@
+package businessRules;
+
 public class RequestData {
     private String number1;
     private String number2;
