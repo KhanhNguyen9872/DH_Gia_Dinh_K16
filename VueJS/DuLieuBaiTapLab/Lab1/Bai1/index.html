@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<title>Hello</title>
+<style>
+    #app{
+        margin: auto;
+        width: 30%;
+  border: 3px solid blue;
+  padding: 30px;
+    }
+    span
+    {
+        color: blue;
+    }
+    h5
+    {
+        color: blue;
+    }
+    .active{
+    background-color:#c14694;
+}
+</style>
+</head>
+<body class="container">
+<div id="app" >
+    <h5>THÔNG TIN SINH VIÊN</h5>
+    <img :src="image" style="width: 95%">
+    
+    <p><span>Họ và tên: </span>{{ten}}</p>
+    <p><span>Ngày sinh: </span>{{ngaysinh}}</p>
+    <p><span>Phái: </span>{{phai}}</p>
+    <p><span>Điểm: </span>{{diem}}</p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+<script src="./main.js"></script>
+
+<!-- Mount App -->
+<script>
+  const mountedApp = app.mount('#app')
+</script>
+
+</body>
+</html>

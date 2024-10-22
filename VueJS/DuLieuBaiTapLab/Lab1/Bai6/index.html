@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+
+    <link rel="stylesheet" type="text/css" href="mystyle.css" />
+    <title>Layout</title>
+
+</head>
+
+<body>
+    <form id="app" v-cloak>
+
+        <h1>Menu</h1>
+
+        <ul>
+
+
+            <!-- Lặp qua mảng services, chỉ định một trình xử lý nhấp chuột và đặt hoặc
+    loại bỏ lớp css "active" -->
+
+            <li  click=""
+                class="">
+
+                <!--Hiển thị name and price trong array .
+                     filter cho formatting the price -->
+
+                 <span></span>
+
+            </li>
+        </ul>
+
+        <div class="total">
+
+            <!-- Tính lại total khi chọn services. Format lại currency. -->
+
+            Total: <span></span>
+
+        </div>
+
+    </form>
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <script src="./main.js"></script>
+
+    <!-- Mount App -->
+    <script>
+        const mountedApp = app.mount('#app')
+    </script>
+
+</body>
+
+</html>

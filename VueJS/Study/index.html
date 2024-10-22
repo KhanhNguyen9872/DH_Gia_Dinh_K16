@@ -1,0 +1,33 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+ </head>
+ <body>
+    <div id="app">
+        <p>Họ và tên: {{ten}}</p>
+        <p>Tuổi: {{tuoi}}</p>
+
+        <input type="text" v-model="ten">
+        <input type="text" v-model.lazy="ten">
+
+        <p v-html="rawHTML"></p>
+        
+        <img :src="img" :alt="alt" style="width: 20%;">
+
+        <form action="" @submit.prevent>
+            <button type="submit">click form</button>
+        </form>
+
+        <input type="text" name="" id="" @keyup.enter="phimEnter()">
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="main.js"></script>
+    <script>
+        const mountedApp = app.mount("#app");
+    </script>
+ </body>
+ </html>

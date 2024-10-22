@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2CFFC0CB"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thông tin đăng ký câu lạc bộ"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="#FFEB3B"
+            android:background="#11ff22"
+            ></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Họ và tên: "
+                android:gravity="center"
+                android:textSize="16sp"></TextView>
+
+            <EditText
+                android:id="@+id/fullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:hint="Tên của bạn"
+                ></EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginRight="23dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="MSSV: "
+                android:textSize="16sp"></TextView>
+
+            <EditText
+                android:id="@+id/mssv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:maxLength="8"
+                android:hint="MSSV của bạn"></EditText>
+        </LinearLayout>
+
+        <DatePicker
+            android:id="@+id/datepicker"
+            android:layout_width="wrap_content"
+            android:layout_height="389dp"
+
+            >
+
+        </DatePicker>
+
+        <TextView
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chọn câu lạc bộ"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="#FFEB3B"
+            android:background="#11ff22"
+            ></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <CheckBox
+                android:id="@+id/checkboxBongDa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bóng đá">
+
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/checkboxNhacKich"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhạc kịch">
+
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/checkboxKyThuat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhạc kịch">
+
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/checkboxVanHoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Văn học">
+
+            </CheckBox>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/lyDoThamGia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Lý do tham gia (không bắt buộc)"
+            android:textSize="18sp"
+            ></EditText>
+
+        <Button
+            android:id="@+id/dangKyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Đăng ký"
+
+            ></Button>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
