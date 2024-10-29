@@ -13,7 +13,8 @@
                         </div>
                  </div>
                  <div>
-                    <button @click="addToCart(product)">Add to cart</button>
+                    <button @click="addToCart(product)" v-if="product.quality > 0 && this.isFull == false">Add to cart</button>
+                    <p v-else>ĐÃ HẾT HÀNG</p>
                 </div> 
              </div>
          </div>  
@@ -33,7 +34,8 @@
             product:{
                 
             },
-            cart: cart
+            cart: cart,
+            isFull: false
         }
     },
     mounted() {
@@ -43,14 +45,20 @@
     },
     methods: {
         addToCart(product) {
+            if (this.product.quality == 0) {
+                return;
+            }
             const infoProduct = this.cart.find(item => item.id === product.id);
             if (infoProduct) {
-                infoProduct.quantity++;
+                if (infoProduct.quantity < this.product.quality) {
+                    infoProduct.quantity++;
+                } else {
+                    this.isFull = true;
+                }
             } else {
                 const newProduct = {...this.product, quantity: 1};
                 this.cart.push(newProduct);
             }
-            console.log(cart);
         }
     }
  }

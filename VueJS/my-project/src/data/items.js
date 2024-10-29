@@ -5,7 +5,7 @@ let items=[
         image: require("@/assets/food_menu/single_food_1.png"),
         description: "They are wherein heaven seed hath nothing",
         price: 40,
-        quality:1
+        quality:5
       },
       {
         id: 2,
@@ -13,7 +13,7 @@ let items=[
         image: require("@/assets/food_menu/single_food_2.png"),
         description: "They are wherein heaven seed hath nothing",
         price: 40,
-        quality:1
+        quality:6
       },
       {
         id: 3,
@@ -21,7 +21,7 @@ let items=[
         image: require("@/assets/food_menu/single_food_3.png"),
         description: "They are wherein heaven seed hath nothing",
         price: 40,
-        quality:1
+        quality:3
       },
       {
         id: 4,
@@ -29,7 +29,7 @@ let items=[
         image: require("@/assets/food_menu/single_food_4.png"),
         description: "They are wherein heaven seed hath nothing",
         price: 40,
-        quality:1
+        quality:0
       },
       {
         id: 5,

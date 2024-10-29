@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-content">
+    <div v-if="cart.length > 0" class="modal-content">
                       <table style="width: 100%;" class="text-center table">
                           <tr>
                               <th>HÌNH</th>
@@ -14,9 +14,15 @@
                               <td><img :src="item.image" style="height: 100px;width: 100px;"></td>
                               <td class="align-middle">{{item.name}}</td>
                               <td class="align-middle">{{item.price}}</td>
-                              <td class="align-middle">{{item.quantity}}</td>
-                              <td class="align-middle">{{item.price*item.quantity}}</td>
-                              <td class="align-middle"><button class="btn btn-danger" @click="removeCart(item.id)" >Remove
+                              <td class="align-middle">
+                                <button @click="decreaseQuantity(item)">-</button>
+                                {{item.quantity}}
+                                <button @click="increaseQuantity(item)">+</button>
+                                </td>
+                              <td class="align-middle">
+                                {{item.price*item.quantity}}
+                            </td>
+                              <td class="align-middle"><button class="btn btn-danger" @click="removeCart(item)" >Remove
                                       {{ item.id }}</button></td>
                           </tr>
                           <tr>
@@ -24,18 +30,20 @@
                               </th>
                               <th></th>
                               <th>Tổng tiền</th>
-                              <th>tính tổng tiền ở dây</th>
+                              <th>{{ tongSoLuong }}</th>
                               <th>
-                                  tong tien
+                                  {{ tongTien }}
                               </th>
-                              <th><button class="btn btn-danger" >Xóa hết : !</button>
+                              <th><button class="btn btn-danger" @click="removeAllCart()">Xóa hết : !</button>
                               </th>
                           </tr>
                       </table>
                   </div>
+    <p v-else> CHƯA CÓ HÀNG </p>
   </template>
   
   <script>
+  import items from '../data/items';
   import cart from '../data/cart'
   export default {
       data(){
@@ -44,14 +52,38 @@
           cart:cart
           }
       },
+      computed: {
+        tongTien() {
+            return this.cart.reduce((total, item) => total += total + (item.price * item.quantity), 0);
+        },
+        tongSoLuong() {
+            return this.cart.reduce((total, item) => total += total + item.quantity, 0);
+        }
+      },
       methods: {
-        removeCart(id) {
-            this.cart.filter(item => item.id != id);
+        increaseQuantity(item) {
+            let i = items.find(i => i.id === item.id);
+            if (item.quantity < i.quality) {
+                item.quantity++;
+            }
+        },
+        decreaseQuantity(item) {
+            if (item.quantity > 1) {
+                item.quantity--;
+            } else {
+                this.removeCart(item);
+            }
+        },
+        removeCart(i) {
+            this.cart = this.cart.filter(item => item.id != i.id);
+        },
+        removeAllCart() {
+            this.cart = [];
         }
       }
   }
   </script>
-  
+
   <style>
   
   </style>
