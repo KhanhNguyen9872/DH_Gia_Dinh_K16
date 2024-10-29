@@ -5,3 +5,4 @@
 *.exe
 /Java/CSDL/build/
 /Java/CSDL/dist/
+VueJS/my-project/node_modules
