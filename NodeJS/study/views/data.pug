@@ -1,0 +1,24 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title To-Do List
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet")
+    body(class="bg-light d-flex justify-content-center align-items-center vh-100")
+        div(class="container bg-white shadow rounded p-4")
+            h1(class="text-center mb-4") To-Do List
+            ul(class="list-group")
+                each todo in todos
+                    li(class=`list-group-item d-flex justify-content-between align-items-center ${todo.status === "completed" ? "list-group-item-secondary" : ""}`)
+                        div
+                            h5(class=`mb-1 ${todo.status === "completed" ? "text-decoration-line-through text-muted" : ""}`) #{todo.task}
+                            p(class="mb-0 text-muted small") Due: #{todo.dueDate}
+                            p(class=`mb-0 text-${todo.priority === 'high' ? 'danger' : todo.priority === 'medium' ? 'warning' : 'success'} small`) Priority: #{todo.priority}
+                        div(class="btn-group")
+                            a(href=`/edit/${todo.id}` class="btn btn-sm btn-warning me-2") Edit
+                            form(action=`/toggle/${todo.id}` method="POST" style="display: inline;")
+                                button.btn.btn-sm(
+                                    type="submit"
+                                    class=`btn-${todo.status === "completed" ? "secondary" : "success"}`
+                                ) #{todo.status === 'completed' ? 'Completed' : 'Mark Done'}

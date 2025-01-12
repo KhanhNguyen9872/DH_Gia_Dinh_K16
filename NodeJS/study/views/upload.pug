@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title Upload Form
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css")
+  body
+    .container.mt-5
+      h1.text-center Upload Form
+      form(method="POST" action="/upload" enctype="multipart/form-data")
+        .mb-3
+          label(for="username") Username:
+          input#username.form-control(type="text" name="username" required)
+        .mb-3
+          label(for="password") Password:
+          input#password.form-control(type="password" name="password" required)
+        .mb-3
+          label(for="file") Upload File:
+          input#file.form-control(type="file" name="file" required)
+        .d-grid.gap-2
+          button.btn.btn-primary(type="submit") Submit
