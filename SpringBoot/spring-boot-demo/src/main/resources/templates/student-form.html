@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/processStudentForm}" method="get" th:object="${student}">
+    <p>First name <input type="text" th:field="*{firstName}"></p>
+    <p>Last name <input type="text" th:field="*{lastName}"></p>
+    <p><input type="submit" value="Submit"></p>
+</form>
+</body>
+</html>
