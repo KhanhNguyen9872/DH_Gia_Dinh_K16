@@ -5,10 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Hello Form</h1>
-<form th:action="@{/processHelloForm}" method="get">
-    <p>Ten <input type="text" name="theName"></p>
-
+<form th:action="@{/processStudentForm}" method="post" th:object="${student}">
+    <p>First name <input type="text" th:field="*{firstName}"></p>
+    <p>Last name <input type="text" th:field="*{lastName}"></p>
     <p><input type="submit" value="Submit"></p>
 </form>
 </body>

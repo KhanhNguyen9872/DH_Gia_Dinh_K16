@@ -1,6 +1,84 @@
-.abc {
-    color: white;
-    background-color: purple;
-    padding: 10px;
+
+body {
+ font-family: Arial, sans-serif;
+ background-color: #f7f8fa;
+ margin: 0;
+ padding: 0;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    color: blue;
+    margin-bottom: 40px;
+}
+
+form {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #e7e7e7;
+    padding: 30px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e4e4e4;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Specific input space styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    font-size: 14px;
+}
+
+/* Style for the empty option in country selection */
+select option {
+    color: #aaa;
+}
+
+.error{
+    color: red;
+    padding: 10px;
 }

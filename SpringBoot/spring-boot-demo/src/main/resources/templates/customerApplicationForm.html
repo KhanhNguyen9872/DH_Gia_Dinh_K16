@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Application Form</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<form th:action="@{/processCustomerForm}" method="post" th:object="${customer}">
+    <h1>Customer Application Form</h1>
+
+    <div class="form-group">
+        <label for="nameOfCompany">Name of Company</label>
+        <input type="text" id="nameOfCompany" th:field="*{nameOfCompany}" placeholder="Enter company name">
+        <span th:if="${#fields.hasErrors('nameOfCompany')}" th:errors="*{nameOfCompany}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="streetAddress">Full Postal Address <span style="color:red;">*</span></label>
+        <input type="text" id="streetAddress" th:field="*{streetAddress}" placeholder="Street address">
+        <span th:if="${#fields.hasErrors('streetAddress')}" th:errors="*{streetAddress}" class="error"></span>
+
+        <div>
+            <div style="display: flex;">
+                <input type="text" id="city" th:field="*{city}" placeholder="City">
+                <input type="text" id="region" th:field="*{region}" placeholder="Region">
+            </div>
+            <div style="display: flex; justify-content: space-between">
+                <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}" class="error"></span>
+                <span th:if="${#fields.hasErrors('region')}" th:errors="*{region}" class="error"></span>
+            </div>
+        </div>
+
+        <div>
+            <div style="display: flex;">
+                <input type="text" id="postalCode" th:field="*{postalCode}" placeholder="Postal/zip code">
+                <select id="country" th:field="*{country}" placeholder="Country">
+                    <option value="" selected disabled>Country</option>
+                    <option th:each="country : ${countries}" th:value="${country}" th:text="${country}"></option>
+                </select>
+            </div>
+            <div style="display: flex; justify-content: space-between">
+                <span th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" class="error"></span>
+                <span th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="error"></span>
+            </div>
+        </div>
+        </div>
+
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
