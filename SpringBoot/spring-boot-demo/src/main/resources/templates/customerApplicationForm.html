@@ -7,8 +7,9 @@
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
-<form th:action="@{/processCustomerForm}" method="post" th:object="${customer}">
+<form th:action="@{${formAction}}" method="post" th:object="${customer}">
     <h1>Customer Application Form</h1>
+    <input type="hidden" th:field="*{id}"/>
 
     <div class="form-group">
         <label for="nameOfCompany">Name of Company</label>
@@ -48,7 +49,8 @@
         </div>
 
 
-    <input type="submit" value="Submit">
+    <input th:if="${(formAction == '/save')}" type="submit" value="Add">
+    <input th:if="${(formAction == '/update')}" type="submit" value="Update">
 </form>
 </body>
 </html>
