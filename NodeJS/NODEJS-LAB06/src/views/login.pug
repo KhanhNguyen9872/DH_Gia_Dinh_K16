@@ -1,0 +1,12 @@
+extends layouts/layout
+block main 
+    h1 Login
+        div(class="container")
+            form(action="/api/login" method="POST")
+                div(class="form-group")
+                    label(for="name") Username
+                    input(type="text" class="form-control" id="username" name="username")
+                div(class="form-group")
+                    label(for="password") Password
+                    input(type="password" class="form-control" id="password" name="password")
+                button(type="submit" class="btn btn-primary") Login

@@ -1,0 +1,16 @@
+extends layouts/layout
+block main
+    h1 Employees
+    .container
+        table.table.table-striped
+            thead
+                tr
+                    th NAME
+                    th Position
+                    th Salary
+            tbody
+                each employee in employees
+                    tr
+                        td= employee.EMP_NAME
+                        td= employee.JOB
+                        td= employee.SALARY

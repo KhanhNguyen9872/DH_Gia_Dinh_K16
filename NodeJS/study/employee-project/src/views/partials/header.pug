@@ -1,0 +1,38 @@
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+    a.navbar-brand(href="#") PHONG DANG
+    button.navbar-toggler(type="button" data-toggle="collapse" data-target="#main-navbar")
+        span.navbar-toggler-icon
+    #main-navbar.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+            li.nav-item.active
+                a.nav-link(href="#") Home
+            li.nav-item
+                a.nav-link(href="#") Product
+            li.nav-item
+                a.nav-link(href="#") About Us
+        ul.navbar-nav.ml-auto
+            li.nav-item
+                if user
+                    a.nav-link(href="#") #{user.name}
+                else
+                    a.nav-link(href="#" data-toggle="modal" data-target="#loginModal") Login
+
+// Add this modal code at the end of your file
+.modal.fade#loginModal(tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true")
+    .modal-dialog.modal-dialog-centered(role="document")
+        .modal-content
+            .modal-header
+                h5#loginModalLabel.modal-title Login
+                button.close(type="button" data-dismiss="modal" aria-label="Close")
+                    span(aria-hidden="true") &times;
+            .modal-body
+                form(action="/api/login" method="post")
+                    .form-group
+                        label(for="username") Username
+                        input(type="text" class="form-control" id="username" name="username" placeholder="Enter your username")
+                    .form-group
+                        label(for="password") Password
+                        input(type="password" class="form-control" id="password" name="password" placeholder="Enter your password")
+                    .form-group.form-check.d-flex.justify-content-between
+                        button.btn.btn-secondary(type="button" data-dismiss="modal") Close
+                        button(type="submit" class="btn.btn-primary") Login

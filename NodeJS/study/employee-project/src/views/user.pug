@@ -1,0 +1,11 @@
+extends layouts/layout
+block main
+    if user 
+        h1 User Information
+        p Name: #{user.name}
+        p Password: #{user.password}
+    else
+        h1 Please login
+        a(href="/login") Login
+        br
+        a(href="/register") Register
