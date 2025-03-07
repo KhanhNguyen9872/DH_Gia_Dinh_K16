@@ -47,7 +47,10 @@ class AuthController {
             role: 'member'
         }
         const accessToken = auth.generateAccessToken(currentUser);
-        res.send({ accessToken: accessToken });
+        res.cookie('accessToken', accessToken, {
+            httpOnly: true
+          });
+        res.redirect('/');
     }
 
     async updateUser(req, res) {
