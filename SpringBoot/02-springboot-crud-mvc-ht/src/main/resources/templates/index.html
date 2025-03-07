@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Index page</h1>
+            <p>User: <span sec:authentication="principal.username"></span></p>
+            <p>Roles: <span sec:authentication="principal.authorities"></span></p>
+        </div>
+        <p>
+            <a th:href="@{/home}" class="btn-info">Home</a>
+            <a sec:authorize="hasRole('MANAGER')" th:href="@{/admin}" class="btn-warning">Admin</a>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/system}" class="btn-danger">System</a>
+        </p>
+        <p>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout">
+            </form>
+        </p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+extends layouts/layout
+block main
+    h1 Employees
+    .container
+        .mb-3
+            button.btn.btn-primary(data-toggle="modal", data-target="#addEmployeeModal") Add Employee
+
+        // Modal
+        table.table.table-striped
+            thead
+                tr
+                    th NAME
+                    th Position
+                    th Salary
+                    th Actions
+            tbody
+                each employee in employees
+                    tr
+                        td= employee.EMP_NAME
+                        td= employee.JOB
+                        td= employee.SALARY
+                        td
+                            a.btn.btn-warning.btn-sm.me-2(href=`/employees/edit/${employee.EMP_ID}`) Edit
+                            a.btn.btn-danger.btn-sm(href=`/employees/delete/${employee.EMP_ID}` onclick="return confirm('Are you sure?')") Delete
+    
+        .modal.fade#addEmployeeModal(tabindex="-1", aria-labelledby="addEmployeeModalLabel", aria-hidden="true")
+                .modal-dialog
+                    .modal-content
+                        form(action="/employees/add", method="POST")
+                            .modal-header
+                                h5.modal-title(id="addEmployeeModalLabel") Add Employee
+                                button.btn-close(type="button", data-dismiss="modal", aria-label="Close")
+                            .modal-body
+                                .mb-3
+                                    label.form-label(for="EMP_NAME") Name
+                                    input.form-control(type="text", id="EMP_NAME", name="EMP_NAME", required)
+                                .mb-3
+                                    label.form-label(for="JOB") Position
+                                    input.form-control(type="text", id="JOB", name="JOB", required)
+                                .mb-3
+                                    label.form-label(for="SALARY") Salary
+                                    input.form-control(type="number", id="SALARY", name="SALARY", required)
+                            .modal-footer
+                                button.btn.btn-secondary(type="button", data-dismiss="modal") Close
+                                button.btn.btn-primary(type="submit") Save changes

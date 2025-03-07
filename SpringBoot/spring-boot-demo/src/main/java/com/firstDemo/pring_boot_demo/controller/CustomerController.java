@@ -9,16 +9,21 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Controller
+@RestController("/customers")
 public class CustomerController {
     private List<String> countries = Arrays.asList("USA", "Canada", "United Kingdom", "Australia", "Germany", "India");
     private CustomerService customerService;
-    public CustomerController(CustomerService customerService) {
+    private final TemplateEngine templateEngine;
+    public CustomerController(CustomerService customerService, TemplateEngine templateEngine) {
         this.customerService = customerService;
+        this.templateEngine = templateEngine;
     }
 
     @InitBinder
@@ -28,10 +33,11 @@ public class CustomerController {
     }
 
     @GetMapping("/")
-    public String list(Model model) {
+    public String list() {
         List<Customer> customers = customerService.findAll();
-        model.addAttribute("customers", customers);
-        return "list-customer";
+        Context context = new Context();
+        context.setVariable("customers", customers);
+        return templateEngine.process("list-customer", context);
     }
 
     @GetMapping("/customer-form")

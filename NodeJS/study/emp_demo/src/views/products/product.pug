@@ -1,0 +1,15 @@
+extends ../layouts/layout
+block main
+    .container.mt-5
+      h1.text-center Danh sách sản phẩm
+
+      .row
+        // Sản phẩm 1
+        for product in products
+          .col-md-4.mb-4
+            .card.shadow-sm.h-100
+              img.card-img-top(src=`${product.image_url}`, alt=`${product.name}`)
+              .card-body.d-flex.flex-column
+              h5.card-title.text-center #{product.name}
+              p.card-text.mb-4.text-center Giá: #{product.price} VND
+              a.btn.btn-primary.mt-auto(href=`/product/${product.id}`) Xem chi tiết

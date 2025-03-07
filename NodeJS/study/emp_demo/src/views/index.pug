@@ -1,0 +1,45 @@
+extends layouts/layout
+block main
+    h1 Welcome to JWT Demo
+    a(href="#", id="protectedLink") Click me to access protected resource
+
+    script.
+      // Lấy JWT từ cookie (hoặc localStorage nếu bạn chọn cách lưu khác)
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return null;
+      }
+
+      const token = getCookie('token');  // Lấy JWT từ cookie
+
+      // Xác thực khi click link
+      document.getElementById('protectedLink').addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if (!token) {
+          alert('You need to log in first');
+          return;
+        }
+
+        // Gửi JWT qua header để xác thực
+        fetch('/employees', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Access granted!');
+          } else {
+            alert('Access denied!');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Something went wrong!');
+        });
+      });

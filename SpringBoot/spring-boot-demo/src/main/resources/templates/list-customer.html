@@ -13,7 +13,7 @@
         <h1>List Customer</h1>
      <div class="col-md-12">
          <hr>
-         <a th:href="@{/customer-form}">
+         <a th:href="@{customer-form}">
              <button class="btn btn-primary">Add new customer</button>
          </a>
          <table class="table table-dart">
@@ -40,12 +40,12 @@
                  <th scope="row" th:text="${customer.postalCode}"></th>
                  <th scope="row" th:text="${customer.country}"></th>
                  <td>
-                     <a th:href="@{/customer-form-update(id=${customer.id})}">
+                     <a th:href="@{customer-form-update(id=${customer.id})}">
                          <i class="fa-solid fa-pencil text-info" ></i>
                      </a>
                  </td>
                  <td>
-                     <a th:href="@{/customer-form-delete(id=${customer.id})}"
+                     <a th:href="@{customer-form-delete(id=${customer.id})}"
                         onclick="return confirm('Are you sure you want to delete this customer?');">
                          <i class="fa-solid fa-trash text-danger"></i>
                      </a>

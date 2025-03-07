@@ -1,0 +1,96 @@
+extends ../layouts/layout
+block main
+    .container.mt-5
+        .row
+            .col-md-8.offset-md-2
+                .card
+                    .card-header.bg-primary.text-white
+                        h2 About Me
+                    .card-body
+                        .row
+                            .col-md-4
+                                img.img-fluid.rounded-circle(src="/img/profile.png" alt="Profile Picture")
+                                .mt-3.text-center
+                                    a.btn.btn-outline-primary.mr-2(href="#")
+                                        i.fab.fa-linkedin
+                                    a.btn.btn-outline-primary.mr-2(href="#")
+                                        i.fab.fa-github
+                                    a.btn.btn-outline-primary(href="#")
+                                        i.fab.fa-twitter
+                            .col-md-8
+                                h3 John Doe
+                                p.text-muted Senior Software Developer
+                                hr
+                                h4 Contact Information
+                                ul.list-unstyled
+                                    li
+                                        i.fas.fa-envelope.mr-2
+                                        | email@example.com
+                                    li
+                                        i.fas.fa-phone.mr-2
+                                        | (123) 456-7890
+                                    li
+                                        i.fas.fa-map-marker-alt.mr-2
+                                        | New York, USA
+                                    li
+                                        i.fas.fa-globe.mr-2
+                                        | www.johndoe.com
+                
+                .card.mt-4
+                    .card-header.bg-primary.text-white
+                        h4 Professional Experience
+                    .card-body
+                        .timeline
+                            .timeline-item
+                                h5 Senior Developer - Tech Company
+                                p.text-muted 2020 - Present
+                                p Led development team of 5 members, implemented CI/CD pipeline
+                            
+                            .timeline-item
+                                h5 Full Stack Developer - Startup Inc
+                                p.text-muted 2018 - 2020
+                                p Developed and maintained multiple web applications
+                
+                .card.mt-4
+                    .card-header.bg-primary.text-white
+                        h4 Skills & Expertise
+                    .card-body
+                        h5 Programming Languages
+                        .mb-3
+                            .badge.badge-primary.mr-2 JavaScript
+                            .badge.badge-primary.mr-2 Python
+                            .badge.badge-primary.mr-2 Java
+                            .badge.badge-primary TypeScript
+                        
+                        h5 Frameworks & Technologies
+                        .mb-3
+                            .badge.badge-success.mr-2 Node.js
+                            .badge.badge-success.mr-2 Express
+                            .badge.badge-success.mr-2 React
+                            .badge.badge-success.mr-2 Angular
+                            .badge.badge-success Docker
+                        
+                        h5 Databases
+                        .mb-3
+                            .badge.badge-info.mr-2 MongoDB
+                            .badge.badge-info.mr-2 PostgreSQL
+                            .badge.badge-info MySQL
+                
+                .card.mt-4
+                    .card-header.bg-primary.text-white
+                        h4 Education
+                    .card-body
+                        h5 Master of Computer Science
+                        p.text-muted University of Technology, 2018
+                        p GPA: 3.8/4.0
+
+                        h5 Bachelor of Computer Science
+                        p.text-muted State University, 2016
+                        p GPA: 3.9/4.0
+        
+        .row.mt-4.mb-5
+            .col-md-8.offset-md-2.text-center
+                h4 Interested in collaboration?
+                p.lead Feel free to reach out for potential opportunities!
+                a.btn.btn-primary.mr-2(href="#") Download Resume
+                a.btn.btn-outline-primary(href="#") Contact Me
