@@ -25,6 +25,10 @@ app.use((req, res, next) => {
     next();
 })
 
+
+const exampleAxios = require('./src/utils/exAxios');
+exampleAxios.getPosts();
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 const authRouter = require('./src/routes/authRoute');

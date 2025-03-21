@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- Start Header/Navigation -->
+<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">Furni<span>.</span></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsFurni">
+            <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li><a class="nav-link" th:href="@{/shop}">Shop</a></li>
+                <li><a class="nav-link" th:href="@{/about}">About us</a></li>
+                <li><a class="nav-link" th:href="@{/services}">Services</a></li>
+                <li><a class="nav-link" th:href="@{/blog}">Blog</a></li>
+                <li><a class="nav-link" th:href="@{/contact}">Contact us</a></li>
+            </ul>
+
+            <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                <li>
+                    <a class="nav-link" href="#"><img th:src="@{/default/images/user.svg}">
+                        <span sec:authentication="principal.username"></span>
+                    </a>
+                </li>
+                <li>
+                    <form th:action="@{/logout}" method="post">
+                        <button class="btn btn-danger">Logout</button>
+
+                    </form>
+                </li>
+                <li>
+                    <a th:href="@{/admin}" class="btn btn-success">Admin Page</a>
+                </li>
+                <li><a class="nav-link" href="cart.html"><img th:src="@{/default/images/cart.svg}"></a></li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+<!-- End Header/Navigation -->
+</body>
+</html>

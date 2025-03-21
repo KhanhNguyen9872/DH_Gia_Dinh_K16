@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{admin/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Student</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div layout:fragment="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-ms-12">
+                <h1>List Student</h1>
+                <hr>
+                <a th:href="@{/admin/students/student-form-insert}">
+                    <button class="btn btn-primary">Add new student</button>
+                </a>
+                <table class="table table-dart">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="student:${students}">
+                        <th scope="row" th:text="${student.id}"></th>
+                        <td th:text="${student.first_name}"></td>
+                        <td th:text="${student.last_name}"></td>
+                        <td th:text="${student.email}"></td>
+                        <td>
+                            <a th:href="@{/admin/students/student-form-update(id=${student.id})}">
+                                <i class="fa-solid fa-pencil text-info" ></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/admin/students/delete(id=${student.id})}"
+                            onclick="if(!(confirm('Are you sure you want to this student'))) return false">
+                                <i class="fa-solid fa-trash text-danger"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
